@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package alice_v1;
+
+option go_package = "desc/alice_v1";
+
+enum SrpStage {
+  SRP_STAGE_UNKNOWN = 0;
+  SRP_STAGE_AUTH0 = 1;
+  SRP_STAGE_AUTH1 = 2;
+  SRP_STAGE_AUTH2 = 3;
+}
+
+message RegistrationRequest {
+  message User {
+    int32 ver = 1;
+    string identity = 2;
+    bytes verifier = 3;
+    bytes salt = 4;
+    bytes priv_key_enc = 5;
+    bytes pubKey = 6;
+  }
+
+  message Workspace {
+    bytes aed_key_enc = 1;
+    bytes aed_key_tag = 2;
+    bytes title_enc = 3;
+  }
+
+  message CardItem {
+    bytes title_enc = 1;
+    bytes body_enc = 2;
+  }
+
+  message CardWithItems {
+    bytes title_enc = 1;
+    repeated bytes tags_enc = 2;
+    repeated CardItem items = 3;
+  }
+
+  User user = 1;
+  Workspace workspace = 2;
+  repeated CardWithItems card_with_items = 3;
+}
+
+message Login0Request {
+  string identity = 1;
+}
+
+message Login0Response {
+  bytes ephemeral = 1;
+}
+
+message Login1Request {
+  bytes ephemeral = 1;
+  bytes proof = 2;
+}
+
+message Login1Response {
+  bytes proof = 1;
+}
+
+message CreateWorkspaceRequest {
+  bytes aed_key_enc = 1;
+  bytes aed_key_tag = 2;
+  bytes title_enc = 3;
+}
+
+message CreateWorkspaceResponse {
+  UserWithWorkspace workspace = 1;
+}
+
+message CreateCardRequest {
+  Card card = 1;
+  repeated CardItem card_items = 2;
+}
+
+message CreateCardResponse {
+  Card card = 1;
+}
+
+message CloneCardRequest {
+  bytes title_enc = 1;
+}
+
+message CloneCardResponse {
+  Card card = 1;
+}
+
+message ListWorkspacesResponse {
+  repeated UserWithWorkspace items = 1;
+}
+
+message WhoAmIResponse {
+  string id = 1;
+  bytes salt = 2;
+  bytes priv_key_enc = 3;
+  bytes pubKey = 4;
+}
+
+message Card {
+  string id = 1;
+  string workspace_id = 2;
+  bytes title_enc = 3;
+  repeated bytes tags_enc = 4;
+  string created_at = 5;
+}
+
+message CardItem {
+  string id = 1;
+  string card_id = 2;
+  bytes title_enc = 3;
+  bytes body_enc = 4;
+}
+
+// Workspace with linked table "user_workspaces",
+// which is contain encrypted master kay and auth key
+message UserWithWorkspace {
+  string record_id = 1;
+  string user_id = 2;
+  string owner_id = 3;
+  bytes owner_pub_key = 4;
+  string workspace_id = 5;
+  bytes aed_key_enc = 6;
+  bytes aed_key_tag = 7;
+  bytes title_enc = 8;
+  string record_created_at = 9;
+  string workspace_created_at = 10;
+}
+
+message ListCardsResponse {
+  repeated Card items = 1;
+}
+
+message ListCardItemsResponse {
+  repeated CardItem items = 1;
+}

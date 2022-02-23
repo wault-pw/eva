@@ -96,11 +96,6 @@ export namespace RegistrationRequest {
     getAedKeyEnc_asB64(): string;
     setAedKeyEnc(value: Uint8Array | string): void;
 
-    getAedKeyTag(): Uint8Array | string;
-    getAedKeyTag_asU8(): Uint8Array;
-    getAedKeyTag_asB64(): string;
-    setAedKeyTag(value: Uint8Array | string): void;
-
     getTitleEnc(): Uint8Array | string;
     getTitleEnc_asU8(): Uint8Array;
     getTitleEnc_asB64(): string;
@@ -119,7 +114,6 @@ export namespace RegistrationRequest {
   export namespace Workspace {
     export type AsObject = {
       aedKeyEnc: Uint8Array | string,
-      aedKeyTag: Uint8Array | string,
       titleEnc: Uint8Array | string,
     }
   }

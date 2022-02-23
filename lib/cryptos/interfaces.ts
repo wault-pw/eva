@@ -21,6 +21,8 @@ export interface IPubCipher {
   importPrivKey(key: Uint8Array): Promise<CryptoKey>
 
   decrypt(key: CryptoKey, data: Uint8Array): Promise<Uint8Array>
+
+  encrypt(key: CryptoKey, data: Uint8Array): Promise<Uint8Array>
 }
 
 export interface IDerive {
@@ -32,6 +34,8 @@ export interface IAedCipher {
   generateKey(): Promise<CryptoKey>
 
   importKey(key: Uint8Array): Promise<CryptoKey>
+
+  exportKey(key: CryptoKey): Promise<Uint8Array>
 
   encrypt(params: AedCryptoParams): Promise<Uint8Array>
 }

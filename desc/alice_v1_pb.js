@@ -1119,7 +1119,6 @@ proto.alice_v1.RegistrationRequest.Workspace.prototype.toObject = function(opt_i
 proto.alice_v1.RegistrationRequest.Workspace.toObject = function(includeInstance, msg) {
   var f, obj = {
     aedKeyEnc: msg.getAedKeyEnc_asB64(),
-    aedKeyTag: msg.getAedKeyTag_asB64(),
     titleEnc: msg.getTitleEnc_asB64()
   };
 
@@ -1163,10 +1162,6 @@ proto.alice_v1.RegistrationRequest.Workspace.deserializeBinaryFromReader = funct
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setAedKeyTag(value);
-      break;
-    case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setTitleEnc(value);
       break;
     default:
@@ -1205,17 +1200,10 @@ proto.alice_v1.RegistrationRequest.Workspace.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getAedKeyTag_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      2,
-      f
-    );
-  }
   f = message.getTitleEnc_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      3,
+      2,
       f
     );
   }
@@ -1265,58 +1253,16 @@ proto.alice_v1.RegistrationRequest.Workspace.prototype.setAedKeyEnc = function(v
 
 
 /**
- * optional bytes aed_key_tag = 2;
+ * optional bytes title_enc = 2;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.RegistrationRequest.Workspace.prototype.getAedKeyTag = function() {
+proto.alice_v1.RegistrationRequest.Workspace.prototype.getTitleEnc = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes aed_key_tag = 2;
- * This is a type-conversion wrapper around `getAedKeyTag()`
- * @return {string}
- */
-proto.alice_v1.RegistrationRequest.Workspace.prototype.getAedKeyTag_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getAedKeyTag()));
-};
-
-
-/**
- * optional bytes aed_key_tag = 2;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getAedKeyTag()`
- * @return {!Uint8Array}
- */
-proto.alice_v1.RegistrationRequest.Workspace.prototype.getAedKeyTag_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getAedKeyTag()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.alice_v1.RegistrationRequest.Workspace} returns this
- */
-proto.alice_v1.RegistrationRequest.Workspace.prototype.setAedKeyTag = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
-};
-
-
-/**
- * optional bytes title_enc = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.alice_v1.RegistrationRequest.Workspace.prototype.getTitleEnc = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes title_enc = 3;
+ * optional bytes title_enc = 2;
  * This is a type-conversion wrapper around `getTitleEnc()`
  * @return {string}
  */
@@ -1327,7 +1273,7 @@ proto.alice_v1.RegistrationRequest.Workspace.prototype.getTitleEnc_asB64 = funct
 
 
 /**
- * optional bytes title_enc = 3;
+ * optional bytes title_enc = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getTitleEnc()`
@@ -1344,7 +1290,7 @@ proto.alice_v1.RegistrationRequest.Workspace.prototype.getTitleEnc_asU8 = functi
  * @return {!proto.alice_v1.RegistrationRequest.Workspace} returns this
  */
 proto.alice_v1.RegistrationRequest.Workspace.prototype.setTitleEnc = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
+  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 

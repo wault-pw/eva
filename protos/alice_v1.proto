@@ -24,8 +24,7 @@ message RegistrationRequest {
 
   message Workspace {
     bytes aed_key_enc = 1;
-    bytes aed_key_tag = 2;
-    bytes title_enc = 3;
+    bytes title_enc = 2;
   }
 
   message CardItem {

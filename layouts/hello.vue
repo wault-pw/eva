@@ -6,7 +6,9 @@
     <nuxt/>
 
     <footer>
-      ver.{{ $setup.version }}
+      2022 © OKA ver.{{ $setup.version }}
+
+      <a target="_blank" :href="$setup.github">Github</a>
     </footer>
   </main>
 </template>

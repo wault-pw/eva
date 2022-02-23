@@ -18,6 +18,18 @@ export class Setup {
   get version(): string {
     return this.$config.version ?? raise("version not set")
   }
+
+  get github(): string {
+    return this.$config.github ?? raise("github not set")
+  }
+
+  get demoUsername(): string {
+    return this.$config.demoUsername ?? raise("demoUsername not set")
+  }
+
+  get demoPassword(): string {
+    return this.$config.demoPassword ?? raise("demoPassword not set")
+  }
 }
 
 function raise(errorMessage: string): never {

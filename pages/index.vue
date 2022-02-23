@@ -7,9 +7,27 @@
       <input v-model="password" type="password">
     </p>
 
-    <button type="submit">
-      CLick me
-    </button>
+    <p>
+      <button type="submit">
+        CLick me
+      </button>
+    </p>
+
+    <p>
+      <a href="#" @click.prevent="demo">
+        login_as_demo_user
+      </a>
+    </p>
+
+    <p>
+      <nuxt-link
+        :to="$urn.join()"
+        href="#"
+        @click.prevent="demo"
+      >
+        join
+      </nuxt-link>
+    </p>
   </form>
 </template>
 
@@ -28,6 +46,12 @@ export default Vue.extend({
   },
 
   methods: {
+    async demo() {
+      this.username = this.$setup.demoUsername
+      this.password = this.$setup.demoPassword
+      await this.submit()
+    },
+
     async submit() {
       const res0 = await this.auth0(this.username)
 

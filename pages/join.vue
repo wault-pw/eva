@@ -14,9 +14,17 @@
       >
     </p>
 
-    <button @click.prevent="submit">
-      Click ME!
-    </button>
+    <p>
+      <button @click.prevent="submit">
+        Click ME!
+      </button>
+    </p>
+
+    <p>
+      <nuxt-link :to="$urn.login()">
+        login
+      </nuxt-link>
+    </p>
   </form>
 </template>
 

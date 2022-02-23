@@ -1,5 +1,7 @@
 const VERSION = process.env.VERSION || '0.0.0'
 const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
+const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
+const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
 
 export default {
   components: true,
@@ -28,6 +30,9 @@ export default {
     spa: false,
     mpa: true,
     version: VERSION,
+    github: 'https://github.com/oka-is/eva',
+    demoUsername: DEMO_USERNAME,
+    demoPassword: DEMO_PASSWORD,
     axios: {
       browserBaseURL: ALICE_URL
     },
@@ -36,6 +41,7 @@ export default {
   plugins: [
     '@/plugins/setup',
     '@/plugins/ver',
+    '@/plugins/urn',
     '@/plugins/adapter'
   ],
 

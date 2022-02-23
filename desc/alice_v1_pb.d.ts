@@ -48,10 +48,15 @@ export namespace RegistrationRequest {
     getVerifier_asB64(): string;
     setVerifier(value: Uint8Array | string): void;
 
-    getSalt(): Uint8Array | string;
-    getSalt_asU8(): Uint8Array;
-    getSalt_asB64(): string;
-    setSalt(value: Uint8Array | string): void;
+    getSrpSalt(): Uint8Array | string;
+    getSrpSalt_asU8(): Uint8Array;
+    getSrpSalt_asB64(): string;
+    setSrpSalt(value: Uint8Array | string): void;
+
+    getPasswdSalt(): Uint8Array | string;
+    getPasswdSalt_asU8(): Uint8Array;
+    getPasswdSalt_asB64(): string;
+    setPasswdSalt(value: Uint8Array | string): void;
 
     getPrivKeyEnc(): Uint8Array | string;
     getPrivKeyEnc_asU8(): Uint8Array;
@@ -78,7 +83,8 @@ export namespace RegistrationRequest {
       ver: number,
       identity: string,
       verifier: Uint8Array | string,
-      salt: Uint8Array | string,
+      srpSalt: Uint8Array | string,
+      passwdSalt: Uint8Array | string,
       privKeyEnc: Uint8Array | string,
       pubkey: Uint8Array | string,
     }
@@ -204,10 +210,10 @@ export namespace Login0Request {
 }
 
 export class Login0Response extends jspb.Message {
-  getEphemeral(): Uint8Array | string;
-  getEphemeral_asU8(): Uint8Array;
-  getEphemeral_asB64(): string;
-  setEphemeral(value: Uint8Array | string): void;
+  getMutual(): Uint8Array | string;
+  getMutual_asU8(): Uint8Array;
+  getMutual_asB64(): string;
+  setMutual(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Login0Response.AsObject;
@@ -221,15 +227,15 @@ export class Login0Response extends jspb.Message {
 
 export namespace Login0Response {
   export type AsObject = {
-    ephemeral: Uint8Array | string,
+    mutual: Uint8Array | string,
   }
 }
 
 export class Login1Request extends jspb.Message {
-  getEphemeral(): Uint8Array | string;
-  getEphemeral_asU8(): Uint8Array;
-  getEphemeral_asB64(): string;
-  setEphemeral(value: Uint8Array | string): void;
+  getMutual(): Uint8Array | string;
+  getMutual_asU8(): Uint8Array;
+  getMutual_asB64(): string;
+  setMutual(value: Uint8Array | string): void;
 
   getProof(): Uint8Array | string;
   getProof_asU8(): Uint8Array;
@@ -248,7 +254,7 @@ export class Login1Request extends jspb.Message {
 
 export namespace Login1Request {
   export type AsObject = {
-    ephemeral: Uint8Array | string,
+    mutual: Uint8Array | string,
     proof: Uint8Array | string,
   }
 }
@@ -451,10 +457,10 @@ export class WhoAmIResponse extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
-  getSalt(): Uint8Array | string;
-  getSalt_asU8(): Uint8Array;
-  getSalt_asB64(): string;
-  setSalt(value: Uint8Array | string): void;
+  getPasswdSalt(): Uint8Array | string;
+  getPasswdSalt_asU8(): Uint8Array;
+  getPasswdSalt_asB64(): string;
+  setPasswdSalt(value: Uint8Array | string): void;
 
   getPrivKeyEnc(): Uint8Array | string;
   getPrivKeyEnc_asU8(): Uint8Array;
@@ -479,7 +485,7 @@ export class WhoAmIResponse extends jspb.Message {
 export namespace WhoAmIResponse {
   export type AsObject = {
     id: string,
-    salt: Uint8Array | string,
+    passwdSalt: Uint8Array | string,
     privKeyEnc: Uint8Array | string,
     pubkey: Uint8Array | string,
   }
@@ -564,8 +570,8 @@ export namespace CardItem {
 }
 
 export class UserWithWorkspace extends jspb.Message {
-  getRecordId(): string;
-  setRecordId(value: string): void;
+  getId(): string;
+  setId(value: string): void;
 
   getUserId(): string;
   setUserId(value: string): void;
@@ -596,11 +602,8 @@ export class UserWithWorkspace extends jspb.Message {
   getTitleEnc_asB64(): string;
   setTitleEnc(value: Uint8Array | string): void;
 
-  getRecordCreatedAt(): string;
-  setRecordCreatedAt(value: string): void;
-
-  getWorkspaceCreatedAt(): string;
-  setWorkspaceCreatedAt(value: string): void;
+  getCreatedAt(): string;
+  setCreatedAt(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UserWithWorkspace.AsObject;
@@ -614,7 +617,7 @@ export class UserWithWorkspace extends jspb.Message {
 
 export namespace UserWithWorkspace {
   export type AsObject = {
-    recordId: string,
+    id: string,
     userId: string,
     ownerId: string,
     ownerPubKey: Uint8Array | string,
@@ -622,8 +625,7 @@ export namespace UserWithWorkspace {
     aedKeyEnc: Uint8Array | string,
     aedKeyTag: Uint8Array | string,
     titleEnc: Uint8Array | string,
-    recordCreatedAt: string,
-    workspaceCreatedAt: string,
+    createdAt: string,
   }
 }
 

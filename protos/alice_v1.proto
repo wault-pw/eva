@@ -16,9 +16,10 @@ message RegistrationRequest {
     int32 ver = 1;
     string identity = 2;
     bytes verifier = 3;
-    bytes salt = 4;
-    bytes priv_key_enc = 5;
-    bytes pubKey = 6;
+    bytes srp_salt = 4;
+    bytes passwd_salt = 5;
+    bytes priv_key_enc = 6;
+    bytes pubKey = 7;
   }
 
   message Workspace {
@@ -48,11 +49,11 @@ message Login0Request {
 }
 
 message Login0Response {
-  bytes ephemeral = 1;
+  bytes mutual = 1;
 }
 
 message Login1Request {
-  bytes ephemeral = 1;
+  bytes mutual = 1;
   bytes proof = 2;
 }
 
@@ -93,7 +94,7 @@ message ListWorkspacesResponse {
 
 message WhoAmIResponse {
   string id = 1;
-  bytes salt = 2;
+  bytes passwd_salt = 2;
   bytes priv_key_enc = 3;
   bytes pubKey = 4;
 }
@@ -116,7 +117,7 @@ message CardItem {
 // Workspace with linked table "user_workspaces",
 // which is contain encrypted master kay and auth key
 message UserWithWorkspace {
-  string record_id = 1;
+  string id = 1;
   string user_id = 2;
   string owner_id = 3;
   bytes owner_pub_key = 4;
@@ -124,8 +125,7 @@ message UserWithWorkspace {
   bytes aed_key_enc = 6;
   bytes aed_key_tag = 7;
   bytes title_enc = 8;
-  string record_created_at = 9;
-  string workspace_created_at = 10;
+  string created_at = 9;
 }
 
 message ListCardsResponse {

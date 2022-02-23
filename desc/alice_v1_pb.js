@@ -691,7 +691,8 @@ proto.alice_v1.RegistrationRequest.User.toObject = function(includeInstance, msg
     ver: jspb.Message.getFieldWithDefault(msg, 1, 0),
     identity: jspb.Message.getFieldWithDefault(msg, 2, ""),
     verifier: msg.getVerifier_asB64(),
-    salt: msg.getSalt_asB64(),
+    srpSalt: msg.getSrpSalt_asB64(),
+    passwdSalt: msg.getPasswdSalt_asB64(),
     privKeyEnc: msg.getPrivKeyEnc_asB64(),
     pubkey: msg.getPubkey_asB64()
   };
@@ -744,13 +745,17 @@ proto.alice_v1.RegistrationRequest.User.deserializeBinaryFromReader = function(m
       break;
     case 4:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSalt(value);
+      msg.setSrpSalt(value);
       break;
     case 5:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPrivKeyEnc(value);
+      msg.setPasswdSalt(value);
       break;
     case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPrivKeyEnc(value);
+      break;
+    case 7:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setPubkey(value);
       break;
@@ -804,24 +809,31 @@ proto.alice_v1.RegistrationRequest.User.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getSalt_asU8();
+  f = message.getSrpSalt_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       4,
       f
     );
   }
-  f = message.getPrivKeyEnc_asU8();
+  f = message.getPasswdSalt_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       5,
       f
     );
   }
-  f = message.getPubkey_asU8();
+  f = message.getPrivKeyEnc_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       6,
+      f
+    );
+  }
+  f = message.getPubkey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      7,
       f
     );
   }
@@ -907,35 +919,35 @@ proto.alice_v1.RegistrationRequest.User.prototype.setVerifier = function(value) 
 
 
 /**
- * optional bytes salt = 4;
+ * optional bytes srp_salt = 4;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.RegistrationRequest.User.prototype.getSalt = function() {
+proto.alice_v1.RegistrationRequest.User.prototype.getSrpSalt = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * optional bytes salt = 4;
- * This is a type-conversion wrapper around `getSalt()`
+ * optional bytes srp_salt = 4;
+ * This is a type-conversion wrapper around `getSrpSalt()`
  * @return {string}
  */
-proto.alice_v1.RegistrationRequest.User.prototype.getSalt_asB64 = function() {
+proto.alice_v1.RegistrationRequest.User.prototype.getSrpSalt_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSalt()));
+      this.getSrpSalt()));
 };
 
 
 /**
- * optional bytes salt = 4;
+ * optional bytes srp_salt = 4;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSalt()`
+ * This is a type-conversion wrapper around `getSrpSalt()`
  * @return {!Uint8Array}
  */
-proto.alice_v1.RegistrationRequest.User.prototype.getSalt_asU8 = function() {
+proto.alice_v1.RegistrationRequest.User.prototype.getSrpSalt_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSalt()));
+      this.getSrpSalt()));
 };
 
 
@@ -943,22 +955,64 @@ proto.alice_v1.RegistrationRequest.User.prototype.getSalt_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.alice_v1.RegistrationRequest.User} returns this
  */
-proto.alice_v1.RegistrationRequest.User.prototype.setSalt = function(value) {
+proto.alice_v1.RegistrationRequest.User.prototype.setSrpSalt = function(value) {
   return jspb.Message.setProto3BytesField(this, 4, value);
 };
 
 
 /**
- * optional bytes priv_key_enc = 5;
+ * optional bytes passwd_salt = 5;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.RegistrationRequest.User.prototype.getPrivKeyEnc = function() {
+proto.alice_v1.RegistrationRequest.User.prototype.getPasswdSalt = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * optional bytes priv_key_enc = 5;
+ * optional bytes passwd_salt = 5;
+ * This is a type-conversion wrapper around `getPasswdSalt()`
+ * @return {string}
+ */
+proto.alice_v1.RegistrationRequest.User.prototype.getPasswdSalt_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getPasswdSalt()));
+};
+
+
+/**
+ * optional bytes passwd_salt = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getPasswdSalt()`
+ * @return {!Uint8Array}
+ */
+proto.alice_v1.RegistrationRequest.User.prototype.getPasswdSalt_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getPasswdSalt()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.alice_v1.RegistrationRequest.User} returns this
+ */
+proto.alice_v1.RegistrationRequest.User.prototype.setPasswdSalt = function(value) {
+  return jspb.Message.setProto3BytesField(this, 5, value);
+};
+
+
+/**
+ * optional bytes priv_key_enc = 6;
+ * @return {!(string|Uint8Array)}
+ */
+proto.alice_v1.RegistrationRequest.User.prototype.getPrivKeyEnc = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * optional bytes priv_key_enc = 6;
  * This is a type-conversion wrapper around `getPrivKeyEnc()`
  * @return {string}
  */
@@ -969,7 +1023,7 @@ proto.alice_v1.RegistrationRequest.User.prototype.getPrivKeyEnc_asB64 = function
 
 
 /**
- * optional bytes priv_key_enc = 5;
+ * optional bytes priv_key_enc = 6;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPrivKeyEnc()`
@@ -986,21 +1040,21 @@ proto.alice_v1.RegistrationRequest.User.prototype.getPrivKeyEnc_asU8 = function(
  * @return {!proto.alice_v1.RegistrationRequest.User} returns this
  */
 proto.alice_v1.RegistrationRequest.User.prototype.setPrivKeyEnc = function(value) {
-  return jspb.Message.setProto3BytesField(this, 5, value);
+  return jspb.Message.setProto3BytesField(this, 6, value);
 };
 
 
 /**
- * optional bytes pubKey = 6;
+ * optional bytes pubKey = 7;
  * @return {!(string|Uint8Array)}
  */
 proto.alice_v1.RegistrationRequest.User.prototype.getPubkey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
- * optional bytes pubKey = 6;
+ * optional bytes pubKey = 7;
  * This is a type-conversion wrapper around `getPubkey()`
  * @return {string}
  */
@@ -1011,7 +1065,7 @@ proto.alice_v1.RegistrationRequest.User.prototype.getPubkey_asB64 = function() {
 
 
 /**
- * optional bytes pubKey = 6;
+ * optional bytes pubKey = 7;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPubkey()`
@@ -1028,7 +1082,7 @@ proto.alice_v1.RegistrationRequest.User.prototype.getPubkey_asU8 = function() {
  * @return {!proto.alice_v1.RegistrationRequest.User} returns this
  */
 proto.alice_v1.RegistrationRequest.User.prototype.setPubkey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 6, value);
+  return jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 
@@ -2063,7 +2117,7 @@ proto.alice_v1.Login0Response.prototype.toObject = function(opt_includeInstance)
  */
 proto.alice_v1.Login0Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ephemeral: msg.getEphemeral_asB64()
+    mutual: msg.getMutual_asB64()
   };
 
   if (includeInstance) {
@@ -2102,7 +2156,7 @@ proto.alice_v1.Login0Response.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setEphemeral(value);
+      msg.setMutual(value);
       break;
     default:
       reader.skipField();
@@ -2133,7 +2187,7 @@ proto.alice_v1.Login0Response.prototype.serializeBinary = function() {
  */
 proto.alice_v1.Login0Response.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEphemeral_asU8();
+  f = message.getMutual_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       1,
@@ -2144,35 +2198,35 @@ proto.alice_v1.Login0Response.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional bytes ephemeral = 1;
+ * optional bytes mutual = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.Login0Response.prototype.getEphemeral = function() {
+proto.alice_v1.Login0Response.prototype.getMutual = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes ephemeral = 1;
- * This is a type-conversion wrapper around `getEphemeral()`
+ * optional bytes mutual = 1;
+ * This is a type-conversion wrapper around `getMutual()`
  * @return {string}
  */
-proto.alice_v1.Login0Response.prototype.getEphemeral_asB64 = function() {
+proto.alice_v1.Login0Response.prototype.getMutual_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getEphemeral()));
+      this.getMutual()));
 };
 
 
 /**
- * optional bytes ephemeral = 1;
+ * optional bytes mutual = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getEphemeral()`
+ * This is a type-conversion wrapper around `getMutual()`
  * @return {!Uint8Array}
  */
-proto.alice_v1.Login0Response.prototype.getEphemeral_asU8 = function() {
+proto.alice_v1.Login0Response.prototype.getMutual_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getEphemeral()));
+      this.getMutual()));
 };
 
 
@@ -2180,7 +2234,7 @@ proto.alice_v1.Login0Response.prototype.getEphemeral_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.alice_v1.Login0Response} returns this
  */
-proto.alice_v1.Login0Response.prototype.setEphemeral = function(value) {
+proto.alice_v1.Login0Response.prototype.setMutual = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
@@ -2217,7 +2271,7 @@ proto.alice_v1.Login1Request.prototype.toObject = function(opt_includeInstance) 
  */
 proto.alice_v1.Login1Request.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ephemeral: msg.getEphemeral_asB64(),
+    mutual: msg.getMutual_asB64(),
     proof: msg.getProof_asB64()
   };
 
@@ -2257,7 +2311,7 @@ proto.alice_v1.Login1Request.deserializeBinaryFromReader = function(msg, reader)
     switch (field) {
     case 1:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setEphemeral(value);
+      msg.setMutual(value);
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
@@ -2292,7 +2346,7 @@ proto.alice_v1.Login1Request.prototype.serializeBinary = function() {
  */
 proto.alice_v1.Login1Request.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getEphemeral_asU8();
+  f = message.getMutual_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       1,
@@ -2310,35 +2364,35 @@ proto.alice_v1.Login1Request.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional bytes ephemeral = 1;
+ * optional bytes mutual = 1;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.Login1Request.prototype.getEphemeral = function() {
+proto.alice_v1.Login1Request.prototype.getMutual = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes ephemeral = 1;
- * This is a type-conversion wrapper around `getEphemeral()`
+ * optional bytes mutual = 1;
+ * This is a type-conversion wrapper around `getMutual()`
  * @return {string}
  */
-proto.alice_v1.Login1Request.prototype.getEphemeral_asB64 = function() {
+proto.alice_v1.Login1Request.prototype.getMutual_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getEphemeral()));
+      this.getMutual()));
 };
 
 
 /**
- * optional bytes ephemeral = 1;
+ * optional bytes mutual = 1;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getEphemeral()`
+ * This is a type-conversion wrapper around `getMutual()`
  * @return {!Uint8Array}
  */
-proto.alice_v1.Login1Request.prototype.getEphemeral_asU8 = function() {
+proto.alice_v1.Login1Request.prototype.getMutual_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getEphemeral()));
+      this.getMutual()));
 };
 
 
@@ -2346,7 +2400,7 @@ proto.alice_v1.Login1Request.prototype.getEphemeral_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.alice_v1.Login1Request} returns this
  */
-proto.alice_v1.Login1Request.prototype.setEphemeral = function(value) {
+proto.alice_v1.Login1Request.prototype.setMutual = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
@@ -3820,7 +3874,7 @@ proto.alice_v1.WhoAmIResponse.prototype.toObject = function(opt_includeInstance)
 proto.alice_v1.WhoAmIResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    salt: msg.getSalt_asB64(),
+    passwdSalt: msg.getPasswdSalt_asB64(),
     privKeyEnc: msg.getPrivKeyEnc_asB64(),
     pubkey: msg.getPubkey_asB64()
   };
@@ -3865,7 +3919,7 @@ proto.alice_v1.WhoAmIResponse.deserializeBinaryFromReader = function(msg, reader
       break;
     case 2:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSalt(value);
+      msg.setPasswdSalt(value);
       break;
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
@@ -3911,7 +3965,7 @@ proto.alice_v1.WhoAmIResponse.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getSalt_asU8();
+  f = message.getPasswdSalt_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       2,
@@ -3954,35 +4008,35 @@ proto.alice_v1.WhoAmIResponse.prototype.setId = function(value) {
 
 
 /**
- * optional bytes salt = 2;
+ * optional bytes passwd_salt = 2;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getSalt = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
- * optional bytes salt = 2;
- * This is a type-conversion wrapper around `getSalt()`
+ * optional bytes passwd_salt = 2;
+ * This is a type-conversion wrapper around `getPasswdSalt()`
  * @return {string}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getSalt_asB64 = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSalt()));
+      this.getPasswdSalt()));
 };
 
 
 /**
- * optional bytes salt = 2;
+ * optional bytes passwd_salt = 2;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getSalt()`
+ * This is a type-conversion wrapper around `getPasswdSalt()`
  * @return {!Uint8Array}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getSalt_asU8 = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSalt()));
+      this.getPasswdSalt()));
 };
 
 
@@ -3990,7 +4044,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getSalt_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.alice_v1.WhoAmIResponse} returns this
  */
-proto.alice_v1.WhoAmIResponse.prototype.setSalt = function(value) {
+proto.alice_v1.WhoAmIResponse.prototype.setPasswdSalt = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
@@ -4703,7 +4757,7 @@ proto.alice_v1.UserWithWorkspace.prototype.toObject = function(opt_includeInstan
  */
 proto.alice_v1.UserWithWorkspace.toObject = function(includeInstance, msg) {
   var f, obj = {
-    recordId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     userId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     ownerId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     ownerPubKey: msg.getOwnerPubKey_asB64(),
@@ -4711,8 +4765,7 @@ proto.alice_v1.UserWithWorkspace.toObject = function(includeInstance, msg) {
     aedKeyEnc: msg.getAedKeyEnc_asB64(),
     aedKeyTag: msg.getAedKeyTag_asB64(),
     titleEnc: msg.getTitleEnc_asB64(),
-    recordCreatedAt: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    workspaceCreatedAt: jspb.Message.getFieldWithDefault(msg, 10, "")
+    createdAt: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -4751,7 +4804,7 @@ proto.alice_v1.UserWithWorkspace.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordId(value);
+      msg.setId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -4783,11 +4836,7 @@ proto.alice_v1.UserWithWorkspace.deserializeBinaryFromReader = function(msg, rea
       break;
     case 9:
       var value = /** @type {string} */ (reader.readString());
-      msg.setRecordCreatedAt(value);
-      break;
-    case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setWorkspaceCreatedAt(value);
+      msg.setCreatedAt(value);
       break;
     default:
       reader.skipField();
@@ -4818,7 +4867,7 @@ proto.alice_v1.UserWithWorkspace.prototype.serializeBinary = function() {
  */
 proto.alice_v1.UserWithWorkspace.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRecordId();
+  f = message.getId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4874,17 +4923,10 @@ proto.alice_v1.UserWithWorkspace.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getRecordCreatedAt();
+  f = message.getCreatedAt();
   if (f.length > 0) {
     writer.writeString(
       9,
-      f
-    );
-  }
-  f = message.getWorkspaceCreatedAt();
-  if (f.length > 0) {
-    writer.writeString(
-      10,
       f
     );
   }
@@ -4892,10 +4934,10 @@ proto.alice_v1.UserWithWorkspace.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * optional string record_id = 1;
+ * optional string id = 1;
  * @return {string}
  */
-proto.alice_v1.UserWithWorkspace.prototype.getRecordId = function() {
+proto.alice_v1.UserWithWorkspace.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -4904,7 +4946,7 @@ proto.alice_v1.UserWithWorkspace.prototype.getRecordId = function() {
  * @param {string} value
  * @return {!proto.alice_v1.UserWithWorkspace} returns this
  */
-proto.alice_v1.UserWithWorkspace.prototype.setRecordId = function(value) {
+proto.alice_v1.UserWithWorkspace.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -5132,10 +5174,10 @@ proto.alice_v1.UserWithWorkspace.prototype.setTitleEnc = function(value) {
 
 
 /**
- * optional string record_created_at = 9;
+ * optional string created_at = 9;
  * @return {string}
  */
-proto.alice_v1.UserWithWorkspace.prototype.getRecordCreatedAt = function() {
+proto.alice_v1.UserWithWorkspace.prototype.getCreatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
@@ -5144,26 +5186,8 @@ proto.alice_v1.UserWithWorkspace.prototype.getRecordCreatedAt = function() {
  * @param {string} value
  * @return {!proto.alice_v1.UserWithWorkspace} returns this
  */
-proto.alice_v1.UserWithWorkspace.prototype.setRecordCreatedAt = function(value) {
+proto.alice_v1.UserWithWorkspace.prototype.setCreatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 9, value);
-};
-
-
-/**
- * optional string workspace_created_at = 10;
- * @return {string}
- */
-proto.alice_v1.UserWithWorkspace.prototype.getWorkspaceCreatedAt = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.alice_v1.UserWithWorkspace} returns this
- */
-proto.alice_v1.UserWithWorkspace.prototype.setWorkspaceCreatedAt = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

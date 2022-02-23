@@ -1,4 +1,4 @@
-import {IDerive, SHA1, SHA256, crypt} from "~/lib/cryptos/interfaces"
+import {IDerive, SHA1, SHA256, crypt, HashSize} from "~/lib/cryptos/interfaces"
 
 export enum DeriveEnum {
   Pbkdf2Sha256 = "Pbkdf2Sha256",
@@ -11,6 +11,17 @@ export function NewDerive(num: DeriveEnum): IDerive {
       return new Pbkdf2Derive(SHA256)
     case DeriveEnum.Pbkdf2Sha1:
       return new Pbkdf2Derive(SHA1)
+    default:
+      throw(`unknown derive num <${num}>`)
+  }
+}
+
+export function DeriveSaltSize(num: DeriveEnum): number {
+  switch (num) {
+    case DeriveEnum.Pbkdf2Sha1:
+      return HashSize(SHA1)
+    case DeriveEnum.Pbkdf2Sha256:
+      return HashSize(SHA256)
     default:
       throw(`unknown derive num <${num}>`)
   }

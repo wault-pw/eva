@@ -1,4 +1,5 @@
 const VERSION = process.env.VERSION || '0.0.0'
+const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 
 export default {
   components: true,
@@ -27,11 +28,15 @@ export default {
     spa: false,
     mpa: true,
     version: VERSION,
-    srp: "SRP_1024"
+    axios: {
+      browserBaseURL: ALICE_URL
+    },
   },
 
   plugins: [
-    '@/plugins/setup'
+    '@/plugins/setup',
+    '@/plugins/ver',
+    '@/plugins/adapter'
   ],
 
   buildModules: [
@@ -41,6 +46,12 @@ export default {
   modules: [
     '@nuxtjs/axios',
   ],
+
+  axios: {
+    credentials: true,
+    debug: false,
+    progress: false
+  },
 
   router: {
     mode: 'hash',

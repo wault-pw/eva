@@ -22,6 +22,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {RegistrationRequest} from "~/desc/alice_v1_pb";
+import {MapRegistrationUser} from "~/lib/domain_v1/user";
 
 export default Vue.extend({
   layout: "hello",
@@ -35,24 +37,37 @@ export default Vue.extend({
 
   methods: {
     async submit() {
-      const srp = this.$setup.NewSrpVerifier()
-      await srp.init({username: this.username, password: this.password})
-      console.log("SRP: verifier", await srp.verifier())
+      const srp = this.$ver.NewSrpBridge()
+      const srpSalt = await srp.randomSalt()
+      await srp.init({username: this.username, password: this.password, salt: srpSalt})
+      const verifier = await srp.verifier()
 
-      const derive = await this.$setup.ver.derive.generate(
+      const passwdSalt = this.$ver.random(this.$ver.deriveSaltSize)
+      const derived = await this.$ver.derive.generate(
         new TextEncoder().encode(this.password),
-        new Uint8Array([1,2,3,34,34,4,234,5,33]),
-        this.$setup.ver.deriveIter,
-        32
+        passwdSalt,
+        this.$ver.deriveIter,
+        this.$ver.aedKeySize
       )
 
-      console.log("DERIVED:", derive)
+      console.log("DERIVED:", derived)
+      const pair = await this.$ver.pubCipher.generatePair()
+      const pub = await this.$ver.exportPubKey(pair)
+      const priv = await this.$ver.exportPrivKey(pair)
+      const key = await this.$ver.aedCipher.importKey(derived)
 
-      const pair = await this.$setup.ver.pubCipher.generatePair()
-      console.log("PUB:", await this.$setup.ver.exportPubKey(pair))
-      console.log("PRIV:", await this.$setup.ver.exportPrivKey(pair))
+      const req = new RegistrationRequest()
+      req.setUser(MapRegistrationUser({
+        verifier,
+        srpSalt,
+        passwdSalt,
+        identity: this.username,
+        privKeyEnc: await this.$ver.aedEncrypt(key, priv, pub),
+        pubKey: pub,
+      }))
 
-      srp.destroy()
+      await this.$adapter.register(req)
+      alert("ok")
     }
   }
 })

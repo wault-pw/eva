@@ -1,15 +1,16 @@
-import {WORKER_CMD_INIT, WORKER_CMD_VERIFIER} from "~/lib/const"
+import {SRP_GROUP_MAP, WORKER_CMD_INIT, WORKER_CMD_VERIFIER} from "~/lib/const"
 
 // @ts-ignore
 import W from "./srp.worker"
 import PromiseWorker from "promise-worker";
+import {SrpClient} from "@oka-is/srp6a-webcrypto";
 
 // This is a TypeScript bindings for the SRP6a
 // client inside a web worker
 export class SrpBridge {
   private readonly worker: Worker
   private readonly promise: PromiseWorker
-  private readonly group: String
+  private readonly group: string
 
   constructor(group: string) {
     this.group = group
@@ -23,11 +24,18 @@ export class SrpBridge {
       group: this.group,
       username: param.username,
       password: param.password,
+      salt: param.salt
     })
   }
 
   async verifier(): Promise<Uint8Array> {
     return this.promise.postMessage({cmd: WORKER_CMD_VERIFIER})
+  }
+
+  async randomSalt(): Promise<Uint8Array> {
+    // @ts-ignore
+    const srp = new SrpClient("", "", SRP_GROUP_MAP[this.group]);
+    return await srp.randomSalt()
   }
 
   destroy() {
@@ -38,4 +46,5 @@ export class SrpBridge {
 interface InitParam {
   username: string
   password: string
+  salt: Uint8Array
 }

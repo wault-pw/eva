@@ -1,15 +1,24 @@
 <template>
   <form @submit.prevent="submit">
     <p>
-      <input v-model="username" type="text">
+      <input
+        v-model="username"
+        :placeholder="$t('ui.username')"
+        type="text"
+      >
     </p>
+
     <p>
-      <input v-model="password" type="password">
+      <input
+        v-model="password"
+        :placeholder="$t('ui.passphrase')"
+        type="password"
+      >
     </p>
 
     <p>
       <button type="submit">
-        CLick me
+        {{ $t('ui.login') }}
       </button>
     </p>
 
@@ -20,11 +29,7 @@
     </p>
 
     <p>
-      <nuxt-link
-        :to="$urn.join()"
-        href="#"
-        @click.prevent="demo"
-      >
+      <nuxt-link :to="$urn.join()">
         join
       </nuxt-link>
     </p>

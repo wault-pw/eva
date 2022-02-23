@@ -51,12 +51,30 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/i18n',
   ],
 
   axios: {
     credentials: true,
     debug: false,
     progress: false
+  },
+
+  i18n: {
+    lazy: false,
+    vueI18nLoader: false,
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr' },
+      { code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr' },
+    ],
+    strategy: 'prefix',
+    langDir: 'locales/',
+    defaultLocale: 'en',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n',
+      redirectOn: 'root',
+    }
   },
 
   router: {

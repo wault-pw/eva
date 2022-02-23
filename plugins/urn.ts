@@ -24,7 +24,7 @@ declare module 'vuex/types/index' {
 }
 
 const plugin: Plugin = (context, inject) => {
-  inject('urn', new Urn())
+  inject('urn', new Urn(context.i18n))
 }
 
 export default plugin

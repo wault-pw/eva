@@ -28,6 +28,7 @@
       "@nuxt/types",
       "@types/node",
       "@nuxtjs/axios",
+      "@nuxtjs/i18n",
       "@types/jest",
       "@types/lodash",
       "@types/google-protobuf",

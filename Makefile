@@ -8,6 +8,9 @@ proto:
 		--proto_path=protos \
 		alice_v1.proto
 
-generate:
+generate\:mpa:
 	rm -rf dist/*
 	yarn run generate
+
+generate\:spa:
+	node ./scripts/spa.js dist/index.html > dist/backup.html

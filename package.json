@@ -15,6 +15,7 @@
     "core-js": "^3.19.3",
     "google-protobuf": "^3.19.4",
     "lodash": "^4.17.21",
+    "node-html-parser": "^5.2.0",
     "nuxt": "^2.15.8",
     "promise-worker": "^2.0.1",
     "vue": "^2.6.14",

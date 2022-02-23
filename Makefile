@@ -10,7 +10,7 @@ proto:
 
 generate\:mpa:
 	rm -rf dist/*
-	yarn run generate
+	VERSION=":VERSION:" yarn run generate
 
 generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html

@@ -1,3 +1,5 @@
+const VERSION = process.env.VERSION || '0.0.0'
+
 export default {
   components: true,
   ssr: false,
@@ -24,6 +26,7 @@ export default {
   publicRuntimeConfig: {
     spa: false,
     mpa: true,
+    version: VERSION,
     srp: "SRP_1024"
   },
 

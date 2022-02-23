@@ -19,6 +19,11 @@ export class Setup {
     return this.$config.mpa ?? raise("mpa not set")
   }
 
+
+  get version(): string {
+    return this.$config.version ?? raise("version not set")
+  }
+
   get ver(): Ver {
     return Ver1
   }

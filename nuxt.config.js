@@ -1,6 +1,7 @@
 export default {
   components: true,
   ssr: false,
+  target: 'static',
 
   head: {
     title: 'eva',
@@ -38,7 +39,23 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  router: {
+    mode: 'hash',
+    trailingSlash: false
+  },
+
   build: {
+    babel: {
+      babelrc: true,
+    },
+    splitChunks: {
+      pages: false,
+      vendor: false,
+      commons: false,
+      runtime: false,
+      layouts: false,
+      name: false,
+    },
     extend(config) {
       config.module.rules.push({
         test: /\.worker\.js$/,

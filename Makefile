@@ -7,3 +7,7 @@ proto:
 		--ts_out="desc" \
 		--proto_path=protos \
 		alice_v1.proto
+
+generate:
+	rm -rf dist/*
+	yarn run generate

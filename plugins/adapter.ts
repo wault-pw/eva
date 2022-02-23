@@ -1,5 +1,5 @@
 import {Plugin} from '@nuxt/types'
-import {IAdapter} from "~/lib/adapter/types"
+import {IAdapter} from "~/lib/adapter/adapter.type"
 import {AdapterMpa} from "~/lib/adapter/adapter.mpa"
 
 declare module 'vue/types/vue' {

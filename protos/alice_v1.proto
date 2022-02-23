@@ -49,6 +49,7 @@ message Login0Request {
 
 message Login0Response {
   bytes mutual = 1;
+  bytes salt = 2;
 }
 
 message Login1Request {

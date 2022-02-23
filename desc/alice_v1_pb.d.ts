@@ -209,6 +209,11 @@ export class Login0Response extends jspb.Message {
   getMutual_asB64(): string;
   setMutual(value: Uint8Array | string): void;
 
+  getSalt(): Uint8Array | string;
+  getSalt_asU8(): Uint8Array;
+  getSalt_asB64(): string;
+  setSalt(value: Uint8Array | string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Login0Response.AsObject;
   static toObject(includeInstance: boolean, msg: Login0Response): Login0Response.AsObject;
@@ -222,6 +227,7 @@ export class Login0Response extends jspb.Message {
 export namespace Login0Response {
   export type AsObject = {
     mutual: Uint8Array | string,
+    salt: Uint8Array | string,
   }
 }
 

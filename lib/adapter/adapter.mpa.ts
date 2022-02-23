@@ -1,6 +1,6 @@
-import {IAdapter} from "~/lib/adapter/types"
+import {IAdapter} from "~/lib/adapter/adapter.type"
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
-import {RegistrationRequest} from "~/desc/alice_v1_pb"
+import {Login0Request, Login0Response, Login1Request, Login1Response, RegistrationRequest} from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
 
 export class AdapterMpa implements IAdapter {
@@ -11,10 +11,21 @@ export class AdapterMpa implements IAdapter {
   }
 
   async register(req: RegistrationRequest) {
-    await this.post("/v1/register", req, null)
+    await this.post("/v1/register", req)
   }
 
-  private async post<T extends IProtoRes | null>(url: string, req: IProtoReq | null, res: T): Promise<T | null> {
+  async auth0(req: Login0Request): Promise<Login0Response> {
+    await this.$axios.$post("/v1/login/cookie")
+    const bin = await this.post("/v1/login/auth0", req)
+    return Login0Response.deserializeBinary(bin)
+  }
+
+  async auth1(req: Login1Request): Promise<Login1Response> {
+    const bin = await this.post("/v1/login/auth1", req)
+    return Login1Response.deserializeBinary(bin)
+  }
+
+  private async post(url: string, req: IProto | null): Promise<Uint8Array> {
     const opts = {
       url,
       method: "POST" as AxiosMethod,
@@ -26,18 +37,10 @@ export class AdapterMpa implements IAdapter {
     }
 
     const answer = await this.$axios(opts)
-    if (res != null) {
-      return res.deserializeBinary(new Uint8Array(answer.data))
-    }
-
-    return res
+    return new Uint8Array(answer.data)
   }
 }
 
-interface IProtoReq {
+interface IProto {
   serializeBinary(): Uint8Array
-}
-
-interface IProtoRes {
-  deserializeBinary(data: Uint8Array): any
 }

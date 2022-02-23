@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
-    "@oka-is/srp6a-webcrypto": "1.0.3",
+    "@oka-is/srp6a-webcrypto": "1.0.4",
     "core-js": "^3.19.3",
     "google-protobuf": "^3.19.4",
     "lodash": "^4.17.21",

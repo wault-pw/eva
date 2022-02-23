@@ -1,4 +1,10 @@
-import {SRP_GROUP_MAP, WORKER_CMD_INIT, WORKER_CMD_VERIFIER} from "~/lib/const"
+import {
+  SRP_GROUP_MAP,
+  WORKER_CMD_INIT,
+  WORKER_CMD_IS_PROOF_VALID,
+  WORKER_CMD_SET_PUBLIC_KEY,
+  WORKER_CMD_VERIFIER
+} from "~/lib/const"
 
 // @ts-ignore
 import W from "./srp.worker"
@@ -29,7 +35,15 @@ export class SrpBridge {
   }
 
   async verifier(): Promise<Uint8Array> {
-    return this.promise.postMessage({cmd: WORKER_CMD_VERIFIER})
+    return await this.promise.postMessage({cmd: WORKER_CMD_VERIFIER})
+  }
+
+  async setServerPublicKey(mutual: Uint8Array): Promise<ChallengeParam> {
+    return await this.promise.postMessage({cmd: WORKER_CMD_SET_PUBLIC_KEY, mutual: mutual})
+  }
+
+  async isProofValid(proof: Uint8Array): Promise<Boolean> {
+    return await this.promise.postMessage({cmd: WORKER_CMD_IS_PROOF_VALID, proof: proof})
   }
 
   async randomSalt(): Promise<Uint8Array> {
@@ -47,4 +61,9 @@ interface InitParam {
   username: string
   password: string
   salt: Uint8Array
+}
+
+interface ChallengeParam {
+  proof: Uint8Array
+  publicKey: Uint8Array
 }

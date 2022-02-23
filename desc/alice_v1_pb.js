@@ -2063,7 +2063,8 @@ proto.alice_v1.Login0Response.prototype.toObject = function(opt_includeInstance)
  */
 proto.alice_v1.Login0Response.toObject = function(includeInstance, msg) {
   var f, obj = {
-    mutual: msg.getMutual_asB64()
+    mutual: msg.getMutual_asB64(),
+    salt: msg.getSalt_asB64()
   };
 
   if (includeInstance) {
@@ -2104,6 +2105,10 @@ proto.alice_v1.Login0Response.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setMutual(value);
       break;
+    case 2:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setSalt(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2137,6 +2142,13 @@ proto.alice_v1.Login0Response.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeBytes(
       1,
+      f
+    );
+  }
+  f = message.getSalt_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      2,
       f
     );
   }
@@ -2182,6 +2194,48 @@ proto.alice_v1.Login0Response.prototype.getMutual_asU8 = function() {
  */
 proto.alice_v1.Login0Response.prototype.setMutual = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
+};
+
+
+/**
+ * optional bytes salt = 2;
+ * @return {!(string|Uint8Array)}
+ */
+proto.alice_v1.Login0Response.prototype.getSalt = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * optional bytes salt = 2;
+ * This is a type-conversion wrapper around `getSalt()`
+ * @return {string}
+ */
+proto.alice_v1.Login0Response.prototype.getSalt_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getSalt()));
+};
+
+
+/**
+ * optional bytes salt = 2;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getSalt()`
+ * @return {!Uint8Array}
+ */
+proto.alice_v1.Login0Response.prototype.getSalt_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getSalt()));
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @return {!proto.alice_v1.Login0Response} returns this
+ */
+proto.alice_v1.Login0Response.prototype.setSalt = function(value) {
+  return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 

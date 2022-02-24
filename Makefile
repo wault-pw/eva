@@ -21,6 +21,9 @@ generate\:mpa:
 generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html
 
+generate\:licenses:
+	yarn run generate-license-file --input package.json --output dist/LICENSES.txt --overwrite
+
 docker\:build: export TAG=$(VERSION)
 docker\:build:
 	docker build --no-cache -f ./Dockerfile -t ${REGISTRY_NAME}:${TAG} .

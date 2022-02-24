@@ -17,7 +17,7 @@
         :style="{zIndex: zIndex + 1}"
         class="status-throbber-box"
       >
-        <Throbber />
+        <Throbber/>
 
         <transition name="status-throbber-text-transition" mode="out-in">
           <span
@@ -74,6 +74,11 @@ export default Vue.extend({
 
   methods: {
     show(text: string) {
+      /**
+       * sometimes show is lined up because of the animation and
+       * "hide" function might be call in the middle of the queue.
+       */
+      if (TIMEOUT != null) return
       this.text = text
       this.shown = true
     },
@@ -93,7 +98,7 @@ export default Vue.extend({
        *   this.$throbber.hide()
        * }
        */
-      if (TIMEOUT !== null) return
+      if (TIMEOUT != null) return
       this.shown = false
     },
 

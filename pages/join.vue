@@ -1,33 +1,32 @@
 <template>
-  <form>
-    <p>
-      <input
-        v-model="username"
-        type="text"
-      >
-    </p>
+  <div class="hello-window">
+    <header class="text-center">
+      <h1 class="mb-1 text-uppercase">
+        {{ $tc("join.h1") }}
+      </h1>
 
-    {{ username }}/{{ password }}
+      <p class="text-white text-lowercase">
+        {{ $tc("hello.h2") }}
+      </p>
+    </header>
 
-    <p>
-      <input
-        v-model="password"
-        type="text"
-      >
-    </p>
+    <div ref="card" class="card shadow">
+      <div class="card-body">
+        <JoinForm
+          :disabled="loading"
+          :username.sync="username"
+          :password.sync="password"
+          @submit="trySubmit"
+        />
+      </div>
+    </div>
 
-    <p>
-      <button @click.prevent="trySubmit">
-        Click ME!
-      </button>
-    </p>
-
-    <p>
-      <nuxt-link :to="$urn.login()">
-        login
+    <p class="mt-4 text-center">
+      <nuxt-link :to="$urn.login()" class="text-white">
+        {{ $tc("menu.login") }}
       </nuxt-link>
     </p>
-  </form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -35,24 +34,35 @@ import Vue from 'vue'
 import {RegistrationRequest} from "~/desc/alice_v1_pb";
 import {MapRegistrationUser} from "~/lib/domain_v1/user";
 import { MapRegistrationWorkspace } from '~/lib/domain_v1/workspace';
+import JoinForm from "~/components/Join/JoinForm.vue";
 
 export default Vue.extend({
+  components: {JoinForm},
   layout: "hello",
 
   data() {
     return {
       username: "",
       password: "",
+      loading: false,
     }
+  },
+
+  mounted() {
+    const card = this.$refs.card
+    card.style["min-height"] = `${card.offsetHeight}px`
   },
 
   methods: {
     async trySubmit() {
       try {
+        this.loading = true
         await this.submit()
+        await this.$router.push(this.$urn.login())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)
       } finally {
+        this.loading = false
         this.$throbber.hide()
       }
     },
@@ -100,7 +110,12 @@ export default Vue.extend({
       }))
 
       await this.$adapter.register(req)
-      alert("ok")
+    }
+  },
+
+  head() {
+    return {
+      title: this.$tc("join.title")
     }
   }
 })

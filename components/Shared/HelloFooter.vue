@@ -2,27 +2,27 @@
   <footer>
     <ul class="hello-footer-links py-2">
       <li>
-        <a href="/">About</a>
+        <a href="/">{{ $tc("menu.about") }}</a>
       </li>
 
       <li class="x-hidden-md-down">
-        <a href="/">Term_of_service</a>
+        <a href="/">{{ $tc("menu.terms") }}</a>
       </li>
 
       <li>
-        <a href="/">Privacy</a>
+        <a href="/">{{ $tc("menu.privacy") }}</a>
       </li>
 
       <li class="x-hidden-sm-down">
-        <a href="/">Issues</a>
+        <a :href="`${$setup.github}/issues`" target="_blank">{{ $tc("menu.issues") }}</a>
       </li>
 
-      <li v-if="$setup.mpa">
-        <a href="https://cloud.oka.is/#/" target="_blank">Status_page</a>
+      <li v-if="$setup.mpa && $setup.statusPage">
+        <a :href="$setup.statusPage" target="_blank">{{ $tc("menu.status") }}</a>
       </li>
     </ul>
 
-    <div class="hello-footer-copyright">
+    <div class="hello-footer-copyright py-2">
       {{ year }} © OKA ver.{{ $setup.version }}
 
       <a target="_blank" :href="$setup.github">Github</a>

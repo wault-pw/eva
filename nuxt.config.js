@@ -2,6 +2,7 @@ const VERSION = process.env.VERSION || '0.0.0'
 const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
+const STATUS_PAGE = process.env.STATUS_PAGE || 'https://stats.uptimerobot.com/mwKV7ipG7A'
 
 export default {
   components: true,
@@ -38,6 +39,7 @@ export default {
     github: 'https://github.com/oka-is/eva',
     demoUsername: DEMO_USERNAME,
     demoPassword: DEMO_PASSWORD,
+    statusPage: STATUS_PAGE,
     axios: {
       browserBaseURL: ALICE_URL
     },

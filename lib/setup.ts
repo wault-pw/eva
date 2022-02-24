@@ -30,6 +30,10 @@ export class Setup {
   get demoPassword(): string {
     return this.$config.demoPassword ?? raise("demoPassword not set")
   }
+
+  get statusPage(): string | null {
+    return this.$config.statusPage
+  }
 }
 
 function raise(errorMessage: string): never {

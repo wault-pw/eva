@@ -15,9 +15,14 @@ $border-radius: 0;
 $border-radius-sm: 0;
 $border-radius-lg: 0;
 $input-placeholder-color: #CCCCCC;
+$card-border-width: 0;
 
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/breakpoints";
+
+$theme-colors: map-merge($theme-colors,  (
+  "accent": $accent,
+));
 
 /**
  * Application

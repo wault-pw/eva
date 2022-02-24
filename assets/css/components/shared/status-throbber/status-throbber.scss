@@ -1,0 +1,113 @@
+.status-throbber-absolute {
+  .status-throbber-backdrop, .status-throbber-box {
+    position: absolute;
+  }
+}
+
+.status-throbber-fixed {
+  .status-throbber-backdrop, .status-throbber-box {
+    position: fixed;
+  }
+}
+
+.status-throbber-backdrop {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(#FFF, .4), rgba(#FFF, .8));
+  backdrop-filter: grayscale(100%);
+}
+
+.status-throbber-box {
+  $size: 180px;
+
+  left: 50%;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+
+  width: $size;
+  height: $size;
+  border-radius: 8px;
+  transform: translateY(-50%) translateX(-50%);
+  background: rgba(#000, .8);
+  box-shadow: rgba(#000, 1) 0 1px 3px;
+  color: #FFF;
+  padding: $spacer;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  grid-gap: $spacer*0.6;
+  justify-content: center;
+}
+
+/**
+ * backdrop animation
+ */
+.status-throbber-backdrop-transition-enter {
+  opacity: 0;
+}
+
+.status-throbber-backdrop-transition-leave-to {
+  opacity: 0;
+}
+
+.status-throbber-backdrop-transition-enter-active, .status-throbber-backdrop-transition-leave-active {
+  transition: opacity .6s .4s ease;
+}
+
+.status-throbber-backdrop-transition-leave-active {
+  transition-delay: .2s;
+}
+
+/**
+ * box transition
+ */
+.status-throbber-box-transition-enter {
+  opacity: 0;
+  margin-top: -20px;
+}
+
+.status-throbber-box-transition-leave-to {
+  opacity: 0;
+  margin-top: 20px;
+}
+
+.status-throbber-box-transition-enter-active, .status-throbber-box-transition-leave-active {
+  transition: opacity .4s .1s ease, margin-top .3s .1s;
+}
+
+/**
+ * text transition
+ */
+.status-throbber-text-transition-enter-to {
+  animation: statusThrobberEnter 120ms both cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 1;
+}
+
+.status-throbber-text-transition-leave-to {
+  animation: statusThrobberLeave 120ms both cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 0;
+}
+
+@keyframes statusThrobberEnter {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+}
+
+@keyframes statusThrobberLeave {
+  from {
+    transform: translateY(5px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

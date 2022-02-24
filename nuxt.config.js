@@ -47,6 +47,8 @@ export default {
     '@/plugins/setup',
     '@/plugins/ver',
     '@/plugins/urn',
+    '@/plugins/bus',
+    '@/plugins/throbber',
     '@/plugins/adapter'
   ],
 
@@ -69,8 +71,8 @@ export default {
     lazy: false,
     vueI18nLoader: false,
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr' },
-      { code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr' },
+      {code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr'},
+      {code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr'},
     ],
     strategy: 'prefix',
     langDir: 'locales/',

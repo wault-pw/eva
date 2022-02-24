@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <ul class="hello-footer-links py-2">
+    <ul class="hello-footer-links pt-2 pb-1">
       <li>
         <a href="/">{{ $tc("menu.about") }}</a>
       </li>
@@ -22,7 +22,7 @@
       </li>
     </ul>
 
-    <div class="hello-footer-copyright py-2">
+    <div class="hello-footer-copyright pb-3">
       {{ year }} © OKA ver.{{ $setup.version }}
 
       <a target="_blank" :href="$setup.github">Github</a>

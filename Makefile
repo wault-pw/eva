@@ -31,6 +31,5 @@ docker\:build:
 
 docker\:push: export TAG=$(VERSION)
 docker\:push:
-	@echo $(REGISTRY_PASSWORD) | docker login ${REGISTRY_DOMAIN} --username ${REGISTRY_USERNAME} --password-stdin
 	docker push ${REGISTRY_NAME}:${TAG}
 	docker push ${REGISTRY_NAME}:latest

@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/functions";
+
+/**
+ * Bootstrap
+ */
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-size-base: 1rem;
+$primary: rgb(5, 114, 236);
+$link-color: rgb(1, 102, 203);
+$link-decoration: none;
+$font-family-base: $font-family-monospace;
+$font-size-sm: $font-size-base * .775;
+$border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+$input-placeholder-color: #CCCCCC;
+
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+/**
+ * Application
+ */
+

@@ -24,7 +24,12 @@ export default {
     ]
   },
 
-  css: [],
+  css: [
+    '~/assets/css/vendors.scss',
+    '~/assets/css/skeleton.scss',
+    '~/assets/css/components.scss',
+  ],
+
 
   publicRuntimeConfig: {
     spa: false,

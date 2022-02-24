@@ -9,6 +9,10 @@
     </p>
 
     <p>
+      {{ username }} / {{ password }}
+    </p>
+
+    <p>
       <input
         v-model="password"
         :placeholder="$t('ui.passphrase')"
@@ -59,7 +63,6 @@ export default Vue.extend({
 
     async submit() {
       const res0 = await this.auth0(this.username)
-
       const srp = this.$ver.NewSrpBridge()
       await srp.init({username: this.username, password: this.password, salt: res0.getSalt_asU8()})
       const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())

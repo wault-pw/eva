@@ -7,6 +7,8 @@
       >
     </p>
 
+    {{ username }}/{{ password }}
+
     <p>
       <input
         v-model="password"

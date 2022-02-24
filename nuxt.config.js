@@ -3,7 +3,6 @@ const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
 const STATUS_PAGE = process.env.STATUS_PAGE || 'https://stats.uptimerobot.com/mwKV7ipG7A'
-const CDN_URL = process.env.CDN_URL || 'https://d3ojiu0dx2187n.cloudfront.net'
 
 export default {
   components: true,
@@ -112,7 +111,6 @@ export default {
   },
 
   build: {
-    publicPath: CDN_URL,
     babel: {
       babelrc: true,
     },

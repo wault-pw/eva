@@ -34,7 +34,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Throbber from "~/components/Shared/Throbber.vue";
+import Throbber from "~/components/Shared/Throbber.vue"
 
 interface IData {
   shown: boolean

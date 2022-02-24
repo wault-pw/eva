@@ -1,0 +1,12 @@
+.hello {
+  background-color: $accent;
+  display: grid;
+  grid-template-rows: auto min-content;
+}
+
+.hello-mpa {
+  background-image: url("~assets/img/hello/hero.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -1,0 +1,15 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-down($breakpoint) {
+    .x-hidden-#{$breakpoint}-down {
+      display: none!important;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    .x-hidden-#{$breakpoint}-up {
+      display: none!important;
+    }
+  }
+}

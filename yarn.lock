@@ -1626,19 +1626,10 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
-"@oka-is/srp6a-webcrypto@1.0.4":
+"@oka-is/srp6a-webcrypto@1.0.4", "@oka-is/srp6a-webcrypto@^1.0.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@oka-is/srp6a-webcrypto/-/srp6a-webcrypto-1.0.4.tgz#3909789d7306b8f51f972e3e7c7e054988f5a336"
   integrity sha512-20NQkVNuaWWoLCdCMbjICpaC9jPaYLyUZ04I5oqenuKTlPn2qFShPTwDQz4SHGT9MuTFFhPnd5nC0FRdFzPM1w==
-  dependencies:
-    "@oka-is/srp6a-webcrypto" "^1.0.0"
-    "@types/jsbn" "1.2.30"
-    jsbn "^1.1.0"
-
-"@oka-is/srp6a-webcrypto@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@oka-is/srp6a-webcrypto/-/srp6a-webcrypto-1.0.1.tgz#d88ef56052981e6df3fc3a9aee57ea5896935be0"
-  integrity sha512-+mQSLjeonjkWYxpoNfjGptl4rXlvGWYytAQ9KUKjmglNVE4Z0ViHnvEJBzH+zoY8ny25DvpmtAgDBWWrY83fGw==
   dependencies:
     "@oka-is/srp6a-webcrypto" "^1.0.0"
     "@types/jsbn" "1.2.30"

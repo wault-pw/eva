@@ -11,6 +11,9 @@ proto:
 		--proto_path=protos \
 		alice_v1.proto
 
+test:
+	yarn run test
+
 generate\:mpa:
 	rm -rf dist/*
 	VERSION=":VERSION:" yarn run generate

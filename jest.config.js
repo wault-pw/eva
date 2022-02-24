@@ -15,10 +15,13 @@ module.exports = {
     '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest'
   },
-  collectCoverage: true,
-  collectCoverageFrom: [
-    '<rootDir>/components/**/*.vue',
-    '<rootDir>/pages/**/*.vue'
-  ],
-  testEnvironment: 'node'
+  // collectCoverage: true,
+  // collectCoverageFrom: [
+  //   '<rootDir>/components/**/*.vue',
+  //   '<rootDir>/pages/**/*.vue'
+  // ],
+  testEnvironment: 'node',
+  testMatch: [
+    '**/?(*.)+(test).[tj]s?(x)'
+  ]
 }

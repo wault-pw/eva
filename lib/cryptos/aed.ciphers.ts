@@ -43,6 +43,18 @@ class AesAedCipher implements IAedCipher {
     return new Uint8Array(await crypt.subtle.exportKey("raw", key))
   }
 
+  async decrypt(params: AedCryptoParams): Promise<Uint8Array> {
+    const buf = await crypt.subtle.decrypt(
+      {
+        name: this.name,
+        iv: params.iv,
+        additionalData: params.addon ?? new Uint8Array(),
+        tagLength: 128, //The tagLength you used to encrypt (if any)
+      }, params.key, params.data)
+
+    return new Uint8Array(buf)
+  }
+
   async encrypt(params: AedCryptoParams): Promise<Uint8Array> {
     const buf = await crypt.subtle.encrypt({
       name: this.name,

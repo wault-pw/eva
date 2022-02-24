@@ -1,4 +1,4 @@
-import {AedCryptoParams} from "~/lib/cryptos/aed.ciphers";
+import {AedCryptoParams} from "~/lib/cryptos/aed.ciphers"
 
 export const SHA256 = "SHA-256"
 export const SHA1 = "SHA-1"
@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 } else if (typeof WorkerGlobalScope !== 'undefined') {
   crypt = global.crypto
 } else {
-  crypt = require("crypto")
+  crypt = require("crypto").webcrypto
 }
 
 export interface IPubCipher {
@@ -38,6 +38,8 @@ export interface IAedCipher {
   exportKey(key: CryptoKey): Promise<Uint8Array>
 
   encrypt(params: AedCryptoParams): Promise<Uint8Array>
+
+  decrypt(params: AedCryptoParams): Promise<Uint8Array>
 }
 
 export function HashSize(hash: string): number {

@@ -9,7 +9,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '17.5.0'
+          node-version: '17.6.0'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path

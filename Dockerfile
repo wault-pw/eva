@@ -1,11 +1,11 @@
 ARG BUILD=node:17-alpine
 ARG ISO=nginx
+ARG VERSION
 
 FROM ${BUILD} as build
 WORKDIR /app
 COPY . .
 ARG VERSION
-ARG COMMIT
 # fix for https://stackoverflow.com/questions/69394632/webpack-build-failing-with-err-ossl-evp-unsupported
 ENV NODE_OPTIONS=--openssl-legacy-provider
 ENV BUILD_DEPS make

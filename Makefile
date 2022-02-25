@@ -26,7 +26,7 @@ generate\:licenses:
 
 docker\:build: export TAG=$(VERSION)
 docker\:build:
-	docker build --no-cache -f ./Dockerfile -t ${REGISTRY_NAME}:${TAG} .
+	docker build --no-cache -f ./Dockerfile -t ${REGISTRY_NAME}:${TAG} --build-arg VERSION=${VERSION} .
 	docker tag ${REGISTRY_NAME}:${TAG} ${REGISTRY_NAME}:latest
 
 docker\:push: export TAG=$(VERSION)

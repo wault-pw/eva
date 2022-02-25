@@ -3,7 +3,7 @@ import {TextEncode, Uint8ArrayFromHex} from "~/lib/cryptos/util"
 
 // @refs https://www.ietf.org/rfc/rfc6070.txt
 describe('Pbkdf2', () => {
-  test('PBKDF2 HMAC-SHA1 Test Vectors', async () => {
+  it('PBKDF2 HMAC-SHA1 Test Vectors', async () => {
     const P = "password"
     const S = "salt"
     const c = 1
@@ -19,6 +19,6 @@ f3 a9 b5 24 af 60 12 06
       c,
       dkLen
     )
-    expect(dk).toEqual(DK)
+    expect(dk).to.deep.eq(DK)
   })
 })

@@ -1,5 +1,5 @@
 import {Uint8ArrayFromHex} from "~/lib/cryptos/util"
-import {AedCipherEnum, NewAedCipher} from "~/lib/cryptos/aed.ciphers";
+import {AedCipherEnum, NewAedCipher} from "~/lib/cryptos/aed.ciphers"
 
 // @refs https://luca-giuzzi.unibs.it/corsi/Support/papers-cryptography/gcm-spec.pdf
 // K: secret key
@@ -7,7 +7,7 @@ import {AedCipherEnum, NewAedCipher} from "~/lib/cryptos/aed.ciphers";
 // C: cipher text
 // T: auth tag
 describe('AES256GCM', () => {
-  test('it works', async () => {
+  it('it works', async () => {
     const key8 = Uint8ArrayFromHex(`feffe9928665731c6d6a8f9467308308`)
     const tag = Uint8ArrayFromHex(`4d5c2af327cd64a62cf35abd2ba6fab4`)
     const iv = Uint8ArrayFromHex(`cafebabefacedbaddecaf888`)
@@ -19,22 +19,22 @@ describe('AES256GCM', () => {
     const dec = await cipher.decrypt({key, iv, data: new Uint8Array([...cipherText, ...tag]), addon: null})
     const fail = cipher.decrypt({key, iv, data: new Uint8Array([...cipherText]), addon: null})
 
-    expect(dec).toEqual(plainText)
-    await expect(fail).rejects
+    expect(dec).to.deep.eq(plainText)
+    expect(fail).to.throws
   })
 
-  test.skip('it uses addon', async () => { // :fails on node
+  it('it uses addon', async () => {
     const cipher = NewAedCipher(AedCipherEnum.AES256GCM)
     const key = await cipher.generateKey()
     const iv = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
     const plainText = new Uint8Array([1, 2, 3])
     const addon = new Uint8Array([11, 22, 33])
 
-    const enc = await cipher.encrypt({key, iv, data: new Uint8Array([]), addon: null})
+    const enc = await cipher.encrypt({key, iv, data: plainText, addon: addon})
     const dec = await cipher.decrypt({key, iv, data: enc, addon: addon})
     const fail = cipher.decrypt({key, iv, data: enc, addon: null})
 
-    expect(dec).toEqual(plainText)
-    await expect(fail).rejects
+    expect(dec).to.deep.eq(plainText)
+    expect(fail).to.throws
   })
 })

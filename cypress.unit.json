@@ -1,0 +1,7 @@
+{
+  "integrationFolder": "cypress/unit",
+  "screenshotsFolder": "tmp/screenshots",
+  "videosFolder": "tmp/videos",
+  "env": {
+  }
+}

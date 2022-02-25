@@ -14,6 +14,9 @@ proto:
 test\:unit:
 	yarn run test:unit
 
+test\:e2e:
+	yarn run test:e2e
+
 generate\:mpa:
 	rm -rf dist/*
 	yarn run generate

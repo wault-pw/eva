@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "integrationFolder": "cypress/e2e",
+  "screenshotsFolder": "tmp/screenshots",
+  "videosFolder": "tmp/videos",
+  "defaultCommandTimeout": 15000,
+  "env": {
+  }
+}

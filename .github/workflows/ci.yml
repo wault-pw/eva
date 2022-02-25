@@ -1,31 +1,85 @@
-on: [push, pull_request]
+on: [ push, pull_request ]
 name: Test
 jobs:
-  test:
+  unit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - uses: actions/setup-node@v2
         with:
           node-version: '17.6.0'
-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Cache node_modules
         uses: actions/cache@v2.1.4
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install modules
         run: yarn install
-
       - name: Test
         run: make test:unit
+
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      alice:
+        image: ghcr.io/oka-is/alice
+        env:
+          PG_DSN: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable&timezone=utc
+        options: >-
+          --entrypoint /app/launch-entrypoint.sh
+          --health-cmd "curl --fail http://localhost:8080/health"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 8080:8080
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17.6.0'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache node_modules
+        uses: actions/cache@v2.1.4
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install modules
+        run: yarn install
+      - name: Generate
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: make generate:mpa
+      - name: Run server
+        run: yarn start &
+      - name: Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          config-file: cypress.e2e.json
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: tmp/videos

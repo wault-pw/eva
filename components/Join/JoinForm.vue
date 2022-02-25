@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form name="join">
     <fieldset v-if="step === 2" :disabled="disabled">
       <p class="text-center text-muted mb-3">
         $>{{ $tc("joinForm.step2") }}:
@@ -84,6 +84,7 @@
         ref="next"
         type="button"
         class="btn text-uppercase btn-lg btn-accent"
+        data-cy="next"
         @click.prevent="next"
       >
         >>

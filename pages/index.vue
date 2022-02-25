@@ -12,7 +12,10 @@
 
     <div class="card shadow">
       <div class="card-body">
-        <form @submit.prevent="trySubmit">
+        <form
+          name="login"
+          @submit.prevent="trySubmit"
+        >
           <p>
             <input
               v-model="username"
@@ -49,7 +52,10 @@
         </fieldset>
 
         <p class="mb-0 text-center text-lowercase">
-          <nuxt-link :to="$urn.join()" class="text-">
+          <nuxt-link
+            :to="$urn.join()"
+            data-cy="join"
+          >
             {{ $tc("menu.join") }}
           </nuxt-link>
         </p>

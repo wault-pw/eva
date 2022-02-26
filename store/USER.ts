@@ -1,6 +1,5 @@
 import {GetterTree, ActionTree, MutationTree} from 'vuex'
-import {TextEncode} from "~/lib/cryptos/util"
-import {IWorkspace, WorkspaceState} from "~/store/WORKSPACE";
+import {TextEncode, FakeCryptoKey} from "~/lib/cryptos/util"
 
 export const state = (): IUser => ({
   id: "",
@@ -59,13 +58,4 @@ export interface IUser {
   aedKey: CryptoKey
   privKey: CryptoKey
   pubKey: CryptoKey
-}
-
-function FakeCryptoKey(): CryptoKey {
-  return {
-    algorithm: {name: "FAKE"},
-    extractable: false,
-    type: "secret",
-    usages: []
-  }
 }

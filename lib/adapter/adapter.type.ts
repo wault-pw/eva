@@ -1,4 +1,5 @@
 import {
+  CreateWorkspaceRequest, CreateWorkspaceResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
   Login0Request,
@@ -20,4 +21,8 @@ export interface IAdapter {
   listWorkspaces(): Promise<ListWorkspacesResponse>
 
   listCards(workspaceId: string): Promise<ListCardsResponse>
+
+  createWorkspace(req: CreateWorkspaceRequest): Promise<CreateWorkspaceResponse>
+
+  deleteWorkspace(id: string): Promise<void>
 }

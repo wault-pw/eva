@@ -11,9 +11,7 @@
       <div v-if="shown" class="dialog-wrapper">
         <div v-if="shown" class="dialog-box">
           <div>
-            <p class="mb-2">
-              <b>{{ text }}</b>
-            </p>
+            <p v-html="text" class="fw-bold mb-2" />
 
             <div
               v-if="value || placeholder"
@@ -51,6 +49,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
+const RejectError = new Error("dialog was rejected")
 
 interface IData {
   shown: boolean
@@ -123,7 +123,7 @@ export default Vue.extend({
     },
 
     async onHidden() {
-      this.approved ? this.resolve?.(this.value) : this.reject?.()
+      this.approved ? this.resolve?.(this.value) : this.reject?.(RejectError)
     }
   }
 })

@@ -45,7 +45,8 @@ export default Vue.extend({
   middleware: ['auth'],
 
   fetch(ctx) {
-    const workspace = <IWorkspace>ctx.store.getters["WORKSPACE/ACTIVE"]
+    ctx.store.commit("WORKSPACE/SET_ACTIVE_ID", <string>ctx.params.id)
+    const workspace = ctx.store.state.WORKSPACE.active
     ctx.store.dispatch("CARD/LOAD_ALL", <ICardLoadAllOpts>{workspaceID: workspace.id, aedKey: workspace.aedKey})
   },
 
@@ -60,7 +61,7 @@ export default Vue.extend({
 
   computed: {
     workspace(): IWorkspace {
-      return this.$store.getters["WORKSPACE/ACTIVE"]
+      return this.$store.state.WORKSPACE.active
     },
   },
 

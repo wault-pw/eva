@@ -1,4 +1,4 @@
-import {RegistrationRequest} from "~/desc/alice_v1_pb";
+import {CreateWorkspaceRequest, RegistrationRequest} from "~/desc/alice_v1_pb";
 
 export function MapRegistrationWorkspace(param: RegistrationWorkspaceDomain): RegistrationRequest.Workspace {
   const out = new RegistrationRequest.Workspace()
@@ -8,6 +8,18 @@ export function MapRegistrationWorkspace(param: RegistrationWorkspaceDomain): Re
 }
 
 export interface RegistrationWorkspaceDomain {
+  aedKeyEnc: Uint8Array
+  titleEnc: Uint8Array
+}
+
+export function MapCreateWorkspace(opts: CreateWorkspaceOpts): CreateWorkspaceRequest {
+  const out = new CreateWorkspaceRequest()
+  out.setAedKeyEnc(opts.aedKeyEnc)
+  out.setTitleEnc(opts.titleEnc)
+  return out
+}
+
+export interface CreateWorkspaceOpts {
   aedKeyEnc: Uint8Array
   titleEnc: Uint8Array
 }

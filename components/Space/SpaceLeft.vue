@@ -80,9 +80,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import {IWorkspace} from "~/store/WORKSPACE";
-import {ITagMap} from "~/store/CARD";
+import Vue from "vue"
+import {IWorkspace, WorkspaceCreateOpts} from "~/store/WORKSPACE"
+import {ITagMap} from "~/store/CARD"
 
 export default Vue.extend({
   props: {
@@ -98,7 +98,7 @@ export default Vue.extend({
     },
 
     workspace(): IWorkspace {
-      return this.$store.getters["WORKSPACE/ACTIVE"]
+      return this.$store.state.WORKSPACE.active
     },
 
     workspaces(): Array<IWorkspace> {
@@ -112,10 +112,31 @@ export default Vue.extend({
 
   methods: {
     async create() {
-      await this.$dialog.prompt({text: "lol"})
+      let title: string
+
+      try {
+        title = <string>await this.$dialog.prompt({text: "Create a workplace", placeholder: "Enter a name"})
+      } catch {
+        return
+      }
+
+      const workspace = await this.$store.dispatch("WORKSPACE/CREATE", <WorkspaceCreateOpts>{title, user:  this.$store.state.USER})
+      await this.$router.push(this.$urn.workspace(workspace.id))
     },
 
-    async destroy() {
+    async destroy(workspace: IWorkspace) {
+      try {
+        await this.$dialog.prompt({text: "To delete a workspace<br>enter its name:", placeholder: workspace.title})
+      } catch {
+        return
+      }
+
+      await this.$adapter.deleteWorkspace(workspace.id)
+      this.$store.commit("WORKSPACE/REMOVE_FROM_LIST", workspace.id)
+
+      if (this.workspace.id == workspace.id) {
+        await this.$router.push(this.$urn.workspaces())
+      }
     }
   }
 })

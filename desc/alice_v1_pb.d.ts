@@ -467,10 +467,10 @@ export class WhoAmIResponse extends jspb.Message {
   getPrivKeyEnc_asB64(): string;
   setPrivKeyEnc(value: Uint8Array | string): void;
 
-  getPubkey(): Uint8Array | string;
-  getPubkey_asU8(): Uint8Array;
-  getPubkey_asB64(): string;
-  setPubkey(value: Uint8Array | string): void;
+  getPubKey(): Uint8Array | string;
+  getPubKey_asU8(): Uint8Array;
+  getPubKey_asB64(): string;
+  setPubKey(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WhoAmIResponse.AsObject;
@@ -487,7 +487,7 @@ export namespace WhoAmIResponse {
     id: string,
     passwdSalt: Uint8Array | string,
     privKeyEnc: Uint8Array | string,
-    pubkey: Uint8Array | string,
+    pubKey: Uint8Array | string,
   }
 }
 

@@ -3876,7 +3876,7 @@ proto.alice_v1.WhoAmIResponse.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     passwdSalt: msg.getPasswdSalt_asB64(),
     privKeyEnc: msg.getPrivKeyEnc_asB64(),
-    pubkey: msg.getPubkey_asB64()
+    pubKey: msg.getPubKey_asB64()
   };
 
   if (includeInstance) {
@@ -3927,7 +3927,7 @@ proto.alice_v1.WhoAmIResponse.deserializeBinaryFromReader = function(msg, reader
       break;
     case 4:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPubkey(value);
+      msg.setPubKey(value);
       break;
     default:
       reader.skipField();
@@ -3979,7 +3979,7 @@ proto.alice_v1.WhoAmIResponse.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getPubkey_asU8();
+  f = message.getPubKey_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       4,
@@ -4092,35 +4092,35 @@ proto.alice_v1.WhoAmIResponse.prototype.setPrivKeyEnc = function(value) {
 
 
 /**
- * optional bytes pubKey = 4;
+ * optional bytes pub_key = 4;
  * @return {!(string|Uint8Array)}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getPubkey = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPubKey = function() {
   return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * optional bytes pubKey = 4;
- * This is a type-conversion wrapper around `getPubkey()`
+ * optional bytes pub_key = 4;
+ * This is a type-conversion wrapper around `getPubKey()`
  * @return {string}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getPubkey_asB64 = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPubKey_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPubkey()));
+      this.getPubKey()));
 };
 
 
 /**
- * optional bytes pubKey = 4;
+ * optional bytes pub_key = 4;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPubkey()`
+ * This is a type-conversion wrapper around `getPubKey()`
  * @return {!Uint8Array}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getPubkey_asU8 = function() {
+proto.alice_v1.WhoAmIResponse.prototype.getPubKey_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPubkey()));
+      this.getPubKey()));
 };
 
 
@@ -4128,7 +4128,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getPubkey_asU8 = function() {
  * @param {!(string|Uint8Array)} value
  * @return {!proto.alice_v1.WhoAmIResponse} returns this
  */
-proto.alice_v1.WhoAmIResponse.prototype.setPubkey = function(value) {
+proto.alice_v1.WhoAmIResponse.prototype.setPubKey = function(value) {
   return jspb.Message.setProto3BytesField(this, 4, value);
 };
 

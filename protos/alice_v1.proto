@@ -96,7 +96,7 @@ message WhoAmIResponse {
   string id = 1;
   bytes passwd_salt = 2;
   bytes priv_key_enc = 3;
-  bytes pubKey = 4;
+  bytes pub_key = 4;
 }
 
 message Card {

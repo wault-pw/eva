@@ -3,7 +3,7 @@ import {
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest
+  RegistrationRequest, WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -12,4 +12,6 @@ export interface IAdapter {
   auth0(req: Login0Request): Promise<Login0Response>
 
   auth1(req: Login1Request): Promise<Login1Response>
+
+  whoami(): Promise<WhoAmIResponse>
 }

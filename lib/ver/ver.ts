@@ -77,6 +77,10 @@ export class Ver {
     return new Uint8Array([...iv, ...enc])
   }
 
+  async aedDecrypt(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<Uint8Array> {
+    return await this.aedCipher.decrypt({key, iv: data.slice(0, this.aedIvSize), data: data.slice(this.aedIvSize), addon})
+  }
+
   async aedEncryptText(key: CryptoKey, text: string, addon: Uint8Array | null): Promise<Uint8Array> {
     return this.aedEncrypt(key, TextEncode(text), addon)
   }

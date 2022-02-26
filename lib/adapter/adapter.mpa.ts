@@ -1,6 +1,13 @@
 import {IAdapter} from "~/lib/adapter/adapter.type"
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
-import {Login0Request, Login0Response, Login1Request, Login1Response, RegistrationRequest} from "~/desc/alice_v1_pb"
+import {
+  Login0Request,
+  Login0Response,
+  Login1Request,
+  Login1Response,
+  RegistrationRequest,
+  WhoAmIResponse
+} from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
 
 export class AdapterMpa implements IAdapter {
@@ -23,6 +30,11 @@ export class AdapterMpa implements IAdapter {
   async auth1(req: Login1Request): Promise<Login1Response> {
     const bin = await this.post("/v1/login/auth1", req)
     return Login1Response.deserializeBinary(bin)
+  }
+
+  async whoami(): Promise<WhoAmIResponse> {
+    const bin = await this.post("/v1/whoami", null)
+    return WhoAmIResponse.deserializeBinary(bin)
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

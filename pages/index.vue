@@ -73,6 +73,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Login0Request, Login0Response, Login1Request, Login1Response} from "~/desc/alice_v1_pb";
+import { WhoAmIParam } from '~/store/USER';
 
 export default Vue.extend({
   layout: "hello",
@@ -94,11 +95,16 @@ export default Vue.extend({
     async trySubmit() {
       try {
         await this.submit()
+        await this.whoami(this.password)
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)
       } finally {
         this.$throbber.hide()
       }
+    },
+
+    async whoami(password: string) {
+      await this.$store.dispatch('USER/WHO_AM_I', {password} as WhoAmIParam)
     },
 
     async submit() {
@@ -110,7 +116,8 @@ export default Vue.extend({
       this.$throbber.show("1")
       const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())
       const res1 = await this.auth1(challenge.publicKey, challenge.proof)
-      alert(await srp.isProofValid(res1.getProof_asU8()))
+      const valid = await srp.isProofValid(res1.getProof_asU8())
+      if (!valid) throw(`invalid credentials`)
     },
 
     async auth0(username: string): Promise<Login0Response> {

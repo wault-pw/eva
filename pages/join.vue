@@ -111,10 +111,22 @@ export default Vue.extend({
       }))
 
       req.setCardWithItemsList([
-        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Facebook (example)", null)}),
-        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Apple (example)", null)}),
-        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (example)", null)}),
-        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (example)", null)}),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Facebook (example)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+        }),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Apple (example)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+        }),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (example)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+        }),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (example)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)]
+        }),
       ])
 
       await this.$adapter.register(req)

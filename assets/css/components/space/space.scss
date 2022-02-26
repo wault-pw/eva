@@ -131,3 +131,12 @@ main.space {
   background: rgba(#000, .3);
   z-index: $space-z-backdrop;
 }
+
+// space backdrop transition
+.space-backdrop-transition-enter-active, .space-backdrop-transition-leave-active {
+  transition: opacity .5s;
+}
+
+.space-backdrop-transition-enter, .space-backdrop-transition-leave-to {
+  opacity: 0;
+}

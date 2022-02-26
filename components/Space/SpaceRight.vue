@@ -28,33 +28,33 @@
 
 <script lang="ts">
 import Vue from "vue"
-import _throttle from "lodash/throttle"
 import { ICard } from "~/store/CARD"
+import _throttle from "lodash/throttle"
 
 export default Vue.extend({
   props: {
     active: {
-      type: Object,
+      type: Object as () => ICard,
       required: false,
     }
   },
+
   data() {
     return {
       buttonOffset: 0,
     }
   },
+
   computed: {
     cards(): Array<ICard> {
       return this.$store.state.CARD.list
     }
   },
-  methods: {
-    onScroll() {
 
-    }
-    // onScroll: _throttle(function ({ target: {scrollTop} }) {
-    //   this.buttonOffset = scrollTop
-    // }, 80, this)
+  methods: {
+    onScroll: _throttle(function(this: any, e: any) {
+      this.buttonOffset = e.target.scrollTop
+    }, 80),
   }
 })
 </script>

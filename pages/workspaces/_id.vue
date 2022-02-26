@@ -5,6 +5,14 @@
       id="main"
       class="space"
     >
+      <transition name="space-backdrop-transition">
+        <div
+          v-if="leftShown || menuShown || edit"
+          class="space-backdrop"
+          @click.prevent="leftShown = menuShown = false"
+        />
+      </transition>
+
       <SpaceHeader
         :left.sync="leftShown"
         :menu.sync="menuShown"
@@ -14,7 +22,9 @@
         :shown.sync="leftShown"
       />
 
-      <SpaceRight/>
+      <SpaceRight
+        :active.sync="activeCard"
+      />
     </main>
   </div>
 </template>
@@ -25,7 +35,7 @@ import SpaceHeader from "~/components/Space/SpaceHeader.vue"
 import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
-import {ICardLoadAllOpts} from "~/store/CARD"
+import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 
 export default Vue.extend({
   components: {SpaceRight, SpaceHeader, SpaceLeft},
@@ -36,10 +46,12 @@ export default Vue.extend({
     ctx.store.dispatch("CARD/LOAD_ALL", <ICardLoadAllOpts>{workspaceID: workspace.id, aedKey: workspace.aedKey})
   },
 
-  data() {
+  data(): { leftShown: boolean, menuShown: boolean, edit: boolean, activeCard: ICard | null } {
     return {
       leftShown: false,
       menuShown: false,
+      edit: false,
+      activeCard: null
     }
   },
 

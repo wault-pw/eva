@@ -62,11 +62,11 @@
 
       <li
         v-for="tag in tags"
-        :key="tag.title"
+        :key="tag.name"
       >
         <i/>
 
-        <a href="#">{{ tag.title }}</a>
+        <a href="#">{{ tag.name }}</a>
 
         <i
           class="space-nav-icon space-nav-icon-right opacity-50"
@@ -82,6 +82,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {IWorkspace} from "~/store/WORKSPACE";
+import {ITagMap} from "~/store/CARD";
 
 export default Vue.extend({
   props: {
@@ -93,7 +94,7 @@ export default Vue.extend({
 
   computed: {
     cardsCount(): number {
-      return 0
+      return this.$store.getters["CARD/COUNT"]
     },
 
     workspace(): IWorkspace {
@@ -104,9 +105,9 @@ export default Vue.extend({
       return this.$store.state.WORKSPACE.list
     },
 
-    tags(): Array<string> {
-      return []
-    }
+    tags(): Array<ITagMap> {
+      return this.$store.getters["CARD/TAG_SET"]
+    },
   },
 
   methods: {

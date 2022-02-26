@@ -112,7 +112,7 @@ export default Vue.extend({
 
   methods: {
     async create() {
-
+      await this.$dialog.prompt({text: "lol"})
     },
 
     async destroy() {

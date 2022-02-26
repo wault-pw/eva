@@ -70,6 +70,7 @@ export default {
     '@/plugins/urn',
     '@/plugins/bus',
     '@/plugins/throbber',
+    '@/plugins/dialog',
     '@/plugins/adapter'
   ],
 

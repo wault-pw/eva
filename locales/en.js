@@ -5,7 +5,9 @@ export default {
     login: "Login",
     register: "Register",
     or: "OR",
-    failed: "Failed"
+    failed: "Failed",
+    yes: "Yes",
+    no: "No"
   },
 
   menu: {

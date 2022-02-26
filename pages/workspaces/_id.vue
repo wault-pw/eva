@@ -1,5 +1,7 @@
 <template>
   <div>
+    <DialogBus />
+
     <main
       :class="{'space-left-sown': leftShown, 'space-menu-shown': menuShown}"
       id="main"
@@ -34,11 +36,12 @@ import Vue from 'vue'
 import SpaceHeader from "~/components/Space/SpaceHeader.vue"
 import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
+import DialogBus from "~/components/Shared/DialogBus.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 
 export default Vue.extend({
-  components: {SpaceRight, SpaceHeader, SpaceLeft},
+  components: {DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
   middleware: ['auth'],
 
   fetch(ctx) {

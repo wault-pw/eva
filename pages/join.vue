@@ -35,6 +35,7 @@ import {RegistrationRequest} from "~/desc/alice_v1_pb";
 import {MapRegistrationUser} from "~/lib/domain_v1/user";
 import { MapRegistrationWorkspace } from '~/lib/domain_v1/workspace';
 import JoinForm from "~/components/Join/JoinForm.vue";
+import {MapCardWithItems} from "~/lib/domain_v1/card";
 
 export default Vue.extend({
   components: {JoinForm},
@@ -108,6 +109,13 @@ export default Vue.extend({
         aedKeyEnc: wKey8Enc,
         titleEnc: await this.$ver.aedEncryptText(wKey, "personal", null),
       }))
+
+      req.setCardWithItemsList([
+        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Facebook (example)", null)}),
+        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Apple (example)", null)}),
+        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (example)", null)}),
+        MapCardWithItems({titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (example)", null)}),
+      ])
 
       await this.$adapter.register(req)
     }

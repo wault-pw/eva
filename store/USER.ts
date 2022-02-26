@@ -1,12 +1,32 @@
-import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import {GetterTree, ActionTree, MutationTree} from 'vuex'
 import {TextEncode} from "~/lib/cryptos/util"
+import {IWorkspace, WorkspaceState} from "~/store/WORKSPACE";
 
-export const state = () => ({
+export const state = (): IUser => ({
+  id: "",
+  aedKey: FakeCryptoKey(),
+  privKey: FakeCryptoKey(),
+  pubKey: FakeCryptoKey(),
 })
 
-export type RootState = ReturnType<typeof state>
+export type UserState = ReturnType<typeof state>
 
-export const actions: ActionTree<RootState, RootState> = {
+export const getters: GetterTree<UserState, UserState> = {
+  IS_AUTHORIZED(state): boolean {
+    return state.id != ""
+  },
+}
+
+export const mutations: MutationTree<UserState> = {
+  SET_USER(state, user: IUser) {
+    state.id = user.id
+    state.aedKey = user.aedKey
+    state.privKey = user.privKey
+    state.pubKey = user.pubKey
+  },
+}
+
+export const actions: ActionTree<UserState, UserState> = {
   async WHO_AM_I({commit}, param: WhoAmIParam) {
     const res = await this.$adapter.whoami()
     const aedKey8 = await this.$ver.derive.generate(
@@ -19,19 +39,33 @@ export const actions: ActionTree<RootState, RootState> = {
     const aedKey = await this.$ver.aedCipher.importKey(aedKey8)
     const privKey8 = await this.$ver.aedDecrypt(aedKey, res.getPrivKeyEnc_asU8(), res.getPubKey_asU8())
     const privKey = await this.$ver.pubCipher.importPrivKey(privKey8)
-    console.log(privKey)
+    const pubKey = await this.$ver.pubCipher.importPubKey(res.getPubKey_asU8())
 
-
-    // const {privKey} = await DECRYPT_USER_PACK({
-    //   aedKey,
-    //   pubKey,
-    //   enc: privKeyEnc,
-    // })
-    //
-    // commit('SET_USER', {id, privKey, pubKey})
+    commit('SET_USER', {
+      id: res.getId(),
+      aedKey,
+      privKey,
+      pubKey,
+    } as IUser)
   }
 }
 
 export interface WhoAmIParam {
   password: string
+}
+
+export interface IUser {
+  id: string
+  aedKey: CryptoKey
+  privKey: CryptoKey
+  pubKey: CryptoKey
+}
+
+function FakeCryptoKey(): CryptoKey {
+  return {
+    algorithm: {name: "FAKE"},
+    extractable: false,
+    type: "secret",
+    usages: []
+  }
 }

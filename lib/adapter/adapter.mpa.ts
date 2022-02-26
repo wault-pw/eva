@@ -1,6 +1,8 @@
 import {IAdapter} from "~/lib/adapter/adapter.type"
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {
+  ListCardsResponse,
+  ListWorkspacesResponse,
   Login0Request,
   Login0Response,
   Login1Request,
@@ -35,6 +37,16 @@ export class AdapterMpa implements IAdapter {
   async whoami(): Promise<WhoAmIResponse> {
     const bin = await this.post("/v1/whoami", null)
     return WhoAmIResponse.deserializeBinary(bin)
+  }
+
+  async listWorkspaces(): Promise<ListWorkspacesResponse> {
+    const bin = await this.post("/v1/workspaces/list", null)
+    return ListWorkspacesResponse.deserializeBinary(bin)
+  }
+
+  async listCards(workspaceId: string): Promise<ListCardsResponse> {
+    const bin = await this.post(`/v1/workspaces/${workspaceId}/cards`, null)
+    return ListCardsResponse.deserializeBinary(bin)
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

@@ -1,0 +1,18 @@
+.space-header {
+  display: grid;
+  background: $accent;
+  grid-template-columns: 1fr $space-header-height 1fr;
+}
+
+.space-header-logo {
+  font-size: $space-header-height;
+  line-height: $space-header-height;
+  font-weight: bold;
+  text-align: center;
+  color: $component-active-color;
+  text-shadow: rgba(#000, .4) 0 1px 1px;
+
+  &:after {
+    content: '*';
+  }
+}

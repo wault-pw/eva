@@ -1,0 +1,40 @@
+.space-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.space-nav li {
+  display: grid;
+  grid-template-columns: 2em 1fr 2em;
+  color: $component-active-color;
+
+  a {
+    color: $component-active-color;
+  }
+
+  a:hover {
+    color: rgba($component-active-color, .6);
+  }
+
+  a.nuxt-link-active {
+    color: $accent;
+  }
+
+  &:hover {
+    .space-nav-icon-hidden {
+      opacity: 1;
+    }
+  }
+}
+
+.space-nav-ico {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.space-nav-icon-hidden {
+  opacity: 0;
+  transition: opacity .3s;
+}

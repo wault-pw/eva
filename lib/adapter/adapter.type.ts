@@ -1,4 +1,6 @@
 import {
+  ListCardsResponse,
+  ListWorkspacesResponse,
   Login0Request,
   Login0Response,
   Login1Request,
@@ -14,4 +16,8 @@ export interface IAdapter {
   auth1(req: Login1Request): Promise<Login1Response>
 
   whoami(): Promise<WhoAmIResponse>
+
+  listWorkspaces(): Promise<ListWorkspacesResponse>
+
+  listCards(workspaceId: string): Promise<ListCardsResponse>
 }

@@ -27,3 +27,22 @@ $theme-colors: map-merge($theme-colors,  (
 /**
  * Application
  */
+$space-header-height: 50px;
+$space-left-width: 250px;
+$space-menu-width: 300px;
+$space-transition-time: .4s;
+$space-transition-margin: 150px;
+$space-z-wrapper: 1;
+$space-z-backdrop: 2;
+$space-z-overlay: 2;
+
+$space-right-width: 300px;
+$spice-right-add-size: 3.5rem;
+
+//$space-form-footer-height: $space-header-height;
+//$space-form-padding-x: $container-padding-x;
+//$space-card-padding-x: $container-padding-x*3;
+//$space-card-header-height: $space-header-height;
+//$space-form-item-ident: 2rem;
+//$spice-right-add-size: 3.5rem;
+//$spice-from-item-add-size: 3.5rem;

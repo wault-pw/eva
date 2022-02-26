@@ -20,4 +20,12 @@ export class Urn {
   join(): string {
     return `/${this.locale}/join`
   }
+
+  workspaces(): string {
+    return `/${this.locale}/workspaces`
+  }
+
+  workspace(id: string): string {
+    return `/${this.locale}/workspaces/${id}`
+  }
 }

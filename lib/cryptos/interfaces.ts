@@ -20,6 +20,8 @@ export interface IPubCipher {
 
   importPrivKey(key: Uint8Array): Promise<CryptoKey>
 
+  importPubKey(key: Uint8Array): Promise<CryptoKey>
+
   decrypt(key: CryptoKey, data: Uint8Array): Promise<Uint8Array>
 
   encrypt(key: CryptoKey, data: Uint8Array): Promise<Uint8Array>

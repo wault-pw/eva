@@ -46,6 +46,14 @@ class RsaCipher implements IPubCipher {
       false, ["decrypt"])
   }
 
+  async importPubKey(key: Uint8Array): Promise<CryptoKey> {
+    return await crypt.subtle.importKey(
+      EXPORT_PUB_KEY_FORMAT,
+      key,
+      {name: this.name, hash: this.hash},
+      false, ["encrypt"])
+  }
+
   async generatePair(): Promise<CryptoKeyPair> {
     return crypt.subtle.generateKey({
       name: this.name,

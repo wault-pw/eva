@@ -1,0 +1,55 @@
+$space-right-item-active-margin: $container-padding-x*2;
+
+.space-right {
+  overflow: auto;
+  position: relative;
+}
+
+.space-right-add {
+  width: $spice-right-add-size;
+  height: $spice-right-add-size;
+  font-size: $spice-right-add-size;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: $primary;
+  color: $component-active-color;
+  position: absolute;
+  bottom: $container-padding-x*2;
+  right: $container-padding-x*2;
+  transition: transform .3s ease-in-out;
+  box-shadow: 2px 8px 6px 0 rgb(0 0 0 / 20%);
+
+  &:hover {
+    color: $component-active-color;
+  }
+}
+
+.space-right-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.space-right-li {
+  border-bottom: 1px solid $border-color;
+  background: $primary;
+}
+
+.space-right-item {
+  background: $body-bg;
+  padding: 15px $container-padding-x;
+  padding-right: $space-right-item-active-margin + $container-padding-x;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: margin .2s, padding-right .2s;
+}
+
+.space-right-item.active {
+  margin-left: $space-right-item-active-margin;
+  padding-right: $container-padding-x;
+}

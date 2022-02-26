@@ -3,7 +3,7 @@ import {EXPORT_PRIV_KEY_FORMAT, EXPORT_PUB_KEY_FORMAT, IAedCipher, IDerive, IPub
 import {DeriveEnum, DeriveSaltSize, NewDerive} from "~/lib/cryptos/derives"
 import {SrpBridge} from "~/lib/srp.bridge"
 import {SRP_4096} from "~/lib/const"
-import {SecureRandom, TextEncode} from "~/lib/cryptos/util"
+import {SecureRandom, TextDecode, TextEncode} from "~/lib/cryptos/util"
 import {AedCipherEnum, AedCipherSizes, NewAedCipher} from "~/lib/cryptos/aed.ciphers"
 
 interface Opts {
@@ -83,6 +83,10 @@ export class Ver {
 
   async aedEncryptText(key: CryptoKey, text: string, addon: Uint8Array | null): Promise<Uint8Array> {
     return this.aedEncrypt(key, TextEncode(text), addon)
+  }
+
+  async aedDecryptText(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<string> {
+    return TextDecode(await this.aedDecrypt(key, data, addon))
   }
 }
 

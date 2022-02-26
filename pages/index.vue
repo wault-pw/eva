@@ -73,7 +73,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {Login0Request, Login0Response, Login1Request, Login1Response} from "~/desc/alice_v1_pb";
-import { WhoAmIParam } from '~/store/USER';
+import {WhoAmIParam} from '~/store/USER';
 
 export default Vue.extend({
   layout: "hello",
@@ -96,6 +96,7 @@ export default Vue.extend({
       try {
         await this.submit()
         await this.whoami(this.password)
+        await this.$router.push(this.$urn.workspaces())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)
       } finally {

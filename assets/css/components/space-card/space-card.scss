@@ -1,0 +1,16 @@
+.space-card {
+  z-index: $space-card-z;
+  background: $body-bg;
+  box-shadow: rgba(#000, .3) 0 0 80px;
+
+  display: grid;
+  grid-template-areas:
+      "header"
+      "footer";
+
+  grid-template-rows: $space-card-header-height 1fr;
+}
+
+.space-card-body {
+  padding: $space-card-padding-x;
+}

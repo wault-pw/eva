@@ -26,6 +26,26 @@
 
       <SpaceRight
         :active.sync="activeCard"
+        @add="newCard"
+      />
+
+      <SpaceForm
+        v-if="edit"
+        :card-id="activeCard && activeCard.id"
+        :card-title="activeCard && activeCard.title"
+        :workspace="workspace"
+        class="space-main space-main-focused"
+        @cancel="cancelEdit"
+        @created=""
+      />
+
+      <SpaceCard
+        v-if="activeCard"
+        :card="activeCard"
+        :workspace="workspace"
+        @edit="edit = true"
+        @cloned="activeCard = $event"
+        @destroyed="cancelEdit"
       />
     </main>
   </div>
@@ -37,11 +57,20 @@ import SpaceHeader from "~/components/Space/SpaceHeader.vue"
 import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
 import DialogBus from "~/components/Shared/DialogBus.vue"
+import SpaceForm from "~/components/Space/SpaceForm.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts} from "~/store/CARD"
+import SpaceCard from "~/components/Space/SpaceCard.vue";
+
+interface IData {
+  leftShown: boolean
+  menuShown: boolean
+  edit: boolean
+  activeCard: ICard | null
+}
 
 export default Vue.extend({
-  components: {DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
+  components: {SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
   middleware: ['auth'],
 
   fetch(ctx) {
@@ -50,7 +79,7 @@ export default Vue.extend({
     ctx.store.dispatch("CARD/LOAD_ALL", <ICardLoadAllOpts>{workspaceID: workspace.id, aedKey: workspace.aedKey})
   },
 
-  data(): { leftShown: boolean, menuShown: boolean, edit: boolean, activeCard: ICard | null } {
+  data(): IData {
     return {
       leftShown: false,
       menuShown: false,
@@ -63,6 +92,18 @@ export default Vue.extend({
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },
+  },
+
+  methods: {
+    newCard() {
+      this.activeCard = null
+      this.edit = true
+    },
+
+    cancelEdit() {
+      this.edit = false
+      this.activeCard = null
+    }
   },
 
   head() {

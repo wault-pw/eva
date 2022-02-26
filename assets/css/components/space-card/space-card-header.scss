@@ -1,0 +1,23 @@
+.space-card-header {
+  background: $component-active-bg;
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.space-card-header-nav {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $component-active-color;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s;
+
+  &:hover {
+    background: rgba(#000, .1);
+  }
+}

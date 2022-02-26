@@ -78,6 +78,7 @@ export class Ver {
   }
 
   async aedDecrypt(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<Uint8Array> {
+    if (!data.length) return new Uint8Array(0)
     return await this.aedCipher.decrypt({key, iv: data.slice(0, this.aedIvSize), data: data.slice(this.aedIvSize), addon})
   }
 

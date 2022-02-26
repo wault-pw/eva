@@ -54,7 +54,7 @@ export default Vue.extend({
   methods: {
     onScroll: _throttle(function(this: any, e: any) {
       this.buttonOffset = e.target.scrollTop
-    }, 80),
+    }, 480),
   }
 })
 </script>

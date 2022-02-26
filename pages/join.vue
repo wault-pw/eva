@@ -113,7 +113,17 @@ export default Vue.extend({
       req.setCardWithItemsList([
         MapCardWithItems({
           titleEnc: await this.$ver.aedEncryptText(wKey, "Facebook (example)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "login", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "user@example.com", null),
+            },
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "password", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "password123", null),
+            }
+          ]
         }),
         MapCardWithItems({
           titleEnc: await this.$ver.aedEncryptText(wKey, "Apple (example)", null),

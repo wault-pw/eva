@@ -1,0 +1,24 @@
+.space-form {
+  z-index: $space-z-overlay;
+  background: $body-bg;
+  box-shadow: rgba(#000, .3) 0 0 80px;
+
+  display: grid;
+  grid-template-areas:
+      "header"
+      "body"
+      "footer";
+
+  grid-template-rows: auto 1fr $space-form-footer-height;
+}
+
+.space-form-footer {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+
+  button {
+    flex-grow: 1;
+  }
+}

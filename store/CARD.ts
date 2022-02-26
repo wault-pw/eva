@@ -1,7 +1,10 @@
 import {GetterTree, ActionTree, MutationTree} from 'vuex'
 import {Card} from "~/desc/alice_v1_pb"
+import {IWorkspace} from "~/store/WORKSPACE"
+import {MapCloneCard} from "~/lib/domain_v1/card"
 import _sortBy from "lodash/sortBy"
 import _get from "lodash/get"
+import _reject from "lodash/reject"
 
 export const state = (): ICardState => ({
   list: [],
@@ -37,6 +40,14 @@ export const mutations: MutationTree<ICardState> = {
   SET_LIST(state, list: Array<ICard>) {
     state.list = _sortBy(list, "title")
   },
+
+  ADD_TO_LIST(state, card: ICard) {
+    state.list = _sortBy([...state.list, card], 'title')
+  },
+
+  REMOVE_FROM_LIST(state, id: string) {
+    state.list = _reject(state.list, {id})
+  },
 }
 
 export const actions: ActionTree<CardState, CardState> = {
@@ -60,14 +71,29 @@ export const actions: ActionTree<CardState, CardState> = {
     return {
       tags,
       id: opts.item.getId(),
+      workspaceId: opts.item.getWorkspaceId(),
       title: await this.$ver.aedDecryptText(opts.aedKey, opts.item.getTitleEnc_asU8(), null)
     }
+  },
+
+  async CLONE({commit, dispatch}, opts: CardCloneOpts): Promise<ICard> {
+    const req = MapCloneCard({titleEnc: await this.$ver.aedEncryptText(opts.workspace.aedKey, opts.title, null)})
+    const res = await this.$adapter.cloneCard(req, opts.workspace.id, opts.id)
+    const card = await dispatch("DECODE", <ICardDecodeOpts>{aedKey: opts.workspace.aedKey, item: res.getCard()})
+    commit('ADD_TO_LIST', card)
+    return card
+  },
+
+  async DELETE_CARD({commit, dispatch}, opts: DeleteCardOpts): Promise<void> {
+    this.$adapter.deleteCard(opts.workspaceId, opts.id)
+    commit('REMOVE_FROM_LIST', opts.id)
   }
 }
 
 export interface ICard {
   id: string
   title: string
+  workspaceId: string
   tags: Array<string>
 }
 
@@ -88,4 +114,15 @@ export interface ICardState {
 export interface ITagMap {
   name: string
   count: number
+}
+
+export interface CardCloneOpts {
+  workspace: IWorkspace
+  id: string
+  title: string
+}
+
+export interface DeleteCardOpts {
+  workspaceId: string
+  id: string
 }

@@ -7,7 +7,11 @@ export default {
     or: "OR",
     failed: "Failed",
     yes: "Yes",
-    no: "No"
+    no: "No",
+    edit: "Edit",
+    clone: "Clone",
+    delete: "Delete",
+    archive: "Archive"
   },
 
   menu: {

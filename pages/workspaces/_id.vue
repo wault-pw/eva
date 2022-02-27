@@ -16,16 +16,19 @@
       </transition>
 
       <SpaceHeader
+        :title="activeTag && activeTag.name"
         :left.sync="leftShown"
         :menu.sync="menuShown"
       />
 
       <SpaceLeft
+        :active-tag.sync="activeTag"
         :shown.sync="leftShown"
       />
 
       <SpaceRight
         :active.sync="activeCard"
+        :cards="cards"
         @add="newCard"
       />
 
@@ -59,15 +62,18 @@ import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
 import DialogBus from "~/components/Shared/DialogBus.vue"
 import SpaceForm from "~/components/Space/SpaceForm.vue"
+import SpaceCard from "~/components/Space/SpaceCard.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
-import {ICard, ICardLoadAllOpts} from "~/store/CARD"
-import SpaceCard from "~/components/Space/SpaceCard.vue";
+import {ICard, ICardLoadAllOpts, ITag} from "~/store/CARD"
+import _filter from "lodash/filter"
+import _indexOf from "lodash/indexOf"
 
 interface IData {
   leftShown: boolean
   menuShown: boolean
   edit: boolean
   activeCard: ICard | null
+  activeTag: ITag | null
 }
 
 export default Vue.extend({
@@ -85,7 +91,8 @@ export default Vue.extend({
       leftShown: false,
       menuShown: false,
       edit: false,
-      activeCard: null
+      activeCard: null,
+      activeTag: null
     }
   },
 
@@ -93,6 +100,16 @@ export default Vue.extend({
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },
+
+    cards(): Array<ICard> {
+      const cards = this.$store.state.CARD.list
+
+      if (this.activeTag == null) return cards
+
+      return _filter(cards, (card) => {
+        return _indexOf(card.tags, this.activeTag?.name) >= 0
+      })
+    }
   },
 
   methods: {

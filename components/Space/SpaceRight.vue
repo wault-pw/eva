@@ -19,7 +19,7 @@
           class="space-right-item"
           @click="$emit('update:active', card)"
         >
-          <span v-text="card.title" />
+          <span v-text="card.title"/>
         </div>
       </li>
     </ul>
@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { ICard } from "~/store/CARD"
+import {ICard} from "~/store/CARD"
 import _throttle from "lodash/throttle"
 
 export default Vue.extend({
@@ -36,6 +36,11 @@ export default Vue.extend({
     active: {
       type: Object as () => ICard,
       required: false,
+    },
+
+    cards: {
+      type: Array as () => Array<ICard>,
+      required: true
     }
   },
 
@@ -45,14 +50,8 @@ export default Vue.extend({
     }
   },
 
-  computed: {
-    cards(): Array<ICard> {
-      return this.$store.state.CARD.list
-    }
-  },
-
   methods: {
-    onScroll: _throttle(function(this: any, e: any) {
+    onScroll: _throttle(function (this: any, e: any) {
       this.buttonOffset = e.target.scrollTop
     }, 480),
   }

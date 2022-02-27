@@ -55,7 +55,7 @@
       <li>
         <i/>
 
-        <a href="#">all</a>
+        <a href="#" @click.prevent="$emit('update:activeTag', null)">all</a>
 
         <span class="space-nav-ico justify-content-start">
            <span
@@ -71,7 +71,12 @@
       >
         <i/>
 
-        <a href="#">{{ tag.name }}</a>
+        <a
+          :class="{'nuxt-link-active': activeTag === tag}"
+          v-text="tag.name"
+          href="#"
+          @click.prevent="$emit('update:activeTag', tag)"
+        />
 
         <span class="space-nav-ico justify-content-start">
           <span
@@ -87,7 +92,7 @@
 <script lang="ts">
 import Vue from "vue"
 import {IWorkspace, WorkspaceCreateOpts} from "~/store/WORKSPACE"
-import {ITagMap} from "~/store/CARD"
+import {ITag} from "~/store/CARD"
 
 export default Vue.extend({
   props: {
@@ -95,6 +100,10 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
+
+    activeTag: {
+      type: Object as () => ITag
+    }
   },
 
   computed: {
@@ -110,7 +119,7 @@ export default Vue.extend({
       return this.$store.state.WORKSPACE.list
     },
 
-    tags(): Array<ITagMap> {
+    tags(): Array<ITag> {
       return this.$store.getters["CARD/TAG_SET"]
     },
   },
@@ -125,7 +134,10 @@ export default Vue.extend({
         return
       }
 
-      const workspace = await this.$store.dispatch("WORKSPACE/CREATE", <WorkspaceCreateOpts>{title, user:  this.$store.state.USER})
+      const workspace = await this.$store.dispatch("WORKSPACE/CREATE", <WorkspaceCreateOpts>{
+        title,
+        user: this.$store.state.USER
+      })
       await this.$router.push(this.$urn.workspace(workspace.id))
     },
 

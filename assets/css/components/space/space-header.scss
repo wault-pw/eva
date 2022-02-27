@@ -1,7 +1,7 @@
 .space-header {
   display: grid;
   background: $accent;
-  grid-template-columns: 1fr $space-header-height 1fr;
+  grid-template-columns: 1fr auto 1fr;
 }
 
 .space-header-logo {
@@ -15,4 +15,12 @@
   &:after {
     content: '*';
   }
+}
+
+.space-header-title {
+  display: flex;
+  align-items: center;
+  color: $component-active-color;
+  font-size: 1.2em;
+  text-shadow: rgba(#666, .9) 0 1px 2px;
 }

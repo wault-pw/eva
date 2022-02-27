@@ -13,7 +13,7 @@ export const state = (): ICardState => ({
 export type CardState = ReturnType<typeof state>
 
 export const getters: GetterTree<CardState, CardState> = {
-  TAG_SET(state): Array<ITagMap> {
+  TAG_SET(state): Array<ITag> {
     const map: { [key: string]: number } = {}
 
     for (const card of state.list) {
@@ -111,7 +111,7 @@ export interface ICardState {
   list: Array<ICard>
 }
 
-export interface ITagMap {
+export interface ITag {
   name: string
   count: number
 }

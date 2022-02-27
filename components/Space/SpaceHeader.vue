@@ -9,7 +9,17 @@
       </div>
     </div>
 
-    <div class="space-header-logo"/>
+    <div
+      v-if="title"
+      class="space-header-title"
+    >
+      {{ title }}
+    </div>
+
+    <div
+      v-if="!title"
+      class="space-header-logo"
+    />
 
     <div class="text-end">
       <div
@@ -30,9 +40,16 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
+
     menu: {
       type: Boolean,
       required: true
+    },
+
+    title: {
+      type: String,
+      required: false,
+      default: null
     }
   }
 })

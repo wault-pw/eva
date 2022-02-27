@@ -26,26 +26,40 @@
     </header>
 
     <section class="pt-4 space-card-body">
-      <h2>
+      <h2 class="mb-3">
         {{ card.title }}
       </h2>
 
-      {{items}}
+      <SpaceItem
+        v-for="item in items"
+        :key="item.id"
+        :item="item"
+        class="mb-3"
+      />
     </section>
+
+    <StatusThrobber
+      :absolute="true"
+      ref="throbber"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import {CardCloneOpts, DeleteCardOpts, ICard} from "~/store/CARD";
+import {CardCloneOpts, DeleteCardOpts, ICard} from "~/store/CARD"
 import {IWorkspace} from "~/store/WORKSPACE";
 import {CardItemLoadOpts, ICardItem} from "~/store/CARD_ITEM"
+import StatusThrobber from "~/components/Shared/StatusThrobber.vue"
+import SpaceItem from "~/components/Shared/SpaceItem.vue"
 
 interface IData {
   items: Array<ICardItem>
+  loading: boolean
 }
 
 export default Vue.extend({
+  components: {SpaceItem, StatusThrobber},
   props: {
     card: {
       type: Object as () => ICard,
@@ -60,7 +74,8 @@ export default Vue.extend({
 
   data(): IData {
     return {
-      items: []
+      items: [],
+      loading: false
     }
   },
 
@@ -74,15 +89,22 @@ export default Vue.extend({
           // BusBoot(this).done()
         }
       }
+    },
+
+    loading(newVal: boolean) {
+      const throbber: any = this.$refs.throbber
+      newVal ? throbber.show("Loading") : throbber.hide()
     }
   },
 
   methods: {
     async load() {
+      this.loading = true
       this.items = await this.$store.dispatch("CARD_ITEM/LOAD", <CardItemLoadOpts>{
         workspace: this.workspace,
         cardId: this.card.id
       })
+      this.loading = false
     },
 
     async clone() {

@@ -41,6 +41,7 @@
 
       <SpaceCard
         v-if="activeCard"
+        :key="activeCard.id"
         :card="activeCard"
         :workspace="workspace"
         @edit="edit = true"

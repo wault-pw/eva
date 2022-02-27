@@ -33,7 +33,7 @@
 import Vue from 'vue'
 import {RegistrationRequest} from "~/desc/alice_v1_pb";
 import {MapRegistrationUser} from "~/lib/domain_v1/user";
-import { MapRegistrationWorkspace } from '~/lib/domain_v1/workspace';
+import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace';
 import JoinForm from "~/components/Join/JoinForm.vue";
 import {MapCardWithItems} from "~/lib/domain_v1/card";
 
@@ -118,16 +118,46 @@ export default Vue.extend({
             {
               titleEnc: await this.$ver.aedEncryptText(wKey, "login", null),
               bodyEnc: await this.$ver.aedEncryptText(wKey, "user@example.com", null),
-            },
-            {
+            }, {
               titleEnc: await this.$ver.aedEncryptText(wKey, "password", null),
               bodyEnc: await this.$ver.aedEncryptText(wKey, "password123", null),
+              hidden: true
             }
           ]
         }),
         MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Apple (example)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Credit card (sample)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Card n.", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "8464 2366 1074 7732", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Cardholder name", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "Joe Oka", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Card circuit", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "American Express", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "CVV2", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "853", null),
+              hidden: true,
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "PIN", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "2744", null),
+              hidden: true,
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Expire on", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "06/25", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Website", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://www.americanexpress.com", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "]Gj2ss{+Grg$fBbg}#E})5Re8G", null),
+              hidden: true
+            },
+          ]
         }),
         MapCardWithItems({
           titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (example)", null),

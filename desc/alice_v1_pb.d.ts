@@ -129,6 +129,9 @@ export namespace RegistrationRequest {
     getBodyEnc_asB64(): string;
     setBodyEnc(value: Uint8Array | string): void;
 
+    getHidden(): boolean;
+    setHidden(value: boolean): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CardItem.AsObject;
     static toObject(includeInstance: boolean, msg: CardItem): CardItem.AsObject;
@@ -143,6 +146,7 @@ export namespace RegistrationRequest {
     export type AsObject = {
       titleEnc: Uint8Array | string,
       bodyEnc: Uint8Array | string,
+      hidden: boolean,
     }
   }
 
@@ -550,6 +554,9 @@ export class CardItem extends jspb.Message {
   getBodyEnc_asB64(): string;
   setBodyEnc(value: Uint8Array | string): void;
 
+  getHidden(): boolean;
+  setHidden(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CardItem.AsObject;
   static toObject(includeInstance: boolean, msg: CardItem): CardItem.AsObject;
@@ -566,6 +573,7 @@ export namespace CardItem {
     cardId: string,
     titleEnc: Uint8Array | string,
     bodyEnc: Uint8Array | string,
+    hidden: boolean,
   }
 }
 

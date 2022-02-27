@@ -21,6 +21,7 @@ export const actions: ActionTree<CardItemState, CardItemState> = {
   async DECODE({commit, dispatch}, opts: CardItemDecodeOpts): Promise<ICardItem> {
     return {
       id: opts.item.getId(),
+      hidden: opts.item.getHidden(),
       title: await this.$ver.aedDecryptText(opts.workspace.aedKey, opts.item.getTitleEnc_asU8(), null),
       body: await this.$ver.aedDecryptText(opts.workspace.aedKey, opts.item.getBodyEnc_asU8(), null),
     }
@@ -41,4 +42,5 @@ export interface ICardItem {
   id: string
   title: string
   body: string
+  hidden: boolean
 }

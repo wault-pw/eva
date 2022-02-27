@@ -8,29 +8,30 @@ export function MapCardWithItems(opts: RegistrationCardDomain): RegistrationRequ
     const i = new RegistrationRequest.CardItem()
     i.setTitleEnc(item.titleEnc)
     i.setBodyEnc(item.bodyEnc)
+    i.setHidden(!!item.hidden)
     out.addItems(i)
   })
-  out.addItems()
   return out
 }
 
 export interface RegistrationCardDomain {
-  titleEnc: Uint8Array,
+  titleEnc: Uint8Array
   tagsEnc: Array<Uint8Array>
   items?: Array<RegistrationCardItemDomain>
 }
 
 export interface RegistrationCardItemDomain {
-  titleEnc: Uint8Array,
+  titleEnc: Uint8Array
   bodyEnc: Uint8Array
+  hidden?: boolean
 }
 
-export function MapCloneCard(opts: CloneCardDomaain): CloneCardRequest {
+export function MapCloneCard(opts: CloneCardDomain): CloneCardRequest {
   const out = new CloneCardRequest()
   out.setTitleEnc(opts.titleEnc)
   return out
 }
 
-export interface CloneCardDomaain {
-  titleEnc: Uint8Array,
+export interface CloneCardDomain {
+  titleEnc: Uint8Array
 }

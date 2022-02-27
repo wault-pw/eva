@@ -35,6 +35,7 @@
         :key="item.id"
         :item="item"
         class="mb-3"
+        @copied="onCopied"
       />
     </section>
 
@@ -79,18 +80,11 @@ export default Vue.extend({
     }
   },
 
-  watch: {
-    'card.id': {
-      immediate: true,
-      async handler(newID) {
-        if (newID) {
-          // BusBoot(this).load("booting")
-          await this.load()
-          // BusBoot(this).done()
-        }
-      }
-    },
+  async mounted() {
+    await this.load()
+  },
 
+  watch: {
     loading(newVal: boolean) {
       const throbber: any = this.$refs.throbber
       newVal ? throbber.show("Loading") : throbber.hide()
@@ -100,20 +94,26 @@ export default Vue.extend({
   methods: {
     async load() {
       this.loading = true
+
       this.items = await this.$store.dispatch("CARD_ITEM/LOAD", <CardItemLoadOpts>{
         workspace: this.workspace,
         cardId: this.card.id
       })
+
       this.loading = false
     },
 
     async clone() {
+      this.loading = true
+
       const card = await this.$store.dispatch("CARD/CLONE", <CardCloneOpts>{
         workspace: this.workspace,
         id: this.card.id,
         title: `${this.card.title} (clone)`
       })
+
       this.$emit('cloned', card)
+      this.loading = false
     },
 
     async destroy() {
@@ -123,8 +123,17 @@ export default Vue.extend({
         return
       }
 
+      this.loading = true
+
       await this.$store.dispatch("CARD/DELETE_CARD", <DeleteCardOpts>this.card)
       this.$emit("destroyed")
+
+      this.loading = false
+    },
+
+    onCopied() {
+      const throbber: any = this.$refs.throbber
+      throbber.shot('COPIED')
     }
   }
 })

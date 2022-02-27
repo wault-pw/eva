@@ -13,7 +13,7 @@
 
     <transition name="status-throbber-box-transition">
       <div
-        v-if="shown"
+        v-if="fired || shown"
         :style="{zIndex: zIndex + 1}"
         class="status-throbber-box"
       >
@@ -38,6 +38,7 @@ import Throbber from "~/components/Shared/Throbber.vue"
 
 interface IData {
   shown: boolean
+  fired: boolean
   text: string | null
 }
 
@@ -68,11 +69,18 @@ export default Vue.extend({
   data(): IData {
     return {
       shown: false,
+      fired: false,
       text: null,
     }
   },
 
   methods: {
+    shot(text: string) {
+      this.text = text
+      this.fired = true
+      TIMEOUT = setTimeout(this.forceHide, 800)
+    },
+
     show(text: string) {
       /**
        * sometimes show is lined up because of the animation and
@@ -100,6 +108,7 @@ export default Vue.extend({
        */
       if (TIMEOUT != null) return
       this.shown = false
+      this.fired = false
     },
 
     error(text: string, error: any) {
@@ -111,6 +120,7 @@ export default Vue.extend({
     forceHide() {
       TIMEOUT = null
       this.shown = false
+      this.fired = false
     }
   }
 })

@@ -1,11 +1,21 @@
 <template>
   <div class="space-item">
-    <div class="text-muted">
-      {{ item.title }}
+    <div class="text-muted space-item-header">
+      <span class="space-item-title">{{ item.title }}</span>
+
+      <i
+        class="space-item-eye"
+        @click.prevent="hidden = !hidden"
+      >
+        👁
+      </i>
     </div>
 
-    <div class="fs-4">
-      {{ item.body }}
+    <div
+      class="fs-4 space-item-body"
+      @click.prevent="copy"
+    >
+      {{ value }}
     </div>
   </div>
 </template>
@@ -19,6 +29,25 @@ export default Vue.extend({
     item: {
       type: Object as () => ICardItem,
       required: true
+    }
+  },
+
+  data() {
+    return {
+      hidden: this.item.hidden
+    }
+  },
+
+  computed: {
+    value(): String {
+      return this.hidden ? "*".repeat(this.item.body.length) : this.item.body
+    }
+  },
+
+  methods: {
+    async copy() {
+      await navigator.clipboard.writeText(this.item.body)
+      this.$emit('copied')
     }
   }
 })

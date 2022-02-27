@@ -1327,7 +1327,8 @@ proto.alice_v1.RegistrationRequest.CardItem.prototype.toObject = function(opt_in
 proto.alice_v1.RegistrationRequest.CardItem.toObject = function(includeInstance, msg) {
   var f, obj = {
     titleEnc: msg.getTitleEnc_asB64(),
-    bodyEnc: msg.getBodyEnc_asB64()
+    bodyEnc: msg.getBodyEnc_asB64(),
+    hidden: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -1372,6 +1373,10 @@ proto.alice_v1.RegistrationRequest.CardItem.deserializeBinaryFromReader = functi
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBodyEnc(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHidden(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1412,6 +1417,13 @@ proto.alice_v1.RegistrationRequest.CardItem.serializeBinaryToWriter = function(m
   if (f.length > 0) {
     writer.writeBytes(
       2,
+      f
+    );
+  }
+  f = message.getHidden();
+  if (f) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -1499,6 +1511,24 @@ proto.alice_v1.RegistrationRequest.CardItem.prototype.getBodyEnc_asU8 = function
  */
 proto.alice_v1.RegistrationRequest.CardItem.prototype.setBodyEnc = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
+};
+
+
+/**
+ * optional bool hidden = 3;
+ * @return {boolean}
+ */
+proto.alice_v1.RegistrationRequest.CardItem.prototype.getHidden = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.alice_v1.RegistrationRequest.CardItem} returns this
+ */
+proto.alice_v1.RegistrationRequest.CardItem.prototype.setHidden = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -4492,7 +4522,8 @@ proto.alice_v1.CardItem.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     cardId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     titleEnc: msg.getTitleEnc_asB64(),
-    bodyEnc: msg.getBodyEnc_asB64()
+    bodyEnc: msg.getBodyEnc_asB64(),
+    hidden: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -4544,6 +4575,10 @@ proto.alice_v1.CardItem.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setBodyEnc(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHidden(value);
       break;
     default:
       reader.skipField();
@@ -4599,6 +4634,13 @@ proto.alice_v1.CardItem.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeBytes(
       4,
+      f
+    );
+  }
+  f = message.getHidden();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -4722,6 +4764,24 @@ proto.alice_v1.CardItem.prototype.getBodyEnc_asU8 = function() {
  */
 proto.alice_v1.CardItem.prototype.setBodyEnc = function(value) {
   return jspb.Message.setProto3BytesField(this, 4, value);
+};
+
+
+/**
+ * optional bool hidden = 5;
+ * @return {boolean}
+ */
+proto.alice_v1.CardItem.prototype.getHidden = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.alice_v1.CardItem} returns this
+ */
+proto.alice_v1.CardItem.prototype.setHidden = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

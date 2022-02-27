@@ -30,6 +30,7 @@ message RegistrationRequest {
   message CardItem {
     bytes title_enc = 1;
     bytes body_enc = 2;
+    bool hidden = 3;
   }
 
   message CardWithItems {
@@ -112,6 +113,7 @@ message CardItem {
   string card_id = 2;
   bytes title_enc = 3;
   bytes body_enc = 4;
+  bool hidden = 5;
 }
 
 // Workspace with linked table "user_workspaces",

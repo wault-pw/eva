@@ -4,6 +4,7 @@
       <span class="space-item-title">{{ item.title }}</span>
 
       <i
+        v-if="eye"
         class="space-item-eye"
         @click.prevent="hidden = !hidden"
       >
@@ -34,7 +35,8 @@ export default Vue.extend({
 
   data() {
     return {
-      hidden: this.item.hidden
+      hidden: this.item.hidden,
+      eye: this.item.hidden
     }
   },
 

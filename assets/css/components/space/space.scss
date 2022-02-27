@@ -85,6 +85,7 @@ main.space {
   position: relative;
   z-index: $space-z-wrapper;
   overflow: auto;
+  flex-grow: 1;
 
   @include media-breakpoint-down(md) {
     position: fixed;
@@ -98,6 +99,15 @@ main.space {
       top: 0;
     }
   }
+}
+
+.space-main-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  max-height: 100%;
 }
 
 /**

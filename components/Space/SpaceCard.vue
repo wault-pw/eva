@@ -1,48 +1,50 @@
 <template>
-  <div class="space-card space-main space-main-focused">
-    <header class="space-card-header">
-      <nav
-        class="space-card-header-nav"
-        v-text="$tc('ui.edit')"
-        @click.prevent="$emit('edit')"
-      />
-
-      <nav
-        class="space-card-header-nav"
-        v-text="$tc('ui.clone')"
-        @click.prevent="clone"
-      />
-
-      <nav
-        class="space-card-header-nav"
-        v-text="$tc('ui.archive')"
-      />
-
-      <nav
-        class="space-card-header-nav"
-        v-text="$tc('ui.delete')"
-        @click.prevent="destroy"
-      />
-    </header>
-
-    <section class="pt-4 space-card-body">
-      <h2 class="mb-3">
-        {{ card.title }}
-      </h2>
-
-      <SpaceItem
-        v-for="item in items"
-        :key="item.id"
-        :item="item"
-        class="mb-3"
-        @copied="onCopied"
-      />
-    </section>
-
+  <div class="space-main-wrapper">
     <StatusThrobber
       :absolute="true"
       ref="throbber"
     />
+
+    <div class="space-card space-main space-main-focused">
+      <header class="space-card-header">
+        <nav
+          class="space-card-header-nav"
+          v-text="$tc('ui.edit')"
+          @click.prevent="$emit('edit')"
+        />
+
+        <nav
+          class="space-card-header-nav"
+          v-text="$tc('ui.clone')"
+          @click.prevent="clone"
+        />
+
+        <nav
+          class="space-card-header-nav"
+          v-text="$tc('ui.archive')"
+        />
+
+        <nav
+          class="space-card-header-nav"
+          v-text="$tc('ui.delete')"
+          @click.prevent="destroy"
+        />
+      </header>
+
+      <section class="pt-4 space-card-body">
+        <h2 class="mb-3">
+          {{ card.title }}
+        </h2>
+
+        <SpaceItem
+          v-for="item in items"
+          :key="item.id"
+          :item="item"
+          class="mb-3"
+          @copied="onCopied"
+        />
+      </section>
+    </div>
   </div>
 </template>
 

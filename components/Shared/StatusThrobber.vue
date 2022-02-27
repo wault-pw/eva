@@ -5,7 +5,7 @@
   >
     <transition name="status-throbber-backdrop-transition">
       <div
-        v-if="shown"
+        v-if="backdrop"
         :style="{zIndex: zIndex}"
         class="status-throbber-backdrop"
       />
@@ -38,11 +38,13 @@ import Throbber from "~/components/Shared/Throbber.vue"
 
 interface IData {
   shown: boolean
+  backdrop: boolean
   fired: boolean
   text: string | null
 }
 
-let TIMEOUT: null | ReturnType<typeof setTimeout>
+let HIDE_TIMEOUT: null | ReturnType<typeof setTimeout>
+let BACKDROP_TIMEOUT: null | ReturnType<typeof setTimeout>
 
 export default Vue.extend({
   components: {Throbber},
@@ -68,9 +70,21 @@ export default Vue.extend({
 
   data(): IData {
     return {
+      backdrop: false,
       shown: false,
       fired: false,
       text: null,
+    }
+  },
+
+  watch: {
+    shown(val) {
+      if (val) {
+        // to prevent interface blocking with fast loading
+        BACKDROP_TIMEOUT = setTimeout(() => this.backdrop = true, 400)
+      } else {
+        BACKDROP_TIMEOUT && clearTimeout(BACKDROP_TIMEOUT)
+      }
     }
   },
 
@@ -78,7 +92,7 @@ export default Vue.extend({
     shot(text: string) {
       this.text = text
       this.fired = true
-      TIMEOUT = setTimeout(this.forceHide, 800)
+      HIDE_TIMEOUT = setTimeout(this.forceHide, 800)
     },
 
     show(text: string) {
@@ -86,7 +100,7 @@ export default Vue.extend({
        * sometimes show is lined up because of the animation and
        * "hide" function might be call in the middle of the queue.
        */
-      if (TIMEOUT != null) return
+      if (HIDE_TIMEOUT != null) return
       this.text = text
       this.shown = true
     },
@@ -106,21 +120,23 @@ export default Vue.extend({
        *   this.$throbber.hide()
        * }
        */
-      if (TIMEOUT != null) return
+      if (HIDE_TIMEOUT != null) return
       this.shown = false
       this.fired = false
+      this.backdrop = false
     },
 
     error(text: string, error: any) {
       this.text = text
       console.error(error)
-      TIMEOUT = setTimeout(this.forceHide, 1500)
+      HIDE_TIMEOUT = setTimeout(this.forceHide, 1500)
     },
 
     forceHide() {
-      TIMEOUT = null
+      HIDE_TIMEOUT = null
       this.shown = false
       this.fired = false
+      this.backdrop = false
     }
   }
 })

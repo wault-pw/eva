@@ -12,7 +12,7 @@ export const state = (): ICardState => ({
 
 export type CardState = ReturnType<typeof state>
 
-export const getters: GetterTree<ICardState, ICardState> = {
+export const getters: GetterTree<CardState, CardState> = {
   TAG_SET(state): Array<ITagMap> {
     const map: { [key: string]: number } = {}
 
@@ -36,7 +36,7 @@ export const getters: GetterTree<ICardState, ICardState> = {
   },
 }
 
-export const mutations: MutationTree<ICardState> = {
+export const mutations: MutationTree<CardState> = {
   SET_LIST(state, list: Array<ICard>) {
     state.list = _sortBy(list, "title")
   },

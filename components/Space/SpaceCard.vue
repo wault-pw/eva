@@ -29,6 +29,8 @@
       <h2>
         {{ card.title }}
       </h2>
+
+      {{items}}
     </section>
   </div>
 </template>
@@ -37,6 +39,11 @@
 import Vue from "vue"
 import {CardCloneOpts, DeleteCardOpts, ICard} from "~/store/CARD";
 import {IWorkspace} from "~/store/WORKSPACE";
+import {CardItemLoadOpts, ICardItem} from "~/store/CARD_ITEM"
+
+interface IData {
+  items: Array<ICardItem>
+}
 
 export default Vue.extend({
   props: {
@@ -51,7 +58,7 @@ export default Vue.extend({
     }
   },
 
-  data() {
+  data(): IData {
     return {
       items: []
     }
@@ -63,7 +70,7 @@ export default Vue.extend({
       async handler(newID) {
         if (newID) {
           // BusBoot(this).load("booting")
-          // await this.load()
+          await this.load()
           // BusBoot(this).done()
         }
       }
@@ -71,27 +78,13 @@ export default Vue.extend({
   },
 
   methods: {
-    // async load() {
-    //   const {items} = await this.$adapter.listCardItems({
-    //     workspaceId: this.workspace.id,
-    //     id: this.card.id
-    //   }, ListCardItemsResponse)
-    //   const out = []
-    //   for (const item of items) {
-    //     out.push(await this.decode(this.workspace, item))
-    //   }
-    //   this.items = out
-    // },
-    //
-    // async decode({aedKey}, {id, cardId, titleEnc, bodyEnc}) {
-    //   return {
-    //     id,
-    //     cardId,
-    //     title: await DECRYPT_USER_WORKSPACE_TEXT({aedKey, enc: titleEnc}),
-    //     body: await DECRYPT_USER_WORKSPACE_TEXT({aedKey, enc: bodyEnc}),
-    //   }
-    // },
-    //
+    async load() {
+      this.items = await this.$store.dispatch("CARD_ITEM/LOAD", <CardItemLoadOpts>{
+        workspace: this.workspace,
+        cardId: this.card.id
+      })
+    },
+
     async clone() {
       const card = await this.$store.dispatch("CARD/CLONE", <CardCloneOpts>{
         workspace: this.workspace,

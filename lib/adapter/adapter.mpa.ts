@@ -3,7 +3,7 @@ import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {
   CloneCardRequest,
   CloneCardResponse,
-  CreateWorkspaceRequest, CreateWorkspaceResponse,
+  CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
   Login0Request,
@@ -68,6 +68,11 @@ export class AdapterMpa implements IAdapter {
 
   async deleteCard(workspaceId: string, id: string): Promise<void> {
     await this.$axios.$post(`/v1/workspaces/${workspaceId}/cards/${id}/delete`, null)
+  }
+
+  async listCardItems(workspaceId: string, id: string): Promise<ListCardItemsResponse> {
+    const bin = await this.post(`/v1/workspaces/${workspaceId}/cards/${id}/items`, null)
+    return ListCardItemsResponse.deserializeBinary(bin)
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

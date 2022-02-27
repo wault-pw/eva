@@ -38,17 +38,19 @@
           <p>
             <button
               type="submit"
+              v-text="$t('ui.login')"
               class="btn w-100 text-uppercase btn-lg btn-primary"
-            >
-              {{ $t('ui.login') }}
-            </button>
+            />
           </p>
         </form>
 
         <div class="mt-4 pt-1"/>
 
         <fieldset class="mb-3 x-fieldset">
-          <legend class="small">{{ $tc("ui.or") }}</legend>
+          <legend
+            v-text="$tc('ui.or')"
+            class="small"
+          />
         </fieldset>
 
         <p class="mb-0 text-center text-lowercase">
@@ -63,9 +65,12 @@
     </div>
 
     <p class="mt-4 text-center">
-      <a href="#" @click.prevent="demo" class="text-white">
-        {{ $tc("menu.demo") }}
-      </a>
+      <a
+        href="#"
+        v-text="$tc('menu.demo')"
+        class="text-white"
+        @click.prevent="demo"
+      />
     </p>
   </div>
 </template>
@@ -109,12 +114,12 @@ export default Vue.extend({
     },
 
     async submit() {
-      this.$throbber.show("0")
+      this.$throbber.show(this.$tc("login.auth0"))
       const res0 = await this.auth0(this.username)
       const srp = this.$ver.NewSrpBridge()
       await srp.init({username: this.username, password: this.password, salt: res0.getSalt_asU8()})
 
-      this.$throbber.show("1")
+      this.$throbber.show(this.$tc("login.auth1"))
       const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())
       const res1 = await this.auth1(challenge.publicKey, challenge.proof)
       const valid = await srp.isProofValid(res1.getProof_asU8())

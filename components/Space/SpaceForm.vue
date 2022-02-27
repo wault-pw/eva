@@ -15,17 +15,15 @@
     <div class="space-form-footer">
       <button
         class="btn btn-success"
+        v-text="$tc('ui.save')"
         @click.prevent="create"
-      >
-        save
-      </button>
+      />
 
       <button
         class="btn btn-secondary"
+        v-text="$tc('ui.cancel')"
         @click.prevent="$emit('cancel')"
-      >
-        cancel
-      </button>
+      />
     </div>
   </form>
 </template>

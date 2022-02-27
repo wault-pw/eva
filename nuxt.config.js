@@ -94,7 +94,6 @@ export default {
     vueI18nLoader: false,
     locales: [
       {code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr'},
-      {code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr'},
     ],
     strategy: 'prefix',
     langDir: 'locales/',

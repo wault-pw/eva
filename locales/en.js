@@ -11,7 +11,9 @@ export default {
     edit: "Edit",
     clone: "Clone",
     delete: "Delete",
-    archive: "Archive"
+    archive: "Archive",
+    save: "Save",
+    cancel: "Cancel",
   },
 
   menu: {
@@ -48,6 +50,17 @@ export default {
 
   login: {
     h1: "Sign.In",
-    title: "Sign in to OKA cloud"
+    title: "Sign in to OKA cloud",
+    auth0: "SRP #0",
+    auth1: "SRP #1"
+  },
+
+  space: {
+    titleTemplate: "%s · workspace",
+  },
+
+  spaceLeft: {
+    workspaces: "Workspaces",
+    tags: "Tags",
   }
 }

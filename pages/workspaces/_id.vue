@@ -127,6 +127,7 @@ export default Vue.extend({
   head() {
     return {
       title: (<any>this).workspace.title,
+      titleTemplate: this.$tc("space.titleTemplate")
     }
   }
 })

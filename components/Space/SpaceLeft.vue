@@ -13,7 +13,7 @@
     <ul class="space-nav mb-3">
       <li>
         <i/>
-        <b>Workspaces</b>
+        <b v-text="$tc('spaceLeft.workspaces')" />
 
         <a
           class="space-nav-icon space-nav-icon-right"
@@ -49,7 +49,8 @@
     <ul class="space-nav">
       <li>
         <i/>
-        <b>Tags</b>
+
+        <b v-text="$tc('spaceLeft.workspaces')" />
       </li>
 
       <li>

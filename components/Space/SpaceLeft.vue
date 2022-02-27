@@ -57,7 +57,12 @@
 
         <a href="#">all</a>
 
-        <i class="opacity-50">{{cardsCount}}</i>
+        <span class="space-nav-ico justify-content-start">
+           <span
+             class="space-nav-ico-counter"
+             v-text="cardsCount"
+           />
+        </span>
       </li>
 
       <li
@@ -68,12 +73,12 @@
 
         <a href="#">{{ tag.name }}</a>
 
-        <i
-          class="space-nav-icon space-nav-icon-right opacity-50"
-          style="opacity: 1"
-        >
-          {{ tag.count }}
-        </i>
+        <span class="space-nav-ico justify-content-start">
+          <span
+            class="space-nav-ico-counter"
+            v-text="tag.count"
+          />
+        </span>
       </li>
     </ul>
   </aside>

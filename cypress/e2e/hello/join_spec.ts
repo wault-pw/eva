@@ -1,9 +1,10 @@
-describe('join', ()=> {
-  before(()=>{
+describe('join', () => {
+  before(() => {
+    cy.truncate()
     cy.visit("/#/en")
   })
 
-  it('creates a user', ()=> {
+  it('creates a user', () => {
     cy.get('a[data-cy=join]').click()
     cy.get('form[name=join]').as('form')
 

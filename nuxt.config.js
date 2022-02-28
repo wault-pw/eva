@@ -112,6 +112,10 @@ export default {
     trailingSlash: false
   },
 
+  server: {
+    host: '0.0.0.0'
+  },
+
   build: {
     babel: {
       babelrc: true,

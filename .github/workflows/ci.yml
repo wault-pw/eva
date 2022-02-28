@@ -41,6 +41,7 @@ jobs:
         image: ghcr.io/oka-is/alice
         env:
           VER666: true
+          MOUNT_CYPRESS: true
           PG_DSN: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable&timezone=utc
         options: >-
           --entrypoint /app/launch-entrypoint.sh

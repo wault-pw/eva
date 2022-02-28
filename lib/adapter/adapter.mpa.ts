@@ -75,6 +75,10 @@ export class AdapterMpa implements IAdapter {
     return ListCardItemsResponse.deserializeBinary(bin)
   }
 
+  async logout() {
+    await this.$axios.$post(`/v1/sessions/delete`)
+  }
+
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {
     const opts = {
       url,

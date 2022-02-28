@@ -1,5 +1,6 @@
 <template>
   <div>
+    <StatusThrobberBus />
     <DialogBus />
 
     <main
@@ -70,6 +71,7 @@ import {ICard, ICardLoadAllOpts, ITag} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
 import SpaceMenu from "~/components/Space/SpaceMenu.vue";
+import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue";
 
 interface IData {
   leftShown: boolean
@@ -80,7 +82,7 @@ interface IData {
 }
 
 export default Vue.extend({
-  components: {SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
+  components: {StatusThrobberBus, SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
   middleware: ['auth'],
 
   fetch(ctx) {

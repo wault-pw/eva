@@ -40,7 +40,7 @@
 
       <li>
         <i/>
-        <a href="#">Github</a>
+        <a :href="$setup.github" target="_blank">Github</a>
         <i/>
       </li>
     </ul>
@@ -50,7 +50,7 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#">Logout</a>
+        <a href="#" @click.prevent="logout">Logout</a>
         <i/>
       </li>
     </ul>
@@ -69,6 +69,19 @@ export default Vue.extend({
     shown: {
       type: Boolean,
       required: true
+    }
+  },
+
+  methods: {
+    async logout() {
+      try {
+        this.$throbber.show("loading")
+        await this.$adapter.logout()
+        await this.$router.push(this.$urn.login())
+        this.$throbber.hide()
+      } catch(e) {
+        this.$throbber.error("failed", e)
+      }
     }
   }
 })

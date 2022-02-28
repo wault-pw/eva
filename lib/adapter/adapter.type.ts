@@ -33,4 +33,6 @@ export interface IAdapter {
   deleteCard(workspaceId: string, id: string): Promise<void>
 
   listCardItems(workspaceId: string, id: string): Promise<ListCardItemsResponse>
+
+  logout(): Promise<void>
 }

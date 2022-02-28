@@ -34,6 +34,10 @@ export class Setup {
   get statusPage(): string | null {
     return this.$config.statusPage
   }
+
+  get ver666(): boolean {
+    return this.$config.ver666
+  }
 }
 
 function raise(errorMessage: string): never {

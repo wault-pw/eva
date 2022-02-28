@@ -4,16 +4,19 @@ export enum PubCipherEnum {
   Rsa2048Sha256 = "Rsa2048Sha256",
   Rsa3072Sha256 = "Rsa3072Sha256",
   Rsa4096Sha256 = "Rsa4096Sha256",
+  Rsa1024Sha256 = "Rsa1024Sha256",
 }
 
 export function NewPubCipher(num: PubCipherEnum): IPubCipher {
   switch (num) {
-    case PubCipherEnum.Rsa2048Sha256:
-      return new RsaCipher(2048, SHA256)
-    case PubCipherEnum.Rsa3072Sha256:
-      return new RsaCipher(3078, SHA256)
     case PubCipherEnum.Rsa4096Sha256:
       return new RsaCipher(4096, SHA256)
+    case PubCipherEnum.Rsa3072Sha256:
+      return new RsaCipher(3078, SHA256)
+    case PubCipherEnum.Rsa2048Sha256:
+      return new RsaCipher(2048, SHA256)
+    case PubCipherEnum.Rsa1024Sha256:
+      return new RsaCipher(1024, SHA256)
     default:
       throw(`unknown pub cipher num <${num}>`)
   }

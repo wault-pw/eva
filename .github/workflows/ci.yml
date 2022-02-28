@@ -40,6 +40,7 @@ jobs:
       alice:
         image: ghcr.io/oka-is/alice
         env:
+          VER666: true
           PG_DSN: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable&timezone=utc
         options: >-
           --entrypoint /app/launch-entrypoint.sh
@@ -70,6 +71,7 @@ jobs:
         run: yarn install
       - name: Generate
         env:
+          VER666: true
           NODE_OPTIONS: --openssl-legacy-provider
         run: make generate:mpa
       - name: Run server

@@ -1,5 +1,5 @@
 import {Plugin} from '@nuxt/types'
-import {Ver, Ver1} from "~/lib/ver/ver"
+import {Ver, Ver1, Ver666} from "~/lib/ver/ver"
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -23,8 +23,8 @@ declare module 'vuex/types/index' {
   }
 }
 
-const plugin: Plugin = (context, inject) => {
-  inject('ver', Ver1)
+const plugin: Plugin = (ctx, inject) => {
+  inject('ver', ctx.$setup.ver666 ? Ver666 : Ver1)
 }
 
 export default plugin

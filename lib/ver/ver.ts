@@ -2,7 +2,7 @@ import {NewPubCipher, PubCipherEnum} from "~/lib/cryptos/pub.ciphers"
 import {EXPORT_PRIV_KEY_FORMAT, EXPORT_PUB_KEY_FORMAT, IAedCipher, IDerive, IPubCipher} from "~/lib/cryptos/interfaces"
 import {DeriveEnum, DeriveSaltSize, NewDerive} from "~/lib/cryptos/derives"
 import {SrpBridge} from "~/lib/srp.bridge"
-import {SRP_4096} from "~/lib/const"
+import {SRP_1024, SRP_4096} from "~/lib/const"
 import {SecureRandom, TextDecode, TextEncode} from "~/lib/cryptos/util"
 import {AedCipherEnum, AedCipherSizes, NewAedCipher} from "~/lib/cryptos/aed.ciphers"
 
@@ -99,5 +99,14 @@ export const Ver1 = new Ver({
   deriveNum: DeriveEnum.Pbkdf2Sha256,
   deriveIter: 10_000,
   srpGroup: SRP_4096,
+  aedCipherNum: AedCipherEnum.AES256GCM,
+})
+
+// for testing purpose
+export const Ver666 = new Ver({
+  pubCipherNum: PubCipherEnum.Rsa1024Sha256,
+  deriveNum: DeriveEnum.Pbkdf2Sha256,
+  deriveIter: 1,
+  srpGroup: SRP_1024,
   aedCipherNum: AedCipherEnum.AES256GCM,
 })

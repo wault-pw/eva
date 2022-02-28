@@ -1,0 +1,16 @@
+.space-aside {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-aside-footer {
+  font-size: $font-size-sm;
+  color: $gray-600;
+  padding-left: $space-nav-ident-x;
+  padding-right: $space-nav-ident-x;
+
+  a {
+    color: $gray-500;
+    text-decoration: underline;
+  }
+}

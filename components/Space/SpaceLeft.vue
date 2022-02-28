@@ -1,16 +1,9 @@
 <template>
   <aside
     :class="{'space-left-sown': shown}"
-    class="space-left"
+    class="space-left space-aside py-3"
   >
-    <div
-      class="text-white mb-4"
-      @click="$emit('update:shown', !shown)"
-    >
-      hide
-    </div>
-
-    <ul class="space-nav mb-3">
+    <ul class="space-nav mb-0">
       <li>
         <i/>
         <b v-text="$tc('spaceLeft.workspaces')" />
@@ -25,6 +18,7 @@
 
       <li
         v-for="item in workspaces"
+        :class="{active: item.id == workspace.id}"
         :key="item.id"
       >
         <i
@@ -46,11 +40,13 @@
       </li>
     </ul>
 
+    <hr class="space-nav-hr">
+
     <ul class="space-nav">
       <li>
         <i/>
 
-        <b v-text="$tc('spaceLeft.workspaces')" />
+        <b v-text="$tc('spaceLeft.tags')" />
       </li>
 
       <li>
@@ -68,12 +64,12 @@
 
       <li
         v-for="tag in tags"
+        :class="{active: activeTag === tag}"
         :key="tag.name"
       >
         <i/>
 
         <a
-          :class="{'nuxt-link-active': activeTag === tag}"
           v-text="tag.name"
           href="#"
           @click.prevent="$emit('update:activeTag', tag)"
@@ -87,6 +83,11 @@
         </span>
       </li>
     </ul>
+
+    <div class="space-aside-footer mt-auto pt-3">
+      2022 © OKA ver.{{$setup.version}}<br>
+      Tallinn, Estonia
+    </div>
   </aside>
 </template>
 

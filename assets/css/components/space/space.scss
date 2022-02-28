@@ -123,9 +123,10 @@ main.space {
   margin-right: -$space-menu-width;
   transition: margin-right .4s;
   z-index: $space-z-overlay;
+  overflow: auto;
 }
 
-.space-menu.space-menu-shown {
+.space-menu-shown {
   margin-right: 0;
 }
 

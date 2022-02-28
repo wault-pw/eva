@@ -51,6 +51,8 @@
         @cloned="activeCard = $event"
         @destroyed="cancelEdit"
       />
+
+      <SpaceMenu :shown.sync="menuShown" />
     </main>
   </div>
 </template>
@@ -67,6 +69,7 @@ import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts, ITag} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
+import SpaceMenu from "~/components/Space/SpaceMenu.vue";
 
 interface IData {
   leftShown: boolean
@@ -77,7 +80,7 @@ interface IData {
 }
 
 export default Vue.extend({
-  components: {SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
+  components: {SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
   middleware: ['auth'],
 
   fetch(ctx) {

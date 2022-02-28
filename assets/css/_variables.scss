@@ -29,7 +29,7 @@ $theme-colors: map-merge($theme-colors,  (
  */
 $space-header-height: 50px;
 $space-left-width: 250px;
-$space-menu-width: 300px;
+$space-menu-width: 250px;
 $space-transition-time: .4s;
 $space-transition-margin: 150px;
 $space-z-wrapper: 1;
@@ -57,3 +57,8 @@ $space-form-footer-height: $space-header-height;
 $space-card-padding-x: $container-padding-x*3;
 $space-card-header-height: $space-header-height;
 $space-card-z: 2;
+
+/**
+ * space nav
+ */
+$space-nav-ident-x: 2rem;

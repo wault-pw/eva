@@ -11,10 +11,9 @@
 
     <div
       v-if="title"
-      class="space-header-title"
-    >
-      {{ title }}
-    </div>
+      v-text="title"
+      class="space-header-title text-lowercase"
+    />
 
     <div
       v-if="!title"

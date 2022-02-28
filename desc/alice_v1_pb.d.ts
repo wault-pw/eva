@@ -502,6 +502,9 @@ export class Card extends jspb.Message {
   getWorkspaceId(): string;
   setWorkspaceId(value: string): void;
 
+  getArchived(): boolean;
+  setArchived(value: boolean): void;
+
   getTitleEnc(): Uint8Array | string;
   getTitleEnc_asU8(): Uint8Array;
   getTitleEnc_asB64(): string;
@@ -531,6 +534,7 @@ export namespace Card {
   export type AsObject = {
     id: string,
     workspaceId: string,
+    archived: boolean,
     titleEnc: Uint8Array | string,
     tagsEncList: Array<Uint8Array | string>,
     createdAt: string,
@@ -678,6 +682,26 @@ export class ListCardItemsResponse extends jspb.Message {
 export namespace ListCardItemsResponse {
   export type AsObject = {
     itemsList: Array<CardItem.AsObject>,
+  }
+}
+
+export class ArchiveCardResponse extends jspb.Message {
+  getArchived(): boolean;
+  setArchived(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ArchiveCardResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ArchiveCardResponse): ArchiveCardResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ArchiveCardResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ArchiveCardResponse;
+  static deserializeBinaryFromReader(message: ArchiveCardResponse, reader: jspb.BinaryReader): ArchiveCardResponse;
+}
+
+export namespace ArchiveCardResponse {
+  export type AsObject = {
+    archived: boolean,
   }
 }
 

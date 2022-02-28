@@ -46,10 +46,18 @@ $space-right-item-active-margin: $container-padding-x*2;
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: margin .2s, padding-right .2s;
+  transition: margin .2s,
+  padding-right .2s,
+  background-color $space-card-archived-dur,
+  color $space-card-archived-dur;
 }
 
 .space-right-item.active {
   margin-left: $space-right-item-active-margin;
   padding-right: $container-padding-x;
+}
+
+.space-right-item.archived {
+  background: $space-card-archived-bg;
+  color: $gray-500;
 }

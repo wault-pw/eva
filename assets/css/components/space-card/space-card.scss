@@ -2,6 +2,7 @@
   z-index: $space-card-z;
   background: $body-bg;
   box-shadow: rgba(#000, .3) 0 0 80px;
+  transition: background-color $space-card-archived-dur;
 
   display: grid;
   grid-template-areas:
@@ -9,6 +10,10 @@
       "footer";
 
   grid-template-rows: $space-card-header-height 1fr;
+}
+
+.space-card-archived {
+  background: $space-card-archived-bg;
 }
 
 .space-card-body {

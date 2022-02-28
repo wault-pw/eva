@@ -12,8 +12,10 @@ export default {
     clone: "Clone",
     delete: "Delete",
     archive: "Archive",
+    restore: "Restore",
     save: "Save",
     cancel: "Cancel",
+    all: "All",
   },
 
   menu: {
@@ -51,8 +53,8 @@ export default {
   login: {
     h1: "Sign.In",
     title: "Sign in to OKA cloud",
-    auth0: "SRP #0",
-    auth1: "SRP #1"
+    auth0: "SRP#0",
+    auth1: "SRP#1"
   },
 
   space: {
@@ -61,6 +63,13 @@ export default {
 
   spaceLeft: {
     workspaces: "Workspaces",
+  },
+
+  /**
+   * domain
+   */
+  card: {
     tags: "Tags",
+    archived: "Archived"
   }
 }

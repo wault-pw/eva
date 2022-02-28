@@ -1,7 +1,7 @@
 <template>
   <div>
-    <StatusThrobberBus />
-    <DialogBus />
+    <StatusThrobberBus/>
+    <DialogBus/>
 
     <main
       :class="{'space-left-sown': leftShown, 'space-menu-shown': menuShown}"
@@ -17,13 +17,14 @@
       </transition>
 
       <SpaceHeader
-        :title="activeTag && activeTag.name"
+        :title="headerTitle"
         :left.sync="leftShown"
         :menu.sync="menuShown"
       />
 
       <SpaceLeft
-        :active-tag.sync="activeTag"
+        :tag.sync="activeTag"
+        :archived.sync="archived"
         :shown.sync="leftShown"
       />
 
@@ -53,7 +54,7 @@
         @destroyed="cancelEdit"
       />
 
-      <SpaceMenu :shown.sync="menuShown" />
+      <SpaceMenu :shown.sync="menuShown"/>
     </main>
   </div>
 </template>
@@ -66,19 +67,24 @@ import SpaceRight from "~/components/Space/SpaceRight.vue"
 import DialogBus from "~/components/Shared/DialogBus.vue"
 import SpaceForm from "~/components/Space/SpaceForm.vue"
 import SpaceCard from "~/components/Space/SpaceCard.vue"
+import SpaceMenu from "~/components/Space/SpaceMenu.vue"
+import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
-import {ICard, ICardLoadAllOpts, ITag} from "~/store/CARD"
+import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
-import SpaceMenu from "~/components/Space/SpaceMenu.vue";
-import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue";
 
 interface IData {
   leftShown: boolean
   menuShown: boolean
   edit: boolean
+  archived: boolean
   activeCard: ICard | null
-  activeTag: ITag | null
+  activeTag: string | null
+}
+
+function isTagged(card: ICard, tag: string | null): boolean {
+  return _indexOf(card.tags, tag) >= 0
 }
 
 export default Vue.extend({
@@ -96,8 +102,19 @@ export default Vue.extend({
       leftShown: false,
       menuShown: false,
       edit: false,
+      archived: false,
       activeCard: null,
       activeTag: null
+    }
+  },
+
+  watch: {
+    activeTag() {
+      this.leftShown = false
+    },
+
+    archived() {
+      this.leftShown = false
     }
   },
 
@@ -106,14 +123,20 @@ export default Vue.extend({
       return this.$store.state.WORKSPACE.active
     },
 
+    headerTitle(): string | null {
+      return this.archived ? this.$tc("card.archived") : this.activeTag
+    },
+
     cards(): Array<ICard> {
       const cards = this.$store.state.CARD.list
 
-      if (this.activeTag == null) return cards
-
-      return _filter(cards, (card) => {
-        return _indexOf(card.tags, this.activeTag?.name) >= 0
-      })
+      if (this.archived) {
+        return _filter(cards, {archived: true})
+      } else if (this.activeTag == null) {
+        return _filter(cards, {archived: false})
+      } else {
+        return _filter(cards, (card) => !card.archived && isTagged(card, this.activeTag))
+      }
     }
   },
 

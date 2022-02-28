@@ -1,6 +1,7 @@
 import {IAdapter} from "~/lib/adapter/adapter.type"
 import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {
+  ArchiveCardResponse,
   CloneCardRequest,
   CloneCardResponse,
   CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
@@ -77,6 +78,11 @@ export class AdapterMpa implements IAdapter {
 
   async logout() {
     await this.$axios.$post(`/v1/sessions/delete`)
+  }
+
+  async archiveCard(workspaceId: string, id: string): Promise<ArchiveCardResponse> {
+    const bin = await this.post(`/v1/workspaces/${workspaceId}/cards/${id}/archive`, null)
+    return ArchiveCardResponse.deserializeBinary(bin)
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

@@ -103,9 +103,10 @@ message WhoAmIResponse {
 message Card {
   string id = 1;
   string workspace_id = 2;
-  bytes title_enc = 3;
-  repeated bytes tags_enc = 4;
-  string created_at = 5;
+  bool archived = 3;
+  bytes title_enc = 4;
+  repeated bytes tags_enc = 5;
+  string created_at = 6;
 }
 
 message CardItem {
@@ -136,4 +137,8 @@ message ListCardsResponse {
 
 message ListCardItemsResponse {
   repeated CardItem items = 1;
+}
+
+message ArchiveCardResponse {
+  bool archived = 1;
 }

@@ -15,7 +15,7 @@
         class="space-right-li"
       >
         <div
-          :class="{active: active && card.id === active.id}"
+          :class="{active: active && card.id === active.id, archived: card.archived}"
           class="space-right-item"
           @click="$emit('update:active', card)"
         >

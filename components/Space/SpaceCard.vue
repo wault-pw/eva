@@ -5,7 +5,10 @@
       ref="throbber"
     />
 
-    <div class="space-card space-main space-main-focused">
+    <div
+      :class="{'space-card-archived': card.archived}"
+      class="space-card space-main space-main-focused"
+    >
       <header class="space-card-header">
         <nav
           class="space-card-header-nav"
@@ -21,7 +24,8 @@
 
         <nav
           class="space-card-header-nav"
-          v-text="$tc('ui.archive')"
+          v-text="card.archived ? $tc('ui.restore') : $tc('ui.archive')"
+          @click.prevent="archive"
         />
 
         <nav
@@ -50,7 +54,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import {CardCloneOpts, DeleteCardOpts, ICard} from "~/store/CARD"
+import {ArchiveCardOpts, CardCloneOpts, DeleteCardOpts, ICard} from "~/store/CARD"
 import {IWorkspace} from "~/store/WORKSPACE";
 import {CardItemLoadOpts, ICardItem} from "~/store/CARD_ITEM"
 import StatusThrobber from "~/components/Shared/StatusThrobber.vue"
@@ -129,6 +133,21 @@ export default Vue.extend({
 
       await this.$store.dispatch("CARD/DELETE_CARD", <DeleteCardOpts>this.card)
       this.$emit("destroyed")
+
+      this.loading = false
+    },
+
+    async archive() {
+      try {
+        await this.$dialog.confirm({text: "Archive card?"})
+      } catch {
+        return
+      }
+
+      this.loading = true
+
+      await this.$store.dispatch("CARD/ARCHIVE_CARD", <ArchiveCardOpts>this.card)
+      this.$emit("Archived")
 
       this.loading = false
     },

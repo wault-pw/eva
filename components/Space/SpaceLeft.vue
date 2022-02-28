@@ -6,7 +6,7 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <b v-text="$tc('spaceLeft.workspaces')" />
+        <b v-text="$tc('spaceLeft.workspaces')"/>
 
         <a
           class="space-nav-icon space-nav-icon-right"
@@ -18,7 +18,7 @@
 
       <li
         v-for="item in workspaces"
-        :class="{active: item.id == workspace.id}"
+        :class="{active: item.id === workspace.id}"
         :key="item.id"
       >
         <i
@@ -28,7 +28,10 @@
           E
         </i>
 
-        <nuxt-link :to="$urn.workspace(item.id)">{{ item.title }}</nuxt-link>
+        <nuxt-link
+          :to="$urn.workspace(item.id)"
+          v-text="item.title"
+        />
 
         <a
           href="#"
@@ -46,46 +49,67 @@
       <li>
         <i/>
 
-        <b v-text="$tc('spaceLeft.tags')" />
+        <b v-text="$tc('card.tags')"/>
       </li>
 
-      <li>
+      <li :class="{active: isCleared}">
         <i/>
 
-        <a href="#" @click.prevent="$emit('update:activeTag', null)">all</a>
+        <a
+          href="#"
+          v-text="$tc('ui.all')"
+          @click.prevent="erase"
+        />
 
         <span class="space-nav-ico justify-content-start">
            <span
              class="space-nav-ico-counter"
-             v-text="cardsCount"
+             v-text="tagSet.total"
+           />
+        </span>
+      </li>
+
+      <li :class="{active: archived}">
+        <i/>
+
+        <a
+          href="#"
+          v-text="$tc('card.archived')"
+          @click.prevent="setArchived(!archived)"
+        />
+
+        <span class="space-nav-ico justify-content-start">
+           <span
+             class="space-nav-ico-counter"
+             v-text="tagSet.archived"
            />
         </span>
       </li>
 
       <li
-        v-for="tag in tags"
-        :class="{active: activeTag === tag}"
-        :key="tag.name"
+        v-for="name in tagSet.list()"
+        :class="{active: tag === name}"
+        :key="name"
       >
         <i/>
 
         <a
-          v-text="tag.name"
+          v-text="name"
           href="#"
-          @click.prevent="$emit('update:activeTag', tag)"
+          @click.prevent="setTag(name)"
         />
 
         <span class="space-nav-ico justify-content-start">
           <span
             class="space-nav-ico-counter"
-            v-text="tag.count"
+            v-text="tagSet.counter(name)"
           />
         </span>
       </li>
     </ul>
 
     <div class="space-aside-footer mt-auto pt-3">
-      2022 © OKA ver.{{$setup.version}}<br>
+      2022 © OKA ver.{{ $setup.version }}<br>
       Tallinn, Estonia
     </div>
   </aside>
@@ -94,7 +118,7 @@
 <script lang="ts">
 import Vue from "vue"
 import {IWorkspace, WorkspaceCreateOpts} from "~/store/WORKSPACE"
-import {ITag} from "~/store/CARD"
+import {TagSet} from "~/store/CARD";
 
 export default Vue.extend({
   props: {
@@ -103,16 +127,19 @@ export default Vue.extend({
       required: true,
     },
 
-    activeTag: {
-      type: Object as () => ITag
+    tag: {
+      type: String,
+      required: false,
+      default: null
+    },
+
+    archived: {
+      type: Boolean,
+      required: true
     }
   },
 
   computed: {
-    cardsCount(): number {
-      return this.$store.getters["CARD/COUNT"]
-    },
-
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },
@@ -121,12 +148,31 @@ export default Vue.extend({
       return this.$store.state.WORKSPACE.list
     },
 
-    tags(): Array<ITag> {
+    tagSet(): TagSet {
       return this.$store.getters["CARD/TAG_SET"]
     },
+
+    isCleared(): Boolean {
+      return this.tag == null && !this.archived
+    }
   },
 
   methods: {
+    setTag(name: string) {
+      this.$emit('update:tag', name)
+      this.$emit('update:archived', false)
+    },
+
+    setArchived(value: boolean) {
+      this.$emit('update:tag', null)
+      this.$emit('update:archived', value)
+    },
+
+    erase() {
+      this.$emit('update:tag', null)
+      this.$emit('update:archived', false)
+    },
+
     async create() {
       let title: string
 

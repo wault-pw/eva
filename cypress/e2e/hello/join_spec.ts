@@ -1,6 +1,8 @@
+import {Truncate} from "~/cypress/helpers"
+
 describe('join', () => {
   before(() => {
-    cy.truncate()
+    Truncate()
     cy.visit("/#/en")
   })
 

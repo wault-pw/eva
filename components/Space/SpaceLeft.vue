@@ -1,6 +1,7 @@
 <template>
   <aside
     :class="{'space-left-sown': shown}"
+    data-cy="left"
     class="space-left space-aside py-3"
   >
     <ul class="space-nav mb-0">

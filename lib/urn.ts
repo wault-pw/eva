@@ -17,6 +17,10 @@ export class Urn {
     return `/${this.locale}`
   }
 
+  spa(): string {
+    return `/${this.locale}/spa`
+  }
+
   join(): string {
     return `/${this.locale}/join`
   }

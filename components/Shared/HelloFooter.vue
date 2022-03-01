@@ -26,7 +26,7 @@
       {{ year }} © OKA ver.{{ $setup.version }}
 
       <a target="_blank" :href="$setup.github">Github</a>
-      <a target="_blank" href="/LICENSES.txt">Licenses</a>
+      <a v-if="$setup.mpa" target="_blank" href="/LICENSES.txt">Licenses</a>
     </div>
   </footer>
 </template>

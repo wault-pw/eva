@@ -57,6 +57,10 @@ export default {
     auth1: "SRP#1"
   },
 
+  spa: {
+    title: "Sign in to OKA backup"
+  },
+
   space: {
     titleTemplate: "%s · workspace",
   },

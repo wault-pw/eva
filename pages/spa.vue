@@ -18,16 +18,6 @@
         >
           <p>
             <input
-              v-model="username"
-              :placeholder="$tc('ui.username').toLowerCase()"
-              autocapitalize="none"
-              class="form-control form-control-lg"
-              type="text"
-            >
-          </p>
-
-          <p>
-            <input
               v-model="password"
               :placeholder="$tc('ui.passphrase').toLowerCase()"
               class="form-control form-control-lg"
@@ -35,7 +25,7 @@
             >
           </p>
 
-          <p>
+          <p class="mb-0">
             <button
               type="submit"
               v-text="$t('ui.login')"
@@ -43,35 +33,8 @@
             />
           </p>
         </form>
-
-        <div class="mt-4 pt-1"/>
-
-        <fieldset class="mb-3 x-fieldset">
-          <legend
-            v-text="$tc('ui.or')"
-            class="small"
-          />
-        </fieldset>
-
-        <p class="mb-0 text-center text-lowercase">
-          <nuxt-link
-            :to="$urn.join()"
-            data-cy="join"
-          >
-            {{ $tc("menu.join") }}
-          </nuxt-link>
-        </p>
       </div>
     </div>
-
-    <p class="mt-4 text-center">
-      <a
-        href="#"
-        v-text="$tc('menu.demo')"
-        class="text-white"
-        @click.prevent="demo"
-      />
-    </p>
   </div>
 </template>
 
@@ -82,7 +45,7 @@ import {WhoAmIParam} from '~/store/USER';
 
 export default Vue.extend({
   layout: "hello",
-  middleware: ['mpa'],
+  middleware: ['spa'],
 
   data() {
     return {
@@ -143,7 +106,7 @@ export default Vue.extend({
 
   head() {
     return {
-      title: this.$tc("login.title")
+      title: this.$tc("spa.title")
     }
   }
 })

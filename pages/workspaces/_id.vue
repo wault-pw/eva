@@ -54,13 +54,21 @@
         @destroyed="cancelEdit"
       />
 
-      <SpaceMenu :shown.sync="menuShown"/>
+      <SpaceMenu
+        :shown.sync="menuShown"
+        :panel.sync="panel"
+      />
+
+      <transition name="space-panel-transition">
+        <SpacePanelExport v-if="panel === 'export'"/>
+        <SpacePanelPassphrase v-if="panel === 'passphrase'"/>
+      </transition>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 import SpaceHeader from "~/components/Space/SpaceHeader.vue"
 import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
@@ -69,16 +77,22 @@ import SpaceForm from "~/components/Space/SpaceForm.vue"
 import SpaceCard from "~/components/Space/SpaceCard.vue"
 import SpaceMenu from "~/components/Space/SpaceMenu.vue"
 import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue"
+import SpacePanelExport from "~/components/SpacePanel/SpacePanelExport.vue"
+import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue";
 import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
+
+export const PANEL_EXPORT = "export"
+export const PANEL_PASSPHRASE = "passphrase"
 
 interface IData {
   leftShown: boolean
   menuShown: boolean
   edit: boolean
   archived: boolean
+  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | null
   activeCard: ICard | null
   activeTag: string | null
 }
@@ -88,8 +102,13 @@ function isTagged(card: ICard, tag: string | null): boolean {
 }
 
 export default Vue.extend({
-  components: {StatusThrobberBus, SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft},
   middleware: ['auth'],
+
+  components: {
+    SpacePanelPassphrase,
+    SpacePanelExport,
+    StatusThrobberBus, SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft
+  },
 
   fetch(ctx) {
     ctx.store.commit("WORKSPACE/SET_ACTIVE_ID", <string>ctx.params.id)
@@ -104,6 +123,7 @@ export default Vue.extend({
       edit: false,
       archived: false,
       activeCard: null,
+      panel: null,
       activeTag: null
     }
   },
@@ -115,6 +135,10 @@ export default Vue.extend({
 
     archived() {
       this.leftShown = false
+    },
+
+    menuShown() {
+      this.panel = null
     }
   },
 

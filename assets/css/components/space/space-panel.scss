@@ -1,0 +1,35 @@
+.space-panel {
+  background: rgba(#111, .6);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translateX(0);
+  opacity: 1;
+  max-width: $space-panel-max-width + $space-menu-width;
+  padding-right: $space-menu-width + $space-panel-ident-x;
+  padding-left: $space-panel-ident-x;
+  z-index: $space-z-panel;
+  transition: transform .6s;
+  overflow: auto;
+  color: $gray-400;
+
+  @include media-breakpoint-down(md) {
+    padding-left: $space-panel-ident-x;
+    padding-right: $space-panel-ident-x;
+    z-index: $space-z-panel * 2;
+  }
+}
+
+// space panel transition
+.space-panel-transition-enter-active, .space-panel-transition-leave-active {
+  transition: transform .3s, opacity .3s;
+}
+
+.space-panel-transition-enter,
+.space-panel-transition-leave-to{
+  transform: translateX(100%);
+  opacity: 0;
+}

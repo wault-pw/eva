@@ -51,7 +51,6 @@ export default {
     '~/assets/css/components.scss',
   ],
 
-
   publicRuntimeConfig: {
     spa: false,
     mpa: true,

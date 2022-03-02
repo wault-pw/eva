@@ -1,0 +1,41 @@
+$space-form-item-row-ident-y: 10px;
+
+.space-form-item {
+  padding-top: $space-form-item-row-ident-y;
+  padding-bottom: $space-form-item-row-ident-y;
+
+  &:hover {
+    background: rgba($border-color, .6);
+  }
+}
+
+.space-form-item-row {
+  display: grid;
+  grid-template-columns: $space-form-item-ident 1fr $space-form-item-ident;
+
+  &+& {
+    margin-top: $space-form-item-row-ident-y/2;
+  }
+}
+
+.space-form-item-title,
+.space-form-item-body {
+  border: none;
+  resize: none;
+  width: 100%;
+  background: $body-bg;
+  padding: 3px 5px;
+}
+
+.space-form-item-body-hidden {
+  background: transparent;
+  pointer-events: none;
+}
+
+.space-form-item-title {
+  @include font-size($font-size-base);
+}
+
+.space-form-item-body {
+  @include font-size($space-item-body-fs);
+}

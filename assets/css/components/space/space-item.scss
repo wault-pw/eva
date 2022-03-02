@@ -17,4 +17,5 @@
 .space-item-body {
   word-break: break-all;
   cursor: pointer;
+  @include font-size($space-item-body-fs);
 }

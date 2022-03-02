@@ -1,6 +1,7 @@
 // Uint8ArrayFromHex parses HEX to binary array.
 // allows grouping by 4 bytes and new lines
 import {crypt} from "~/lib/cryptos/interfaces"
+import { v4 as uid } from "uuid"
 
 export function Uint8ArrayFromHex(input: string): Uint8Array {
   const matched = input.match(/[A-Fa-f0-9]{2}/g)
@@ -32,4 +33,8 @@ export function FakeCryptoKey(): CryptoKey {
     type: "secret",
     usages: []
   }
+}
+
+export function UUID(): string {
+  return uid()
 }

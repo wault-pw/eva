@@ -13,7 +13,7 @@
     </div>
 
     <div
-      class="fs-4 space-item-body"
+      class="space-item-body"
       @click.prevent="copy"
     >
       {{ value }}

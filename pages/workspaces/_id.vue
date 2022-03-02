@@ -39,6 +39,7 @@
         :card-id="activeCard && activeCard.id"
         :card-title="activeCard && activeCard.title"
         :workspace="workspace"
+        :item-donors="edit"
         class="space-main space-main-focused"
         @cancel="cancelEdit"
         @created=""
@@ -49,7 +50,7 @@
         :key="activeCard.id"
         :card="activeCard"
         :workspace="workspace"
-        @edit="edit = true"
+        @edit="edit = $event"
         @cloned="activeCard = $event"
         @destroyed="cancelEdit"
       />
@@ -74,17 +75,18 @@ import SpaceHeader from "~/components/Space/SpaceHeader.vue"
 import SpaceLeft from "~/components/Space/SpaceLeft.vue"
 import SpaceRight from "~/components/Space/SpaceRight.vue"
 import DialogBus from "~/components/Shared/DialogBus.vue"
-import SpaceForm from "~/components/Space/SpaceForm.vue"
+import SpaceForm from "~/components/SpaceForm/SpaceForm.vue"
 import SpaceCard from "~/components/Space/SpaceCard.vue"
 import SpaceMenu from "~/components/Space/SpaceMenu.vue"
 import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue"
 import SpacePanelExport from "~/components/SpacePanel/SpacePanelExport.vue"
 import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue";
+import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
 import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
-import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
+import {ICardItem} from "~/store/CARD_ITEM";
 
 export const PANEL_EXPORT = "export"
 export const PANEL_PASSPHRASE = "passphrase"
@@ -93,7 +95,7 @@ export const PANEL_TERMINATION = "termination"
 interface IData {
   leftShown: boolean
   menuShown: boolean
-  edit: boolean
+  edit: Array<ICardItem> | null
   archived: boolean
   panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | null
   activeCard: ICard | null
@@ -124,7 +126,7 @@ export default Vue.extend({
     return {
       leftShown: false,
       menuShown: false,
-      edit: false,
+      edit: null,
       archived: false,
       activeCard: null,
       panel: null,
@@ -171,11 +173,11 @@ export default Vue.extend({
   methods: {
     newCard() {
       this.activeCard = null
-      this.edit = true
+      this.edit = []
     },
 
     cancelEdit() {
-      this.edit = false
+      this.edit = null
       this.activeCard = null
     }
   },

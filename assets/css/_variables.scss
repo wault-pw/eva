@@ -18,7 +18,6 @@ $input-placeholder-color: #CCCCCC;
 $card-border-width: 0;
 
 @import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins/breakpoints";
 
 $theme-colors: map-merge($theme-colors,  (
   "accent": $accent,
@@ -64,6 +63,15 @@ $space-card-archived-bg: #F5F5F5;
 $space-card-archived-dur: .33s;
 
 /**
+ * space item
+ */
+$space-item-body-fs: $h4-font-size;
+$space-form-item-ident: $space-card-padding-x;
+
+/**
  * space nav
  */
 $space-nav-ident-x: 2rem;
+
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~bootstrap/scss/vendor/rfs";

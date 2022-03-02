@@ -31,6 +31,7 @@
       "@nuxtjs/i18n",
       "@types/lodash",
       "@types/google-protobuf",
+      "@types/uuid",
       "vuex-module-decorators"
     ]
   },

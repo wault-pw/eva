@@ -13,7 +13,7 @@
         <nav
           class="space-card-header-nav"
           v-text="$tc('ui.edit')"
-          @click.prevent="$emit('edit')"
+          @click.prevent="$emit('edit', items)"
         />
 
         <nav

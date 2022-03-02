@@ -3,30 +3,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <h2 class="text-white">
-            Export
-          </h2>
+          <h2 class="text-white" v-text="$tc('export.h2')"/>
 
-          <h3 class="text-white">
-            Offline copy
-          </h3>
+          <h3 class="text-white" v-text="$tc('export.h3')"/>
 
-          <p>
-            Download a read-only portable version of OKA. Very convenient when no Internet connection is available.
-          </p>
+          <p v-text="$tc('export.p1')"/>
+          <p v-text="$tc('export.p2')"/>
+          <p v-text="$tc('export.p3')"/>
 
           <p>
-            An offline copy is just a single HTML file that contains both the whole Clipperz web application and your encrypted data, except file attachments.
-          </p>
-
-          <p>
-            It is as secure as the hosted Clipperz service since they both share the same code and security architecture.
-          </p>
-
-          <p>
-            <a href="#" class="btn btn-accent btn-lg" @click.prevent="backup">
-              download offline copy
-            </a>
+            <a
+              href="#"
+              v-text="$tc('export.button')"
+              class="btn btn-accent btn-lg"
+              @click.prevent="backup"/>
           </p>
         </div>
       </div>

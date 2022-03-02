@@ -26,7 +26,12 @@ export default {
     privacy: "Privacy",
     terms: "Terms_Of_service",
     issues: "Issues",
-    status: "Status_Page"
+    status: "Status_Page",
+    passphrase: "Passphrase",
+    export: "Export",
+    import: "Import",
+    logout: "Logout",
+    preferences: "Preferences",
   },
 
   hello: {
@@ -67,6 +72,15 @@ export default {
 
   spaceLeft: {
     workspaces: "Workspaces",
+  },
+
+  export: {
+    h2: "Export",
+    h3: "Offline copy",
+    p1: "Download a read-only portable version of OKA. Very convenient when no Internet connection is available.",
+    p2: "An offline copy is just a single HTML file that contains both the whole OKA web application and your encrypted data, except file attachments.",
+    p3: "It is as secure as the hosted OKA service since they both share the same code and security architecture.",
+    button: "Download offline copy",
   },
 
   /**

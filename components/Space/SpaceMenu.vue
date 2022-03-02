@@ -6,25 +6,36 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#">Preferences</a>
+        <a href="#" v-text="$tc('menu.preferences')" />
         <i/>
       </li>
 
       <li :class="{active: panel === 'passphrase'}">
         <i/>
-        <a href="#" @click.prevent="onPassphrase">Passphrase</a>
+        <a
+          href="#"
+          v-text="$tc('menu.passphrase')"
+          @click.prevent="onPassphrase"
+        />
         <i/>
       </li>
 
       <li>
         <i/>
-        <a href="#">Import</a>
+        <a
+          href="#"
+          v-text="$tc('menu.import')"
+        />
         <i/>
       </li>
 
       <li :class="{active: panel === 'export'}">
         <i/>
-        <a href="#" @click.prevent="onExport">Export</a>
+        <a
+          href="#"
+          v-text="$tc('menu.export')"
+          @click.prevent="onExport"
+        />
         <i/>
       </li>
     </ul>
@@ -34,13 +45,21 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#">About</a>
+        <a
+          href="#"
+          v-text="$tc('menu.about')"
+        />
         <i/>
       </li>
 
       <li>
         <i/>
-        <a :href="$setup.github" target="_blank">Github</a>
+        <a
+          :href="$setup.github"
+          target="_blank"
+        >
+          Github
+        </a>
         <i/>
       </li>
     </ul>
@@ -50,7 +69,11 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#" @click.prevent="logout">Logout</a>
+        <a
+          href="#"
+          v-text="$tc('menu.logout')"
+          @click.prevent="logout"
+        />
         <i/>
       </li>
     </ul>

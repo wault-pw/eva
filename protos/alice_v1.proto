@@ -142,3 +142,7 @@ message ListCardItemsResponse {
 message ArchiveCardResponse {
   bool archived = 1;
 }
+
+message TerminateRequest {
+  bytes identity = 1;
+}

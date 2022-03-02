@@ -9,7 +9,7 @@ import {
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest, WhoAmIResponse
+  RegistrationRequest, TerminateRequest, WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -42,4 +42,6 @@ export interface IAdapter {
   archiveCard(workspaceId: string, id: string): Promise<ArchiveCardResponse>
 
   logout(): Promise<void>
+
+  terminate(req: TerminateRequest): Promise<void>
 }

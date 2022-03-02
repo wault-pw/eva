@@ -705,6 +705,28 @@ export namespace ArchiveCardResponse {
   }
 }
 
+export class TerminateRequest extends jspb.Message {
+  getIdentity(): Uint8Array | string;
+  getIdentity_asU8(): Uint8Array;
+  getIdentity_asB64(): string;
+  setIdentity(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TerminateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: TerminateRequest): TerminateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TerminateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TerminateRequest;
+  static deserializeBinaryFromReader(message: TerminateRequest, reader: jspb.BinaryReader): TerminateRequest;
+}
+
+export namespace TerminateRequest {
+  export type AsObject = {
+    identity: Uint8Array | string,
+  }
+}
+
 export interface SrpStageMap {
   SRP_STAGE_UNKNOWN: 0;
   SRP_STAGE_AUTH0: 1;

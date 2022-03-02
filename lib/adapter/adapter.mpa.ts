@@ -11,7 +11,7 @@ import {
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest,
+  RegistrationRequest, TerminateRequest,
   WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
@@ -90,6 +90,11 @@ export class AdapterMpa implements IAdapter {
   async archiveCard(workspaceId: string, id: string): Promise<ArchiveCardResponse> {
     const bin = await this.post(`/v1/workspaces/${workspaceId}/cards/${id}/archive`, null)
     return ArchiveCardResponse.deserializeBinary(bin)
+  }
+
+  async terminate(req: TerminateRequest): Promise<void> {
+    await this.post(`/v1/terminate`, req)
+    return
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

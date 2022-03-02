@@ -11,7 +11,7 @@ import {
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest,
+  RegistrationRequest, TerminateRequest,
   WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 
@@ -99,6 +99,11 @@ export class AdapterSpa implements IAdapter {
 
   @unavailable
   async archiveCard(workspaceId: string, id: string): Promise<ArchiveCardResponse> {
+    return <any>null
+  }
+
+  @unavailable
+  async terminate(req: TerminateRequest): Promise<void> {
     return <any>null
   }
 }

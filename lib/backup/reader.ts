@@ -1,9 +1,5 @@
 import IO from "~/lib/backup/io"
 
-export const MarkerWhoAmI = 1
-export const MarkerWorkspace = 2
-export const MarkerCard = 3
-
 export class Reader {
   private readonly io: IO
 

@@ -1,8 +1,7 @@
 import {IAdapter} from "~/lib/adapter/adapter.type"
-import _filter from "lodash/filter"
-import Indexer from "~/lib/backup/indexer"
+import {Indexer} from "~/lib/backup/indexer"
 import {
-  ArchiveCardResponse, Card,
+  ArchiveCardResponse,
   CloneCardRequest,
   CloneCardResponse,
   CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
@@ -49,7 +48,8 @@ export class AdapterSpa implements IAdapter {
     return <any>null
   }
 
-  async logout() {}
+  async logout() {
+  }
 
   async whoami(): Promise<WhoAmIResponse> {
     return this.index.user
@@ -63,7 +63,9 @@ export class AdapterSpa implements IAdapter {
 
   async listCards(workspaceId: string): Promise<ListCardsResponse> {
     const res = new ListCardsResponse()
-    res.setItemsList(<Array<Card>>_filter(this.index.cards, { workspaceId: workspaceId }))
+    this.index.cards.forEach((card) => {
+      if (card.getWorkspaceId() === workspaceId) res.addItems(card)
+    })
     return res
   }
 
@@ -88,7 +90,11 @@ export class AdapterSpa implements IAdapter {
   }
 
   async listCardItems(workspaceId: string, id: string): Promise<ListCardItemsResponse> {
-    return <any>null
+    const res = new ListCardItemsResponse()
+    this.index.cardItems.forEach((item) => {
+      if (item.getCardId() === id) res.addItems(item)
+    })
+    return res
   }
 
   @unavailable

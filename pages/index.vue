@@ -1,13 +1,15 @@
 <template>
   <div class="hello-window">
     <header class="text-center">
-      <h1 class="mb-1 text-uppercase">
-        {{ $tc("login.h1") }}
-      </h1>
+      <h1
+        v-text="$tc('login.h1')"
+        class="mb-1 text-uppercase"
+      />
 
-      <p class="text-white text-lowercase">
-        {{ $tc("hello.h2") }}
-      </p>
+      <p
+        v-text="$tc('hello.h2')"
+        class="text-white text-lowercase"
+      />
     </header>
 
     <div class="card shadow">

@@ -83,6 +83,13 @@ export default {
     button: "Download offline copy",
   },
 
+  termination: {
+    h2: "Delete Account",
+    p1: "Please make sure you have downloaded the latest backup before deleting your account.",
+    check: "All my data will be permanently deleted. I understand that this action cannot be undone or canceled.",
+    button: "Terminate"
+  },
+
   /**
    * domain
    */

@@ -6,7 +6,7 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#" v-text="$tc('menu.preferences')" />
+        <a href="#" v-text="$tc('menu.preferences')"/>
         <i/>
       </li>
 
@@ -79,14 +79,18 @@
     </ul>
 
     <div class="space-aside-footer mt-auto pt-3">
-      To completely delete your account <a href="#">click here</a>.
+      To completely delete your account <a href="#" @click.prevent="onTerminate">click here</a>.
     </div>
   </aside>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import {PANEL_EXPORT, PANEL_PASSPHRASE} from "~/pages/workspaces/_id.vue"
+import {
+  PANEL_EXPORT,
+  PANEL_PASSPHRASE,
+  PANEL_TERMINATION
+} from "~/pages/workspaces/_id.vue"
 
 export default Vue.extend({
   props: {
@@ -120,6 +124,10 @@ export default Vue.extend({
 
     onPassphrase() {
       this.$emit('update:panel', PANEL_PASSPHRASE)
+    },
+
+    onTerminate() {
+      this.$emit('update:panel', PANEL_TERMINATION)
     }
   }
 })

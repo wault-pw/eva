@@ -62,6 +62,7 @@
       <transition name="space-panel-transition">
         <SpacePanelExport v-if="panel === 'export'"/>
         <SpacePanelPassphrase v-if="panel === 'passphrase'"/>
+        <SpacePanelTermination v-if="panel === 'termination' "/>
       </transition>
     </main>
   </div>
@@ -83,16 +84,18 @@ import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, ICardLoadAllOpts} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
+import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
 
 export const PANEL_EXPORT = "export"
 export const PANEL_PASSPHRASE = "passphrase"
+export const PANEL_TERMINATION = "termination"
 
 interface IData {
   leftShown: boolean
   menuShown: boolean
   edit: boolean
   archived: boolean
-  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | null
+  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | null
   activeCard: ICard | null
   activeTag: string | null
 }
@@ -105,6 +108,7 @@ export default Vue.extend({
   middleware: ['auth'],
 
   components: {
+    SpacePanelTermination,
     SpacePanelPassphrase,
     SpacePanelExport,
     StatusThrobberBus, SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft

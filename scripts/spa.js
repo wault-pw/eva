@@ -5,7 +5,6 @@ const path = require('path')
 const args = process.argv.slice(2)
 const file = args[0]
 const dir = path.dirname(path.resolve(file))
-
 const root = parser.parse(fs.readFileSync(file).toString())
 
 root.querySelectorAll('link[rel="preload"]').forEach((link) => {
@@ -18,4 +17,5 @@ root.querySelectorAll('script[src]').forEach((script) => {
   script.replaceWith(`<script>${content}</script>`)
 })
 
-console.log(root.toString())
+const html = root.toString()
+console.log(html.substring(0, html.indexOf("</body>\n")))

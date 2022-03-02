@@ -54,16 +54,20 @@ export default Vue.extend({
     }
   },
 
-  methods: {
-    async demo() {
-      this.username = this.$setup.demoUsername
-      this.password = this.$setup.demoPassword
-      await this.trySubmit()
-    },
+  async mounted() {
+    try {
+      this.$throbber.show("loading")
+      await this.$adapter.init()
+    } catch (e) {
+      this.$throbber.error(this.$tc("ui.failed"), e)
+    } finally {
+      this.$throbber.hide()
+    }
+  },
 
+  methods: {
     async trySubmit() {
       try {
-        await this.submit()
         await this.whoami(this.password)
         await this.$router.push(this.$urn.workspaces())
       } catch (e) {
@@ -75,32 +79,6 @@ export default Vue.extend({
 
     async whoami(password: string) {
       await this.$store.dispatch('USER/WHO_AM_I', {password} as WhoAmIParam)
-    },
-
-    async submit() {
-      this.$throbber.show(this.$tc("login.auth0"))
-      const res0 = await this.auth0(this.username)
-      const srp = this.$ver.NewSrpBridge()
-      await srp.init({username: this.username, password: this.password, salt: res0.getSalt_asU8()})
-
-      this.$throbber.show(this.$tc("login.auth1"))
-      const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())
-      const res1 = await this.auth1(challenge.publicKey, challenge.proof)
-      const valid = await srp.isProofValid(res1.getProof_asU8())
-      if (!valid) throw(`invalid credentials`)
-    },
-
-    async auth0(username: string): Promise<Login0Response> {
-      const req = new Login0Request()
-      req.setIdentity(username)
-      return await this.$adapter.auth0(req)
-    },
-
-    async auth1(mutual: Uint8Array, proof: Uint8Array): Promise<Login1Response> {
-      const req = new Login1Request()
-      req.setMutual(mutual)
-      req.setProof(proof)
-      return await this.$adapter.auth1(req)
     },
   },
 

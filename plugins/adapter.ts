@@ -1,6 +1,7 @@
 import {Plugin} from '@nuxt/types'
 import {IAdapter} from "~/lib/adapter/adapter.type"
 import {AdapterMpa} from "~/lib/adapter/adapter.mpa"
+import {AdapterSpa} from "~/lib/adapter/adapter.spa"
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -25,7 +26,11 @@ declare module 'vuex/types/index' {
 }
 
 const plugin: Plugin = (context, inject) => {
-  inject('adapter', new AdapterMpa(context.$axios))
+  if (context.$setup.mpa) {
+    inject('adapter', new AdapterMpa(context.$axios))
+  } else {
+    inject('adapter', new AdapterSpa("__DUMP__"))
+  }
 }
 
 export default plugin

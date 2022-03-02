@@ -24,7 +24,7 @@
           </p>
 
           <p>
-            <a href="#" class="btn btn-accent btn-lg">
+            <a href="#" class="btn btn-accent btn-lg" @click.prevent="backup">
               download offline copy
             </a>
           </p>
@@ -38,6 +38,10 @@
 import Vue from "vue"
 
 export default Vue.extend({
-
+  methods: {
+    backup() {
+      this.$adapter.backup()
+    }
+  }
 })
 </script>

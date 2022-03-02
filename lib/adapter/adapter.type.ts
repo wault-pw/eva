@@ -13,6 +13,10 @@ import {
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
+  init(): Promise<void>
+
+  backup(): void
+
   register(req: RegistrationRequest): void
 
   auth0(req: Login0Request): Promise<Login0Response>

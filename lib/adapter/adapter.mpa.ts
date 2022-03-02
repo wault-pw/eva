@@ -23,8 +23,16 @@ export class AdapterMpa implements IAdapter {
     this.$axios = $axios
   }
 
+  async init(): Promise<void> {
+    return
+  }
+
   async register(req: RegistrationRequest) {
     await this.post("/v1/register", req)
+  }
+
+  backup() {
+    window.location = <any>(this.$axios.defaults.baseURL + `/v1/backups/create`)
   }
 
   async auth0(req: Login0Request): Promise<Login0Response> {

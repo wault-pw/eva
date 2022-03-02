@@ -28,7 +28,6 @@ export class AdapterMpa implements IAdapter {
   }
 
   async auth0(req: Login0Request): Promise<Login0Response> {
-    await this.$axios.$post("/v1/login/cookie")
     const bin = await this.post("/v1/login/auth0", req)
     return Login0Response.deserializeBinary(bin)
   }

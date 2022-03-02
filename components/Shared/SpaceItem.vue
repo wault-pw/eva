@@ -5,11 +5,10 @@
 
       <i
         v-if="eye"
+        :class="{'icon-eye-off': !hidden, 'icon-eye': hidden}"
         class="space-item-eye"
         @click.prevent="hidden = !hidden"
-      >
-        👁
-      </i>
+      />
     </div>
 
     <div

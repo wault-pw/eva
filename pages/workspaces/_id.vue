@@ -42,7 +42,7 @@
         :item-donors="edit"
         class="space-main space-main-focused"
         @cancel="cancelEdit"
-        @created=""
+        @created="onCreate"
       />
 
       <SpaceCard
@@ -83,7 +83,7 @@ import SpacePanelExport from "~/components/SpacePanel/SpacePanelExport.vue"
 import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue";
 import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
 import {IWorkspace} from "~/store/WORKSPACE"
-import {ICard, ICardLoadAllOpts} from "~/store/CARD"
+import {ICard, CardLoadAllOpts} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
 import {ICardItem} from "~/store/CARD_ITEM";
@@ -119,7 +119,7 @@ export default Vue.extend({
   fetch(ctx) {
     ctx.store.commit("WORKSPACE/SET_ACTIVE_ID", <string>ctx.params.id)
     const workspace = ctx.store.state.WORKSPACE.active
-    ctx.store.dispatch("CARD/LOAD_ALL", <ICardLoadAllOpts>{workspaceID: workspace.id, aedKey: workspace.aedKey})
+    ctx.store.dispatch("CARD/LOAD_ALL", <CardLoadAllOpts>{workspace: workspace})
   },
 
   data(): IData {
@@ -179,6 +179,11 @@ export default Vue.extend({
     cancelEdit() {
       this.edit = null
       this.activeCard = null
+    },
+
+    onCreate(card: ICard) {
+      this.edit = null
+      this.activeCard = card
     }
   },
 

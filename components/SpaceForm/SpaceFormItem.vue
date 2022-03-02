@@ -1,9 +1,10 @@
 <template>
   <div class="space-form-item">
     <div class="space-form-item-row">
-      <div @click.prevent="$emit('remove', donor.cid)">
-        D
-      </div>
+      <i
+        class="icon-cancel-circled"
+        @click.prevent="$emit('remove', donor.cid)"
+      />
 
       <textarea
         v-model="title"
@@ -18,9 +19,7 @@
     </div>
 
     <div class="space-form-item-row">
-      <div>
-        L
-      </div>
+      <i class="icon-ellipsis-vert" />
 
       <textarea
         v-model="hidden ? mask : body"
@@ -32,34 +31,29 @@
         @input="onInput"
       />
 
-      <div @click="hidden = !hidden">
-        R
-      </div>
+      <i
+        :class="{'icon-lock-filled': hidden, 'icon-lock-open-filled': !hidden}"
+        @click="hidden = !hidden"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import {IWorkspace} from "~/store/WORKSPACE"
-
-interface IDonor {
-  cid: number
-  title: string
-  body: string
-  hidden: boolean
-}
+import {ICardItem} from "~/store/CARD_ITEM";
 
 export default Vue.extend({
   props: {
     donor: {
-      type: Object as () => IDonor,
+      type: Object as () => ICardItem,
       required: true
     }
   },
 
   data() {
     return {
+      id: this.donor.id,
       title: this.donor.title,
       body: this.donor.body,
       hidden: this.donor.hidden
@@ -77,7 +71,6 @@ export default Vue.extend({
       const textarea = e.target
       textarea.style.height = "auto";
       textarea.style.height = textarea.scrollHeight + "px";
-      console.log(textarea)
     }
   }
 })

@@ -1,7 +1,7 @@
 import {
   ArchiveCardResponse,
   CloneCardRequest,
-  CloneCardResponse,
+  CloneCardResponse, CreateCardRequest, CreateCardResponse,
   CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
@@ -44,4 +44,6 @@ export interface IAdapter {
   logout(): Promise<void>
 
   terminate(req: TerminateRequest): Promise<void>
+
+  createCard(workspaceId: string, req: CreateCardRequest): Promise<CreateCardResponse>
 }

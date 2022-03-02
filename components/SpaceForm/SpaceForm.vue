@@ -48,8 +48,10 @@ import Draggable from "vuedraggable"
 import {IWorkspace} from "~/store/WORKSPACE"
 import SpaceFormItem from "~/components/SpaceForm/SpaceFormItem.vue"
 import _reject from "lodash/reject"
-import {ICardItem} from "~/store/CARD_ITEM"
-import {UUID} from "~/lib/cryptos/util";
+import {CardItemEncodeOpts, ICardItem, ICardItemEnc} from "~/store/CARD_ITEM"
+import {UUID} from "~/lib/cryptos/util"
+import {CardEncodeOpts, CreateCardOpts, ICard} from "~/store/CARD"
+import {MapCreateCard} from "~/lib/domain_v1/card";
 
 let cid: number = 0
 
@@ -77,20 +79,38 @@ export default Vue.extend({
     }
   },
 
-  data() {
+  data(): ICard & { items: Array<ICardItem> } {
     return {
       id: this.cardId,
+      archived: false,
       title: this.cardTitle,
       items: this.itemDonors,
+      tags: [],
     }
   },
 
   methods: {
-    submit() {
+    async submit() {
       const refs = this.$refs.items as Array<any> ?? []
-      refs.forEach((ref: any) => {
-        console.log(ref.title)
+      const items: Array<ICardItemEnc> = []
+
+      for (const ref of refs) {
+        items.push(await this.$store.dispatch("CARD_ITEM/ENCODE", <CardItemEncodeOpts>{
+          workspace: this.workspace, item: <ICardItem>ref.$data
+        }))
+      }
+
+      const card = await this.$store.dispatch("CARD/ENCODE", <CardEncodeOpts>{
+        workspace: this.workspace,
+        item: <ICard>this.$data
       })
+
+      const out = await this.$store.dispatch("CARD/CREATE", <CreateCardOpts>{
+        workspace: this.workspace,
+        req: MapCreateCard(card, items),
+      })
+
+      this.$emit("created", out)
     },
 
     remove(cid: number) {

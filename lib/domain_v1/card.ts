@@ -1,4 +1,4 @@
-import {CloneCardRequest, RegistrationRequest} from "~/desc/alice_v1_pb"
+import {Card, CardItem, CloneCardRequest, CreateCardRequest, RegistrationRequest} from "~/desc/alice_v1_pb"
 
 export function MapCardWithItems(opts: RegistrationCardDomain): RegistrationRequest.CardWithItems {
   const out = new RegistrationRequest.CardWithItems()
@@ -34,4 +34,45 @@ export function MapCloneCard(opts: CloneCardDomain): CloneCardRequest {
 
 export interface CloneCardDomain {
   titleEnc: Uint8Array
+}
+
+export function MapCreateCard(c: CardOpts, i: Array<CardItemOpts>): CreateCardRequest {
+  const out = new CreateCardRequest()
+  out.setCard(MapCard(c))
+  out.setCardItemsList(MapCardItems(i))
+  return out
+}
+
+export function MapCard(c: CardOpts): Card {
+  const out = new Card()
+  out.setTitleEnc(c.titleEnc)
+  out.setTagsEncList(c.tagsEnc)
+  return out
+}
+
+export function MapCardItem(i: CardItemOpts): CardItem {
+  const out = new CardItem()
+  out.setTitleEnc(i.titleEnc)
+  out.setBodyEnc(i.bodyEnc)
+  out.setHidden(i.hidden)
+  return out
+}
+
+export function MapCardItems(opts: Array<CardItemOpts>): Array<CardItem> {
+  const out = []
+  for (const opt of opts) {
+    out.push(MapCardItem(opt))
+  }
+  return out
+}
+
+export interface CardOpts {
+  titleEnc: Uint8Array
+  tagsEnc: Array<Uint8Array>
+}
+
+export interface CardItemOpts {
+  titleEnc: Uint8Array
+  bodyEnc: Uint8Array
+  hidden: boolean
 }

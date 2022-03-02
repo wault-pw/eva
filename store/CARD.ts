@@ -1,5 +1,5 @@
 import {GetterTree, ActionTree, MutationTree} from 'vuex'
-import {Card} from "~/desc/alice_v1_pb"
+import {Card, CreateCardRequest} from "~/desc/alice_v1_pb"
 import {IWorkspace} from "~/store/WORKSPACE"
 import {MapCloneCard} from "~/lib/domain_v1/card"
 import _sortBy from "lodash/sortBy"
@@ -42,47 +42,66 @@ export const mutations: MutationTree<CardState> = {
 }
 
 export const actions: ActionTree<CardState, CardState> = {
-  async LOAD_ALL({commit, dispatch}, opts: ICardLoadAllOpts) {
-    const res = await this.$adapter.listCards(opts.workspaceID)
+  async LOAD_ALL({commit, dispatch}, opts: CardLoadAllOpts) {
+    const res = await this.$adapter.listCards(opts.workspace.id)
     const out = []
 
     for (const item of res.getItemsList()) {
-      out.push(await dispatch('DECODE', {aedKey: opts.aedKey, item: item}))
+      out.push(await dispatch('DECODE', <CardDecodeOpts>{workspace: opts.workspace, item: item}))
     }
 
     commit('SET_LIST', out)
   },
 
-  async DECODE({commit, dispatch}, opts: ICardDecodeOpts): Promise<ICard> {
+  async DECODE({commit, dispatch}, opts: CardDecodeOpts): Promise<ICard> {
     const tags = []
     for (const tag of opts.item.getTagsEncList_asU8()) {
-      tags.push(await this.$ver.aedDecryptText(opts.aedKey, tag, null))
+      tags.push(await this.$ver.aedDecryptText(opts.workspace.aedKey, tag, null))
     }
 
     return {
       tags,
       id: opts.item.getId(),
       archived: opts.item.getArchived(),
-      workspaceId: opts.item.getWorkspaceId(),
-      title: await this.$ver.aedDecryptText(opts.aedKey, opts.item.getTitleEnc_asU8(), null)
+      title: await this.$ver.aedDecryptText(opts.workspace.aedKey, opts.item.getTitleEnc_asU8(), null)
+    }
+  },
+
+  async ENCODE({commit, dispatch}, opts: CardEncodeOpts): Promise<ICardEnc> {
+    const tags: Array<Uint8Array> = []
+    for (const tag of opts.item.tags) {
+      tags.push(await this.$ver.aedEncryptText(opts.workspace.aedKey, tag, null))
+    }
+
+    return {
+      id: opts.item.id,
+      tagsEnc: tags,
+      titleEnc: await this.$ver.aedEncryptText(opts.workspace.aedKey, opts.item.title, null),
     }
   },
 
   async CLONE({commit, dispatch}, opts: CardCloneOpts): Promise<ICard> {
     const req = MapCloneCard({titleEnc: await this.$ver.aedEncryptText(opts.workspace.aedKey, opts.title, null)})
     const res = await this.$adapter.cloneCard(req, opts.workspace.id, opts.id)
-    const card = await dispatch("DECODE", <ICardDecodeOpts>{aedKey: opts.workspace.aedKey, item: res.getCard()})
+    const card = await dispatch("DECODE", <CardDecodeOpts>{workspace: opts.workspace, item: res.getCard()})
+    commit('ADD_TO_LIST', card)
+    return card
+  },
+
+  async CREATE({commit, dispatch}, opts: CreateCardOpts): Promise<ICard> {
+    const res = await this.$adapter.createCard(opts.workspace.id, opts.req)
+    const card = await dispatch("DECODE", <CardDecodeOpts>{workspace: opts.workspace, item: res.getCard()})
     commit('ADD_TO_LIST', card)
     return card
   },
 
   async DELETE_CARD({commit, dispatch}, opts: DeleteCardOpts): Promise<void> {
-    await this.$adapter.deleteCard(opts.workspaceId, opts.id)
+    await this.$adapter.deleteCard(opts.workspace.id, opts.id)
     commit('REMOVE_FROM_LIST', opts.id)
   },
 
   async ARCHIVE_CARD({commit, dispatch}, opts: ArchiveCardOpts): Promise<void> {
-    const res = await this.$adapter.archiveCard(opts.workspaceId, opts.id)
+    const res = await this.$adapter.archiveCard(opts.workspace.id, opts.id)
     commit('UPDATE_ARCHIVED', <UpdateArchiveCardOpts>{id: opts.id, archived: res.getArchived()})
   }
 }
@@ -91,18 +110,27 @@ export interface ICard {
   id: string
   title: string
   archived: boolean
-  workspaceId: string
   tags: Array<string>
 }
 
-export interface ICardLoadAllOpts {
-  workspaceID: string
-  aedKey: CryptoKey
+export interface ICardEnc {
+  id: string
+  titleEnc: Uint8Array
+  tagsEnc: Array<Uint8Array>
 }
 
-export interface ICardDecodeOpts {
-  aedKey: CryptoKey
+export interface CardLoadAllOpts {
+  workspace: IWorkspace
+}
+
+export interface CardDecodeOpts {
+  workspace: IWorkspace
   item: Card
+}
+
+export interface CardEncodeOpts {
+  workspace: IWorkspace
+  item: ICard
 }
 
 export interface ICardState {
@@ -115,13 +143,18 @@ export interface CardCloneOpts {
   title: string
 }
 
+export interface CreateCardOpts {
+  workspace: IWorkspace
+  req: CreateCardRequest
+}
+
 export interface DeleteCardOpts {
-  workspaceId: string
+  workspace: IWorkspace
   id: string
 }
 
 export interface ArchiveCardOpts {
-  workspaceId: string
+  workspace: IWorkspace
   id: string
 }
 

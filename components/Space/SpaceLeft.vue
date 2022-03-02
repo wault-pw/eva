@@ -6,15 +6,16 @@
   >
     <ul class="space-nav mb-0">
       <li>
-        <i/>
+        <i class="icon-folder" />
+
         <b v-text="$tc('spaceLeft.workspaces')"/>
 
         <a
-          class="space-nav-icon space-nav-icon-right"
+          class="icon-plus"
           href="#"
           style="opacity: 1;"
           @click.prevent="create"
-        >C</a>
+        />
       </li>
 
       <li
@@ -23,11 +24,8 @@
         :key="item.id"
       >
         <i
-          :class="{'space-nav-icon-hidden': item.id !== workspace.id }"
-          class="space-nav-ico"
-        >
-          E
-        </i>
+          class="icon-i-cursor space-nav-icon-hidden"
+        />
 
         <nuxt-link
           :to="$urn.workspace(item.id)"
@@ -36,11 +34,9 @@
 
         <a
           href="#"
-          class="space-nav-icon space-nav-icon-hidden"
+          class="icon-trash space-nav-icon-hidden"
           @click.prevent="destroy(item)"
-        >
-          D
-        </a>
+        />
       </li>
     </ul>
 
@@ -48,7 +44,7 @@
 
     <ul class="space-nav">
       <li>
-        <i/>
+        <i class="icon-tag"/>
 
         <b v-text="$tc('card.tags')"/>
       </li>

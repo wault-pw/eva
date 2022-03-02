@@ -9,6 +9,10 @@
   display: grid;
   grid-template-columns: $space-nav-ident-x 1fr $space-nav-ident-x;
 
+  i {
+    text-align: center;
+  }
+
   a {
     color: $component-active-color;
   }
@@ -28,12 +32,6 @@
       opacity: 1;
     }
   }
-}
-
-.space-nav-ico {
-  display: flex;
-  align-content: center;
-  justify-content: center;
 }
 
 .space-nav-icon-hidden {

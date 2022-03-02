@@ -131,7 +131,7 @@ export default Vue.extend({
 
       this.loading = true
 
-      await this.$store.dispatch("CARD/DELETE_CARD", <DeleteCardOpts>this.card)
+      await this.$store.dispatch("CARD/DELETE_CARD", <DeleteCardOpts>{workspace: this.workspace, id: this.card.id})
       this.$emit("destroyed")
 
       this.loading = false
@@ -146,7 +146,7 @@ export default Vue.extend({
 
       this.loading = true
 
-      await this.$store.dispatch("CARD/ARCHIVE_CARD", <ArchiveCardOpts>this.card)
+      await this.$store.dispatch("CARD/ARCHIVE_CARD", <ArchiveCardOpts>{workspace: this.workspace, id: this.card.id})
       this.$emit("Archived")
 
       this.loading = false

@@ -3,7 +3,7 @@ import {Indexer} from "~/lib/backup/indexer"
 import {
   ArchiveCardResponse,
   CloneCardRequest,
-  CloneCardResponse,
+  CloneCardResponse, CreateCardRequest, CreateCardResponse,
   CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
@@ -104,6 +104,11 @@ export class AdapterSpa implements IAdapter {
 
   @unavailable
   async terminate(req: TerminateRequest): Promise<void> {
+    return <any>null
+  }
+
+  @unavailable
+  async createCard(workspaceId: string, req: CreateCardRequest): Promise<CreateCardResponse> {
     return <any>null
   }
 }

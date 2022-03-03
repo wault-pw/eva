@@ -14,7 +14,7 @@ $space-form-item-row-ident-y: 10px;
   grid-template-columns: $space-form-item-ident 1fr $space-form-item-ident;
 
   &+& {
-    margin-top: $space-form-item-row-ident-y/2;
+    margin-top: calc($space-form-item-row-ident-y/2);
   }
 }
 

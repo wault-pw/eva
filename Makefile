@@ -20,6 +20,8 @@ test\:e2e:
 generate\:mpa:
 	rm -rf dist/*
 	yarn run generate
+	node ./scripts/integrity.js dist/index.html > dist/index0.html
+	mv dist/index0.html dist/index.html
 
 generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html

@@ -19,7 +19,10 @@
     </div>
 
     <div class="space-form-item-row">
-      <i class="icon-ellipsis-vert" />
+      <i
+        class="icon-ellipsis-vert"
+        data-cy="handle"
+      />
 
       <textarea
         v-model="hidden ? mask : body"

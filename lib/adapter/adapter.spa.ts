@@ -3,15 +3,20 @@ import {Indexer} from "~/lib/backup/indexer"
 import {
   ArchiveCardResponse,
   CloneCardRequest,
-  CloneCardResponse, CreateCardRequest, CreateCardResponse,
-  CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
+  CloneCardResponse,
+  UpsertCardRequest,
+  UpsertCardResponse,
+  CreateWorkspaceRequest,
+  CreateWorkspaceResponse,
+  ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
   Login0Request,
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest, TerminateRequest,
+  RegistrationRequest,
+  TerminateRequest,
   WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 
@@ -108,7 +113,12 @@ export class AdapterSpa implements IAdapter {
   }
 
   @unavailable
-  async createCard(workspaceId: string, req: CreateCardRequest): Promise<CreateCardResponse> {
+  async createCard(workspaceId: string, req: UpsertCardRequest): Promise<UpsertCardResponse> {
+    return <any>null
+  }
+
+  @unavailable
+  async updateCard(workspaceId: string, cardId: string, req: UpsertCardRequest): Promise<UpsertCardResponse> {
     return <any>null
   }
 }

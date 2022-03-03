@@ -1,4 +1,9 @@
-import {Card, CardItem, CloneCardRequest, CreateCardRequest, RegistrationRequest} from "~/desc/alice_v1_pb"
+import {
+  Card,
+  CardItem,
+  CloneCardRequest,
+  RegistrationRequest, UpsertCardRequest,
+} from "~/desc/alice_v1_pb"
 
 export function MapCardWithItems(opts: RegistrationCardDomain): RegistrationRequest.CardWithItems {
   const out = new RegistrationRequest.CardWithItems()
@@ -36,8 +41,8 @@ export interface CloneCardDomain {
   titleEnc: Uint8Array
 }
 
-export function MapCreateCard(c: CardOpts, i: Array<CardItemOpts>): CreateCardRequest {
-  const out = new CreateCardRequest()
+export function MapUpsertCard(c: CardOpts, i: Array<CardItemOpts>): UpsertCardRequest {
+  const out = new UpsertCardRequest()
   out.setCard(MapCard(c))
   out.setCardItemsList(MapCardItems(i))
   return out

@@ -1,5 +1,5 @@
 import {GetterTree, ActionTree, MutationTree} from 'vuex'
-import {Card, CreateCardRequest} from "~/desc/alice_v1_pb"
+import {Card, UpsertCardRequest} from "~/desc/alice_v1_pb"
 import {IWorkspace} from "~/store/WORKSPACE"
 import {MapCloneCard} from "~/lib/domain_v1/card"
 import _sortBy from "lodash/sortBy"
@@ -33,6 +33,11 @@ export const mutations: MutationTree<CardState> = {
 
   REMOVE_FROM_LIST(state, id: string) {
     state.list = _reject(state.list, {id})
+  },
+
+  REPLACE_IN_LIST(state, card: ICard) {
+    const list = _reject(state.list, {id: card.id})
+    state.list = _sortBy([...list, card], 'title')
   },
 
   UPDATE_ARCHIVED(state, opts: UpdateArchiveCardOpts) {
@@ -95,6 +100,13 @@ export const actions: ActionTree<CardState, CardState> = {
     return card
   },
 
+  async UPDATE({commit, dispatch}, opts: UpdateCardOpts): Promise<ICard> {
+    const res = await this.$adapter.updateCard(opts.workspace.id, opts.cardId, opts.req)
+    const card = await dispatch("DECODE", <CardDecodeOpts>{workspace: opts.workspace, item: res.getCard()})
+    commit('REPLACE_IN_LIST', card)
+    return card
+  },
+
   async DELETE_CARD({commit, dispatch}, opts: DeleteCardOpts): Promise<void> {
     await this.$adapter.deleteCard(opts.workspace.id, opts.id)
     commit('REMOVE_FROM_LIST', opts.id)
@@ -145,7 +157,13 @@ export interface CardCloneOpts {
 
 export interface CreateCardOpts {
   workspace: IWorkspace
-  req: CreateCardRequest
+  req: UpsertCardRequest
+}
+
+export interface UpdateCardOpts {
+  workspace: IWorkspace
+  cardId: string
+  req: UpsertCardRequest
 }
 
 export interface DeleteCardOpts {

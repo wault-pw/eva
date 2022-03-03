@@ -11,12 +11,12 @@
     </p>
 
     <div>
-      <Draggable v-model="items">
+      <Draggable v-model="items" handle="i[data-cy=handle]">
         <SpaceFormItem
           v-for="item in items"
           :key="item.cid"
           :donor="item"
-          ref="items"
+          :ref="item.cid"
           @remove="remove"
         />
       </Draggable>
@@ -48,10 +48,9 @@ import Draggable from "vuedraggable"
 import {IWorkspace} from "~/store/WORKSPACE"
 import SpaceFormItem from "~/components/SpaceForm/SpaceFormItem.vue"
 import _reject from "lodash/reject"
-import {CardItemEncodeOpts, ICardItem, ICardItemEnc} from "~/store/CARD_ITEM"
-import {UUID} from "~/lib/cryptos/util"
-import {CardEncodeOpts, CreateCardOpts, ICard} from "~/store/CARD"
-import {MapCreateCard} from "~/lib/domain_v1/card";
+import {CardItemEncodeOpts, ICardItem, ICardItemEnc, NewCardItem} from "~/store/CARD_ITEM"
+import {CardEncodeOpts, CreateCardOpts, ICard, UpdateCardOpts} from "~/store/CARD"
+import {MapUpsertCard} from "~/lib/domain_v1/card";
 
 let cid: number = 0
 
@@ -91,12 +90,11 @@ export default Vue.extend({
 
   methods: {
     async submit() {
-      const refs = this.$refs.items as Array<any> ?? []
       const items: Array<ICardItemEnc> = []
-
-      for (const ref of refs) {
+      for (const item of this.items) {
+        const ref: any = this.$refs[item.cid]
         items.push(await this.$store.dispatch("CARD_ITEM/ENCODE", <CardItemEncodeOpts>{
-          workspace: this.workspace, item: <ICardItem>ref.$data
+          workspace: this.workspace, item: <ICardItem>ref[0].$data
         }))
       }
 
@@ -105,12 +103,15 @@ export default Vue.extend({
         item: <ICard>this.$data
       })
 
-      const out = await this.$store.dispatch("CARD/CREATE", <CreateCardOpts>{
-        workspace: this.workspace,
-        req: MapCreateCard(card, items),
-      })
-
-      this.$emit("created", out)
+      if (this.cardId == null) {
+        this.$emit("created", await this.$store.dispatch("CARD/CREATE", <CreateCardOpts>{
+          workspace: this.workspace, req: MapUpsertCard(card, items)
+        }))
+      } else {
+        this.$emit("created", await this.$store.dispatch("CARD/UPDATE", <UpdateCardOpts>{
+          workspace: this.workspace, cardId: this.cardId, req: MapUpsertCard(card, items)
+        }))
+      }
     },
 
     remove(cid: number) {
@@ -118,13 +119,7 @@ export default Vue.extend({
     },
 
     add() {
-      this.items.push({
-        id: "",
-        cid: UUID(),
-        title: "",
-        body: "",
-        hidden: false
-      })
+      this.items.push(NewCardItem(""))
     }
   }
 })

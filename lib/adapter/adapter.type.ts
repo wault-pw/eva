@@ -1,15 +1,21 @@
 import {
   ArchiveCardResponse,
   CloneCardRequest,
-  CloneCardResponse, CreateCardRequest, CreateCardResponse,
-  CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
+  CloneCardResponse,
+  UpsertCardRequest,
+  UpsertCardResponse,
+  CreateWorkspaceRequest,
+  CreateWorkspaceResponse,
+  ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
   Login0Request,
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest, TerminateRequest, WhoAmIResponse
+  RegistrationRequest,
+  TerminateRequest,
+  WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -45,5 +51,7 @@ export interface IAdapter {
 
   terminate(req: TerminateRequest): Promise<void>
 
-  createCard(workspaceId: string, req: CreateCardRequest): Promise<CreateCardResponse>
+  createCard(workspaceId: string, req: UpsertCardRequest): Promise<UpsertCardResponse>
+
+  updateCard(workspaceId: string, cardId: string, req: UpsertCardRequest): Promise<UpsertCardResponse>
 }

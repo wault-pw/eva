@@ -341,7 +341,7 @@ export namespace CreateWorkspaceResponse {
   }
 }
 
-export class CreateCardRequest extends jspb.Message {
+export class UpsertCardRequest extends jspb.Message {
   hasCard(): boolean;
   clearCard(): void;
   getCard(): Card | undefined;
@@ -353,39 +353,39 @@ export class CreateCardRequest extends jspb.Message {
   addCardItems(value?: CardItem, index?: number): CardItem;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateCardRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateCardRequest): CreateCardRequest.AsObject;
+  toObject(includeInstance?: boolean): UpsertCardRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpsertCardRequest): UpsertCardRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateCardRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateCardRequest;
-  static deserializeBinaryFromReader(message: CreateCardRequest, reader: jspb.BinaryReader): CreateCardRequest;
+  static serializeBinaryToWriter(message: UpsertCardRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpsertCardRequest;
+  static deserializeBinaryFromReader(message: UpsertCardRequest, reader: jspb.BinaryReader): UpsertCardRequest;
 }
 
-export namespace CreateCardRequest {
+export namespace UpsertCardRequest {
   export type AsObject = {
     card?: Card.AsObject,
     cardItemsList: Array<CardItem.AsObject>,
   }
 }
 
-export class CreateCardResponse extends jspb.Message {
+export class UpsertCardResponse extends jspb.Message {
   hasCard(): boolean;
   clearCard(): void;
   getCard(): Card | undefined;
   setCard(value?: Card): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CreateCardResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: CreateCardResponse): CreateCardResponse.AsObject;
+  toObject(includeInstance?: boolean): UpsertCardResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpsertCardResponse): UpsertCardResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: CreateCardResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CreateCardResponse;
-  static deserializeBinaryFromReader(message: CreateCardResponse, reader: jspb.BinaryReader): CreateCardResponse;
+  static serializeBinaryToWriter(message: UpsertCardResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpsertCardResponse;
+  static deserializeBinaryFromReader(message: UpsertCardResponse, reader: jspb.BinaryReader): UpsertCardResponse;
 }
 
-export namespace CreateCardResponse {
+export namespace UpsertCardResponse {
   export type AsObject = {
     card?: Card.AsObject,
   }
@@ -548,6 +548,9 @@ export class CardItem extends jspb.Message {
   getCardId(): string;
   setCardId(value: string): void;
 
+  getPosition(): number;
+  setPosition(value: number): void;
+
   getTitleEnc(): Uint8Array | string;
   getTitleEnc_asU8(): Uint8Array;
   getTitleEnc_asB64(): string;
@@ -575,6 +578,7 @@ export namespace CardItem {
   export type AsObject = {
     id: string,
     cardId: string,
+    position: number,
     titleEnc: Uint8Array | string,
     bodyEnc: Uint8Array | string,
     hidden: boolean,
@@ -726,13 +730,4 @@ export namespace TerminateRequest {
     identity: Uint8Array | string,
   }
 }
-
-export interface SrpStageMap {
-  SRP_STAGE_UNKNOWN: 0;
-  SRP_STAGE_AUTH0: 1;
-  SRP_STAGE_AUTH1: 2;
-  SRP_STAGE_AUTH2: 3;
-}
-
-export const SrpStage: SrpStageMap;
 

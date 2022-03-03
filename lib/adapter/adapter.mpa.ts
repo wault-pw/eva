@@ -3,15 +3,20 @@ import {NuxtAxiosInstance} from "@nuxtjs/axios"
 import {
   ArchiveCardResponse,
   CloneCardRequest,
-  CloneCardResponse, CreateCardRequest, CreateCardResponse,
-  CreateWorkspaceRequest, CreateWorkspaceResponse, ListCardItemsResponse,
+  CloneCardResponse,
+  UpsertCardRequest,
+  UpsertCardResponse,
+  CreateWorkspaceRequest,
+  CreateWorkspaceResponse,
+  ListCardItemsResponse,
   ListCardsResponse,
   ListWorkspacesResponse,
   Login0Request,
   Login0Response,
   Login1Request,
   Login1Response,
-  RegistrationRequest, TerminateRequest,
+  RegistrationRequest,
+  TerminateRequest,
   WhoAmIResponse
 } from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
@@ -97,9 +102,14 @@ export class AdapterMpa implements IAdapter {
     return
   }
 
-  async createCard(workspaceId: string, req: CreateCardRequest): Promise<CreateCardResponse> {
+  async createCard(workspaceId: string, req: UpsertCardRequest): Promise<UpsertCardResponse> {
     const bin = await this.post(`/v1/workspaces/${workspaceId}/cards/create`, req)
-    return CreateCardResponse.deserializeBinary(bin)
+    return UpsertCardResponse.deserializeBinary(bin)
+  }
+
+  async updateCard(workspaceId: string, cardId: string, req: UpsertCardRequest): Promise<UpsertCardResponse> {
+    const bin = await this.post(`/v1/workspaces/${workspaceId}/cards/${cardId}/update`, req)
+    return UpsertCardResponse.deserializeBinary(bin)
   }
 
   private async post(url: string, req: IProto | null): Promise<Uint8Array> {

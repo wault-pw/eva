@@ -1,20 +1,21 @@
 <template>
-  <ul class="input-tag-ul">
+  <Draggable v-model="orderedTags" tag="ul" class="input-tag-ul" draggable="li" handle=".x-move">
     <li
       v-for="tag in tags"
       :key="tag"
       class="input-tag-li"
     >
-      <span class="badge rounded-pill bg-primary">
+      <span class="badge rounded-pill bg-primary x-move">
         <span v-text="tag" />
+
         <i
-          class="icon-cancel-circled"
+          class="icon-cancel-circled x-hand"
           @click.prevent="remove(tag)"
         />
       </span>
     </li>
 
-    <li class="input-tag-li">
+    <li slot="footer" class="input-tag-li">
       <input
         :size="size"
         ref="input"
@@ -25,6 +26,7 @@
         @select="append"
         @input="resize"
         @keypress.enter.prevent="append"
+        @keyup.delete.prevent="pop"
       >
 
       <datalist>
@@ -35,21 +37,24 @@
         />
       </datalist>
     </li>
-  </ul>
+  </Draggable>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
+import Draggable from "vuedraggable"
 import _trim from "lodash/trim"
 import _uniq from "lodash/uniq"
 import _reject from "lodash/reject"
 import _difference from "lodash/difference"
 
 export default Vue.extend({
+  components: {Draggable},
+
   props: {
     tags: {
       type: Array as () => Array<string>,
-      required: true
+      required: true,
     },
 
     options: {
@@ -75,6 +80,16 @@ export default Vue.extend({
   computed: {
     filteredOptions(): Array<string> {
       return _difference(this.options, this.tags)
+    },
+
+    orderedTags: {
+      get(): Array<string> {
+        return this.tags
+      },
+
+      set(tags) {
+        this.$emit("update:tags", tags)
+      }
     }
   },
 
@@ -88,9 +103,19 @@ export default Vue.extend({
       if (_trim(input.value) == "") return
 
       this.$emit("update:tags", _uniq([...this.tags, input.value]))
+
       input.value = ""
       this.resize()
-      input.blur()
+      input.focus()
+    },
+
+    pop() {
+      const input: any = this.$refs.input
+      if (_trim(input.value) !== "") return
+
+      this.$emit("update:tags", this.tags.slice(0, -1))
+      this.resize()
+      input.focus()
     },
 
     remove(tag: string) {

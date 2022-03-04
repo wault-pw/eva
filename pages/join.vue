@@ -112,20 +112,6 @@ export default Vue.extend({
 
       req.setCardWithItemsList([
         MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Facebook (example)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "login", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "user@example.com", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "password", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "password123", null),
-              hidden: true
-            }
-          ]
-        }),
-        MapCardWithItems({
           titleEnc: await this.$ver.aedEncryptText(wKey, "Credit card (sample)", null),
           tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
           items: [
@@ -160,12 +146,94 @@ export default Vue.extend({
           ]
         }),
         MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (example)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)]
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Bank account (sample)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "IBAN", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "DE89370400440532015007", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "?)E%[9=GcgzaAftgP[LSEK7JJv", null),
+              hidden: true
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "User ID", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "76238784", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Web", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://www.db.com", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Bank", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "Deutsche Bank", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Branch n.", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "774942", null),
+            },
+          ]
         }),
         MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (example)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)]
+          titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (sample)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Type", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "paper wallet", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Private key [HEX]", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "2ce5820302fd6d8cf756e436484b76fcba11d5664e7bbc643b1bc29994b6bfe5", null),
+              hidden: true
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Wallet address", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "1Q7u3cnwo4tAQoBixPSrS5C39E6VaMHWKb", null),
+            },
+          ]
+        }),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (sample)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Email address", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "joe.oka@gmail.com", null),
+              hidden: true,
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "]Gj2ss{+Grg$fBbg}#E})5Re8G", null),
+              hidden: true,
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "SMTP", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "smtp.gmail.com:465", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "IMAP", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "imap.gmail.com:993", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Provider", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "Google Gmail", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Web", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://mail.google.com", null),
+            },
+          ]
+        }),
+        MapCardWithItems({
+          titleEnc: await this.$ver.aedEncryptText(wKey, "Passport (sample)", null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, "documents", null)],
+          items: [
+            {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Issued by", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "British Embassy in Berlin", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Passport n.", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "83A4568HL25-66", null),
+              hidden: true,
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Expiry date", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "10/09/2033", null),
+            }, {
+              titleEnc: await this.$ver.aedEncryptText(wKey, "Issue date", null),
+              bodyEnc: await this.$ver.aedEncryptText(wKey, "11/09/2020", null),
+            },
+          ]
         }),
       ])
 

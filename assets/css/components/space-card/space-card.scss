@@ -24,10 +24,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-
-  li {
-    display: flex;
-    align-items: center;
-    grid-gap: 5px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 5px;
 }

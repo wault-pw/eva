@@ -11,6 +11,18 @@
     </p>
 
     <div>
+      <div class="space-form-item">
+        <div class="space-form-item-row">
+          <i/>
+          <InputTag
+            :placeholder="$tc('ui.tag').toLowerCase()"
+            :options="allTags"
+            :tags.sync="tags"
+          />
+          <i/>
+        </div>
+      </div>
+
       <Draggable v-model="items" handle="i[data-cy=handle]">
         <SpaceFormItem
           v-for="item in items"
@@ -49,22 +61,18 @@ import {IWorkspace} from "~/store/WORKSPACE"
 import SpaceFormItem from "~/components/SpaceForm/SpaceFormItem.vue"
 import _reject from "lodash/reject"
 import {CardItemEncodeOpts, ICardItem, ICardItemEnc, NewCardItem} from "~/store/CARD_ITEM"
-import {CardEncodeOpts, CreateCardOpts, ICard, UpdateCardOpts} from "~/store/CARD"
+import {CardEncodeOpts, CreateCardOpts, ICard, TagSet, UpdateCardOpts} from "~/store/CARD"
 import {MapUpsertCard} from "~/lib/domain_v1/card";
+import InputTag from "~/components/Form/InputTag.vue";
 
 let cid: number = 0
 
 export default Vue.extend({
-  components: {SpaceFormItem, Draggable},
+  components: {InputTag, SpaceFormItem, Draggable},
   props: {
-    cardId: {
-      type: String,
-      required: false,
-    },
-
-    cardTitle: {
-      type: String,
-      required: false,
+    donor: {
+      type: Object as() => ICard,
+      required: true,
     },
 
     workspace: {
@@ -80,11 +88,18 @@ export default Vue.extend({
 
   data(): ICard & { items: Array<ICardItem> } {
     return {
-      id: this.cardId,
+      id: this.donor.id,
       archived: false,
-      title: this.cardTitle,
+      title: this.donor.title,
       items: this.itemDonors,
-      tags: [],
+      tags: this.donor.tags,
+    }
+  },
+
+  computed: {
+    allTags(): Array<string> {
+      const set: TagSet = this.$store.getters["CARD/TAG_SET"]
+      return set.list()
     }
   },
 
@@ -103,13 +118,13 @@ export default Vue.extend({
         item: <ICard>this.$data
       })
 
-      if (this.cardId == null) {
+      if (this.id == "") {
         this.$emit("created", await this.$store.dispatch("CARD/CREATE", <CreateCardOpts>{
           workspace: this.workspace, req: MapUpsertCard(card, items)
         }))
       } else {
         this.$emit("created", await this.$store.dispatch("CARD/UPDATE", <UpdateCardOpts>{
-          workspace: this.workspace, cardId: this.cardId, req: MapUpsertCard(card, items)
+          workspace: this.workspace, cardId: this.id, req: MapUpsertCard(card, items)
         }))
       }
     },

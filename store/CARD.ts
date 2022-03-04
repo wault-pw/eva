@@ -125,6 +125,15 @@ export interface ICard {
   tags: Array<string>
 }
 
+export function BlankCard(): ICard {
+  return {
+    id: "",
+    title: "",
+    archived: false,
+    tags: []
+  }
+}
+
 export interface ICardEnc {
   id: string
   titleEnc: Uint8Array

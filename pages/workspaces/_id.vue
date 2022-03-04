@@ -36,8 +36,7 @@
 
       <SpaceForm
         v-if="edit"
-        :card-id="activeCard && activeCard.id"
-        :card-title="activeCard && activeCard.title"
+        :donor="activeCard || blankCard()"
         :workspace="workspace"
         :item-donors="edit"
         class="space-main space-main-focused"
@@ -83,7 +82,7 @@ import SpacePanelExport from "~/components/SpacePanel/SpacePanelExport.vue"
 import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue";
 import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
 import {IWorkspace} from "~/store/WORKSPACE"
-import {ICard, CardLoadAllOpts} from "~/store/CARD"
+import {ICard, CardLoadAllOpts, BlankCard} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
 import {ICardItem} from "~/store/CARD_ITEM";
@@ -184,6 +183,10 @@ export default Vue.extend({
     onCreate(card: ICard) {
       this.edit = null
       this.activeCard = card
+    },
+
+    blankCard(): ICard {
+      return BlankCard()
     }
   },
 

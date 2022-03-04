@@ -48,8 +48,7 @@
             v-for="tag in card.tags"
             :key="tag"
           >
-            <i class="icon-cancel-alt-filled" />
-            <span v-text="tag"/>
+             <span class="badge rounded-pill bg-primary" v-text="tag" />
           </li>
         </ul>
 

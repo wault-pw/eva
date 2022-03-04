@@ -3,6 +3,7 @@ export default {
     username: "Username",
     passphrase: "Passphrase",
     login: "Login",
+    tag: "Tag",
     register: "Register",
     or: "OR",
     failed: "Failed",

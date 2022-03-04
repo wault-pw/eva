@@ -19,3 +19,15 @@
 .space-card-body {
   padding: $space-card-padding-x;
 }
+
+.space-card-tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    grid-gap: 5px;
+  }
+}

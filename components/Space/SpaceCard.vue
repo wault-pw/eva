@@ -36,9 +36,22 @@
       </header>
 
       <section class="pt-4 space-card-body">
-        <h2 class="mb-3">
+        <h2 class="mb-2">
           {{ card.title }}
         </h2>
+
+        <ul
+          v-if="card.tags.length"
+          class="space-card-tags mb-3"
+        >
+          <li
+            v-for="tag in card.tags"
+            :key="tag"
+          >
+            <i class="icon-cancel-alt-filled" />
+            <span v-text="tag"/>
+          </li>
+        </ul>
 
         <SpaceItem
           v-for="item in items"

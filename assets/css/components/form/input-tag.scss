@@ -10,6 +10,10 @@
 
 .input-tag-li {
   display: block;
+
+  &.sortable-ghost {
+    opacity: $sortable-ghost-opacity;
+  }
 }
 
 .input-tag-input {

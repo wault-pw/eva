@@ -1,13 +1,14 @@
 <template>
   <header class="space-header">
-    <div>
-      <div
-        class="x-hidden-lg-up"
-        @click="$emit('update:left', !left)"
+    <nav class="space-header-nav">
+      <a
+        href="#"
+        class="space-header-nav-a x-hidden-lg-up"
+        @click.prevent="$emit('update:left', !left)"
       >
-        MENU {{ left }}
-      </div>
-    </div>
+        <i class="icon-tags" />
+      </a>
+    </nav>
 
     <div
       v-if="title"
@@ -20,13 +21,15 @@
       class="space-header-logo"
     />
 
-    <div class="text-end">
-      <div
-        @click="$emit('update:menu', !menu)"
+    <nav class="space-header-nav justify-content-end">
+      <a
+        href="#"
+        class="space-header-nav-a"
+        @click.prevent="$emit('update:menu', !menu)"
       >
-        right {{ menu }}
-      </div>
-    </div>
+        <i class="icon-menu" />
+      </a>
+    </nav>
   </header>
 </template>
 

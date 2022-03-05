@@ -12,6 +12,12 @@
   grid-template-rows: auto 1fr $space-form-footer-height;
 }
 
+.space-form-title {
+  border-left: none;
+  border-top: none;
+  border-right: none;
+}
+
 .space-form-footer {
   display: flex;
   position: sticky;

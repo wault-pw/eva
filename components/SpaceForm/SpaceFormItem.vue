@@ -6,11 +6,11 @@
         @click.prevent="$emit('remove', donor.cid)"
       />
 
-      <textarea
+      <input
         v-model="title"
         class="space-form-item-title"
         placeholder="label"
-        rows="1"
+        @keypress.enter.prevent=""
       />
 
       <div>
@@ -28,10 +28,11 @@
         v-model="hidden ? mask : body"
         :class="{'space-form-item-body-hidden': hidden}"
         :readonly="hidden"
+        ref="textarea"
         class="space-form-item-body"
         placeholder="value"
         rows="1"
-        @input="onInput"
+        @input="resize"
       />
 
       <i
@@ -45,6 +46,7 @@
 <script lang="ts">
 import Vue from "vue"
 import {ICardItem} from "~/store/CARD_ITEM";
+import {Mask} from "~/lib/mask";
 
 export default Vue.extend({
   props: {
@@ -65,15 +67,19 @@ export default Vue.extend({
 
   computed: {
     mask(): string {
-      return this.body.replace(/./g, '*')
+      return Mask(this.body)
     }
   },
 
+  mounted() {
+    this.resize()
+  },
+
   methods: {
-    onInput(e: any) {
-      const textarea = e.target
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
+    resize() {
+      const textarea: any = this.$refs.textarea
+      textarea.style.height = "auto"
+      textarea.style.height = textarea.scrollHeight + "px"
     }
   }
 })

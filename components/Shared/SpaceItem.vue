@@ -13,15 +13,15 @@
 
     <div
       class="space-item-body"
+      v-text="value"
       @click.prevent="copy"
-    >
-      {{ value }}
-    </div>
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { Mask } from '~/lib/mask'
 import {ICardItem} from "~/store/CARD_ITEM"
 
 export default Vue.extend({
@@ -35,13 +35,14 @@ export default Vue.extend({
   data() {
     return {
       hidden: this.item.hidden,
-      eye: this.item.hidden
+      eye: this.item.hidden,
+      body: this.item.body
     }
   },
 
   computed: {
     value(): String {
-      return this.hidden ? "*".repeat(this.item.body.length) : this.item.body
+      return this.hidden ? Mask(this.body) : this.body
     }
   },
 

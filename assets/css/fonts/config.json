@@ -13,12 +13,6 @@
       "src": "typicons"
     },
     {
-      "uid": "aa0d87f43ed577ed479df28dc3724c11",
-      "css": "folder-delete",
-      "code": 59393,
-      "src": "typicons"
-    },
-    {
       "uid": "83e7b366e9b39bc4006b821f7c5efa4d",
       "css": "folder",
       "code": 59394,
@@ -28,36 +22,6 @@
       "uid": "jh3jpcb1t1bcm80gidkadilh080aq79h",
       "css": "menu",
       "code": 59395,
-      "src": "typicons"
-    },
-    {
-      "uid": "l11ixzfrief0chds7elurdm2ot98xp4l",
-      "css": "cancel-alt-filled",
-      "code": 59396,
-      "src": "typicons"
-    },
-    {
-      "uid": "3df1557e2d6e84ec32bd47aee5bfdf59",
-      "css": "cancel-alt",
-      "code": 59397,
-      "src": "typicons"
-    },
-    {
-      "uid": "6310fc4804f3ffaebc4436ee30f3856e",
-      "css": "attach-outline",
-      "code": 59398,
-      "src": "typicons"
-    },
-    {
-      "uid": "3e1bb74572a30486bd647304d9fcaff6",
-      "css": "lock",
-      "code": 59399,
-      "src": "typicons"
-    },
-    {
-      "uid": "75cff40f03567673e13b0e7d005b7741",
-      "css": "lock-open",
-      "code": 59400,
       "src": "typicons"
     },
     {
@@ -103,18 +67,6 @@
       "src": "typicons"
     },
     {
-      "uid": "d7b214265bfe7138768bb8b9f62b759a",
-      "css": "certificate-outline",
-      "code": 59408,
-      "src": "typicons"
-    },
-    {
-      "uid": "36cd8afd434ce27844b51a9a783037e6",
-      "css": "looped-square-outline",
-      "code": 59409,
-      "src": "typicons"
-    },
-    {
       "uid": "750058837a91edae64b03d60fc7e81a7",
       "css": "ellipsis-vert",
       "code": 61762,
@@ -139,9 +91,15 @@
       "src": "elusive"
     },
     {
+      "uid": "e417e4ca7774bb0f4aca5278ae3bfe49",
+      "css": "tags",
+      "code": 59411,
+      "src": "typicons"
+    },
+    {
       "uid": "1gf923f9wvaezxmfon515dglxa3drf0e",
       "css": "plus",
-      "code": 59411,
+      "code": 59393,
       "src": "typicons"
     },
     {
@@ -149,6 +107,12 @@
       "css": "i-cursor",
       "code": 62022,
       "src": "fontawesome"
+    },
+    {
+      "uid": "1dq4tek4k8ea7zlj4kc3w83itnutaxg5",
+      "css": "cancel",
+      "code": 59396,
+      "src": "typicons"
     }
   ]
 }

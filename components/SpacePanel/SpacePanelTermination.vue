@@ -1,17 +1,17 @@
 <template>
-  <div class="space-panel py-3">
+  <SpacePanel @close="$emit('close')">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <form @submit.prevent="trySubmit">
             <h2
-              class="text-white mb-3 text-uppercase"
+              class="text-white mb-2"
               v-text="$tc('termination.h2')"
             />
 
             <p
               v-text="$tc('termination.p1')"
-              class="mb-0 text-uppercase"
+              class="mb-0"
             />
 
             <hr class="my-3" />
@@ -52,15 +52,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </SpacePanel>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
 import { TextEncode } from "~/lib/cryptos/util"
 import {MapTerminateUser} from "~/lib/domain_v1/user"
+import SpacePanel from "~/components/SpacePanel/SpacePanel.vue";
 
 export default Vue.extend({
+  components: {SpacePanel},
   data() {
     return {
       check: false,

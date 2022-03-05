@@ -24,3 +24,20 @@
   font-size: 1.2em;
   text-shadow: rgba(#666, .9) 0 1px 2px;
 }
+
+.space-header-nav {
+  display: flex;
+}
+
+.space-header-nav-a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $component-active-color;
+  min-width: $space-header-height;
+  font-size: $space-header-icon-size;
+
+  &:hover {
+    color: rgba($component-active-color, .8);
+  }
+}

@@ -7,6 +7,10 @@ $space-form-item-row-ident-y: 10px;
   &:hover {
     background: rgba($border-color, .6);
   }
+
+  &.sortable-ghost {
+    opacity: $sortable-ghost-opacity;
+  }
 }
 
 .space-form-item-row {

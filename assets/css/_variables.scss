@@ -26,7 +26,11 @@ $theme-colors: map-merge($theme-colors,  (
 /**
  * Application
  */
+// vue-draggable ghost element
+$sortable-ghost-opacity: 0.1;
+
 $space-header-height: 50px;
+$space-header-icon-size: 1.3em;
 $space-left-width: 250px;
 $space-menu-width: 250px;
 $space-transition-time: .4s;

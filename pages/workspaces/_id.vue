@@ -60,9 +60,9 @@
       />
 
       <transition name="space-panel-transition">
-        <SpacePanelExport v-if="panel === 'export'"/>
-        <SpacePanelPassphrase v-if="panel === 'passphrase'"/>
-        <SpacePanelTermination v-if="panel === 'termination' "/>
+        <SpacePanelExport v-if="panel === 'export'" @close="menuShown = false"/>
+        <SpacePanelPassphrase v-if="panel === 'passphrase'"  @close="menuShown = false"/>
+        <SpacePanelTermination v-if="panel === 'termination' "  @close="menuShown = false"/>
       </transition>
     </main>
   </div>

@@ -159,7 +159,7 @@ export default Vue.extend({
       this.loading = true
 
       await this.$store.dispatch("CARD/ARCHIVE_CARD", <ArchiveCardOpts>{workspace: this.workspace, id: this.card.id})
-      this.$emit("Archived")
+      this.$emit("archived")
 
       this.loading = false
     },

@@ -51,6 +51,7 @@
         :workspace="workspace"
         @edit="edit = $event"
         @cloned="activeCard = $event"
+        @archived="cancelEdit"
         @destroyed="cancelEdit"
       />
 

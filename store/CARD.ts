@@ -80,6 +80,7 @@ export const actions: ActionTree<CardState, CardState> = {
 
     return {
       id: opts.item.id,
+      archived: opts.item.archived,
       tagsEnc: tags,
       titleEnc: await this.$ver.aedEncryptText(opts.workspace.aedKey, opts.item.title, null),
     }
@@ -136,6 +137,7 @@ export function BlankCard(): ICard {
 
 export interface ICardEnc {
   id: string
+  archived: boolean
   titleEnc: Uint8Array
   tagsEnc: Array<Uint8Array>
 }

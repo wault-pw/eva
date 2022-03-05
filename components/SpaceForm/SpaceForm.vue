@@ -61,7 +61,7 @@ import {IWorkspace} from "~/store/WORKSPACE"
 import SpaceFormItem from "~/components/SpaceForm/SpaceFormItem.vue"
 import _reject from "lodash/reject"
 import {CardItemEncodeOpts, ICardItem, ICardItemEnc, NewCardItem} from "~/store/CARD_ITEM"
-import {CardEncodeOpts, CreateCardOpts, ICard, TagSet, UpdateCardOpts} from "~/store/CARD"
+import {CardEncodeOpts, CreateCardOpts, ICard, ICardEnc, TagSet, UpdateCardOpts} from "~/store/CARD"
 import {MapUpsertCard} from "~/lib/domain_v1/card";
 import InputTag from "~/components/Form/InputTag.vue";
 
@@ -89,7 +89,7 @@ export default Vue.extend({
   data(): ICard & { items: Array<ICardItem> } {
     return {
       id: this.donor.id,
-      archived: false,
+      archived: this.donor.archived,
       title: this.donor.title,
       items: this.itemDonors,
       tags: this.donor.tags,
@@ -113,7 +113,7 @@ export default Vue.extend({
         }))
       }
 
-      const card = await this.$store.dispatch("CARD/ENCODE", <CardEncodeOpts>{
+      const card: ICardEnc = await this.$store.dispatch("CARD/ENCODE", <CardEncodeOpts>{
         workspace: this.workspace,
         item: <ICard>this.$data
       })

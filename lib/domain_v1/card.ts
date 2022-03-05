@@ -52,6 +52,7 @@ export function MapCard(c: CardOpts): Card {
   const out = new Card()
   out.setTitleEnc(c.titleEnc)
   out.setTagsEncList(c.tagsEnc)
+  out.setArchived(c.archived)
   return out
 }
 
@@ -74,6 +75,7 @@ export function MapCardItems(opts: Array<CardItemOpts>): Array<CardItem> {
 export interface CardOpts {
   titleEnc: Uint8Array
   tagsEnc: Array<Uint8Array>
+  archived: boolean
 }
 
 export interface CardItemOpts {

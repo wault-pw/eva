@@ -49,15 +49,6 @@ $space-right-width: 300px;
 $spice-right-add-size: 3.5rem;
 
 /**
- * space form
- */
-$space-form-footer-height: $space-header-height;
-//$space-form-padding-x: $container-padding-x;
-//$space-form-item-ident: 2rem;
-//$spice-right-add-size: 3.5rem;
-//$spice-from-item-add-size: 3.5rem;
-
-/**
  * space card
  */
 $space-card-padding-x: $container-padding-x*3;
@@ -67,10 +58,20 @@ $space-card-archived-bg: #F5F5F5;
 $space-card-archived-dur: .33s;
 
 /**
+ * space form
+ */
+$space-form-footer-height: $space-header-height;
+$space-form-footer-z: 20;
+$space-form-item-add-button-size: $spice-right-add-size;
+$space-form-item-ident: $space-card-padding-x;
+$space-form-item-ico-color: darken($border-color, 10);
+$space-form-item-ico-hover-color: darken($border-color, 50);
+$space-form-password-generator-z: $space-form-footer-z - 1;
+
+/**
  * space item
  */
 $space-item-body-fs: $h4-font-size;
-$space-form-item-ident: $space-card-padding-x;
 
 /**
  * space nav

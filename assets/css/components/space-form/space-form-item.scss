@@ -10,6 +10,7 @@ $space-form-item-row-ident-y: 10px;
 
   &.sortable-ghost {
     opacity: $sortable-ghost-opacity;
+    cursor: grabbing;
   }
 }
 
@@ -20,6 +21,27 @@ $space-form-item-row-ident-y: 10px;
   &+& {
     margin-top: calc($space-form-item-row-ident-y/2);
   }
+}
+
+
+.space-form-item-ico, .space-form-item-ico-lg {
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  user-select: none;
+  color: $space-form-item-ico-color;
+
+  &:hover {
+    color: $space-form-item-ico-hover-color;
+  }
+}
+
+.space-form-item-ico {
+  padding-top: .2em;
+}
+
+.space-form-item-ico-lg {
+  padding-top: .6em;
 }
 
 .space-form-item-title,
@@ -42,4 +64,38 @@ $space-form-item-row-ident-y: 10px;
 
 .space-form-item-body {
   @include font-size($space-item-body-fs);
+}
+
+/**
+ * Add item
+ */
+.space-form-item-add {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  input, textarea {
+    pointer-events: none;
+  }
+
+  &:hover .space-form-item-add-button {
+    background-color: $success;
+  }
+}
+
+.space-form-item-add-button {
+  width: $space-form-item-add-button-size;
+  height: $space-form-item-add-button-size;
+  font-size: $space-form-item-add-button-size;
+  line-height: $space-form-item-add-button-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: $border-color;
+  color: $white;
 }

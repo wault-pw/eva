@@ -2,7 +2,7 @@
   <div class="space-form-item">
     <div class="space-form-item-row">
       <i
-        class="icon-cancel-circled"
+        class="icon-cancel-circled space-form-item-ico"
         @click.prevent="$emit('remove', donor.cid)"
       />
 
@@ -13,31 +13,42 @@
         @keypress.enter.prevent=""
       />
 
-      <div>
-        R
-      </div>
+      <i
+        v-if="hidden"
+        class="space-form-item-ico icon-key"
+        @click.prevent.stop="generator=!generator"
+      />
+      <i v-else/>
     </div>
 
     <div class="space-form-item-row">
       <i
-        class="icon-ellipsis-vert"
-        data-cy="handle"
+        class="icon-ellipsis-vert x-move space-form-item-ico-lg"
       />
 
-      <textarea
-        v-model="hidden ? mask : body"
-        :class="{'space-form-item-body-hidden': hidden}"
-        :readonly="hidden"
-        ref="textarea"
-        class="space-form-item-body"
-        placeholder="value"
-        rows="1"
-        @input="resize"
-      />
+      <div class="position-relative">
+        <PasswordGenerator
+          v-if="generator"
+          @close="generator=false"
+          @down="generated"
+        />
+
+        <textarea
+          v-model="hidden ? mask : body"
+          :class="{'space-form-item-body-hidden': hidden}"
+          :readonly="hidden"
+          ref="textarea"
+          class="space-form-item-body"
+          placeholder="value"
+          rows="1"
+          @input="resize"
+        />
+      </div>
 
       <i
         :class="{'icon-lock-filled': hidden, 'icon-lock-open-filled': !hidden}"
-        @click="hidden = !hidden"
+        class="space-form-item-ico-lg"
+        @click.prevent="hidden = !hidden"
       />
     </div>
   </div>
@@ -47,8 +58,10 @@
 import Vue from "vue"
 import {ICardItem} from "~/store/CARD_ITEM";
 import {Mask} from "~/lib/mask";
+import PasswordGenerator from "~/components/PasswordGenerator/PasswordGenerator.vue";
 
 export default Vue.extend({
+  components: {PasswordGenerator},
   props: {
     donor: {
       type: Object as () => ICardItem,
@@ -61,7 +74,8 @@ export default Vue.extend({
       id: this.donor.id,
       title: this.donor.title,
       body: this.donor.body,
-      hidden: this.donor.hidden
+      hidden: this.donor.hidden,
+      generator: false,
     }
   },
 
@@ -80,6 +94,11 @@ export default Vue.extend({
       const textarea: any = this.$refs.textarea
       textarea.style.height = "auto"
       textarea.style.height = textarea.scrollHeight + "px"
+    },
+
+    generated(password: string) {
+      this.generator = false
+      this.body = password
     }
   }
 })

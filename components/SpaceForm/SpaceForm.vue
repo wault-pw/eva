@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <Draggable v-model="items" handle="i[data-cy=handle]">
+      <Draggable v-model="items" handle=".x-move">
         <SpaceFormItem
           v-for="item in items"
           :key="item.cid"
@@ -33,9 +33,9 @@
         />
       </Draggable>
 
-      <a href="#" @click.prevent="add">
-        ADD
-      </a>
+      <SpaceFormAdd
+        @add="add"
+      />
     </div>
 
     <div class="space-form-footer">
@@ -64,11 +64,12 @@ import {CardItemEncodeOpts, ICardItem, ICardItemEnc, NewCardItem} from "~/store/
 import {CardEncodeOpts, CreateCardOpts, ICard, ICardEnc, TagSet, UpdateCardOpts} from "~/store/CARD"
 import {MapUpsertCard} from "~/lib/domain_v1/card";
 import InputTag from "~/components/Form/InputTag.vue";
+import SpaceFormAdd from "~/components/SpaceForm/SpaceFormAdd.vue";
 
 let cid: number = 0
 
 export default Vue.extend({
-  components: {InputTag, SpaceFormItem, Draggable},
+  components: {SpaceFormAdd, InputTag, SpaceFormItem, Draggable},
   props: {
     donor: {
       type: Object as() => ICard,

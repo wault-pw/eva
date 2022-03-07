@@ -86,7 +86,7 @@ import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, CardLoadAllOpts, BlankCard} from "~/store/CARD"
 import _filter from "lodash/filter"
 import _indexOf from "lodash/indexOf"
-import {ICardItem} from "~/store/CARD_ITEM";
+import {ICardItem, NewCardItem} from "~/store/CARD_ITEM";
 
 export const PANEL_EXPORT = "export"
 export const PANEL_PASSPHRASE = "passphrase"
@@ -173,7 +173,11 @@ export default Vue.extend({
   methods: {
     newCard() {
       this.activeCard = null
-      this.edit = []
+      this.edit = [
+        NewCardItem("username"),
+        NewCardItem("password"),
+        NewCardItem("notes", "\n\n"),
+      ]
     },
 
     cancelEdit() {

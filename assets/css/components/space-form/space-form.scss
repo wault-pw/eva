@@ -16,13 +16,14 @@
   border-left: none;
   border-top: none;
   border-right: none;
+  padding-left: $space-form-item-ident;
 }
 
 .space-form-footer {
   display: flex;
   position: sticky;
   bottom: 0;
-  z-index: 20;
+  z-index: $space-form-footer-z;
 
   button {
     flex-grow: 1;

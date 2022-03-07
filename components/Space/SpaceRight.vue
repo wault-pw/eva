@@ -3,10 +3,9 @@
     <a
       :style="{transform: `translateY(${buttonOffset}px)`}"
       class="space-right-add" href="#"
+      v-text="'+'"
       @click.prevent="$emit('add')"
-    >
-      +
-    </a>
+    />
 
     <ul class="space-right-ul">
       <li
@@ -19,7 +18,7 @@
           class="space-right-item"
           @click="$emit('update:active', card)"
         >
-          <span v-text="card.title"/>
+          <span v-text="card.title || '\u2800'"/>
         </div>
       </li>
     </ul>

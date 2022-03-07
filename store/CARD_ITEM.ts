@@ -41,13 +41,13 @@ export const actions: ActionTree<CardItemState, CardItemState> = {
   }
 }
 
-export function NewCardItem(title: string): ICardItem {
+export function NewCardItem(title: string, notes?: string): ICardItem {
   return {
     id: "",
     position: 0,
     cid: UUID(),
     title: title,
-    body: "",
+    body: notes ?? "",
     hidden: false
   }
 }

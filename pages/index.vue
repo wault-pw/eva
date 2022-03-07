@@ -1,9 +1,9 @@
 <template>
   <div class="hello-window">
-    <header class="text-center">
+    <header class="text-center px-4">
       <h1
         v-text="$tc('login.h1')"
-        class="mb-1 text-uppercase"
+        class="mb-1 h2 text-uppercase"
       />
 
       <p
@@ -18,7 +18,7 @@
           name="login"
           @submit.prevent="trySubmit"
         >
-          <p>
+          <p class="mb-2">
             <input
               v-model="username"
               :placeholder="$tc('ui.username').toLowerCase()"
@@ -48,14 +48,14 @@
 
         <div class="mt-4 pt-1"/>
 
-        <fieldset class="mb-3 x-fieldset">
+        <fieldset class="mb-2 x-fieldset">
           <legend
-            v-text="$tc('ui.or')"
+            v-text="$tc('ui.or').toLowerCase()"
             class="small"
           />
         </fieldset>
 
-        <p class="mb-0 text-center text-lowercase">
+        <p class="mb-0 small text-center text-lowercase">
           <nuxt-link
             :to="$urn.join()"
             data-cy="join"

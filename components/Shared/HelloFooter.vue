@@ -6,7 +6,7 @@
       </li>
 
       <li class="x-hidden-md-down">
-        <a href="/">{{ $tc("menu.terms") }}</a>
+        <a href="/">{{ underscore($tc("menu.terms")) }}</a>
       </li>
 
       <li>
@@ -18,7 +18,7 @@
       </li>
 
       <li v-if="$setup.mpa && $setup.statusPage">
-        <a :href="$setup.statusPage" target="_blank">{{ $tc("menu.status") }}</a>
+        <a :href="$setup.statusPage" target="_blank">{{ underscore($tc("menu.status")) }}</a>
       </li>
     </ul>
 
@@ -38,6 +38,12 @@ export default Vue.extend({
   data() {
     return {
       year: new Date().getFullYear(),
+    }
+  },
+
+  methods: {
+    underscore(text: string): string {
+      return text.replace(/\s/g, '_')
     }
   }
 })

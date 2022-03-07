@@ -1,13 +1,15 @@
 <template>
   <div class="hello-window">
-    <header class="text-center">
-      <h1 class="mb-1 text-uppercase">
-        {{ $tc("join.h1") }}
-      </h1>
+    <header class="text-center px-4">
+      <h1
+        v-text="$tc('join.h1')"
+        class="h2 mb-1 text-uppercase"
+      />
 
-      <p class="text-white text-lowercase">
-        {{ $tc("hello.h2") }}
-      </p>
+      <p
+        v-text="$tc('hello.h2')"
+        class="text-white text-lowercase"
+      />
     </header>
 
     <div ref="card" class="card shadow">

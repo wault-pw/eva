@@ -2,7 +2,7 @@
   <form name="join">
     <fieldset v-if="step === 2" :disabled="disabled">
       <p class="text-center text-muted mb-3">
-        $>{{ $tc("joinForm.step2") }}:
+        $>{{ $tc("joinForm.step2").toLowerCase() }}:
       </p>
 
       <div class="form-check form-switch mb-3">
@@ -26,7 +26,7 @@
 
     <fieldset v-if="step === 1">
       <p class="text-center text-muted mb-3">
-        $>{{ $tc("joinForm.step1") }}:
+        $>{{ $tc("joinForm.step1").toLowerCase() }}:
       </p>
 
       <p>
@@ -42,10 +42,10 @@
 
     <fieldset v-if="step === 0">
       <p class="text-center text-muted mb-3">
-        $>{{ $tc("joinForm.step0") }}:
+        $>{{ $tc("joinForm.step0").toLowerCase() }}:
       </p>
 
-      <p>
+      <p class="mb-2">
         <input
           :value="username"
           :placeholder="$tc('ui.username').toLowerCase()"

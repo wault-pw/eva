@@ -1,12 +1,12 @@
 export default {
   ui: {
-    username: "Username",
-    passphrase: "Passphrase",
-    login: "Login",
+    username: "Логин",
+    passphrase: "Пароль",
+    login: "Войти",
     tag: "Tag",
     register: "Register",
-    or: "Or",
-    failed: "Failed",
+    or: "Или",
+    failed: "Неудача",
     yes: "Yes",
     no: "No",
     edit: "Edit",
@@ -20,14 +20,14 @@ export default {
   },
 
   menu: {
-    join: "join.oka",
-    login: "login.oka",
-    demo: "Demo",
-    about: "About",
-    privacy: "Privacy",
-    terms: "Terms of service",
-    issues: "Issues",
-    status: "Status page",
+    join: "Создать.Аккаунт",
+    login: "Вход",
+    demo: "Демо",
+    about: "Что это?",
+    privacy: "Приватность",
+    terms: "Условия пользования",
+    issues: "Проблемы",
+    status: "Статус",
     passphrase: "Passphrase",
     export: "Export",
     import: "Import",
@@ -36,12 +36,12 @@ export default {
   },
 
   hello: {
-    h2: "Free, anonymous, E2E encrypted and open sourced credential manager_"
+    h2: "Бесплатный, анонимный менеджер паролей с e2e шифрованием и открытым кодом_"
   },
 
   join: {
-    h1: "Join.Oka",
-    title: "Join OKA cloud",
+    h1: "Аккаунт",
+    title: "Регистрация в OKA",
     step1: "Generating SRP keys",
     step2: "Generating master key",
     step3: "GENERATING PUBLIC KEY PAIR",
@@ -49,16 +49,16 @@ export default {
   },
 
   joinForm: {
-    step0: "Choose your credentials",
-    step1: "Verify your passphrase",
-    step2: "Check our terms of service",
-    check0: `I understand that OKA is <i>unable</i> to recover a lost passphrase`,
-    check1: `I have read and agreed to the <a target="_blank" href="{url}">Terms of Service</a>.`,
+    step0: "Введите учетные данные",
+    step1: "Подтвердите пароль",
+    step2: "Ознакомьтесь с парвилами сервиса",
+    check0: `Я понимаю, что <i>OKA</i> не может восстановить утраченный пароль`,
+    check1: `Я прочитал и согласен с <a target="_blank" href="{url}">правилами спервиса</a>.`,
   },
 
   login: {
-    h1: "Sign.In",
-    title: "Sign in to OKA cloud",
+    h1: "Вход",
+    title: "Войти в облако OKA",
     auth0: "SRP#0",
     auth1: "SRP#1"
   },

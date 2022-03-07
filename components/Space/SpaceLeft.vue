@@ -55,6 +55,7 @@
         <a
           href="#"
           v-text="$tc('ui.all')"
+          class="text-lowercase"
           @click.prevent="erase"
         />
 
@@ -71,6 +72,7 @@
 
         <a
           href="#"
+          class="text-lowercase"
           v-text="$tc('card.archived')"
           @click.prevent="setArchived(!archived)"
         />

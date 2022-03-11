@@ -24,6 +24,7 @@ async function rewrite(node, attribute) {
   const src = node.attributes[attribute]
   const digest = Uint8ArrayToB64(await sha512(dir + src))
   node.setAttribute("integrity", `sha512-${digest}`)
+  node.setAttribute("crossorigin", `anonymous`)
 }
 
 // cat dist/_nuxt/7ed6ebb.js | openssl dgst -sha512 -binary | openssl base64 -A

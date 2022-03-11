@@ -3,7 +3,8 @@ set -e
 
 # example
 # 1) make generate:mpa generate:spa
-# 1) VERSION=foo scripts/template.sh dist/backup.html
+# 1) VERSION=foo scripts/template.sh dist/index.html mpa
+# 1) VERSION=foo scripts/template.sh dist/backup.html spa
 # to make sed work the same as it does on linux,
 # brew install gnu-sed
 
@@ -23,6 +24,8 @@ fi
 SED=$(command -v gsed || command -v sed)
 eval "
 $SED -i \
+-e 's|src=\"/|src=\"$CDN_URL/|g' \
+-e 's|rel=\"preload\" href=\"/|rel=\"preload\" href=\"$CDN_URL/|g' \
 -e 's|:ALICE_URL:|$ALICE_URL|g' \
 -e 's|:STATUS_PAGE:|$STATUS_PAGE|g' \
 -e 's|spa:!1|spa:$spa|g' \

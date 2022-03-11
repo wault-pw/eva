@@ -1,6 +1,6 @@
 PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
 REGISTRY_DOMAIN=ghcr.io
-REGISTRY_NAME=ghcr.io/oka-is/eva
+REGISTRY_NAME=ghcr.io/wault-pw/eva
 VERSION:=$(shell cat VERSION)
 
 proto:

@@ -138,5 +138,5 @@ message ArchiveCardResponse {
 }
 
 message TerminateRequest {
-  bytes identity = 1;
+  string identity = 1;
 }

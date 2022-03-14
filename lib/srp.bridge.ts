@@ -9,7 +9,7 @@ import {
 // @ts-ignore
 import W from "./srp.worker"
 import PromiseWorker from "promise-worker";
-import {SrpClient} from "@oka-is/srp6a-webcrypto";
+import {SrpClient} from "@wault-pw/srp6a-webcrypto";
 
 // This is a TypeScript bindings for the SRP6a
 // client inside a web worker

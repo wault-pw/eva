@@ -38,6 +38,7 @@ import {MapRegistrationUser} from "~/lib/domain_v1/user";
 import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace';
 import JoinForm from "~/components/Join/JoinForm.vue";
 import {MapCardWithItems} from "~/lib/domain_v1/card";
+import {TextEncode} from '~/lib/cryptos/util';
 
 export default Vue.extend({
   components: {JoinForm},
@@ -72,15 +73,19 @@ export default Vue.extend({
 
     async submit() {
       this.$throbber.show(this.$tc("join.step1"))
+
+      const username = this.username
+      const password = this.password
+
       const srp = this.$ver.NewSrpBridge()
       const srpSalt = await srp.randomSalt()
-      await srp.init({username: this.username, password: this.password, salt: srpSalt})
+      await srp.init({username, password, salt: srpSalt})
       const verifier = await srp.verifier()
 
       this.$throbber.show(this.$tc("join.step2"))
       const passwdSalt = this.$ver.random(this.$ver.deriveSaltSize)
       const derived = await this.$ver.derive.generate(
-        new TextEncoder().encode(this.password),
+        TextEncode(password),
         passwdSalt,
         this.$ver.deriveIter,
         this.$ver.aedKeySize
@@ -90,7 +95,7 @@ export default Vue.extend({
       const pair = await this.$ver.pubCipher.generatePair()
       const pub8 = await this.$ver.exportPubKey(pair)
       const priv8 = await this.$ver.exportPrivKey(pair)
-      const ukey = await this.$ver.aedCipher.importKey(derived)
+      const uKey = await this.$ver.aedCipher.importKey(derived)
 
       const wKey = await this.$ver.aedCipher.generateKey()
       const wKey8 = await this.$ver.aedCipher.exportKey(wKey)
@@ -102,8 +107,8 @@ export default Vue.extend({
         verifier,
         srpSalt,
         passwdSalt,
-        identity: this.username,
-        privKeyEnc: await this.$ver.aedEncrypt(ukey, priv8, pub8),
+        identity: username,
+        privKeyEnc: await this.$ver.aedEncrypt(uKey, priv8, pub8),
         pubKey: pub8,
       }))
 

@@ -14,7 +14,7 @@
               class="mb-0"
             />
 
-            <hr class="my-3" />
+            <hr class="my-3"/>
 
             <p>
               <input
@@ -57,7 +57,7 @@
 
 <script lang="ts">
 import Vue from "vue"
-import { TextEncode } from "~/lib/cryptos/util"
+import {TextEncode} from "~/lib/cryptos/util"
 import {MapTerminateUser} from "~/lib/domain_v1/user"
 import SpacePanel from "~/components/SpacePanel/SpacePanel.vue";
 
@@ -84,7 +84,7 @@ export default Vue.extend({
         this.$throbber.show("loading")
         await this.submit()
         await this.$router.push(this.$urn.login())
-      } catch(e) {
+      } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)
       } finally {
         this.$throbber.hide()
@@ -92,9 +92,7 @@ export default Vue.extend({
     },
 
     async submit() {
-      await this.$adapter.terminate(MapTerminateUser({
-        identity: TextEncode(this.username)
-      }))
+      await this.$adapter.terminate(MapTerminateUser({identity: this.username}))
     }
   }
 })

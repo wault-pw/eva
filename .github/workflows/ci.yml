@@ -38,7 +38,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       alice:
-        image: ghcr.io/oka-is/alice
+        image: ghcr.io/wault-pw/alice
         env:
           VER666: true
           MOUNT_CYPRESS: true

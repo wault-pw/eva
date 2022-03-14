@@ -710,10 +710,8 @@ export namespace ArchiveCardResponse {
 }
 
 export class TerminateRequest extends jspb.Message {
-  getIdentity(): Uint8Array | string;
-  getIdentity_asU8(): Uint8Array;
-  getIdentity_asB64(): string;
-  setIdentity(value: Uint8Array | string): void;
+  getIdentity(): string;
+  setIdentity(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TerminateRequest.AsObject;
@@ -727,7 +725,7 @@ export class TerminateRequest extends jspb.Message {
 
 export namespace TerminateRequest {
   export type AsObject = {
-    identity: Uint8Array | string,
+    identity: string,
   }
 }
 

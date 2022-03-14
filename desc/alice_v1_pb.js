@@ -5836,7 +5836,7 @@ proto.alice_v1.TerminateRequest.prototype.toObject = function(opt_includeInstanc
  */
 proto.alice_v1.TerminateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    identity: msg.getIdentity_asB64()
+    identity: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -5874,7 +5874,7 @@ proto.alice_v1.TerminateRequest.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      var value = /** @type {string} */ (reader.readString());
       msg.setIdentity(value);
       break;
     default:
@@ -5906,9 +5906,9 @@ proto.alice_v1.TerminateRequest.prototype.serializeBinary = function() {
  */
 proto.alice_v1.TerminateRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getIdentity_asU8();
+  f = message.getIdentity();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       1,
       f
     );
@@ -5917,44 +5917,20 @@ proto.alice_v1.TerminateRequest.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional bytes identity = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.alice_v1.TerminateRequest.prototype.getIdentity = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes identity = 1;
- * This is a type-conversion wrapper around `getIdentity()`
+ * optional string identity = 1;
  * @return {string}
  */
-proto.alice_v1.TerminateRequest.prototype.getIdentity_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getIdentity()));
+proto.alice_v1.TerminateRequest.prototype.getIdentity = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * optional bytes identity = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getIdentity()`
- * @return {!Uint8Array}
- */
-proto.alice_v1.TerminateRequest.prototype.getIdentity_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getIdentity()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
+ * @param {string} value
  * @return {!proto.alice_v1.TerminateRequest} returns this
  */
 proto.alice_v1.TerminateRequest.prototype.setIdentity = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

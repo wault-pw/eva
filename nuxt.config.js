@@ -55,7 +55,7 @@ export default {
     spa: false,
     mpa: true,
     version: VERSION,
-    github: 'https://github.com/oka-is/eva',
+    github: 'https://github.com/wault-pw/eva',
     ver666: VER666,
     demoUsername: DEMO_USERNAME,
     demoPassword: DEMO_PASSWORD,

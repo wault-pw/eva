@@ -1447,15 +1447,6 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
-"@oka-is/srp6a-webcrypto@1.0.4", "@oka-is/srp6a-webcrypto@^1.0.0":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@oka-is/srp6a-webcrypto/-/srp6a-webcrypto-1.0.4.tgz#3909789d7306b8f51f972e3e7c7e054988f5a336"
-  integrity sha512-20NQkVNuaWWoLCdCMbjICpaC9jPaYLyUZ04I5oqenuKTlPn2qFShPTwDQz4SHGT9MuTFFhPnd5nC0FRdFzPM1w==
-  dependencies:
-    "@oka-is/srp6a-webcrypto" "^1.0.0"
-    "@types/jsbn" "1.2.30"
-    jsbn "^1.1.0"
-
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
@@ -1935,6 +1926,15 @@
     dom-event-types "^1.0.0"
     lodash "^4.17.15"
     pretty "^2.0.0"
+
+"@wault-pw/srp6a-webcrypto@1.0.6", "@wault-pw/srp6a-webcrypto@^1.0.0":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@wault-pw/srp6a-webcrypto/-/srp6a-webcrypto-1.0.6.tgz#3ed4f4eed7e849babb3a4a05f5ea7eb6c8d4eb47"
+  integrity sha512-TONSPWyjgE1PgKBTs+23X9AZBbuM2C/lVGS8x7iXVXJxoRyvxsYjE/ZMc6cNGcgOvlwiWtL5hn9vGteGz6jLLw==
+  dependencies:
+    "@types/jsbn" "1.2.30"
+    "@wault-pw/srp6a-webcrypto" "^1.0.0"
+    jsbn "^1.1.0"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"

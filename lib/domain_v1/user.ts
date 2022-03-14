@@ -28,5 +28,5 @@ export function MapTerminateUser(param: TerminateUserOpts): TerminateRequest {
 }
 
 export interface TerminateUserOpts {
-  identity: Uint8Array
+  identity: string
 }

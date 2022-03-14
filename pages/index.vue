@@ -50,12 +50,12 @@
 
         <fieldset class="mb-2 x-fieldset">
           <legend
-            v-text="$tc('ui.or').toLowerCase()"
             class="small"
+            v-text="$tc('ui.or').toLowerCase()"
           />
         </fieldset>
 
-        <p class="mb-0 small text-center text-lowercase">
+        <p class="mb-0 text-center text-lowercase">
           <nuxt-link
             :to="$urn.join()"
             data-cy="join"

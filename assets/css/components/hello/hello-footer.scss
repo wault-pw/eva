@@ -16,8 +16,6 @@
   }
 
   a {
-    font-size: $font-size-sm;
-    text-transform: uppercase;
     color: rgba($component-active-color, 1);
   }
 }
@@ -25,7 +23,6 @@
 .hello-footer-copyright {
   color: rgba($component-active-color, .8);
   text-align: center;
-  font-size: $font-size-sm;
 
   a {
     color: inherit;

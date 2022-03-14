@@ -3,7 +3,7 @@ import {Truncate} from "~/cypress/helpers"
 describe('join', () => {
   before(() => {
     Truncate()
-    cy.visit("/#/en")
+    cy.visit("/#")
   })
 
   it('creates a user', () => {

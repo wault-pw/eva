@@ -9,7 +9,7 @@ export async function Register(opts: CredentialOpts): Promise<void> {
   const username = opts.username ?? "username"
   const password = opts.password ?? "password"
 
-  cy.visit("/#/en/join")
+  cy.visit("/#/join")
   cy.get('form[name=join]').as('form')
 
   // step 1
@@ -34,7 +34,7 @@ export async function Login(opts: CredentialOpts) {
   const username = opts.username ?? "username"
   const password = opts.password ?? "password"
 
-  cy.visit("/#/en")
+  cy.visit("/#")
   cy.get('form[name=login]').as('form')
   cy.get('@form').find('input[type=text]').type(username)
   cy.get('@form').find('input[type=password]').type(password)

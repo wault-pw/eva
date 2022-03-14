@@ -2,8 +2,13 @@ const VERSION = process.env.VERSION || '0.0.0'
 const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
-const STATUS_PAGE = process.env.STATUS_PAGE || 'http://example.com' // https://stats.uptimerobot.com/mwKV7ipG7A
+const LOCALE = process.env.LOCALE || 'ru'
 const VER666 = !!process.env.VER666
+
+const STATUS_PAGE = process.env.STATUS_PAGE || 'http://example.com'
+const TERMS_PAGE = process.env.TERMS_PAGE || 'http://example.com'
+const PRIVACY_PAGE = process.env.PRIVACY_PAGE || 'http://example.com'
+const ABOUT_PAGE = process.env.ABOUT_PAGE || 'http://example.com'
 
 export default {
   components: true,
@@ -57,9 +62,13 @@ export default {
     version: VERSION,
     github: 'https://github.com/wault-pw/eva',
     ver666: VER666,
+    locale: LOCALE,
     demoUsername: DEMO_USERNAME,
     demoPassword: DEMO_PASSWORD,
     statusPage: STATUS_PAGE,
+    termsPage: TERMS_PAGE,
+    privacyPage: PRIVACY_PAGE,
+    aboutPage: ABOUT_PAGE,
     axios: {
       browserBaseURL: ALICE_URL
     },
@@ -72,7 +81,8 @@ export default {
     '@/plugins/bus',
     '@/plugins/throbber',
     '@/plugins/dialog',
-    '@/plugins/adapter'
+    '@/plugins/adapter',
+    '@/plugins/locale',
   ],
 
   buildModules: [
@@ -97,14 +107,11 @@ export default {
       {code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr'},
       {code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr'},
     ],
-    strategy: 'prefix',
+    strategy: 'no_prefix',
     langDir: 'locales/',
-    defaultLocale: 'en',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n',
-      redirectOn: 'root',
-    }
+    defaultLocale: 'ru',
+    useCookie: false,
+    differentDomains: false,
   },
 
   router: {

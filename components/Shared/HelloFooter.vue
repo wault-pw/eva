@@ -1,29 +1,49 @@
 <template>
   <footer>
     <ul class="hello-footer-links pt-2 pb-1">
-      <li>
-        <a href="/">{{ $tc("menu.about") }}</a>
+      <li v-if="$setup.aboutPage">
+        <a
+          :href="$setup.aboutPage"
+          target="_blank"
+          v-text="$tc('menu.about')"
+        />
       </li>
 
-      <li class="x-hidden-md-down">
-        <a href="/">{{ underscore($tc("menu.terms")) }}</a>
+      <li v-if="$setup.termsPage" class="x-hidden-md-down">
+        <a
+          :href="$setup.termsPage"
+          target="_blank"
+          v-text="underscore($tc('menu.terms'))"
+        />
       </li>
 
-      <li>
-        <a href="/">{{ $tc("menu.privacy") }}</a>
+      <li v-if="$setup.privacyPage">
+        <a
+          :href="$setup.privacyPage"
+          target="_blank"
+          v-text="$tc('menu.privacy')"
+        />
       </li>
 
       <li class="x-hidden-sm-down">
-        <a :href="`${$setup.github}/issues`" target="_blank">{{ $tc("menu.issues") }}</a>
+        <a
+          :href="`${$setup.github}/issues`"
+          target="_blank"
+          v-text="$tc('menu.issues')"
+        />
       </li>
 
       <li v-if="$setup.mpa && $setup.statusPage">
-        <a :href="$setup.statusPage" target="_blank">{{ underscore($tc("menu.status")) }}</a>
+        <a
+          :href="$setup.statusPage"
+          target="_blank"
+          v-text="underscore($tc('menu.status'))"
+        />
       </li>
     </ul>
 
     <div class="hello-footer-copyright pb-3">
-      {{ year }} © OKA ver.{{ $setup.version }}
+      {{ year }} © Wault ver.{{ $setup.version }}
 
       <a target="_blank" :href="$setup.github">Github</a>
       <a v-if="$setup.mpa" target="_blank" href="/LICENSES.txt">Licenses</a>

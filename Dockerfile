@@ -11,7 +11,11 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 ENV BUILD_DEPS make
 RUN apk add --update --no-cache $BUILD_DEPS
 ENV ALICE_URL=":ALICE_URL:"
+ENV LOCALE=":LOCALE:"
 ENV STATUS_PAGE=":STATUS_PAGE:"
+ENV TERMS_PAGE=":TERMS_PAGE:"
+ENV PRIVACY_PAGE=":PRIVACY_PAGE:"
+ENV ABOUT_PAGE=":ABOUT_PAGE:"
 RUN yarn install && \
     make generate:mpa generate:spa generate:licenses && \
     rm -rf node_modules

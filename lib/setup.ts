@@ -23,6 +23,10 @@ export class Setup {
     return this.$config.github ?? raise("github not set")
   }
 
+  get locale(): string {
+    return this.$config.locale ?? raise("locale not set")
+  }
+
   get demoUsername(): string {
     return this.$config.demoUsername ?? raise("demoUsername not set")
   }
@@ -33,6 +37,18 @@ export class Setup {
 
   get statusPage(): string | null {
     return this.$config.statusPage
+  }
+
+  get termsPage(): string | null {
+    return this.$config.termsPage
+  }
+
+  get privacyPage(): string | null {
+    return this.$config.privacyPage
+  }
+
+  get aboutPage(): string | null {
+    return this.$config.aboutPage
   }
 
   get ver666(): boolean {

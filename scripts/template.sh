@@ -12,6 +12,12 @@ file=$1
 mode=$2
 spa=""
 mpa=""
+locale=${LOCALE:-en}
+aliceUrl=${ALICE_URL:-null}
+statusPage=${STATUS_PAGE:-null}
+termsPage=${TERMS_PAGE:-null}
+privacyPage=${PRIVACY_PAGE:-null}
+aboutPage=${ABOUT_PAGE:-null}
 
 if [ "$mode" = "spa" ]; then
   spa="true"
@@ -26,8 +32,12 @@ eval "
 $SED -i \
 -e 's|src=\"/|src=\"$CDN_URL/|g' \
 -e 's|rel=\"preload\" href=\"/|rel=\"preload\" href=\"$CDN_URL/|g' \
--e 's|:ALICE_URL:|$ALICE_URL|g' \
--e 's|:STATUS_PAGE:|$STATUS_PAGE|g' \
+-e 's|:ALICE_URL:|$aliceUrl|g' \
+-e 's|:STATUS_PAGE:|$statusPage|g' \
+-e 's|:TERMS_PAGE:|$termsPage|g' \
+-e 's|:PRIVACY_PAGE:|$privacyPage|g' \
+-e 's|:ABOUT_PAGE:|$aboutPage|g' \
+-e 's|:LOCALE:|$locale|g' \
 -e 's|spa:!1|spa:$spa|g' \
 -e 's|mpa:!0|mpa:$mpa|g' \
 $file \

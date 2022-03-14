@@ -14,22 +14,22 @@ export class Urn {
   }
 
   login(): string {
-    return `/${this.locale}`
+    return `/`
   }
 
   spa(): string {
-    return `/${this.locale}/spa`
+    return `/spa`
   }
 
   join(): string {
-    return `/${this.locale}/join`
+    return `/join`
   }
 
   workspaces(): string {
-    return `/${this.locale}/workspaces`
+    return `/workspaces`
   }
 
   workspace(id: string): string {
-    return `/${this.locale}/workspaces/${id}`
+    return `/workspaces/${id}`
   }
 }

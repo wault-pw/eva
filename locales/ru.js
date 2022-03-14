@@ -28,11 +28,11 @@ export default {
     terms: "Условия пользования",
     issues: "Проблемы",
     status: "Статус",
-    passphrase: "Passphrase",
-    export: "Export",
-    import: "Import",
-    logout: "Logout",
-    preferences: "Preferences",
+    passphrase: "Пароль",
+    export: "Экспорт",
+    import: "Импорт",
+    logout: "Выйти",
+    preferences: "Настройки",
   },
 
   hello: {
@@ -41,7 +41,7 @@ export default {
 
   join: {
     h1: "Аккаунт",
-    title: "Регистрация в OKA",
+    title: "Регистрация в Wault",
     step1: "Generating SRP keys",
     step2: "Generating master key",
     step3: "GENERATING PUBLIC KEY PAIR",
@@ -52,13 +52,13 @@ export default {
     step0: "Введите учетные данные",
     step1: "Подтвердите пароль",
     step2: "Ознакомьтесь с парвилами сервиса",
-    check0: `Я понимаю, что <i>OKA</i> не может восстановить утраченный пароль`,
+    check0: `Я понимаю, что <i>Wault</i> не может восстановить утраченный пароль`,
     check1: `Я прочитал и согласен с <a target="_blank" href="{url}">правилами спервиса</a>.`,
   },
 
   login: {
     h1: "Вход",
-    title: "Войти в облако OKA",
+    title: "Войти в облако Wault",
     auth0: "SRP#0",
     auth1: "SRP#1"
   },

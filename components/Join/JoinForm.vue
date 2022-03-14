@@ -19,7 +19,7 @@
         <label
           class="form-check-label small"
           for="check1"
-          v-html="$t('joinForm.check1', { url: 'http://example.com' })"
+          v-html="$t('joinForm.check1', { url: $setup.termsPage })"
         />
       </div>
     </fieldset>

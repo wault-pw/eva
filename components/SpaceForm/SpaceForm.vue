@@ -85,6 +85,11 @@ export default Vue.extend({
     itemDonors: {
       type: Array as () => Array<ICardItem>,
       required: true,
+    },
+
+    readonly: {
+      type: Boolean,
+      required: true
     }
   },
 
@@ -99,10 +104,6 @@ export default Vue.extend({
   },
 
   computed: {
-    readonly(): boolean {
-      return this.$store.state.USER.readonly
-    },
-
     allTags(): Array<string> {
       const set: TagSet = this.$store.getters["CARD/TAG_SET"]
       return set.list()

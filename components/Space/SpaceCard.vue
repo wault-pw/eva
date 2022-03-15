@@ -91,6 +91,11 @@ export default Vue.extend({
     workspace: {
       type: Object as () => IWorkspace,
       required: true,
+    },
+
+    readonly: {
+      type: Boolean,
+      required: true
     }
   },
 
@@ -99,12 +104,6 @@ export default Vue.extend({
       items: [],
       loading: false
     }
-  },
-
-  computed: {
-    readonly(): boolean {
-      return this.$store.state.USER.readonly
-    },
   },
 
   async mounted() {

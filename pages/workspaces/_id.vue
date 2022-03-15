@@ -26,6 +26,7 @@
         :tag.sync="activeTag"
         :archived.sync="archived"
         :shown.sync="leftShown"
+        :readonly="readonly"
       />
 
       <SpaceRight
@@ -39,6 +40,7 @@
         :donor="activeCard || blankCard()"
         :workspace="workspace"
         :item-donors="edit"
+        :readonly="readonly"
         class="space-main space-main-focused"
         @cancel="cancelEdit"
         @created="onCreate"
@@ -49,6 +51,7 @@
         :key="activeCard.id"
         :card="activeCard"
         :workspace="workspace"
+        :readonly="readonly"
         @edit="edit = $event"
         @cloned="activeCard = $event"
         @archived="cancelEdit"
@@ -149,6 +152,10 @@ export default Vue.extend({
   },
 
   computed: {
+    readonly(): boolean {
+      return this.$store.state.USER.readonly
+    },
+
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },

@@ -113,8 +113,7 @@
     </ul>
 
     <div class="space-aside-footer mt-auto pt-3">
-      2022 © OKA ver.{{ $setup.version }}<br>
-      Tallinn, Estonia
+      © {{ year }} Wault ver.{{ $setup.version }}<br>
     </div>
   </aside>
 </template>
@@ -140,14 +139,21 @@ export default Vue.extend({
     archived: {
       type: Boolean,
       required: true
+    },
+
+    readonly: {
+      type: Boolean,
+      required: true,
+    }
+  },
+
+  data() {
+    return {
+      year: new Date().getFullYear(),
     }
   },
 
   computed: {
-    readonly(): boolean {
-      return this.$store.state.USER.readonly
-    },
-
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },

@@ -3,7 +3,7 @@ export default {
     username: "Логин",
     passphrase: "Пароль",
     login: "Войти",
-    tag: "Tag",
+    tag: "Тег",
     register: "Register",
     or: "Или",
     failed: "Неудача",
@@ -68,11 +68,11 @@ export default {
   },
 
   space: {
-    titleTemplate: "%s · workspace",
+    titleTemplate: "%s · воркспейс",
   },
 
   spaceLeft: {
-    workspaces: "Workspaces",
+    workspaces: "Воркспейсы",
   },
 
   export: {
@@ -95,7 +95,7 @@ export default {
    * domain
    */
   card: {
-    tags: "Tags",
+    tags: "Теги",
     archived: "Archived"
   }
 }

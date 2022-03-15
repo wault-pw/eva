@@ -1,4 +1,4 @@
-export const DEFAULT_WORKSPACE = "personal"
+export const DEFAULT_WORKSPACE = "персональный"
 
 export interface CredentialOpts {
   username?: string | null

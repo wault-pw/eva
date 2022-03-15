@@ -70,7 +70,7 @@
       <li>
         <i/>
         <a
-          href="#"
+          href="javascript:"
           v-text="$tc('menu.logout')"
           @click.prevent="logout"
         />
@@ -78,9 +78,11 @@
       </li>
     </ul>
 
-    <div class="space-aside-footer mt-auto pt-3">
-      To completely delete your account <a href="#" @click.prevent="onTerminate">click here</a>.
-    </div>
+    <div
+      v-html="$tc('spaceMenu.terminateHtml')"
+      class="space-aside-footer mt-auto pt-3"
+      @click="onTerminateHtmlClick"
+    />
   </aside>
 </template>
 
@@ -126,9 +128,10 @@ export default Vue.extend({
       this.$emit('update:panel', PANEL_PASSPHRASE)
     },
 
-    onTerminate() {
+    onTerminateHtmlClick(e: any) {
+      if (e.target.closest("a") == null) return
       this.$emit('update:panel', PANEL_TERMINATION)
-    }
+    },
   }
 })
 </script>

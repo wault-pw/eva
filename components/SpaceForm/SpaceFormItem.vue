@@ -8,8 +8,8 @@
 
       <input
         v-model="title"
+        :placeholder="$tc('spaceForm.label').toLowerCase()"
         class="space-form-item-title"
-        placeholder="label"
         @keypress.enter.prevent=""
       />
 
@@ -35,11 +35,11 @@
 
         <textarea
           v-model="hidden ? mask : body"
+          :placeholder="$tc('spaceForm.value').toLowerCase()"
           :class="{'space-form-item-body-hidden': hidden}"
           :readonly="hidden"
           ref="textarea"
           class="space-form-item-body"
-          placeholder="value"
           rows="1"
           @input="resize"
         />

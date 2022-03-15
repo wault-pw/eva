@@ -51,6 +51,10 @@ $space-form-item-row-ident-y: 10px;
   width: 100%;
   background: $body-bg;
   padding: 3px 5px;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
 }
 
 .space-form-item-body-hidden {

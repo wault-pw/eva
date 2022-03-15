@@ -3,8 +3,8 @@
     <p class="mb-0">
       <input
         v-model="title"
+        :placeholder="$tc('spaceForm.title').toLowerCase()"
         type="text"
-        placeholder="card title"
         class="form-control form-control-lg space-form-title"
         style="font-size: 2rem"
       >
@@ -66,8 +66,6 @@ import {CardEncodeOpts, CreateCardOpts, ICard, ICardEnc, TagSet, UpdateCardOpts}
 import {MapUpsertCard} from "~/lib/domain_v1/card";
 import InputTag from "~/components/Form/InputTag.vue";
 import SpaceFormAdd from "~/components/SpaceForm/SpaceFormAdd.vue";
-
-let cid: number = 0
 
 export default Vue.extend({
   components: {SpaceFormAdd, InputTag, SpaceFormItem, Draggable},

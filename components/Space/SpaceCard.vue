@@ -19,7 +19,7 @@
         <nav
           :disabled="readonly"
           class="space-card-header-nav"
-          v-text="$tc('ui.clone')"
+          v-text="$tc('ui.toClone')"
           @click.prevent="clone"
         />
 
@@ -51,7 +51,7 @@
             v-for="tag in card.tags"
             :key="tag"
           >
-             <span class="badge rounded-pill bg-primary" v-text="tag" />
+            <span class="badge rounded-pill bg-primary" v-text="tag"/>
           </li>
         </ul>
 
@@ -135,7 +135,7 @@ export default Vue.extend({
       const card = await this.$store.dispatch("CARD/CLONE", <CardCloneOpts>{
         workspace: this.workspace,
         id: this.card.id,
-        title: `${this.card.title} (clone)`
+        title: `${this.card.title} (${this.$tc('ui.copy').toLowerCase()})`
       })
 
       this.$emit('cloned', card)
@@ -144,7 +144,7 @@ export default Vue.extend({
 
     async destroy() {
       try {
-        await this.$dialog.confirm({text: "Delete card?"})
+        await this.$dialog.confirm({text: this.$i18n.tc("dialog.deleteCard")})
       } catch {
         return
       }
@@ -159,7 +159,7 @@ export default Vue.extend({
 
     async archive() {
       try {
-        await this.$dialog.confirm({text: "Archive card?"})
+        await this.$dialog.confirm({text: this.$i18n.tc("dialog.archiveCard")})
       } catch {
         return
       }

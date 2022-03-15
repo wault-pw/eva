@@ -27,14 +27,14 @@
 
             <div class="text-end">
               <button
-                class="btn btn-lg btn-dark"
+                class="btn btn-lg btn-accent"
                 @click.prevent="dismiss"
               >
                 {{ no || $tc("ui.no") }}
               </button>
 
               <button
-                class="btn btn-lg btn-secondary"
+                class="btn btn-lg btn-dark"
                 @click.prevent="approve"
               >
                 {{ yes || $tc("ui.yes") }}

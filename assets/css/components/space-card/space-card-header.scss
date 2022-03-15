@@ -18,6 +18,6 @@
   transition: background-color .2s;
 
   &:hover {
-    background: rgba(#000, .1);
+    background: lighten($component-active-bg, 5);
   }
 }

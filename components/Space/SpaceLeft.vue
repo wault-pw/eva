@@ -113,7 +113,7 @@
     </ul>
 
     <div class="space-aside-footer mt-auto pt-3">
-      © {{ year }} Wault ver.{{ $setup.version }}<br>
+      © Wault ver.{{ $setup.version }}<br>
     </div>
   </aside>
 </template>
@@ -144,12 +144,6 @@ export default Vue.extend({
     readonly: {
       type: Boolean,
       required: true,
-    }
-  },
-
-  data() {
-    return {
-      year: new Date().getFullYear(),
     }
   },
 

@@ -102,7 +102,7 @@ export default Vue.extend({
       const wKey8 = await this.$ver.aedCipher.exportKey(wKey)
       const wKey8Enc = await this.$ver.pubCipher.encrypt(pair.publicKey, wKey8)
 
-      this.$throbber.show(this.$tc("join.step4"))
+      this.$throbber.show(this.$tc("ui.loading"))
       const req = new RegistrationRequest()
       req.setUser(MapRegistrationUser({
         verifier,

@@ -2,21 +2,23 @@ export default {
   ui: {
     username: "Логин",
     passphrase: "Пароль",
+    loading: "Загрузка",
     login: "Войти",
     tag: "Тег",
-    register: "Register",
     or: "Или",
     failed: "Неудача",
-    yes: "Yes",
-    no: "No",
-    edit: "Edit",
-    clone: "Clone",
-    delete: "Delete",
-    archive: "Archive",
-    restore: "Restore",
-    save: "Save",
-    cancel: "Cancel",
-    all: "All",
+    yes: "Да",
+    no: "Нет",
+    edit: "Изменить",
+    toClone: "Клонировать",
+    copy: "Копия",
+    delete: "Удалить",
+    archive: "В архив",
+    restore: "Восстановить",
+    save: "Сохранить",
+    cancel: "Закрыть",
+    all: "Все",
+    notes: "Заметки"
   },
 
   menu: {
@@ -42,10 +44,9 @@ export default {
   join: {
     h1: "Аккаунт",
     title: "Регистрация в Wault",
-    step1: "Generating SRP keys",
-    step2: "Generating master key",
-    step3: "GENERATING PUBLIC KEY PAIR",
-    step4: "Transfer",
+    step1: "Генерация SRP ключей",
+    step2: "Генерация мастер ключа",
+    step3: "Генерация RSA ключей",
   },
 
   joinForm: {
@@ -64,7 +65,7 @@ export default {
   },
 
   spa: {
-    title: "Sign in to OKA backup"
+    title: "Бекап Wault"
   },
 
   space: {
@@ -75,20 +76,35 @@ export default {
     workspaces: "Воркспейсы",
   },
 
+  spaceMenu: {
+    terminateHtml: `Чтобы полностью удалить свою учетную запись, <a href="javascript:">нажмите здесь</a>.`
+  },
+
+  spaceForm: {
+    title: "Название",
+    label: "Лейбл",
+    value: "Значение",
+  },
+
   export: {
-    h2: "Export",
-    h3: "Offline copy",
-    p1: "Download a read-only portable version of OKA. Very convenient when no Internet connection is available.",
-    p2: "An offline copy is just a single HTML file that contains both the whole OKA web application and your encrypted data, except file attachments.",
-    p3: "It is as secure as the hosted OKA service since they both share the same code and security architecture.",
-    button: "Download offline copy",
+    h2: "Экспорт",
+    h3: "Оффлайн копия",
+    p1: "Скачайте офлайн копию вашего аккаунта Wault. Очень удобно, когда нет подключения к Интернету.",
+    p2: "Оффлайн копия — это всего лишь один HTML-файл, который содержит как все веб-приложение Wault, так и все ваши зашифрованные данные.",
+    p3: "Копия так же безопасна, как и облачный сервис Wault, поскольку он используют один и тот же код и архитектуру шифрования.",
+    button: "Скачать",
   },
 
   termination: {
-    h2: "Delete Account",
-    p1: "Please make sure you have downloaded the latest backup before deleting your account.",
-    check: "All my data will be permanently deleted. I understand that this action cannot be undone or canceled.",
-    button: "Terminate"
+    h2: "Удалить аккаунт",
+    p1: "Перед удалением учетной записи убедитесь, что вы скачали последнюю версию оффлайн копии вашего аккаунта.",
+    check: "Все мои данные будут безвозвратно удалены. Я понимаю, что это действие нельзя отменить.",
+    button: "Удалить навсегда"
+  },
+
+  dialog: {
+    deleteCard: "Удалить?",
+    archiveCard: "Архивировать?",
   },
 
   /**
@@ -96,6 +112,6 @@ export default {
    */
   card: {
     tags: "Теги",
-    archived: "Archived"
+    archived: "Архив"
   }
 }

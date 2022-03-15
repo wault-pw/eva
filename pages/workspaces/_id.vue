@@ -181,9 +181,9 @@ export default Vue.extend({
     newCard() {
       this.activeCard = null
       this.edit = [
-        NewCardItem("username"),
-        NewCardItem("password"),
-        NewCardItem("notes", "\n\n"),
+        NewCardItem(this.$i18n.tc("ui.username")),
+        NewCardItem(this.$i18n.tc("ui.passphrase")),
+        NewCardItem(this.$i18n.tc("ui.notes"), "\n\n"),
       ]
     },
 

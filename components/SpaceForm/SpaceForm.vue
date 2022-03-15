@@ -1,58 +1,60 @@
 <template>
-  <form class="space-form">
-    <p class="mb-0">
-      <input
-        v-model="title"
-        :placeholder="$tc('spaceForm.title').toLowerCase()"
-        type="text"
-        class="form-control form-control-lg space-form-title"
-        style="font-size: 2rem"
-      >
-    </p>
+  <div class="space-main-wrapper">
+    <form class="space-main space-form">
+      <p class="mb-0">
+        <input
+          v-model="title"
+          :placeholder="$tc('spaceForm.title').toLowerCase()"
+          type="text"
+          class="form-control form-control-lg space-form-title"
+          style="font-size: 2rem"
+        >
+      </p>
 
-    <div>
-      <div class="space-form-item">
-        <div class="space-form-item-row">
-          <i/>
-          <InputTag
-            :placeholder="$tc('ui.tag').toLowerCase()"
-            :options="allTags"
-            :tags.sync="tags"
-          />
-          <i/>
+      <div>
+        <div class="space-form-item">
+          <div class="space-form-item-row">
+            <i/>
+            <InputTag
+              :placeholder="$tc('ui.tag').toLowerCase()"
+              :options="allTags"
+              :tags.sync="tags"
+            />
+            <i/>
+          </div>
         </div>
+
+        <Draggable v-model="items" handle=".x-move">
+          <SpaceFormItem
+            v-for="item in items"
+            :key="item.cid"
+            :donor="item"
+            :ref="item.cid"
+            @remove="remove"
+          />
+        </Draggable>
+
+        <SpaceFormAdd
+          @add="add"
+        />
       </div>
 
-      <Draggable v-model="items" handle=".x-move">
-        <SpaceFormItem
-          v-for="item in items"
-          :key="item.cid"
-          :donor="item"
-          :ref="item.cid"
-          @remove="remove"
+      <div class="space-form-footer">
+        <button
+          :disabled="readonly"
+          class="btn btn-success"
+          v-text="$tc('ui.save')"
+          @click.prevent="submit"
         />
-      </Draggable>
 
-      <SpaceFormAdd
-        @add="add"
-      />
-    </div>
-
-    <div class="space-form-footer">
-      <button
-        :disabled="readonly"
-        class="btn btn-success"
-        v-text="$tc('ui.save')"
-        @click.prevent="submit"
-      />
-
-      <button
-        class="btn btn-secondary"
-        v-text="$tc('ui.cancel')"
-        @click.prevent="$emit('cancel')"
-      />
-    </div>
-  </form>
+        <button
+          class="btn btn-secondary"
+          v-text="$tc('ui.cancel')"
+          @click.prevent="$emit('cancel')"
+        />
+      </div>
+    </form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -71,7 +73,7 @@ export default Vue.extend({
   components: {SpaceFormAdd, InputTag, SpaceFormItem, Draggable},
   props: {
     donor: {
-      type: Object as() => ICard,
+      type: Object as () => ICard,
       required: true,
     },
 

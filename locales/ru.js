@@ -11,6 +11,7 @@ export default {
     no: "Нет",
     edit: "Изменить",
     toClone: "Клонировать",
+    copied: "Скопировано",
     copy: "Копия",
     delete: "Удалить",
     archive: "В архив",

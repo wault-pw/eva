@@ -86,19 +86,6 @@ main.space {
   z-index: $space-z-wrapper;
   overflow: auto;
   flex-grow: 1;
-
-  @include media-breakpoint-down(md) {
-    position: fixed;
-    top: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: $space-z-overlay;
-
-    &.space-main-focused {
-      top: 0;
-    }
-  }
 }
 
 .space-main-wrapper {
@@ -108,6 +95,16 @@ main.space {
   align-items: stretch;
   overflow: hidden;
   max-height: 100%;
+
+
+  @include media-breakpoint-down(md) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $space-z-overlay;
+  }
 }
 
 /**

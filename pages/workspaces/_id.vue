@@ -41,7 +41,6 @@
         :workspace="workspace"
         :item-donors="edit"
         :readonly="readonly"
-        class="space-main space-main-focused"
         @cancel="cancelEdit"
         @created="onCreate"
       />

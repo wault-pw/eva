@@ -7,7 +7,7 @@
 
     <div
       :class="{'space-card-archived': card.archived}"
-      class="space-card space-main space-main-focused"
+      class="space-card space-main"
     >
       <header class="space-card-header">
         <nav
@@ -113,7 +113,7 @@ export default Vue.extend({
   watch: {
     loading(newVal: boolean) {
       const throbber: any = this.$refs.throbber
-      newVal ? throbber.show("Loading") : throbber.hide()
+      newVal ? throbber.show(this.$i18n.tc("ui.loading")) : throbber.hide()
     }
   },
 
@@ -174,7 +174,7 @@ export default Vue.extend({
 
     onCopied() {
       const throbber: any = this.$refs.throbber
-      throbber.shot('COPIED')
+      throbber.shot(this.$i18n.tc("ui.copied"))
     }
   }
 })

@@ -38,7 +38,10 @@
         />
       </header>
 
-      <section class="pt-4 space-card-body">
+      <section
+        v-if="fetched"
+        class="pt-4 space-card-body"
+      >
         <h2 class="mb-2">
           {{ card.title }}
         </h2>
@@ -78,6 +81,7 @@ import SpaceItem from "~/components/Shared/SpaceItem.vue"
 interface IData {
   items: Array<ICardItem>
   loading: boolean
+  fetched: boolean
 }
 
 export default Vue.extend({
@@ -102,6 +106,9 @@ export default Vue.extend({
   data(): IData {
     return {
       items: [],
+      // fetched - to prevent title blinking
+      // while card items loading
+      fetched: false,
       loading: false
     }
   },
@@ -127,6 +134,7 @@ export default Vue.extend({
       })
 
       this.loading = false
+      this.fetched = true
     },
 
     async clone() {

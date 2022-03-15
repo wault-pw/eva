@@ -23,6 +23,7 @@ export const mutations: MutationTree<UserState> = {
     state.aedKey = user.aedKey
     state.privKey = user.privKey
     state.pubKey = user.pubKey
+    state.readonly = user.readonly
   },
 }
 

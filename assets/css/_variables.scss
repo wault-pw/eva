@@ -16,6 +16,7 @@ $border-radius-sm: 0;
 $border-radius-lg: 0;
 $input-placeholder-color: #CCCCCC;
 $card-border-width: 0;
+$btn-disabled-opacity: 1;
 
 @import "~bootstrap/scss/variables";
 
@@ -28,6 +29,7 @@ $theme-colors: map-merge($theme-colors,  (
  */
 // vue-draggable ghost element
 $sortable-ghost-opacity: 0.1;
+$disabled-filter: grayscale(100);
 
 $space-header-height: 50px;
 $space-header-icon-size: 1.3em;

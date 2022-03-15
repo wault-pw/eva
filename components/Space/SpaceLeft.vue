@@ -11,6 +11,7 @@
         <b v-text="$tc('spaceLeft.workspaces')"/>
 
         <a
+          v-if="!readonly"
           class="icon-plus"
           href="#"
           style="opacity: 1;"
@@ -24,8 +25,11 @@
         :key="item.id"
       >
         <i
+          v-if="!readonly"
           class="icon-i-cursor space-nav-icon-hidden"
         />
+
+        <i v-else />
 
         <nuxt-link
           :to="$urn.workspace(item.id)"
@@ -33,6 +37,7 @@
         />
 
         <a
+          v-if="!readonly"
           href="#"
           class="icon-trash space-nav-icon-hidden"
           @click.prevent="destroy(item)"
@@ -139,6 +144,10 @@ export default Vue.extend({
   },
 
   computed: {
+    readonly(): boolean {
+      return this.$store.state.USER.readonly
+    },
+
     workspace(): IWorkspace {
       return this.$store.state.WORKSPACE.active
     },

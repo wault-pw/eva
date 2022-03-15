@@ -17,18 +17,21 @@
         />
 
         <nav
+          :disabled="readonly"
           class="space-card-header-nav"
           v-text="$tc('ui.clone')"
           @click.prevent="clone"
         />
 
         <nav
+          :disabled="readonly"
           class="space-card-header-nav"
           v-text="card.archived ? $tc('ui.restore') : $tc('ui.archive')"
           @click.prevent="archive"
         />
 
         <nav
+          :disabled="readonly"
           class="space-card-header-nav"
           v-text="$tc('ui.delete')"
           @click.prevent="destroy"
@@ -96,6 +99,12 @@ export default Vue.extend({
       items: [],
       loading: false
     }
+  },
+
+  computed: {
+    readonly(): boolean {
+      return this.$store.state.USER.readonly
+    },
   },
 
   async mounted() {

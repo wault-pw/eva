@@ -88,9 +88,10 @@ message ListWorkspacesResponse {
 
 message WhoAmIResponse {
   string id = 1;
-  bytes passwd_salt = 2;
-  bytes priv_key_enc = 3;
-  bytes pub_key = 4;
+  bool readonly = 2;
+  bytes passwd_salt = 3;
+  bytes priv_key_enc = 4;
+  bytes pub_key = 5;
 }
 
 message Card {

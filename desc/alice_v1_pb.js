@@ -3947,6 +3947,7 @@ proto.alice_v1.WhoAmIResponse.prototype.toObject = function(opt_includeInstance)
 proto.alice_v1.WhoAmIResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    readonly: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     passwdSalt: msg.getPasswdSalt_asB64(),
     privKeyEnc: msg.getPrivKeyEnc_asB64(),
     pubKey: msg.getPubKey_asB64()
@@ -3991,14 +3992,18 @@ proto.alice_v1.WhoAmIResponse.deserializeBinaryFromReader = function(msg, reader
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPasswdSalt(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReadonly(value);
       break;
     case 3:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPrivKeyEnc(value);
+      msg.setPasswdSalt(value);
       break;
     case 4:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setPrivKeyEnc(value);
+      break;
+    case 5:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setPubKey(value);
       break;
@@ -4038,24 +4043,31 @@ proto.alice_v1.WhoAmIResponse.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getPasswdSalt_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
+  f = message.getReadonly();
+  if (f) {
+    writer.writeBool(
       2,
       f
     );
   }
-  f = message.getPrivKeyEnc_asU8();
+  f = message.getPasswdSalt_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       3,
       f
     );
   }
-  f = message.getPubKey_asU8();
+  f = message.getPrivKeyEnc_asU8();
   if (f.length > 0) {
     writer.writeBytes(
       4,
+      f
+    );
+  }
+  f = message.getPubKey_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      5,
       f
     );
   }
@@ -4081,16 +4093,34 @@ proto.alice_v1.WhoAmIResponse.prototype.setId = function(value) {
 
 
 /**
- * optional bytes passwd_salt = 2;
- * @return {!(string|Uint8Array)}
+ * optional bool readonly = 2;
+ * @return {boolean}
  */
-proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.alice_v1.WhoAmIResponse.prototype.getReadonly = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
 };
 
 
 /**
- * optional bytes passwd_salt = 2;
+ * @param {boolean} value
+ * @return {!proto.alice_v1.WhoAmIResponse} returns this
+ */
+proto.alice_v1.WhoAmIResponse.prototype.setReadonly = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 2, value);
+};
+
+
+/**
+ * optional bytes passwd_salt = 3;
+ * @return {!(string|Uint8Array)}
+ */
+proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt = function() {
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * optional bytes passwd_salt = 3;
  * This is a type-conversion wrapper around `getPasswdSalt()`
  * @return {string}
  */
@@ -4101,7 +4131,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt_asB64 = function() {
 
 
 /**
- * optional bytes passwd_salt = 2;
+ * optional bytes passwd_salt = 3;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPasswdSalt()`
@@ -4118,21 +4148,21 @@ proto.alice_v1.WhoAmIResponse.prototype.getPasswdSalt_asU8 = function() {
  * @return {!proto.alice_v1.WhoAmIResponse} returns this
  */
 proto.alice_v1.WhoAmIResponse.prototype.setPasswdSalt = function(value) {
-  return jspb.Message.setProto3BytesField(this, 2, value);
+  return jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 
 /**
- * optional bytes priv_key_enc = 3;
+ * optional bytes priv_key_enc = 4;
  * @return {!(string|Uint8Array)}
  */
 proto.alice_v1.WhoAmIResponse.prototype.getPrivKeyEnc = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * optional bytes priv_key_enc = 3;
+ * optional bytes priv_key_enc = 4;
  * This is a type-conversion wrapper around `getPrivKeyEnc()`
  * @return {string}
  */
@@ -4143,7 +4173,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getPrivKeyEnc_asB64 = function() {
 
 
 /**
- * optional bytes priv_key_enc = 3;
+ * optional bytes priv_key_enc = 4;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPrivKeyEnc()`
@@ -4160,21 +4190,21 @@ proto.alice_v1.WhoAmIResponse.prototype.getPrivKeyEnc_asU8 = function() {
  * @return {!proto.alice_v1.WhoAmIResponse} returns this
  */
 proto.alice_v1.WhoAmIResponse.prototype.setPrivKeyEnc = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
+  return jspb.Message.setProto3BytesField(this, 4, value);
 };
 
 
 /**
- * optional bytes pub_key = 4;
+ * optional bytes pub_key = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.alice_v1.WhoAmIResponse.prototype.getPubKey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * optional bytes pub_key = 4;
+ * optional bytes pub_key = 5;
  * This is a type-conversion wrapper around `getPubKey()`
  * @return {string}
  */
@@ -4185,7 +4215,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getPubKey_asB64 = function() {
 
 
 /**
- * optional bytes pub_key = 4;
+ * optional bytes pub_key = 5;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPubKey()`
@@ -4202,7 +4232,7 @@ proto.alice_v1.WhoAmIResponse.prototype.getPubKey_asU8 = function() {
  * @return {!proto.alice_v1.WhoAmIResponse} returns this
  */
 proto.alice_v1.WhoAmIResponse.prototype.setPubKey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 4, value);
+  return jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 

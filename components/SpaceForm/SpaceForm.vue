@@ -40,6 +40,7 @@
 
     <div class="space-form-footer">
       <button
+        :disabled="readonly"
         class="btn btn-success"
         v-text="$tc('ui.save')"
         @click.prevent="submit"
@@ -98,6 +99,10 @@ export default Vue.extend({
   },
 
   computed: {
+    readonly(): boolean {
+      return this.$store.state.USER.readonly
+    },
+
     allTags(): Array<string> {
       const set: TagSet = this.$store.getters["CARD/TAG_SET"]
       return set.list()

@@ -3,6 +3,7 @@ import {TextEncode, FakeCryptoKey} from "~/lib/cryptos/util"
 
 export const state = (): IUser => ({
   id: "",
+  readonly: true,
   aedKey: FakeCryptoKey(),
   privKey: FakeCryptoKey(),
   pubKey: FakeCryptoKey(),
@@ -42,6 +43,7 @@ export const actions: ActionTree<UserState, UserState> = {
 
     commit('SET_USER', {
       id: res.getId(),
+      readonly: res.getReadonly(),
       aedKey,
       privKey,
       pubKey,
@@ -55,6 +57,7 @@ export interface WhoAmIParam {
 
 export interface IUser {
   id: string
+  readonly: boolean
   aedKey: CryptoKey
   privKey: CryptoKey
   pubKey: CryptoKey

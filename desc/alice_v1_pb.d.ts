@@ -461,6 +461,9 @@ export class WhoAmIResponse extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
+  getReadonly(): boolean;
+  setReadonly(value: boolean): void;
+
   getPasswdSalt(): Uint8Array | string;
   getPasswdSalt_asU8(): Uint8Array;
   getPasswdSalt_asB64(): string;
@@ -489,6 +492,7 @@ export class WhoAmIResponse extends jspb.Message {
 export namespace WhoAmIResponse {
   export type AsObject = {
     id: string,
+    readonly: boolean,
     passwdSalt: Uint8Array | string,
     privKeyEnc: Uint8Array | string,
     pubKey: Uint8Array | string,

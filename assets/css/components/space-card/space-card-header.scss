@@ -1,5 +1,4 @@
 .space-card-header {
-  background: $component-active-bg;
   display: flex;
   flex-direction: row;
   position: sticky;
@@ -8,6 +7,7 @@
 }
 
 .space-card-header-nav {
+  background: $component-active-bg;
   flex-grow: 1;
   display: flex;
   align-items: center;

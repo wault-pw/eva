@@ -33,12 +33,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {RegistrationRequest} from "~/desc/alice_v1_pb";
-import {MapRegistrationUser} from "~/lib/domain_v1/user";
-import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace';
-import JoinForm from "~/components/Join/JoinForm.vue";
-import {MapCardWithItems} from "~/lib/domain_v1/card";
-import {TextEncode} from '~/lib/cryptos/util';
+import {RegistrationRequest} from "~/desc/alice_v1_pb"
+import {MapRegistrationUser} from "~/lib/domain_v1/user"
+import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace'
+import {MapRegistrationCard, MapRegistrationCardItem} from "~/lib/domain_v1/card"
+import {TextEncode} from '~/lib/cryptos/util'
+import {ISeed, Russian} from "~/lib/seeds"
+import JoinForm from "~/components/Join/JoinForm.vue"
 
 export default Vue.extend({
   components: {JoinForm},
@@ -112,137 +113,29 @@ export default Vue.extend({
         pubKey: pub8,
       }))
 
+      const seed: ISeed = Russian
+
       req.setWorkspace(MapRegistrationWorkspace({
         aedKeyEnc: wKey8Enc,
-        titleEnc: await this.$ver.aedEncryptText(wKey, "personal", null),
+        titleEnc: await this.$ver.aedEncryptText(wKey, seed.workspace.title, null),
       }))
 
-      req.setCardWithItemsList([
-        MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Credit card (sample)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Card n.", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "8464 2366 1074 7732", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Cardholder name", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "Joe Oka", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Card circuit", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "American Express", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "CVV2", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "853", null),
-              hidden: true,
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "PIN", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "2744", null),
-              hidden: true,
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Expire on", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "06/25", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Website", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://www.americanexpress.com", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "]Gj2ss{+Grg$fBbg}#E})5Re8G", null),
-              hidden: true
-            },
-          ]
-        }),
-        MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Bank account (sample)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "IBAN", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "DE89370400440532015007", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "?)E%[9=GcgzaAftgP[LSEK7JJv", null),
-              hidden: true
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "User ID", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "76238784", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Web", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://www.db.com", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Bank", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "Deutsche Bank", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Branch n.", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "774942", null),
-            },
-          ]
-        }),
-        MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "bitcoin (sample)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "finance", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Type", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "paper wallet", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Private key [HEX]", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "2ce5820302fd6d8cf756e436484b76fcba11d5664e7bbc643b1bc29994b6bfe5", null),
-              hidden: true
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Wallet address", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "1Q7u3cnwo4tAQoBixPSrS5C39E6VaMHWKb", null),
-            },
-          ]
-        }),
-        MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Gmail (sample)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "social", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Email address", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "joe.oka@gmail.com", null),
-              hidden: true,
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Password", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "]Gj2ss{+Grg$fBbg}#E})5Re8G", null),
-              hidden: true,
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "SMTP", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "smtp.gmail.com:465", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "IMAP", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "imap.gmail.com:993", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Provider", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "Google Gmail", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Web", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "https://mail.google.com", null),
-            },
-          ]
-        }),
-        MapCardWithItems({
-          titleEnc: await this.$ver.aedEncryptText(wKey, "Passport (sample)", null),
-          tagsEnc: [await this.$ver.aedEncryptText(wKey, "documents", null)],
-          items: [
-            {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Issued by", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "British Embassy in Berlin", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Passport n.", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "83A4568HL25-66", null),
-              hidden: true,
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Expiry date", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "10/09/2033", null),
-            }, {
-              titleEnc: await this.$ver.aedEncryptText(wKey, "Issue date", null),
-              bodyEnc: await this.$ver.aedEncryptText(wKey, "11/09/2020", null),
-            },
-          ]
-        }),
-      ])
+      for (const card of seed.cards) {
+        const rq = MapRegistrationCard({
+          titleEnc: await this.$ver.aedEncryptText(wKey, card.title, null),
+          tagsEnc: [await this.$ver.aedEncryptText(wKey, card.tag, null)],
+        })
+
+        for (const item of card.items) {
+          rq.addItems(MapRegistrationCardItem({
+            titleEnc: await this.$ver.aedEncryptText(wKey, item.title, null),
+            bodyEnc: await this.$ver.aedEncryptText(wKey, item.body, null),
+            hidden: item.hidden
+          }))
+        }
+
+        req.addCardWithItems(rq)
+      }
 
       await this.$adapter.register(req)
     }

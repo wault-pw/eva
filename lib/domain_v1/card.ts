@@ -5,27 +5,27 @@ import {
   RegistrationRequest, UpsertCardRequest,
 } from "~/desc/alice_v1_pb"
 
-export function MapCardWithItems(opts: RegistrationCardDomain): RegistrationRequest.CardWithItems {
+export function MapRegistrationCard(opts: RegistrationCard): RegistrationRequest.CardWithItems {
   const out = new RegistrationRequest.CardWithItems()
   out.setTitleEnc(opts.titleEnc)
   out.setTagsEncList(opts.tagsEnc)
-  opts.items?.forEach((item: RegistrationCardItemDomain) => {
-    const i = new RegistrationRequest.CardItem()
-    i.setTitleEnc(item.titleEnc)
-    i.setBodyEnc(item.bodyEnc)
-    i.setHidden(!!item.hidden)
-    out.addItems(i)
-  })
   return out
 }
 
-export interface RegistrationCardDomain {
-  titleEnc: Uint8Array
-  tagsEnc: Array<Uint8Array>
-  items?: Array<RegistrationCardItemDomain>
+export function MapRegistrationCardItem(opts: RegistrationCardItem): RegistrationRequest.CardItem {
+    const i = new RegistrationRequest.CardItem()
+    i.setTitleEnc(opts.titleEnc)
+    i.setBodyEnc(opts.bodyEnc)
+    i.setHidden(!!opts.hidden)
+    return i
 }
 
-export interface RegistrationCardItemDomain {
+export interface RegistrationCard {
+  titleEnc: Uint8Array
+  tagsEnc: Array<Uint8Array>
+}
+
+export interface RegistrationCardItem {
   titleEnc: Uint8Array
   bodyEnc: Uint8Array
   hidden?: boolean

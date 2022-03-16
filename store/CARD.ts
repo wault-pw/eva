@@ -23,27 +23,31 @@ export const getters: GetterTree<CardState, CardState> = {
 }
 
 export const mutations: MutationTree<CardState> = {
-  SET_LIST(state, list: Array<ICard>) {
+  SET_LIST(state: CardState, list: Array<ICard>) {
     state.list = _sortBy(list, "title")
   },
 
-  ADD_TO_LIST(state, card: ICard) {
+  ADD_TO_LIST(state: CardState, card: ICard) {
     state.list = _sortBy([...state.list, card], 'title')
   },
 
-  REMOVE_FROM_LIST(state, id: string) {
+  REMOVE_FROM_LIST(state: CardState, id: string) {
     state.list = _reject(state.list, {id})
   },
 
-  REPLACE_IN_LIST(state, card: ICard) {
+  REPLACE_IN_LIST(state: CardState, card: ICard) {
     const list = _reject(state.list, {id: card.id})
     state.list = _sortBy([...list, card], 'title')
   },
 
-  UPDATE_ARCHIVED(state, opts: UpdateArchiveCardOpts) {
+  UPDATE_ARCHIVED(state: CardState, opts: UpdateArchiveCardOpts) {
     const card = _find(state.list, {id: opts.id})
     if (card) card.archived = opts.archived
   },
+
+  CLEAR(state: CardState) {
+    state.list = []
+  }
 }
 
 export const actions: ActionTree<CardState, CardState> = {

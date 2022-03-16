@@ -15,35 +15,38 @@ export const state = (): IWorkspaceState => ({
 export type WorkspaceState = ReturnType<typeof state>
 
 export const getters: GetterTree<WorkspaceState, WorkspaceState> = {
-  DEFAULT(state): IWorkspace | null {
+  DEFAULT(state: WorkspaceState): IWorkspace | null {
     return state.list[0]
   },
 }
 
 export const mutations: MutationTree<WorkspaceState> = {
-  SET_LIST(state, list: Array<IWorkspace>) {
+  SET_LIST(state: WorkspaceState, list: Array<IWorkspace>) {
     state.list = _sortBy(list, "title")
   },
 
-  ADD_TO_LIST(state, workspace: IWorkspace) {
+  ADD_TO_LIST(state: WorkspaceState, workspace: IWorkspace) {
     state.list = _sortBy([...state.list, workspace], 'title')
   },
 
-  REMOVE_FROM_LIST(state, id: string) {
+  REMOVE_FROM_LIST(state: WorkspaceState, id: string) {
     state.list = _reject(state.list, {id: id})
   },
 
-  REPLACE_IN_LIST(state, workspace: IWorkspace) {
+  REPLACE_IN_LIST(state: WorkspaceState, workspace: IWorkspace) {
     const list = _reject(state.list, {id: workspace.id})
     state.list = _sortBy([...list, workspace], 'title')
   },
 
-  SET_ACTIVE_ID(state, id: string) {
+  SET_ACTIVE_ID(state: WorkspaceState, id: string) {
     const workspace = _find(state.list, {id})
-    // TODO: throw 404 error
     if (workspace == null) throw(`workspace <${id}> not found`)
     return state.active = workspace
   },
+
+  CLEAR(state: WorkspaceState) {
+    state.list = []
+  }
 }
 
 export const actions: ActionTree<WorkspaceState, WorkspaceState> = {

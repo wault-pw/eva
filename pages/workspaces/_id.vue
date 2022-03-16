@@ -63,8 +63,8 @@
 
       <transition name="space-panel-transition">
         <SpacePanelExport v-if="panel === 'export'" @close="menuShown = false"/>
-        <SpacePanelPassphrase v-if="panel === 'passphrase'"  @close="menuShown = false"/>
-        <SpacePanelTermination v-if="panel === 'termination' "  @close="menuShown = false"/>
+        <SpacePanelPassphrase v-if="panel === 'passphrase'" @close="menuShown = false"/>
+        <SpacePanelTermination v-if="panel === 'termination' " @close="menuShown = false"/>
       </transition>
     </main>
   </div>
@@ -134,6 +134,11 @@ export default Vue.extend({
       panel: null,
       activeTag: null
     }
+  },
+
+  beforeDestroy() {
+    this.$store.commit("WORKSPACE/CLEAR")
+    this.$store.commit("CARD/CLEAR")
   },
 
   watch: {

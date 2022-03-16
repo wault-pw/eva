@@ -24,9 +24,12 @@
         :class="{active: item.id === workspace.id}"
         :key="item.id"
       >
-        <i
+        <!-- TODO: add space-nav-icon class with text-align:left CSS  -->
+        <a
           v-if="!readonly"
-          class="icon-i-cursor space-nav-icon-hidden"
+          href="javascript:"
+          class="icon-i-cursor space-nav-icon-hidden text-center"
+          @click.prevent="rename(item)"
         />
 
         <i v-else/>
@@ -38,7 +41,7 @@
 
         <a
           v-if="!readonly"
-          href="#"
+          href="javascript:"
           class="icon-trash space-nav-icon-hidden"
           @click.prevent="destroy(item)"
         />
@@ -120,9 +123,8 @@
 
 <script lang="ts">
 import Vue from "vue"
-import {IWorkspace, WorkspaceCreateOpts} from "~/store/WORKSPACE"
+import {IWorkspace, WorkspaceCreateOpts, WorkspaceUpdateOpts} from "~/store/WORKSPACE"
 import {TagSet} from "~/store/CARD";
-import type = Mocha.utils.type;
 
 export default Vue.extend({
   props: {
@@ -198,6 +200,7 @@ export default Vue.extend({
         title,
         user: this.$store.state.USER
       })
+
       await this.$router.push(this.$urn.workspace(workspace.id))
     },
 
@@ -218,6 +221,26 @@ export default Vue.extend({
       if (this.workspace.id == workspace.id) {
         await this.$router.push(this.$urn.workspaces())
       }
+    },
+
+    async rename(workspace: IWorkspace) {
+      let title: string;
+
+      try {
+        title = <string>await this.$dialog.prompt({
+          text: this.$i18n.tc("dialog.renameWorkspace"),
+          placeholder: this.$i18n.tc("workspace.title"),
+          value: workspace.title,
+        })
+      } catch {
+        return
+      }
+
+      await this.$store.dispatch("WORKSPACE/UPDATE", <WorkspaceUpdateOpts>{
+        title,
+        workspace,
+        user: this.$store.state.USER,
+      })
     }
   }
 })

@@ -1,7 +1,7 @@
 import {GetterTree, ActionTree, MutationTree} from "vuex"
 import {UserWithWorkspace} from "~/desc/alice_v1_pb"
 import {IUser} from "~/store/USER"
-import {CreateWorkspaceOpts, MapCreateWorkspace} from "~/lib/domain_v1/workspace"
+import {CreateWorkspaceOpts, MapCreateWorkspace, MapUpdateWorkspace} from "~/lib/domain_v1/workspace"
 import {FakeCryptoKey} from "~/lib/cryptos/util"
 import _sortBy from "lodash/sortBy"
 import _reject from "lodash/reject"
@@ -33,8 +33,13 @@ export const mutations: MutationTree<WorkspaceState> = {
     state.list = _reject(state.list, {id: id})
   },
 
+  REPLACE_IN_LIST(state, workspace: IWorkspace) {
+    const list = _reject(state.list, {id: workspace.id})
+    state.list = _sortBy([...list, workspace], 'title')
+  },
+
   SET_ACTIVE_ID(state, id: string) {
-    const workspace = _find(state.list, { id })
+    const workspace = _find(state.list, {id})
     // TODO: throw 404 error
     if (workspace == null) throw(`workspace <${id}> not found`)
     return state.active = workspace
@@ -75,6 +80,16 @@ export const actions: ActionTree<WorkspaceState, WorkspaceState> = {
     const workspace = await dispatch('DECODE', <DecodeOpts>{user: opts.user, item: res.getWorkspace()})
     commit("ADD_TO_LIST", workspace)
     return workspace
+  },
+
+  async UPDATE({commit, dispatch}, opts: WorkspaceUpdateOpts): Promise<void> {
+    const res = await this.$adapter.updateWorkspace(opts.workspace.id, MapUpdateWorkspace({
+        titleEnc: await this.$ver.aedEncryptText(opts.workspace.aedKey, opts.title, null)
+      })
+    )
+
+    const workspace = await dispatch('DECODE', <DecodeOpts>{user: opts.user, item: res.getWorkspace()})
+    commit('REPLACE_IN_LIST', workspace)
   }
 }
 
@@ -103,6 +118,12 @@ export interface DecodeOpts {
 }
 
 export interface WorkspaceCreateOpts {
+  user: IUser
+  title: string
+}
+
+export interface WorkspaceUpdateOpts {
+  workspace: IWorkspace
   user: IUser
   title: string
 }

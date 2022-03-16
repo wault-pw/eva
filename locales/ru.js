@@ -112,6 +112,7 @@ export default {
     deleteCard: "Удалить?",
     archiveCard: "Архивировать?",
     deleteWorkspaceHtml: "Чтобы удалить воркспейс,<br>введите его имя",
+    renameWorkspace: "Перемименовать воркспейс",
     createWorkspace: "Создать воркспейс",
     areYouSure: "Вы уверены?"
   },

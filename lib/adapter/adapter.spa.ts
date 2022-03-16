@@ -7,6 +7,8 @@ import {
   UpsertCardRequest,
   UpsertCardResponse,
   CreateWorkspaceRequest,
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
   CreateWorkspaceResponse,
   ListCardItemsResponse,
   ListCardsResponse,
@@ -17,7 +19,7 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse
+  WhoAmIResponse,
 } from "~/desc/alice_v1_pb"
 
 export class AdapterSpa implements IAdapter {
@@ -80,6 +82,11 @@ export class AdapterSpa implements IAdapter {
 
   @unavailable
   async createWorkspace(req: CreateWorkspaceRequest): Promise<CreateWorkspaceResponse> {
+    return <any>null
+  }
+
+  @unavailable
+  async updateWorkspace(id: string, req: UpdateWorkspaceRequest): Promise<UpdateWorkspaceResponse> {
     return <any>null
   }
 

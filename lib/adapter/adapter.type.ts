@@ -5,6 +5,8 @@ import {
   UpsertCardRequest,
   UpsertCardResponse,
   CreateWorkspaceRequest,
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
   CreateWorkspaceResponse,
   ListCardItemsResponse,
   ListCardsResponse,
@@ -38,6 +40,8 @@ export interface IAdapter {
   createWorkspace(req: CreateWorkspaceRequest): Promise<CreateWorkspaceResponse>
 
   deleteWorkspace(id: string): Promise<void>
+
+  updateWorkspace(id: string, req: UpdateWorkspaceRequest): Promise<UpdateWorkspaceResponse>
 
   cloneCard(req: CloneCardRequest, workspaceId: string, id: string): Promise<CloneCardResponse>
 

@@ -7,6 +7,8 @@ import {
   UpsertCardRequest,
   UpsertCardResponse,
   CreateWorkspaceRequest,
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
   CreateWorkspaceResponse,
   ListCardItemsResponse,
   ListCardsResponse,
@@ -17,7 +19,7 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse
+  WhoAmIResponse,
 } from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
 
@@ -68,6 +70,11 @@ export class AdapterMpa implements IAdapter {
   async createWorkspace(req: CreateWorkspaceRequest): Promise<CreateWorkspaceResponse> {
     const bin = await this.post(`/v1/workspaces/create`, req)
     return CreateWorkspaceResponse.deserializeBinary(bin)
+  }
+
+  async updateWorkspace(id: string, req: UpdateWorkspaceRequest): Promise<UpdateWorkspaceResponse> {
+    const bin = await this.post(`/v1/workspaces/${id}/update`, req)
+    return UpdateWorkspaceResponse.deserializeBinary(bin)
   }
 
   async deleteWorkspace(id: string) {

@@ -733,3 +733,47 @@ export namespace TerminateRequest {
   }
 }
 
+export class UpdateWorkspaceRequest extends jspb.Message {
+  getTitleEnc(): Uint8Array | string;
+  getTitleEnc_asU8(): Uint8Array;
+  getTitleEnc_asB64(): string;
+  setTitleEnc(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateWorkspaceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateWorkspaceRequest): UpdateWorkspaceRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateWorkspaceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateWorkspaceRequest;
+  static deserializeBinaryFromReader(message: UpdateWorkspaceRequest, reader: jspb.BinaryReader): UpdateWorkspaceRequest;
+}
+
+export namespace UpdateWorkspaceRequest {
+  export type AsObject = {
+    titleEnc: Uint8Array | string,
+  }
+}
+
+export class UpdateWorkspaceResponse extends jspb.Message {
+  hasWorkspace(): boolean;
+  clearWorkspace(): void;
+  getWorkspace(): UserWithWorkspace | undefined;
+  setWorkspace(value?: UserWithWorkspace): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateWorkspaceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateWorkspaceResponse): UpdateWorkspaceResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateWorkspaceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateWorkspaceResponse;
+  static deserializeBinaryFromReader(message: UpdateWorkspaceResponse, reader: jspb.BinaryReader): UpdateWorkspaceResponse;
+}
+
+export namespace UpdateWorkspaceResponse {
+  export type AsObject = {
+    workspace?: UserWithWorkspace.AsObject,
+  }
+}
+

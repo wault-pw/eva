@@ -5,7 +5,7 @@
         <a
           :href="$setup.aboutPage"
           target="_blank"
-          v-text="$tc('menu.about')"
+          v-text="$tc('menu.features')"
         />
       </li>
 

@@ -19,7 +19,8 @@ export default {
     save: "Сохранить",
     cancel: "Закрыть",
     all: "Все",
-    notes: "Заметки"
+    notes: "Заметки",
+    create: "Создать"
   },
 
   menu: {
@@ -114,5 +115,9 @@ export default {
   card: {
     tags: "Теги",
     archived: "Архив"
+  },
+
+  workspace: {
+    title: "Название"
   }
 }

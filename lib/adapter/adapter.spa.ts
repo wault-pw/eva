@@ -57,7 +57,11 @@ export class AdapterSpa implements IAdapter {
   }
 
   async whoami(): Promise<WhoAmIResponse> {
-    return this.index.user
+    const user = this.index.user
+    // force set readonly role, to disable any possible
+    // mutation actions
+    user.setReadonly(true)
+    return user
   }
 
   async listWorkspaces(): Promise<ListWorkspacesResponse> {

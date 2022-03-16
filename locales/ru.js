@@ -26,7 +26,7 @@ export default {
     join: "Создать.Аккаунт",
     login: "Вход",
     demo: "Демо",
-    about: "Что это?",
+    features: "Возможности",
     privacy: "Приватность",
     terms: "Условия пользования",
     issues: "Проблемы",
@@ -78,7 +78,7 @@ export default {
   },
 
   spaceMenu: {
-    terminateHtml: `Чтобы полностью удалить свою учетную запись, <a href="javascript:">нажмите здесь</a>.`
+    terminateHtml: `<a href="javascript:">Удалить</a> аккаунт`
   },
 
   spaceForm: {

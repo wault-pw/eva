@@ -43,11 +43,12 @@
     <hr class="space-nav-hr">
 
     <ul class="space-nav mb-0">
-      <li>
+      <li v-if="$setup.aboutPage">
         <i/>
         <a
-          href="#"
-          v-text="$tc('menu.about')"
+          :href="$setup.aboutPage"
+          target="_blank"
+          v-text="$tc('menu.features')"
         />
         <i/>
       </li>

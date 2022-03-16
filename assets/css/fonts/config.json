@@ -131,6 +131,36 @@
       "css": "down",
       "code": 59399,
       "src": "typicons"
+    },
+    {
+      "uid": "wlri7uftq4zbi82q2xuf08ayd8kpijlk",
+      "css": "left-open",
+      "code": 59400,
+      "src": "typicons"
+    },
+    {
+      "uid": "1e77a2yvsq3owssduo2lcgsiven57iv5",
+      "css": "pencil",
+      "code": 59408,
+      "src": "typicons"
+    },
+    {
+      "uid": "96ea1be71f597a5bdfc8f791ada4f651",
+      "css": "archive",
+      "code": 59409,
+      "src": "entypo"
+    },
+    {
+      "uid": "2626e3a1bbcd90e45849af3b58a1d594",
+      "css": "trash-1",
+      "code": 59413,
+      "src": "entypo"
+    },
+    {
+      "uid": "493hui9b6xiqaf04slclmqnwpap3oxjj",
+      "css": "copy",
+      "code": 59414,
+      "src": "typicons"
     }
   ]
 }

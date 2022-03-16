@@ -9,7 +9,47 @@
       :class="{'space-card-archived': card.archived}"
       class="space-card space-main"
     >
-      <header class="space-card-header">
+      <header class="space-card-header x-hidden-md-up">
+        <nav
+          class="space-card-header-nav"
+          @click.prevent="$emit('close')"
+        >
+          <i class="icon-left-open" />
+        </nav>
+
+        <nav
+          class="space-card-header-nav"
+          @click.prevent="$emit('edit', items)"
+        >
+          <i class="icon-pencil" />
+        </nav>
+
+        <nav
+          :disabled="readonly"
+          class="space-card-header-nav"
+          @click.prevent="clone"
+        >
+          <i class="icon-copy" />
+        </nav>
+
+        <nav
+          :disabled="readonly"
+          class="space-card-header-nav"
+          @click.prevent="archive"
+        >
+          <i class="icon-archive" />
+        </nav>
+
+        <nav
+          :disabled="readonly"
+          class="space-card-header-nav"
+          @click.prevent="destroy"
+        >
+          <i class="icon-trash-1" />
+        </nav>
+      </header>
+
+      <header class="space-card-header x-hidden-md-down">
         <nav
           class="space-card-header-nav"
           v-text="$tc('ui.edit')"
@@ -160,7 +200,7 @@ export default Vue.extend({
       this.loading = true
 
       await this.$store.dispatch("CARD/DELETE_CARD", <DeleteCardOpts>{workspace: this.workspace, id: this.card.id})
-      this.$emit("destroyed")
+      this.$emit("close")
 
       this.loading = false
     },
@@ -175,7 +215,7 @@ export default Vue.extend({
       this.loading = true
 
       await this.$store.dispatch("CARD/ARCHIVE_CARD", <ArchiveCardOpts>{workspace: this.workspace, id: this.card.id})
-      this.$emit("archived")
+      this.$emit("close")
 
       this.loading = false
     },

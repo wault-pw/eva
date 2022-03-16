@@ -20,4 +20,8 @@
   &:hover {
     background: lighten($component-active-bg, 5);
   }
+
+  i {
+    font-size: 1.2em;
+  }
 }

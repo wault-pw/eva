@@ -53,8 +53,7 @@
         :readonly="readonly"
         @edit="edit = $event"
         @cloned="activeCard = $event"
-        @archived="cancelEdit"
-        @destroyed="cancelEdit"
+        @close="cancelEdit"
       />
 
       <SpaceMenu

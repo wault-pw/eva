@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-12">
           <form @submit.prevent="trySubmit">
-            <h2
-              class="text-white mb-2"
-              v-text="$tc('termination.h2')"
+            <h3
+              class="text-white"
+              v-text="$tc('termination.h1')"
             />
 
             <p
@@ -79,6 +79,12 @@ export default Vue.extend({
   methods: {
     async trySubmit() {
       if (this.disabled) return
+
+      try {
+        await this.$dialog.prompt({text: this.$i18n.tc("dialog.areYouSure")})
+      } catch {
+        return
+      }
 
       try {
         this.$throbber.show(this.$i18n.tc("ui.loading"))

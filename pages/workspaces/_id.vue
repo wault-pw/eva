@@ -109,6 +109,7 @@ function isTagged(card: ICard, tag: string | null): boolean {
 
 export default Vue.extend({
   middleware: ['auth'],
+  key: "WORKSPACE_ID",
 
   components: {
     SpacePanelTermination,

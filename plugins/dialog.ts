@@ -10,6 +10,7 @@ interface IConfirmOpts {
 
 interface IPromptOpts {
   text: string
+  verify?: boolean
   value?: string
   placeholder?: string
   yes?: string
@@ -39,6 +40,7 @@ class Dialog {
       this.$bus.$emit(DIALOG_SHOW, <DialogShowOpts>{
         resolve,
         reject,
+        verify: opts.verify,
         value: opts.value,
         placeholder: opts.placeholder,
         text: opts.text,

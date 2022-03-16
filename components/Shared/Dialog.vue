@@ -10,11 +10,11 @@
     >
       <div v-if="shown" class="dialog-wrapper">
         <div v-if="shown" class="dialog-box">
-          <div>
+          <form @submit.prevent="approve">
             <p v-html="text" class="fw-bold mb-2" />
 
             <div
-              v-if="value || placeholder"
+              v-if="value || placeholder != null"
               class="mb-3"
             >
               <input
@@ -27,6 +27,7 @@
 
             <div class="text-end">
               <button
+                type="button"
                 class="btn btn-lg btn-accent"
                 @click.prevent="dismiss"
               >
@@ -34,13 +35,14 @@
               </button>
 
               <button
+                :disabled="disabled"
+                type="submit"
                 class="btn btn-lg btn-dark"
-                @click.prevent="approve"
               >
                 {{ yes || $tc("ui.yes") }}
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </transition>
@@ -48,12 +50,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
+import _toString from "lodash/toString"
 
 const RejectError = new Error("dialog was rejected")
 
 interface IData {
   shown: boolean
+  verify: null | boolean
   resolve: null | any
   reject: null | any
   approved: boolean
@@ -67,6 +71,7 @@ interface IData {
 export interface DialogShowOpts {
   resolve: any
   reject: any
+  verify: null | boolean
   value: string | null
   placeholder: string | null
   yes: string | null
@@ -78,6 +83,7 @@ export default Vue.extend({
   data(): IData {
     return {
       shown: false,
+      verify: false,
       resolve: null,
       reject: null,
       approved: false,
@@ -86,6 +92,12 @@ export default Vue.extend({
       yes: null,
       no: null,
       text: null,
+    }
+  },
+
+  computed: {
+    disabled(): boolean {
+      return this.verify! && _toString(this.value) !== _toString(this.placeholder)
     }
   },
 
@@ -98,6 +110,7 @@ export default Vue.extend({
       this.placeholder = opts.placeholder
       this.yes = opts.yes
       this.no = opts.no
+      this.verify = opts.verify
       this.shown = true
     },
 
@@ -107,19 +120,9 @@ export default Vue.extend({
     },
 
     approve() {
+      if (this.disabled) return
       this.approved = true
       this.shown = false
-    },
-
-    reset() {
-      this.text = ""
-      this.resolve = null
-      this.reject = null
-      this.approved = false
-      this.value = null
-      this.placeholder = null
-      this.yes = null
-      this.no = null
     },
 
     async onHidden() {

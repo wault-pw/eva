@@ -6,7 +6,7 @@
   >
     <ul class="space-nav mb-0">
       <li>
-        <i class="icon-folder" />
+        <i class="icon-folder"/>
 
         <b v-text="$tc('spaceLeft.workspaces')"/>
 
@@ -29,7 +29,7 @@
           class="icon-i-cursor space-nav-icon-hidden"
         />
 
-        <i v-else />
+        <i v-else/>
 
         <nuxt-link
           :to="$urn.workspace(item.id)"
@@ -122,6 +122,7 @@
 import Vue from "vue"
 import {IWorkspace, WorkspaceCreateOpts} from "~/store/WORKSPACE"
 import {TagSet} from "~/store/CARD";
+import type = Mocha.utils.type;
 
 export default Vue.extend({
   props: {
@@ -185,7 +186,10 @@ export default Vue.extend({
       let title: string
 
       try {
-        title = <string>await this.$dialog.prompt({text: "Create a workplace", placeholder: "Enter a name"})
+        title = <string>await this.$dialog.prompt({
+          text: this.$i18n.tc("dialog.createWorkspace"),
+          placeholder: this.$i18n.tc("workspace.title").toLowerCase()
+        })
       } catch {
         return
       }
@@ -199,7 +203,11 @@ export default Vue.extend({
 
     async destroy(workspace: IWorkspace) {
       try {
-        await this.$dialog.prompt({text: "To delete a workspace<br>enter its name:", placeholder: workspace.title})
+        await this.$dialog.prompt({
+          text: this.$i18n.tc("dialog.deleteWorkspaceHtml"),
+          placeholder: workspace.title,
+          verify: true,
+        })
       } catch {
         return
       }

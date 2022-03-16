@@ -2,12 +2,12 @@
   <div class="hello-window">
     <header class="text-center px-4">
       <h1
-        v-text="'Воркспейс'"
+        v-text="$tc('workspaceList.h1')"
         class="mb-1 h2 text-uppercase"
       />
 
       <p
-        v-text="'создайте свой первый воркспейс для управления паролями, учетными данными и заметками'"
+        v-text="$tc('workspaceList.p1')"
         class="text-white text-lowercase"
       />
 

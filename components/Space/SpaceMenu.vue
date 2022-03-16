@@ -112,12 +112,12 @@ export default Vue.extend({
   methods: {
     async logout() {
       try {
-        this.$throbber.show("loading")
+        this.$throbber.show(this.$i18n.tc("ui.loading"))
         await this.$adapter.logout()
         await this.$router.push(this.$urn.login())
         this.$throbber.hide()
       } catch (e) {
-        this.$throbber.error("failed", e)
+        this.$throbber.error(this.$i18n.tc("ui.failed"), e)
       }
     },
 

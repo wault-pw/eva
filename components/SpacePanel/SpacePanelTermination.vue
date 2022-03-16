@@ -81,7 +81,7 @@ export default Vue.extend({
       if (this.disabled) return
 
       try {
-        this.$throbber.show("loading")
+        this.$throbber.show(this.$i18n.tc("ui.loading"))
         await this.submit()
         await this.$router.push(this.$urn.login())
       } catch (e) {

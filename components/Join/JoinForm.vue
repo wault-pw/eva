@@ -1,5 +1,5 @@
 <template>
-  <form name="join">
+  <form name="join" @submit.prevent="next">
     <fieldset v-if="step === 2" :disabled="disabled">
       <p class="text-center text-muted mb-3">
         $>{{ $tc("joinForm.step2").toLowerCase() }}:
@@ -82,10 +82,9 @@
       <button
         :disabled="!isStepValid"
         ref="next"
-        type="button"
+        type="submit"
         class="btn text-uppercase btn-lg btn-accent"
         data-cy="next"
-        @click.prevent="next"
       >
         >>
       </button>
@@ -141,6 +140,8 @@ export default Vue.extend({
 
   methods: {
     next() {
+      if (!this.isStepValid) return
+
       switch (this.step) {
         case 0:
         case 1:

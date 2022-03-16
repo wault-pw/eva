@@ -27,7 +27,10 @@ generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html
 
 generate\:licenses:
-	yarn run generate-license-file --input package.json --output dist/LICENSES.txt --overwrite
+	yarn licenses list > dist/LICENSES.txt
+
+tidy:
+	npx -y yarn-deduplicate
 
 build: export TAG=$(VERSION)
 build:

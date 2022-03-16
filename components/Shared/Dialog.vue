@@ -9,7 +9,7 @@
       @after-leave="onHidden"
     >
       <div v-if="shown" class="dialog-wrapper">
-        <div v-if="shown" class="dialog-box">
+        <div ref="box" tabindex="-1" class="dialog-box" @keydown.esc="dismiss">
           <form @submit.prevent="approve">
             <p v-html="text" class="fw-bold mb-2" />
 
@@ -32,6 +32,7 @@
                 @click.prevent="dismiss"
               >
                 {{ no || $tc("ui.no") }}
+                <span class="opacity-25 x-hidden-md-down">esc</span>
               </button>
 
               <button
@@ -98,6 +99,18 @@ export default Vue.extend({
   computed: {
     disabled(): boolean {
       return this.verify! && _toString(this.value) !== _toString(this.placeholder)
+    }
+  },
+
+  watch: {
+    shown(value) {
+      this.$nextTick(() => {
+        // autofocus dialog to be able to press ESC key
+        if (value) {
+          const box: any = this.$refs.box!
+          box.focus()
+        }
+      })
     }
   },
 

@@ -32,7 +32,7 @@
       <p>
         <input
           v-model="confirmation"
-          :placeholder="$tc('ui.passphrase').toLowerCase()"
+          :placeholder="$tc('user.password').toLowerCase()"
           class="form-control form-control-lg"
           type="password"
           @keyup.enter="$refs.next.click()"
@@ -48,7 +48,7 @@
       <p class="mb-2">
         <input
           :value="username"
-          :placeholder="$tc('ui.username').toLowerCase()"
+          :placeholder="$tc('user.username').toLowerCase()"
           class="form-control form-control-lg"
           type="text"
           autocapitalize="none"
@@ -60,7 +60,7 @@
       <p>
         <input
           :value="password"
-          :placeholder="$tc('ui.passphrase').toLowerCase()"
+          :placeholder="$tc('user.password').toLowerCase()"
           class="form-control form-control-lg"
           type="password"
           @input="$emit('update:password', $event.target.value)"

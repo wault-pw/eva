@@ -46,7 +46,7 @@ class RsaCipher implements IPubCipher {
       EXPORT_PRIV_KEY_FORMAT,
       key,
       {name: this.name, hash: this.hash},
-      false, ["decrypt"])
+      true, ["decrypt"])
   }
 
   async importPubKey(key: Uint8Array): Promise<CryptoKey> {
@@ -54,7 +54,7 @@ class RsaCipher implements IPubCipher {
       EXPORT_PUB_KEY_FORMAT,
       key,
       {name: this.name, hash: this.hash},
-      false, ["encrypt"])
+      true, ["encrypt"])
   }
 
   async generatePair(): Promise<CryptoKeyPair> {

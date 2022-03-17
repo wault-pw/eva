@@ -19,7 +19,7 @@
           <p>
             <input
               v-model="password"
-              :placeholder="$tc('ui.passphrase').toLowerCase()"
+              :placeholder="$tc('user.password').toLowerCase()"
               class="form-control form-control-lg"
               type="password"
             >

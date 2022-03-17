@@ -457,7 +457,7 @@ export namespace ListWorkspacesResponse {
   }
 }
 
-export class WhoAmIResponse extends jspb.Message {
+export class PrivUser extends jspb.Message {
   getId(): string;
   setId(value: string): void;
 
@@ -480,6 +480,32 @@ export class WhoAmIResponse extends jspb.Message {
   setPubKey(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PrivUser.AsObject;
+  static toObject(includeInstance: boolean, msg: PrivUser): PrivUser.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PrivUser, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PrivUser;
+  static deserializeBinaryFromReader(message: PrivUser, reader: jspb.BinaryReader): PrivUser;
+}
+
+export namespace PrivUser {
+  export type AsObject = {
+    id: string,
+    readonly: boolean,
+    passwdSalt: Uint8Array | string,
+    privKeyEnc: Uint8Array | string,
+    pubKey: Uint8Array | string,
+  }
+}
+
+export class WhoAmIResponse extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): PrivUser | undefined;
+  setUser(value?: PrivUser): void;
+
+  serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WhoAmIResponse.AsObject;
   static toObject(includeInstance: boolean, msg: WhoAmIResponse): WhoAmIResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
@@ -491,11 +517,7 @@ export class WhoAmIResponse extends jspb.Message {
 
 export namespace WhoAmIResponse {
   export type AsObject = {
-    id: string,
-    readonly: boolean,
-    passwdSalt: Uint8Array | string,
-    privKeyEnc: Uint8Array | string,
-    pubKey: Uint8Array | string,
+    user?: PrivUser.AsObject,
   }
 }
 
@@ -774,6 +796,76 @@ export class UpdateWorkspaceResponse extends jspb.Message {
 export namespace UpdateWorkspaceResponse {
   export type AsObject = {
     workspace?: UserWithWorkspace.AsObject,
+  }
+}
+
+export class UpdateCredentialsRequest extends jspb.Message {
+  getOldIdentity(): string;
+  setOldIdentity(value: string): void;
+
+  getNewIdentity(): string;
+  setNewIdentity(value: string): void;
+
+  getVerifier(): Uint8Array | string;
+  getVerifier_asU8(): Uint8Array;
+  getVerifier_asB64(): string;
+  setVerifier(value: Uint8Array | string): void;
+
+  getSrpSalt(): Uint8Array | string;
+  getSrpSalt_asU8(): Uint8Array;
+  getSrpSalt_asB64(): string;
+  setSrpSalt(value: Uint8Array | string): void;
+
+  getPasswdSalt(): Uint8Array | string;
+  getPasswdSalt_asU8(): Uint8Array;
+  getPasswdSalt_asB64(): string;
+  setPasswdSalt(value: Uint8Array | string): void;
+
+  getPrivKeyEnc(): Uint8Array | string;
+  getPrivKeyEnc_asU8(): Uint8Array;
+  getPrivKeyEnc_asB64(): string;
+  setPrivKeyEnc(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateCredentialsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateCredentialsRequest): UpdateCredentialsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateCredentialsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateCredentialsRequest;
+  static deserializeBinaryFromReader(message: UpdateCredentialsRequest, reader: jspb.BinaryReader): UpdateCredentialsRequest;
+}
+
+export namespace UpdateCredentialsRequest {
+  export type AsObject = {
+    oldIdentity: string,
+    newIdentity: string,
+    verifier: Uint8Array | string,
+    srpSalt: Uint8Array | string,
+    passwdSalt: Uint8Array | string,
+    privKeyEnc: Uint8Array | string,
+  }
+}
+
+export class UpdateCredentialsResponse extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): PrivUser | undefined;
+  setUser(value?: PrivUser): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateCredentialsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateCredentialsResponse): UpdateCredentialsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateCredentialsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateCredentialsResponse;
+  static deserializeBinaryFromReader(message: UpdateCredentialsResponse, reader: jspb.BinaryReader): UpdateCredentialsResponse;
+}
+
+export namespace UpdateCredentialsResponse {
+  export type AsObject = {
+    user?: PrivUser.AsObject,
   }
 }
 

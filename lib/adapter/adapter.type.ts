@@ -17,7 +17,7 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse
+  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -32,6 +32,8 @@ export interface IAdapter {
   auth1(req: Login1Request): Promise<Login1Response>
 
   whoami(): Promise<WhoAmIResponse>
+
+  updateCredentials(req: UpdateCredentialsRequest): Promise<UpdateCredentialsResponse>
 
   listWorkspaces(): Promise<ListWorkspacesResponse>
 

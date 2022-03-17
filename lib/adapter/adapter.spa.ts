@@ -19,7 +19,7 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse,
+  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse,
 } from "~/desc/alice_v1_pb"
 
 export class AdapterSpa implements IAdapter {
@@ -59,11 +59,11 @@ export class AdapterSpa implements IAdapter {
   }
 
   async whoami(): Promise<WhoAmIResponse> {
-    const user = this.index.user
+    const res = this.index.user
     // force set readonly role, to disable any possible
     // mutation actions
-    user.setReadonly(true)
-    return user
+    res.getUser()!.setReadonly(true)
+    return res
   }
 
   async listWorkspaces(): Promise<ListWorkspacesResponse> {
@@ -78,6 +78,11 @@ export class AdapterSpa implements IAdapter {
       if (card.getWorkspaceId() === workspaceId) res.addItems(card)
     })
     return res
+  }
+
+  @unavailable
+  async updateCredentials(req: UpdateCredentialsRequest): Promise<UpdateCredentialsResponse> {
+    return <any>null
   }
 
   @unavailable

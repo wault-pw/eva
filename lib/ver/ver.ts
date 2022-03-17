@@ -63,12 +63,12 @@ export class Ver {
     return SecureRandom(size)
   }
 
-  async exportPrivKey(key: CryptoKeyPair): Promise<Uint8Array> {
-    return new Uint8Array(await crypto.subtle.exportKey(EXPORT_PRIV_KEY_FORMAT, key.privateKey!))
+  async exportPrivKey(key: CryptoKey): Promise<Uint8Array> {
+    return new Uint8Array(await crypto.subtle.exportKey(EXPORT_PRIV_KEY_FORMAT, key))
   }
 
-  async exportPubKey(key: CryptoKeyPair): Promise<Uint8Array> {
-    return new Uint8Array(await crypto.subtle.exportKey(EXPORT_PUB_KEY_FORMAT, key.publicKey!))
+  async exportPubKey(key: CryptoKey): Promise<Uint8Array> {
+    return new Uint8Array(await crypto.subtle.exportKey(EXPORT_PUB_KEY_FORMAT, key))
   }
 
   async aedEncrypt(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<Uint8Array> {

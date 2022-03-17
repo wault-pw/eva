@@ -86,12 +86,16 @@ message ListWorkspacesResponse {
   repeated UserWithWorkspace items = 1;
 }
 
-message WhoAmIResponse {
+message PrivUser {
   string id = 1;
   bool readonly = 2;
   bytes passwd_salt = 3;
   bytes priv_key_enc = 4;
   bytes pub_key = 5;
+}
+
+message WhoAmIResponse {
+  PrivUser user = 1;
 }
 
 message Card {
@@ -148,4 +152,17 @@ message UpdateWorkspaceRequest {
 
 message UpdateWorkspaceResponse {
   UserWithWorkspace workspace = 1;
+}
+
+message UpdateCredentialsRequest {
+  string old_identity = 1;
+  string new_identity = 2;
+  bytes verifier = 3;
+  bytes srp_salt = 4;
+  bytes passwd_salt = 5;
+  bytes priv_key_enc = 6;
+}
+
+message UpdateCredentialsResponse {
+  PrivUser user = 1;
 }

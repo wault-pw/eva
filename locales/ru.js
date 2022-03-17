@@ -1,7 +1,5 @@
 export default {
   ui: {
-    username: "Логин",
-    passphrase: "Пароль",
     loading: "Загрузка",
     login: "Войти",
     tag: "Тег",
@@ -20,7 +18,7 @@ export default {
     cancel: "Закрыть",
     all: "Все",
     notes: "Заметки",
-    create: "Создать"
+    create: "Создать",
   },
 
   menu: {
@@ -117,6 +115,10 @@ export default {
     areYouSure: "Вы уверены?"
   },
 
+  panelPassphrase: {
+    check: "Я понимаю, что Wault не может восстановить утерянный пароль"
+  },
+
   /**
    * domain
    */
@@ -127,5 +129,13 @@ export default {
 
   workspace: {
     title: "Название"
+  },
+
+  user: {
+    oldUsername: "Старый логин",
+    newUsername: "Новый логин",
+    newPassword: "Новый пароль",
+    username: "Логин",
+    password: "Пароль",
   }
 }

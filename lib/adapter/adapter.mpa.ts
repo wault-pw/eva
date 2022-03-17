@@ -19,7 +19,7 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse,
+  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse,
 } from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
 
@@ -55,6 +55,11 @@ export class AdapterMpa implements IAdapter {
   async whoami(): Promise<WhoAmIResponse> {
     const bin = await this.post("/v1/whoami", null)
     return WhoAmIResponse.deserializeBinary(bin)
+  }
+
+  async updateCredentials(req: UpdateCredentialsRequest): Promise<UpdateCredentialsResponse> {
+    const bin = await this.post("/v1/credentials/update", req)
+    return UpdateCredentialsResponse.deserializeBinary(bin)
   }
 
   async listWorkspaces(): Promise<ListWorkspacesResponse> {

@@ -21,7 +21,7 @@
           <p class="mb-2">
             <input
               v-model="username"
-              :placeholder="$tc('ui.username').toLowerCase()"
+              :placeholder="$tc('user.username').toLowerCase()"
               autocapitalize="none"
               class="form-control form-control-lg"
               type="text"
@@ -31,7 +31,7 @@
           <p>
             <input
               v-model="password"
-              :placeholder="$tc('ui.passphrase').toLowerCase()"
+              :placeholder="$tc('user.password').toLowerCase()"
               class="form-control form-control-lg"
               type="password"
             >

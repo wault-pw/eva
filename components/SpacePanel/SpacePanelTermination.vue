@@ -19,7 +19,7 @@
             <p>
               <input
                 v-model="username"
-                :placeholder="$tc('ui.username').toLowerCase()"
+                :placeholder="$tc('user.username').toLowerCase()"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="text"

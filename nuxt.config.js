@@ -16,7 +16,7 @@ export default {
   target: 'static',
 
   head: {
-    title: '',
+    title: 'Wault',
     htmlAttrs: {
       lang: 'en'
     },

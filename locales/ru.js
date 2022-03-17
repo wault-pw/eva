@@ -77,7 +77,7 @@ export default {
   },
 
   spaceMenu: {
-    terminateHtml: `<a href="javascript:">Удалить</a> аккаунт`
+    terminateHtml: `<a href="javascript:">Удалить</a>`
   },
 
   spaceForm: {

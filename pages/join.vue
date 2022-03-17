@@ -94,8 +94,8 @@ export default Vue.extend({
 
       this.$throbber.show(this.$tc("join.step3"))
       const pair = await this.$ver.pubCipher.generatePair()
-      const pub8 = await this.$ver.exportPubKey(pair)
-      const priv8 = await this.$ver.exportPrivKey(pair)
+      const pub8 = await this.$ver.exportPubKey(pair.publicKey)
+      const priv8 = await this.$ver.exportPrivKey(pair.privateKey)
       const uKey = await this.$ver.aedCipher.importKey(derived)
 
       const wKey = await this.$ver.aedCipher.generateKey()

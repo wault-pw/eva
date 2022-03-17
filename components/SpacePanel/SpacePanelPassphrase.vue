@@ -3,11 +3,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <h3 class="text-white" v-text="$tc('export.h1')"/>
+          <h3 class="text-white" v-text="$tc('panelPassphrase.h1')"/>
 
-          <p v-text="$tc('export.p1')"/>
+          <p v-text="$tc('panelPassphrase.p1')"/>
 
           <form @submit.prevent="trySubmit">
+            <p v-text="$i18n.tc('user.username')">
+
             <p>
               <input
                 v-model="oldUsername"
@@ -28,10 +30,22 @@
               >
             </p>
 
+            <p v-text="$i18n.tc('user.password')">
+
             <p>
               <input
                 v-model="newPassword"
                 :placeholder="$tc('user.newPassword').toLowerCase()"
+                autocapitalize="none"
+                class="form-control form-control-lg"
+                type="password"
+              >
+            </p>
+
+            <p>
+              <input
+                v-model="newPasswordConfirmation"
+                :placeholder="$tc('user.confirmPassword').toLowerCase()"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="password"
@@ -80,6 +94,7 @@ export default Vue.extend({
       oldUsername: "",
       newUsername: "",
       newPassword: "",
+      newPasswordConfirmation: "",
       check: false
     }
   },
@@ -89,7 +104,8 @@ export default Vue.extend({
       return !this.check ||
         this.oldUsername == "" ||
         this.newUsername == "" ||
-        this.newPassword == ""
+        this.newPassword == "" ||
+        this.newPassword !== this.newPasswordConfirmation
     }
   },
 

@@ -65,7 +65,7 @@ export default {
   },
 
   spa: {
-    title: "Бекап Wault"
+    title: "Wault Offline Copy"
   },
 
   space: {

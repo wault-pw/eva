@@ -1,5 +1,5 @@
 <template>
-  <div class="space-panel pb-3">
+  <aside data-cy="panel" class="space-panel pb-3">
     <header class="space-panel-header mb-2">
       <a
         href="#"
@@ -11,5 +11,5 @@
     </header>
 
     <slot />
-  </div>
+  </aside>
 </template>

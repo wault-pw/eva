@@ -31,10 +31,14 @@ export async function Register(opts: CredentialOpts): Promise<void> {
 }
 
 export async function Login(opts: CredentialOpts) {
+  cy.visit("/#")
+  await LoginAs(opts)
+}
+
+export async function LoginAs(opts: CredentialOpts) {
   const username = opts.username ?? "username"
   const password = opts.password ?? "password"
 
-  cy.visit("/#")
   cy.get('form[name=login]').as('form')
   cy.get('@form').find('input[type=text]').type(username)
   cy.get('@form').find('input[type=password]').type(password)

@@ -15,6 +15,7 @@
         <a
           href="#"
           v-text="$tc('menu.passphrase')"
+          data-cy="passphrase"
           @click.prevent="onPassphrase"
         />
         <i/>

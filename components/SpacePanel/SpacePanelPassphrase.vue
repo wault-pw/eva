@@ -14,6 +14,7 @@
               <input
                 v-model="oldUsername"
                 :placeholder="$tc('user.oldUsername').toLowerCase()"
+                data-cy="old-username"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="text"
@@ -24,6 +25,7 @@
               <input
                 v-model="newUsername"
                 :placeholder="$tc('user.newUsername').toLowerCase()"
+                data-cy="new-username"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="text"
@@ -36,6 +38,7 @@
               <input
                 v-model="newPassword"
                 :placeholder="$tc('user.newPassword').toLowerCase()"
+                data-cy="new-password"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="password"
@@ -46,6 +49,7 @@
               <input
                 v-model="newPasswordConfirmation"
                 :placeholder="$tc('user.confirmPassword').toLowerCase()"
+                data-cy="confirm-password"
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="password"

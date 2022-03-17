@@ -1,8 +1,8 @@
 <template>
-  <header class="space-header">
+  <header data-cy="header" class="space-header">
     <nav class="space-header-nav">
       <a
-        href="#"
+        href="javascript:"
         class="space-header-nav-a x-hidden-lg-up"
         @click.prevent="$emit('update:left', !left)"
       >
@@ -23,8 +23,9 @@
 
     <nav class="space-header-nav justify-content-end">
       <a
-        href="#"
+        href="javascript:"
         class="space-header-nav-a"
+        data-cy="menu"
         @click.prevent="$emit('update:menu', !menu)"
       >
         <i class="icon-menu" />

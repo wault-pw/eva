@@ -130,11 +130,14 @@ export default Vue.extend({
     },
 
     async submit() {
+      const [newUsername, newPassword] = await this.$ver.credentials(this.newUsername, this.newPassword)
+      const [oldUsername, _] = await this.$ver.credentials(this.oldUsername, "")
+
       await this.$store.dispatch("USER/UPDATE_CREDENTIALS", <CredentialsUpdateOpts>{
         user: this.$store.state.USER,
-        newIdentity: this.newUsername,
-        oldIdentity: this.oldUsername,
-        password: this.newPassword
+        newIdentity: newUsername,
+        oldIdentity: oldUsername,
+        password: newPassword
       })
     }
   }

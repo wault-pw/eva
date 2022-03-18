@@ -75,8 +75,7 @@ export default Vue.extend({
     async submit() {
       this.$throbber.show(this.$tc("join.step1"))
 
-      const username = this.username
-      const password = this.password
+      const [username, password] = await this.$ver.credentials(this.username, this.password)
 
       const srp = this.$ver.NewSrpBridge()
       const srpSalt = await srp.randomSalt()

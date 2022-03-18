@@ -98,7 +98,8 @@ export default Vue.extend({
     },
 
     async submit() {
-      await this.$adapter.terminate(MapTerminateUser({identity: this.username}))
+      const [username, _] = await this.$ver.credentials(this.username, "")
+      await this.$adapter.terminate(MapTerminateUser({identity: username}))
     }
   }
 })

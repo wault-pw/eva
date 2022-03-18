@@ -1,4 +1,4 @@
-import {IPubCipher, SHA256, crypt, EXPORT_PRIV_KEY_FORMAT, EXPORT_PUB_KEY_FORMAT} from "~/lib/cryptos/interfaces"
+import {IPubCipher, SHA256_NAME, crypt, EXPORT_PRIV_KEY_FORMAT, EXPORT_PUB_KEY_FORMAT} from "~/lib/cryptos/interfaces"
 
 export enum PubCipherEnum {
   Rsa2048Sha256 = "Rsa2048Sha256",
@@ -10,13 +10,13 @@ export enum PubCipherEnum {
 export function NewPubCipher(num: PubCipherEnum): IPubCipher {
   switch (num) {
     case PubCipherEnum.Rsa4096Sha256:
-      return new RsaCipher(4096, SHA256)
+      return new RsaCipher(4096, SHA256_NAME)
     case PubCipherEnum.Rsa3072Sha256:
-      return new RsaCipher(3078, SHA256)
+      return new RsaCipher(3078, SHA256_NAME)
     case PubCipherEnum.Rsa2048Sha256:
-      return new RsaCipher(2048, SHA256)
+      return new RsaCipher(2048, SHA256_NAME)
     case PubCipherEnum.Rsa1024Sha256:
-      return new RsaCipher(1024, SHA256)
+      return new RsaCipher(1024, SHA256_NAME)
     default:
       throw(`unknown pub cipher num <${num}>`)
   }

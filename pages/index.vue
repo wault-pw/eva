@@ -102,8 +102,9 @@ export default Vue.extend({
 
     async trySubmit() {
       try {
-        await this.submit()
-        await this.whoami(this.password)
+        const [username, password] = await this.$ver.credentials(this.username, this.password)
+        await this.submit(username, password)
+        await this.whoami(password)
         await this.$router.push(this.$urn.workspaces())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)
@@ -116,11 +117,11 @@ export default Vue.extend({
       await this.$store.dispatch('USER/WHO_AM_I', {password} as WhoAmIParam)
     },
 
-    async submit() {
+    async submit(username: string, password: string) {
       this.$throbber.show(this.$tc("login.auth0"))
-      const res0 = await this.auth0(this.username)
+      const res0 = await this.auth0(username)
       const srp = this.$ver.NewSrpBridge()
-      await srp.init({username: this.username, password: this.password, salt: res0.getSalt_asU8()})
+      await srp.init({username, password, salt: res0.getSalt_asU8()})
 
       this.$throbber.show(this.$tc("login.auth1"))
       const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())

@@ -12,6 +12,10 @@ export function Uint8ArrayFromHex(input: string): Uint8Array {
   return new Uint8Array(matched.map(byte => parseInt(byte, 16)))
 }
 
+export function Uint8ArrayToHex(input: Uint8Array): string {
+  return Buffer.from(input).toString('hex')
+}
+
 export function TextEncode(text: string): Uint8Array {
   return new TextEncoder().encode(text)
 }

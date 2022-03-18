@@ -1,15 +1,24 @@
 import {NewPubCipher, PubCipherEnum} from "~/lib/cryptos/pub.ciphers"
-import {EXPORT_PRIV_KEY_FORMAT, EXPORT_PUB_KEY_FORMAT, IAedCipher, IDerive, IPubCipher} from "~/lib/cryptos/interfaces"
+import {
+  EXPORT_PRIV_KEY_FORMAT,
+  EXPORT_PUB_KEY_FORMAT,
+  IAedCipher,
+  IDerive,
+  IHash,
+  IPubCipher
+} from "~/lib/cryptos/interfaces"
 import {DeriveEnum, DeriveSaltSize, NewDerive} from "~/lib/cryptos/derives"
 import {SrpBridge} from "~/lib/srp.bridge"
 import {SRP_1024, SRP_4096} from "~/lib/const"
-import {SecureRandom, TextDecode, TextEncode} from "~/lib/cryptos/util"
+import {SecureRandom, TextDecode, TextEncode, Uint8ArrayToHex} from "~/lib/cryptos/util"
 import {AedCipherEnum, AedCipherSizes, NewAedCipher} from "~/lib/cryptos/aed.ciphers"
+import {HashEnum, NewHash} from "~/lib/cryptos/hashes"
 
 interface Opts {
   pubCipherNum: PubCipherEnum
   deriveNum: DeriveEnum
   aedCipherNum: AedCipherEnum
+  hashNum: HashEnum
   deriveIter: number
   srpGroup: string
 }
@@ -18,6 +27,7 @@ export class Ver {
   private readonly pubCipherNum: PubCipherEnum
   private readonly deriveNum: DeriveEnum
   private readonly aedCipherNum: AedCipherEnum
+  private readonly hashNum: HashEnum
   private readonly srpGroup: string
   public readonly deriveIter: number
 
@@ -27,6 +37,7 @@ export class Ver {
     this.deriveIter = opts.deriveIter
     this.srpGroup = opts.srpGroup
     this.aedCipherNum = opts.aedCipherNum
+    this.hashNum = opts.hashNum
   }
 
   get pubCipher(): IPubCipher {
@@ -39,6 +50,10 @@ export class Ver {
 
   get derive(): IDerive {
     return NewDerive(this.deriveNum)
+  }
+
+  get hash(): IHash {
+    return NewHash(this.hashNum)
   }
 
   get deriveSaltSize(): number {
@@ -79,7 +94,12 @@ export class Ver {
 
   async aedDecrypt(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<Uint8Array> {
     if (!data.length) return new Uint8Array(0)
-    return await this.aedCipher.decrypt({key, iv: data.slice(0, this.aedIvSize), data: data.slice(this.aedIvSize), addon})
+    return await this.aedCipher.decrypt({
+      key,
+      iv: data.slice(0, this.aedIvSize),
+      data: data.slice(this.aedIvSize),
+      addon
+    })
   }
 
   async aedEncryptText(key: CryptoKey, text: string, addon: Uint8Array | null): Promise<Uint8Array> {
@@ -88,6 +108,16 @@ export class Ver {
 
   async aedDecryptText(key: CryptoKey, data: Uint8Array, addon: Uint8Array | null): Promise<string> {
     return TextDecode(await this.aedDecrypt(key, data, addon))
+  }
+
+  // hash SRP login and password to:
+  // 1) prevent server to see raw username
+  // 2) strengthen weak password
+  async credentials(username: string, password: string): Promise<[string, string]> {
+     return [
+       Uint8ArrayToHex(await this.hash.digest(TextEncode(username))),
+       Uint8ArrayToHex(await this.hash.digest(TextEncode(password))),
+     ]
   }
 }
 
@@ -99,6 +129,7 @@ export const Ver1 = new Ver({
   deriveNum: DeriveEnum.Pbkdf2Sha256,
   deriveIter: 10_000,
   srpGroup: SRP_4096,
+  hashNum: HashEnum.Sha256,
   aedCipherNum: AedCipherEnum.AES256GCM,
 })
 
@@ -108,5 +139,6 @@ export const Ver666 = new Ver({
   deriveNum: DeriveEnum.Pbkdf2Sha256,
   deriveIter: 1,
   srpGroup: SRP_1024,
+  hashNum: HashEnum.Sha256,
   aedCipherNum: AedCipherEnum.AES256GCM,
 })

@@ -68,7 +68,8 @@ export default Vue.extend({
   methods: {
     async trySubmit() {
       try {
-        await this.whoami(this.password)
+        const [_, password] = await this.$ver.credentials("", this.password)
+        await this.whoami(password)
         await this.$router.push(this.$urn.workspaces())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)

@@ -43,10 +43,10 @@
     </ul>
 
     <div class="hello-footer-copyright pb-3">
-      {{ year }} © Wault ver.{{ $setup.version }}
+      {{ year }} © Wault <span class="x-hidden-md-down">ver.{{ $setup.version }}</span>
 
       <a target="_blank" :href="$setup.github">Github</a>
-      <a v-if="$setup.mpa" target="_blank" href="/LICENSES.txt">Licenses</a>
+      <a v-if="$setup.email" :href="`mailto:${$setup.email}`" v-text="$setup.email" />
     </div>
   </footer>
 </template>

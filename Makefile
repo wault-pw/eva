@@ -26,9 +26,6 @@ generate\:mpa:
 generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html
 
-generate\:licenses:
-	yarn licenses list > dist/LICENSES.txt
-
 tidy:
 	npx -y yarn-deduplicate
 

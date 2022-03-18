@@ -9,6 +9,7 @@ const STATUS_PAGE = process.env.STATUS_PAGE || 'http://example.com'
 const TERMS_PAGE = process.env.TERMS_PAGE || 'http://example.com'
 const PRIVACY_PAGE = process.env.PRIVACY_PAGE || 'http://example.com'
 const ABOUT_PAGE = process.env.ABOUT_PAGE || 'http://example.com'
+const EMAIL = process.env.EMAIL || 'support@example.com'
 
 export default {
   components: true,
@@ -56,6 +57,7 @@ export default {
     github: 'https://github.com/wault-pw/eva',
     ver666: VER666,
     locale: LOCALE,
+    email: EMAIL,
     demoUsername: DEMO_USERNAME,
     demoPassword: DEMO_PASSWORD,
     statusPage: STATUS_PAGE,

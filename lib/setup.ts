@@ -35,6 +35,10 @@ export class Setup {
     return this.$config.demoPassword ?? raise("demoPassword not set")
   }
 
+  get email(): string | null {
+    return this.$config.email
+  }
+
   get statusPage(): string | null {
     return this.$config.statusPage
   }

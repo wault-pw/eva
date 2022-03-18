@@ -16,8 +16,9 @@ ENV STATUS_PAGE=":STATUS_PAGE:"
 ENV TERMS_PAGE=":TERMS_PAGE:"
 ENV PRIVACY_PAGE=":PRIVACY_PAGE:"
 ENV ABOUT_PAGE=":ABOUT_PAGE:"
+ENV EMAIL=":EMAIL:"
 RUN yarn install && \
-    make generate:mpa generate:spa generate:licenses && \
+    make generate:mpa generate:spa && \
     rm -rf node_modules
 
 # nginx is used to serve pages

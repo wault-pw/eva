@@ -93,6 +93,13 @@ import {CredentialsUpdateOpts} from "~/store/USER";
 export default Vue.extend({
   components: {SpacePanel},
 
+  props: {
+    readonly: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   data() {
     return {
       oldUsername: "",
@@ -105,7 +112,8 @@ export default Vue.extend({
 
   computed: {
     disabled(): boolean {
-      return !this.check ||
+      return this.readonly ||
+        !this.check ||
         this.oldUsername == "" ||
         this.newUsername == "" ||
         this.newPassword == "" ||

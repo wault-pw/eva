@@ -11,7 +11,8 @@
 
           <p>
             <a
-              href="#"
+              :disabled="readonly"
+              href="javascript:"
               v-text="$tc('export.button')"
               class="btn btn-accent btn-lg"
               @click.prevent="backup"/>
@@ -28,6 +29,14 @@ import SpacePanel from "~/components/SpacePanel/SpacePanel.vue"
 
 export default Vue.extend({
   components: {SpacePanel},
+
+  props: {
+    readonly: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   methods: {
     backup() {
       this.$adapter.backup()

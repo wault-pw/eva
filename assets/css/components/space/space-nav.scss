@@ -21,6 +21,10 @@
     color: rgba($component-active-color, .8);
   }
 
+  a[disabled] {
+    opacity: .4;
+  }
+
   &.active {
     a {
       color: $accent;

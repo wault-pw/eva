@@ -63,6 +63,14 @@ import SpacePanel from "~/components/SpacePanel/SpacePanel.vue";
 
 export default Vue.extend({
   components: {SpacePanel},
+
+  props: {
+    readonly: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   data() {
     return {
       check: false,
@@ -72,7 +80,7 @@ export default Vue.extend({
 
   computed: {
     disabled(): boolean {
-      return (!this.check || this.username === "")
+      return this.readonly || (!this.check || this.username === "")
     }
   },
 

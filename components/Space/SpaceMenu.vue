@@ -6,7 +6,11 @@
     <ul class="space-nav mb-0">
       <li>
         <i/>
-        <a href="#" v-text="$tc('menu.preferences')"/>
+        <a
+          href="javascript:"
+          disabled
+          v-text="$tc('menu.preferences')"
+        />
         <i/>
       </li>
 
@@ -24,7 +28,8 @@
       <li>
         <i/>
         <a
-          href="#"
+          href="javascript:"
+          disabled=""
           v-text="$tc('menu.import')"
         />
         <i/>

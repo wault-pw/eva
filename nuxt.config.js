@@ -17,7 +17,8 @@ export default {
   target: 'static',
 
   head: {
-    title: 'Wault',
+    title: '',
+    titleTemplate: (titleChunk) => titleChunk ? `${titleChunk} ✲ Wault Cloud` : 'Wault Cloud',
     htmlAttrs: {
       lang: 'en'
     },

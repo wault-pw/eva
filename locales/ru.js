@@ -43,7 +43,7 @@ export default {
 
   join: {
     h1: "Аккаунт",
-    title: "Регистрация в Wault",
+    title: "Регистрация",
     step1: "Генерация SRP ключей",
     step2: "Генерация мастер ключа",
     step3: "Генерация RSA ключей",
@@ -59,7 +59,7 @@ export default {
 
   login: {
     h1: "Вход",
-    title: "Войти в облако Wault",
+    title: "Вход",
     auth0: "SRP#0",
     auth1: "SRP#1"
   },
@@ -69,7 +69,7 @@ export default {
   },
 
   space: {
-    titleTemplate: "%s · воркспейс",
+    titleTemplate: "%s ✲ воркспейс",
   },
 
   spaceLeft: {

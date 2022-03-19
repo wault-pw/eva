@@ -12,7 +12,7 @@
     </div>
 
     <div
-      :class="`x-scale-${scale}`"
+      :class="[`x-scale-${scale}`, {'x-pointer': isCopy}]"
       class="space-item-body"
       v-text="value"
       @click.prevent="copy"
@@ -49,11 +49,18 @@ export default Vue.extend({
 
     scale(): number {
       return TextScale(this.body)
+    },
+
+    // do not copy if a large scale
+    isCopy(): boolean {
+      return this.scale == 1
     }
   },
 
   methods: {
     async copy() {
+      if (!this.isCopy) return
+
       await navigator.clipboard.writeText(this.item.body)
       this.$emit('copied')
     }

@@ -62,7 +62,7 @@
       />
 
       <transition name="space-panel-transition">
-        <SpacePanelExport v-if="panel === 'export'" :readonly="readonly" @close="menuShown = false"/>
+        <SpacePanelExport v-if="panel === 'export'" @close="menuShown = false"/>
         <SpacePanelPassphrase v-if="panel === 'passphrase'" :readonly="readonly" @close="menuShown = false"/>
         <SpacePanelTermination v-if="panel === 'termination'" :readonly="readonly" @close="menuShown = false"/>
       </transition>

@@ -12,6 +12,7 @@
     </div>
 
     <div
+      :class="`x-scale-${scale}`"
       class="space-item-body"
       v-text="value"
       @click.prevent="copy"
@@ -23,6 +24,7 @@
 import Vue from 'vue'
 import { Mask } from '~/lib/mask'
 import {ICardItem} from "~/store/CARD_ITEM"
+import {TextScale} from "~/lib/scale";
 
 export default Vue.extend({
   props: {
@@ -43,6 +45,10 @@ export default Vue.extend({
   computed: {
     value(): String {
       return this.hidden ? Mask(this.body) : this.body
+    },
+
+    scale(): number {
+      return TextScale(this.body)
     }
   },
 

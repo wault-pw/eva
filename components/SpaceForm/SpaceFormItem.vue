@@ -36,7 +36,7 @@
         <textarea
           v-model="hidden ? mask : body"
           :placeholder="$tc('spaceForm.value').toLowerCase()"
-          :class="{'space-form-item-body-hidden': hidden}"
+          :class="[{'space-form-item-body-hidden': hidden}, `x-scale-${scale}`]"
           :readonly="hidden"
           ref="textarea"
           class="space-form-item-body"
@@ -59,6 +59,7 @@ import Vue from "vue"
 import {ICardItem} from "~/store/CARD_ITEM";
 import {Mask} from "~/lib/mask";
 import PasswordGenerator from "~/components/PasswordGenerator/PasswordGenerator.vue";
+import {TextScale} from "~/lib/scale";
 
 export default Vue.extend({
   components: {PasswordGenerator},
@@ -82,6 +83,19 @@ export default Vue.extend({
   computed: {
     mask(): string {
       return Mask(this.body)
+    },
+
+    scale(): number {
+      return TextScale(this.body)
+    }
+  },
+
+  watch: {
+    scale() {
+      this.$nextTick(() => {
+        // resize input if scale has changed
+        this.resize()
+      })
     }
   },
 

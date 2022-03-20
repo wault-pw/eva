@@ -19,7 +19,12 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse,
+  WhoAmIResponse,
+  UpdateCredentialsRequest,
+  UpdateCredentialsResponse,
+  LoginOtpRequest,
+  LoginOtpResponse,
+  OtpIssueResponse, OtpEnableRequest,
 } from "~/desc/alice_v1_pb"
 import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
 
@@ -50,6 +55,24 @@ export class AdapterMpa implements IAdapter {
   async auth1(req: Login1Request): Promise<Login1Response> {
     const bin = await this.post("/v1/login/auth1", req)
     return Login1Response.deserializeBinary(bin)
+  }
+
+  async otp(req: LoginOtpRequest): Promise<LoginOtpResponse> {
+    const bin = await this.post("/v1/login/otp", req)
+    return LoginOtpResponse.deserializeBinary(bin)
+  }
+
+  async otpIssue(): Promise<OtpIssueResponse> {
+    const bin = await this.post("/v1/otp/issue", null)
+    return OtpIssueResponse.deserializeBinary(bin)
+  }
+
+  async otpEnable(req: OtpEnableRequest) {
+    await this.post("/v1/otp/enable", req)
+  }
+
+  async otpDisable() {
+    await this.$axios.$post(`/v1/otp/disable`)
   }
 
   async whoami(): Promise<WhoAmIResponse> {

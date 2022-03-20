@@ -1,6 +1,7 @@
 import {GetterTree, ActionTree, MutationTree} from 'vuex'
 import {TextEncode, FakeCryptoKey} from "~/lib/cryptos/util"
-import {MapUpdateCredentials} from "~/lib/domain_v1/user";
+import {MapUpdateCredentials} from "~/lib/domain_v1/user"
+import {MapOtpEnable} from "~/lib/domain_v1/otp";
 
 export const state = (): IUser => ({
   id: "",
@@ -8,6 +9,7 @@ export const state = (): IUser => ({
   aedKey: FakeCryptoKey(),
   privKey: FakeCryptoKey(),
   pubKey: FakeCryptoKey(),
+  otbEnabled: false,
 })
 
 export type UserState = ReturnType<typeof state>
@@ -25,6 +27,11 @@ export const mutations: MutationTree<UserState> = {
     state.privKey = user.privKey
     state.pubKey = user.pubKey
     state.readonly = user.readonly
+    state.otbEnabled = user.otbEnabled
+  },
+
+  SET_OTP_ENABLED(state, value: boolean) {
+    state.otbEnabled = value
   },
 }
 
@@ -47,6 +54,7 @@ export const actions: ActionTree<UserState, UserState> = {
     commit('SET_USER', {
       id: user.getId(),
       readonly: user.getReadonly(),
+      otbEnabled: user.getOtpEnabled(),
       aedKey,
       privKey,
       pubKey,
@@ -81,6 +89,19 @@ export const actions: ActionTree<UserState, UserState> = {
       oldIdentity: opts.oldIdentity,
       privKeyEnc: await this.$ver.aedEncrypt(aedKey, privKey8, pubKey8),
     }))
+  },
+
+  async DISABLE_OTP({commit}) {
+    await this.$adapter.otpDisable()
+    commit('SET_OTP_ENABLED', false)
+  },
+
+  async ENABLE_OTP({commit}, opts: EnableOtpOpts) {
+    await this.$adapter.otpEnable(MapOtpEnable({
+      identity: opts.identity,
+      passcode: opts.passcode
+    }))
+    commit('SET_OTP_ENABLED', true)
   }
 }
 
@@ -101,4 +122,10 @@ export interface IUser {
   aedKey: CryptoKey
   privKey: CryptoKey
   pubKey: CryptoKey
+  otbEnabled: boolean
+}
+
+export interface EnableOtpOpts {
+  identity: string
+  passcode: string
 }

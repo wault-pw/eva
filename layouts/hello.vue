@@ -1,6 +1,7 @@
 <template>
   <div>
     <StatusThrobberBus/>
+    <DialogBus/>
 
     <div
       :class="{'hello-spa': $setup.spa, 'hello-mpa': $setup.mpa}"
@@ -20,8 +21,9 @@
 import Vue from 'vue'
 import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue"
 import HelloFooter from "~/components/Shared/HelloFooter.vue"
+import DialogBus from "~/components/Shared/DialogBus.vue"
 
 export default Vue.extend({
-  components: {HelloFooter, StatusThrobberBus}
+  components: {HelloFooter, StatusThrobberBus, DialogBus}
 })
 </script>

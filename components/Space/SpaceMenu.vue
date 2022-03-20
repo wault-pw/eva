@@ -17,10 +17,21 @@
       <li :class="{active: panel === 'passphrase'}">
         <i/>
         <a
-          href="#"
+          href="javascript:"
           v-text="$tc('menu.passphrase')"
           data-cy="passphrase"
           @click.prevent="onPassphrase"
+        />
+        <i/>
+      </li>
+
+      <li :class="{active: panel === 'mfa'}">
+        <i/>
+        <a
+          href="javascript:"
+          v-text="'MFA'"
+          data-cy="mfa"
+          @click.prevent="onMfa"
         />
         <i/>
       </li>
@@ -92,7 +103,7 @@
         v-text="$tc('ui.delete')"
         href="javascript:;"
         data-cy="termination"
-        @click="onTerminateHtmlClick"
+        @click.prevent="onTerminate"
       />
     </div>
   </aside>
@@ -102,6 +113,7 @@
 import Vue from "vue"
 import {
   PANEL_EXPORT,
+  PANEL_MFA,
   PANEL_PASSPHRASE,
   PANEL_TERMINATION
 } from "~/pages/workspaces/_id.vue"
@@ -141,8 +153,11 @@ export default Vue.extend({
       this.$emit('update:panel', PANEL_PASSPHRASE)
     },
 
-    onTerminateHtmlClick(e: any) {
-      if (e.target.closest("a") == null) return
+    onMfa() {
+      this.$emit('update:panel', PANEL_MFA)
+    },
+
+    onTerminate() {
       this.$emit('update:panel', PANEL_TERMINATION)
     },
   }

@@ -63,6 +63,7 @@
 
       <transition name="space-panel-transition">
         <SpacePanelExport v-if="panel === 'export'" @close="menuShown = false"/>
+        <SpacePanelMfa v-if="panel === 'mfa'" :readonly="readonly" @close="menuShown = false"/>
         <SpacePanelPassphrase v-if="panel === 'passphrase'" :readonly="readonly" @close="menuShown = false"/>
         <SpacePanelTermination v-if="panel === 'termination'" :readonly="readonly" @close="menuShown = false"/>
       </transition>
@@ -81,8 +82,9 @@ import SpaceCard from "~/components/Space/SpaceCard.vue"
 import SpaceMenu from "~/components/Space/SpaceMenu.vue"
 import StatusThrobberBus from "~/components/Shared/StatusThrobberBus.vue"
 import SpacePanelExport from "~/components/SpacePanel/SpacePanelExport.vue"
-import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue";
-import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue";
+import SpacePanelPassphrase from "~/components/SpacePanel/SpacePanelPassphrase.vue"
+import SpacePanelTermination from "~/components/SpacePanel/SpacePanelTermination.vue"
+import SpacePanelMfa from "~/components/SpacePanel/SpacePanelMfa.vue"
 import {IWorkspace} from "~/store/WORKSPACE"
 import {ICard, CardLoadAllOpts, BlankCard} from "~/store/CARD"
 import _filter from "lodash/filter"
@@ -92,13 +94,14 @@ import {ICardItem, NewCardItem} from "~/store/CARD_ITEM";
 export const PANEL_EXPORT = "export"
 export const PANEL_PASSPHRASE = "passphrase"
 export const PANEL_TERMINATION = "termination"
+export const PANEL_MFA = "mfa"
 
 interface IData {
   leftShown: boolean
   menuShown: boolean
   edit: Array<ICardItem> | null
   archived: boolean
-  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | null
+  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | typeof PANEL_MFA | null
   activeCard: ICard | null
   activeTag: string | null
 }
@@ -115,6 +118,7 @@ export default Vue.extend({
     SpacePanelTermination,
     SpacePanelPassphrase,
     SpacePanelExport,
+    SpacePanelMfa,
     StatusThrobberBus, SpaceMenu, SpaceCard, SpaceForm, DialogBus, SpaceRight, SpaceHeader, SpaceLeft
   },
 

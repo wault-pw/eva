@@ -19,7 +19,12 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse,
+  WhoAmIResponse,
+  UpdateCredentialsRequest,
+  UpdateCredentialsResponse,
+  LoginOtpRequest,
+  LoginOtpResponse,
+  OtpIssueResponse, OtpEnableRequest,
 } from "~/desc/alice_v1_pb"
 
 export class AdapterSpa implements IAdapter {
@@ -55,7 +60,28 @@ export class AdapterSpa implements IAdapter {
     return <any>null
   }
 
+  @unavailable
+  async otp(req: LoginOtpRequest): Promise<LoginOtpResponse> {
+    return <any>null
+  }
+
+  @unavailable
+  async otpIssue(): Promise<OtpIssueResponse> {
+    return <any>null
+  }
+
+  @unavailable
+  async otpEnable(req: OtpEnableRequest) {
+    return <any>null
+  }
+
+  @unavailable
+  async otpDisable() {
+    return <any>null
+  }
+
   async logout() {
+    // just do nothing
   }
 
   async whoami(): Promise<WhoAmIResponse> {

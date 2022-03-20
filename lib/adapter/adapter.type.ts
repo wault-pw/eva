@@ -17,7 +17,13 @@ import {
   Login1Response,
   RegistrationRequest,
   TerminateRequest,
-  WhoAmIResponse, UpdateCredentialsRequest, UpdateCredentialsResponse
+  OtpIssueResponse,
+  WhoAmIResponse,
+  UpdateCredentialsRequest,
+  UpdateCredentialsResponse,
+  LoginOtpRequest,
+  LoginOtpResponse,
+  OtpEnableRequest
 } from "~/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -30,6 +36,14 @@ export interface IAdapter {
   auth0(req: Login0Request): Promise<Login0Response>
 
   auth1(req: Login1Request): Promise<Login1Response>
+
+  otp(req: LoginOtpRequest): Promise<LoginOtpResponse>
+
+  otpIssue(): Promise<OtpIssueResponse>
+
+  otpEnable(req: OtpEnableRequest): Promise<void>
+
+  otpDisable(): Promise<void>
 
   whoami(): Promise<WhoAmIResponse>
 

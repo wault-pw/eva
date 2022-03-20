@@ -285,6 +285,46 @@ export namespace Login1Response {
   }
 }
 
+export class LoginOtpRequest extends jspb.Message {
+  getPasscode(): string;
+  setPasscode(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LoginOtpRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LoginOtpRequest): LoginOtpRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LoginOtpRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LoginOtpRequest;
+  static deserializeBinaryFromReader(message: LoginOtpRequest, reader: jspb.BinaryReader): LoginOtpRequest;
+}
+
+export namespace LoginOtpRequest {
+  export type AsObject = {
+    passcode: string,
+  }
+}
+
+export class LoginOtpResponse extends jspb.Message {
+  getRequired(): boolean;
+  setRequired(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LoginOtpResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: LoginOtpResponse): LoginOtpResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LoginOtpResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LoginOtpResponse;
+  static deserializeBinaryFromReader(message: LoginOtpResponse, reader: jspb.BinaryReader): LoginOtpResponse;
+}
+
+export namespace LoginOtpResponse {
+  export type AsObject = {
+    required: boolean,
+  }
+}
+
 export class CreateWorkspaceRequest extends jspb.Message {
   getAedKeyEnc(): Uint8Array | string;
   getAedKeyEnc_asU8(): Uint8Array;
@@ -479,6 +519,9 @@ export class PrivUser extends jspb.Message {
   getPubKey_asB64(): string;
   setPubKey(value: Uint8Array | string): void;
 
+  getOtpEnabled(): boolean;
+  setOtpEnabled(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PrivUser.AsObject;
   static toObject(includeInstance: boolean, msg: PrivUser): PrivUser.AsObject;
@@ -496,6 +539,7 @@ export namespace PrivUser {
     passwdSalt: Uint8Array | string,
     privKeyEnc: Uint8Array | string,
     pubKey: Uint8Array | string,
+    otpEnabled: boolean,
   }
 }
 
@@ -866,6 +910,54 @@ export class UpdateCredentialsResponse extends jspb.Message {
 export namespace UpdateCredentialsResponse {
   export type AsObject = {
     user?: PrivUser.AsObject,
+  }
+}
+
+export class OtpIssueResponse extends jspb.Message {
+  getSecret(): string;
+  setSecret(value: string): void;
+
+  getUrl(): string;
+  setUrl(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OtpIssueResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: OtpIssueResponse): OtpIssueResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OtpIssueResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OtpIssueResponse;
+  static deserializeBinaryFromReader(message: OtpIssueResponse, reader: jspb.BinaryReader): OtpIssueResponse;
+}
+
+export namespace OtpIssueResponse {
+  export type AsObject = {
+    secret: string,
+    url: string,
+  }
+}
+
+export class OtpEnableRequest extends jspb.Message {
+  getIdentity(): string;
+  setIdentity(value: string): void;
+
+  getPasscode(): string;
+  setPasscode(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): OtpEnableRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: OtpEnableRequest): OtpEnableRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: OtpEnableRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): OtpEnableRequest;
+  static deserializeBinaryFromReader(message: OtpEnableRequest, reader: jspb.BinaryReader): OtpEnableRequest;
+}
+
+export namespace OtpEnableRequest {
+  export type AsObject = {
+    identity: string,
+    passcode: string,
   }
 }
 

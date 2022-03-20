@@ -81,6 +81,7 @@
 import Vue from 'vue'
 import {Login0Request, Login0Response, Login1Request, Login1Response} from "~/desc/alice_v1_pb";
 import {WhoAmIParam} from '~/store/USER';
+import {MapLoginOtp} from "~/lib/domain_v1/otp";
 
 export default Vue.extend({
   layout: "hello",
@@ -104,6 +105,7 @@ export default Vue.extend({
       try {
         const [username, password] = await this.$ver.credentials(this.username, this.password)
         await this.submit(username, password)
+        await this.otp()
         await this.whoami(password)
         await this.$router.push(this.$urn.workspaces())
       } catch (e) {
@@ -142,6 +144,16 @@ export default Vue.extend({
       req.setProof(proof)
       return await this.$adapter.auth1(req)
     },
+
+    async otp() {
+      let res = await this.$adapter.otp(MapLoginOtp(null))
+      if (!res.getRequired()) return
+
+      const passcode = await this.$dialog.prompt({text: this.$i18n.tc("user.otpPasscode"), placeholder: this.$i18n.tc("user.otpDigits")})
+      res = await this.$adapter.otp(MapLoginOtp(passcode))
+
+      if (res.getRequired()) await this.otp()
+    }
   },
 
   head() {

@@ -55,6 +55,14 @@ message Login1Response {
   bytes proof = 1;
 }
 
+message LoginOtpRequest {
+  string passcode = 1;
+}
+
+message LoginOtpResponse {
+  bool required = 1;
+}
+
 message CreateWorkspaceRequest {
   bytes aed_key_enc = 1;
   bytes aed_key_tag = 2;
@@ -92,6 +100,7 @@ message PrivUser {
   bytes passwd_salt = 3;
   bytes priv_key_enc = 4;
   bytes pub_key = 5;
+  bool otp_enabled = 6;
 }
 
 message WhoAmIResponse {
@@ -165,4 +174,14 @@ message UpdateCredentialsRequest {
 
 message UpdateCredentialsResponse {
   PrivUser user = 1;
+}
+
+message OtpIssueResponse {
+  string secret = 1;
+  string url = 2;
+}
+
+message OtpEnableRequest {
+  string identity = 1;
+  string passcode = 2;
 }

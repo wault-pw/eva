@@ -80,6 +80,7 @@
         <a
           href="javascript:"
           v-text="$tc('menu.logout')"
+          data-cy="logout"
           @click.prevent="logout"
         />
         <i/>

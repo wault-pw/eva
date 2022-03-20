@@ -6,4 +6,6 @@
   right: 0;
   overflow: auto;
   z-index: 1;
+  // fix height: 100vh on iOS with open keyboard
+  height: -webkit-stretch;
 }

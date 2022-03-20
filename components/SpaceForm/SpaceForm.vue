@@ -1,10 +1,11 @@
 <template>
   <div class="space-main-wrapper">
-    <form class="space-main space-form">
+    <form name="card" class="space-main space-form">
       <p class="mb-0">
         <input
           v-model="title"
           :placeholder="$tc('spaceForm.title').toLowerCase()"
+          data-cy="title"
           type="text"
           class="form-control form-control-lg space-form-title"
           style="font-size: 2rem"
@@ -42,6 +43,7 @@
       <div class="space-form-footer">
         <button
           :disabled="readonly"
+          data-cy="save"
           class="btn btn-success"
           v-text="$tc('ui.save')"
           @click.prevent="submit"

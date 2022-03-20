@@ -18,6 +18,7 @@
     <li slot="footer" class="input-tag-li">
       <input
         :size="size"
+        data-cy="tag"
         ref="input"
         type="text"
         :placeholder="placeholder"

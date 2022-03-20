@@ -1,8 +1,10 @@
 <template>
-  <aside class="space-right" @scroll="onScroll">
+  <aside class="space-right" data-cy="right" @scroll="onScroll">
     <a
       :style="{transform: `translateY(${buttonOffset}px)`}"
-      class="space-right-add" href="#"
+      href="javascript:"
+      data-cy="add"
+      class="space-right-add"
       v-text="'+'"
       @click.prevent="$emit('add')"
     />

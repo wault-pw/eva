@@ -1,5 +1,5 @@
 <template>
-  <div class="space-main-wrapper">
+  <div data-cy="card" class="space-main-wrapper">
     <StatusThrobber
       :absolute="true"
       ref="throbber"

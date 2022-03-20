@@ -76,10 +76,6 @@ export default {
     workspaces: "Воркспейсы",
   },
 
-  spaceMenu: {
-    terminateHtml: `<a href="javascript:">Удалить</a>`
-  },
-
   spaceForm: {
     title: "Название",
     label: "Лейбл",

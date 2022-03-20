@@ -9,7 +9,7 @@
       @after-leave="onHidden"
     >
       <div v-if="shown" class="dialog-wrapper">
-        <div ref="box" tabindex="-1" class="dialog-box" @keydown.esc="dismiss">
+        <aside ref="box" tabindex="-1" class="dialog-box" data-cy="dialog" @keydown.esc="dismiss">
           <form @submit.prevent="approve">
             <p v-html="text" class="fw-bold mb-2" />
 
@@ -38,6 +38,7 @@
 
               <button
                 :disabled="disabled"
+                data-cy="yes"
                 type="submit"
                 class="btn btn-lg btn-dark"
               >
@@ -45,7 +46,7 @@
               </button>
             </div>
           </form>
-        </div>
+        </aside>
       </div>
     </transition>
   </div>

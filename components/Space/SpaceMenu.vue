@@ -85,11 +85,14 @@
       </li>
     </ul>
 
-    <div
-      v-html="$tc('spaceMenu.terminateHtml')"
-      class="space-aside-footer mt-auto pt-3"
-      @click="onTerminateHtmlClick"
-    />
+    <div class="space-aside-footer mt-auto pt-3">
+      <a
+        v-text="$tc('ui.delete')"
+        href="javascript:;"
+        data-cy="termination"
+        @click="onTerminateHtmlClick"
+      />
+    </div>
   </aside>
 </template>
 

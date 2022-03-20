@@ -20,6 +20,7 @@
               <input
                 v-model="username"
                 :placeholder="$tc('user.username').toLowerCase()"
+                data-cy=username
                 autocapitalize="none"
                 class="form-control form-control-lg"
                 type="text"

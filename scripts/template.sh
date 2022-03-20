@@ -19,6 +19,7 @@ termsPage=${TERMS_PAGE:-null}
 privacyPage=${PRIVACY_PAGE:-null}
 aboutPage=${ABOUT_PAGE:-null}
 email=${EMAIL:-null}
+description=${DESCRIPTION}
 
 if [ "$mode" = "spa" ]; then
   spa="true"
@@ -40,6 +41,7 @@ $SED -i \
 -e 's|:ABOUT_PAGE:|$aboutPage|g' \
 -e 's|:LOCALE:|$locale|g' \
 -e 's|:EMAIL:|$email|g' \
+-e 's|:DESCRIPTION:|$description|g' \
 -e 's|spa:!1|spa:$spa|g' \
 -e 's|mpa:!0|mpa:$mpa|g' \
 $file \

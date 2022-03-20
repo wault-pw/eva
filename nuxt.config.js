@@ -25,7 +25,7 @@ export default {
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
-      {hid: 'description', name: 'description', content: ''},
+      {hid: 'description', name: 'description', content: ':DESCRIPTION:'},
       {name: 'format-detection', content: 'telephone=no'},
       {name: "msapplication-TileColor", content: "#ff9900"},
       {name: "theme-color", content: "#ff9900"},

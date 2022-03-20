@@ -1927,6 +1927,14 @@
     "@wault-pw/srp6a-webcrypto" "^1.0.0"
     jsbn "^1.1.0"
 
+"@wault-pw/srp6a-webcrypto@1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@wault-pw/srp6a-webcrypto/-/srp6a-webcrypto-1.0.8.tgz#c866357142a479f7f327f540749d98ef42f5e351"
+  integrity sha512-iqGHaby+zbdJq+gzxUOuc0NqTL3/2vtLa0Mr4oq8OmwO/ULyjW8mTHqFwJhEVUP+a4O0Z8Wa3/CZUwM6XHmMHg==
+  dependencies:
+    "@wault-pw/srp6a-webcrypto" "1.0.7"
+    big-integer "^1.6.51"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -2432,6 +2440,11 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+big-integer@^1.6.51:
+  version "1.6.51"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
+  integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
 big.js@^5.2.2:
   version "5.2.2"

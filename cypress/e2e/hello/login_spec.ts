@@ -9,7 +9,7 @@ describe("login", () => {
     })
 
     it("redirects to workspace", () => {
-      cy.get("aside[data-cy=left]").should("contain", DEFAULT_WORKSPACE)
+      cy.get("aside[data-cy=left]").should("contain.text", DEFAULT_WORKSPACE)
     })
   })
 })

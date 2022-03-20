@@ -13,7 +13,7 @@
 
       <div class="card shadow">
         <div class="card-body">
-          <form @submit.prevent="submit">
+          <form name="workspace" @submit.prevent="submit">
             <fieldset :disabled="loading">
               <p class="mb-2">
                 <input

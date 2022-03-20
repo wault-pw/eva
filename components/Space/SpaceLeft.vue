@@ -41,6 +41,7 @@
 
         <a
           v-if="!readonly"
+          data-cy="delete"
           href="javascript:"
           class="icon-trash space-nav-icon-hidden"
           @click.prevent="destroy(item)"

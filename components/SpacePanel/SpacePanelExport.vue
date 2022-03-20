@@ -12,8 +12,9 @@
           <p>
             <a
               :disabled="$setup.spa"
-              href="javascript:"
               v-text="$tc('export.button')"
+              href="javascript:"
+              data-cy="download"
               class="btn btn-accent btn-lg"
               @click.prevent="backup"/>
           </p>

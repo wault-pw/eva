@@ -38,8 +38,9 @@
       <li :class="{active: panel === 'export'}">
         <i/>
         <a
-          href="#"
+          href="javascript:"
           v-text="$tc('menu.export')"
+          data-cy="export"
           @click.prevent="onExport"
         />
         <i/>

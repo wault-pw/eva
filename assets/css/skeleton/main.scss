@@ -1,11 +1,20 @@
+html, body {
+  // 100% used here instead of 100vh
+  // to fix height on iOS
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+}
+
 #main {
-  position: fixed;
+  position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   right: 0;
   overflow: auto;
   z-index: 1;
-  // fix height: 100vh on iOS with open keyboard
-  height: -webkit-stretch;
 }

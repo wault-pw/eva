@@ -3,6 +3,7 @@ export const DEFAULT_WORKSPACE = "персональный"
 export interface CredentialOpts {
   username?: string | null
   password?: string | null
+  passcode?: string
 }
 
 export async function Register(opts: CredentialOpts): Promise<void> {
@@ -43,6 +44,12 @@ export async function LoginAs(opts: CredentialOpts) {
   cy.get('@form').find('input[type=text]').type(username)
   cy.get('@form').find('input[type=password]').type(password)
   cy.get('@form').find('button[type=submit]').click()
+
+  if (opts.passcode) {
+    cy.get('aside[data-cy=dialog]').as('dialog')
+    cy.get('@dialog').find('input').type(opts.passcode)
+    cy.get('@dialog').find('button[data-cy=yes]').click()
+  }
 }
 
 export function Truncate() {

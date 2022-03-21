@@ -20,6 +20,7 @@
               <input
                 v-model="value"
                 :placeholder="placeholder"
+                autofocus
                 autocapitalize="none"
                 type="text"
                 class="form-control form-control-lg"

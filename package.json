@@ -1,7 +1,8 @@
 {
   "name": "eva",
   "version": "1.0.0",
-  "private": true,
+  "author": "Wault OÜ <alex.shilov.by@gmail.com>",
+  "license": "AGPL-3.0",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

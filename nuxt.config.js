@@ -3,6 +3,7 @@ const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
 const LOCALE = process.env.LOCALE || 'ru'
+const DESCRIPTION = process.env.DESCRIPTION || ':DESCRIPTION:'
 const VER666 = !!process.env.VER666
 
 const STATUS_PAGE = process.env.STATUS_PAGE || 'http://example.com'
@@ -20,12 +21,12 @@ export default {
     title: '',
     titleTemplate: (titleChunk) => titleChunk ? `${titleChunk} ✲ Wault Cloud` : 'Wault Cloud',
     htmlAttrs: {
-      lang: 'en'
+      lang: LOCALE,
     },
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
-      {hid: 'description', name: 'description', content: ':DESCRIPTION:'},
+      {hid: 'description', name: 'description', content: DESCRIPTION},
       {name: 'format-detection', content: 'telephone=no'},
       {name: "msapplication-TileColor", content: "#ff9900"},
       {name: "theme-color", content: "#ff9900"},

@@ -33,7 +33,7 @@ export default {
       {name: "msapplication-TileImage", content: "/favicon-144.png"},
     ],
     link: [
-      {rel: "shortcut icon", href: "/favicon.ico", type: "image/x-icon"},
+      {rel: "icon", href: "/favicon.ico", type: "image/x-icon"},
       {rel: "apple-touch-icon", href: "/apple-touch-icon.png"},
       {rel: "apple-touch-icon", sizes: "57x57", href: "/apple-touch-icon-57x57.png"},
       {rel: "apple-touch-icon", sizes: "72x72", href: "/apple-touch-icon-72x72.png"},

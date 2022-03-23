@@ -38,7 +38,7 @@ import {MapRegistrationUser} from "~/lib/domain_v1/user"
 import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace'
 import {MapRegistrationCard, MapRegistrationCardItem} from "~/lib/domain_v1/card"
 import {TextEncode} from '~/lib/cryptos/util'
-import {ISeed, Russian} from "~/lib/seeds"
+import {ISeed, Russian, English} from "~/lib/seeds"
 import JoinForm from "~/components/Join/JoinForm.vue"
 
 export default Vue.extend({
@@ -69,6 +69,17 @@ export default Vue.extend({
       } finally {
         this.loading = false
         this.$throbber.hide()
+      }
+    },
+
+    seed(locale: string): ISeed {
+      switch (locale) {
+        case "ru":
+          return Russian
+        case "en":
+          return English
+        default:
+          throw `unkown seed for <${locale}>`
       }
     },
 
@@ -112,7 +123,7 @@ export default Vue.extend({
         pubKey: pub8,
       }))
 
-      const seed: ISeed = Russian
+      const seed: ISeed = this.seed(this.$i18n.locale)
 
       req.setWorkspace(MapRegistrationWorkspace({
         aedKeyEnc: wKey8Enc,

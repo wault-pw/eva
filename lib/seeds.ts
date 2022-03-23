@@ -19,6 +19,147 @@ export interface ISeed {
   cards: Array<ICard>
 }
 
+export const English: ISeed = {
+  workspace: {
+    title: "personal",
+  },
+  cards: [
+    {
+      title: "Credit card (sample)",
+      tag: "finance",
+      items: [
+        {
+          title: "Card number",
+          body: "4147 2666 1074 7732"
+        },
+        {
+          title: "Cardholder name",
+          body: "ALEX WAULT"
+        },
+        {
+          title: "Bank",
+          body: "Citi"
+        },
+        {
+          title: "Website",
+          body: "https://www.citi.com",
+        },
+        {
+          title: "CVV2",
+          body: "853",
+          hidden: true,
+        },
+        {
+          title: "PIN",
+          body: "2744",
+          hidden: true,
+        },
+        {
+          title: "Valid through",
+          body: "06/25",
+        },
+        {
+          title: "Password",
+          body: "]Gj2ss{+Grg$fBbg}#E})5Re8G",
+          hidden: true
+        }
+      ]
+    },
+    {
+      title: "Deposit account (sample)",
+      tag: "finance",
+      items: [
+        {
+          title: "User ID",
+          body: "76238784",
+        },
+        {
+          title: "Password",
+          body: "?)E%[9=GcgzaAftgP[LSEK7JJv",
+          hidden: true,
+        },
+        {
+          title: "Account",
+          body: "https://connect.secure.wellsfargo.com",
+        },
+        {
+          title: "BIC",
+          body: "WFBIUS6WFFX",
+        },
+        {
+          title: "SWIFT",
+          body: "WFBIUS6WFFX",
+        },
+        {
+          title: "Bank account",
+          body: "36310481",
+        },
+      ]
+    },
+    {
+      title: "bitcoin (sample)",
+      tag: "finance",
+      items: [
+        {
+          title: "Address",
+          body: "1Q7u3cnwo4tAQoBixPSrS5C39E6VaMHWKb",
+        },
+        {
+          title: "Private key [HEX]",
+          body: "2ce5820302fd6d8cf756e436484b76fcba11d5664e7bbc643b1bc29994b6bfe5",
+          hidden: true
+        }
+      ]
+    },
+    {
+      title: "Gmail (sample)",
+      tag: "social",
+      items: [
+        {
+          title: "Address",
+          body: "a.wault@gmail.com",
+        },
+        {
+          title: "Password",
+          body: "]Gj2ss{+Grg$fBbg}#E})5Re8G",
+          hidden: true
+        },
+        {
+          title: "SMTP",
+          body: "smtp.gmail.com:465",
+        },
+        {
+          title: "IMAP",
+          body: "imap.gmail.com:993",
+        }
+      ]
+    },
+    {
+      title: "Passport (sample)",
+      tag: "documents",
+      items: [
+        {
+          title: "Issued by",
+          body: "British Embassy in Berlin"
+        },
+        {
+          title: "Number",
+          body: "83A4568HL25-66",
+          hidden: true,
+        },
+        {
+          title: "Issue date",
+          body: "2022/06/16",
+        },
+        {
+          title: "Expiry date",
+          body: "2045/06/16",
+        },
+      ]
+    }
+  ]
+}
+
 export const Russian: ISeed = {
   workspace: {
     title: "персональный",

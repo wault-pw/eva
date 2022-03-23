@@ -2,6 +2,8 @@
 
 [![Test](https://github.com/wault-pw/eva/actions/workflows/ci.yml/badge.svg)](https://github.com/wault-pw/eva/actions/workflows/ci.yml)
 
+![Wault password manager](/docs/screenshot.png)
+
 ```bash
 docker run \
 -e ALICE_URL=http://localhost:8080 \

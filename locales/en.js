@@ -24,7 +24,7 @@ export default {
   },
 
   menu: {
-    join: "Create an account",
+    join: "Join.Us",
     login: "Login",
     demo: "Demo",
     features: "Features",

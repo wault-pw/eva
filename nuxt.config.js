@@ -2,7 +2,7 @@ const VERSION = process.env.VERSION || '0.1'
 const ALICE_URL = process.env.ALICE_URL || 'http://localhost:8080'
 const DEMO_USERNAME = process.env.DEMO_USERNAME || 'demo'
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'demo'
-const LOCALE = process.env.LOCALE || 'ru'
+const LOCALE = process.env.LOCALE || 'en'
 const DESCRIPTION = process.env.DESCRIPTION || ':DESCRIPTION:'
 const VER666 = !!process.env.VER666
 

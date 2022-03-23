@@ -40,7 +40,7 @@ export default {
   },
 
   hello: {
-    h2: "Free anonymous password manager with e2e encryption and open code_"
+    h2: "Free, open source and anonymous password manager with e2e encryption_"
   },
 
   join: {

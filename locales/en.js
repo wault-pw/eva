@@ -1,94 +1,135 @@
 export default {
   ui: {
-    username: "Username",
-    passphrase: "Passphrase",
-    login: "Login",
+    loading: "Loading",
+    login: "Log in",
     tag: "Tag",
-    register: "Register",
     or: "Or",
-    failed: "Failed",
+    failed: "Failure",
     yes: "Yes",
     no: "No",
     edit: "Edit",
-    clone: "Clone",
+    toClone: "Clone",
+    copied: "Copied",
+    copy: "Copy",
     delete: "Delete",
     archive: "Archive",
     restore: "Restore",
     save: "Save",
-    cancel: "Cancel",
+    cancel: "Close",
     all: "All",
+    notes: "Notes",
+    create: "Create",
+    turnOn: "Enable",
+    turnOff: "Disable",
   },
 
   menu: {
-    join: "join.oka",
-    login: "login.oka",
+    join: "Create an account",
+    login: "Login",
     demo: "Demo",
-    about: "About",
+    features: "Features",
     privacy: "Privacy",
-    terms: "Terms of service",
+    terms: "Terms of use",
     issues: "Issues",
-    status: "Status page",
-    passphrase: "Passphrase",
+    status: "Status",
+    passphrase: "Password",
     export: "Export",
     import: "Import",
-    logout: "Logout",
-    preferences: "Preferences",
+    logout: "Log out",
+    preferences: "Settings",
   },
 
   hello: {
-    h2: "Free, anonymous, E2E encrypted and open sourced credential manager_"
+    h2: "Free anonymous password manager with e2e encryption and open code_"
   },
 
   join: {
-    h1: "Join.Oka",
-    title: "Join OKA cloud",
-    step1: "Generating SRP keys",
-    step2: "Generating master key",
-    step3: "GENERATING PUBLIC KEY PAIR",
-    step4: "Transfer",
+    h1: "Account",
+    title: "Sign up",
+    step1: "Generation of SRP keys",
+    step2: "Generation of master keys",
+    step3: "Generation of RSA keys",
   },
 
   joinForm: {
-    step0: "Choose your credentials",
-    step1: "Verify your passphrase",
-    step2: "Check our terms of service",
-    check0: `I understand that OKA is <i>unable</i> to recover a lost passphrase`,
-    check1: `I have read and agreed to the <a target="_blank" href="{url}">Terms of Service</a>.`,
+    step0: "Enter your credentials",
+    step1: "Confirm your password",
+    step2: "Familiarize yourself with the rules of the service",
+    check0: `I understand that <i>Wault</i> cannot restore the lost password `,
+    check1: `I’ve read and I agree with <a target="_blank" href="{url}"> the rules of the service </a>.`,
   },
 
   login: {
-    h1: "Sign.In",
-    title: "Sign in to OKA cloud",
+    h1: "Login",
+    title: "Login",
     auth0: "SRP#0",
     auth1: "SRP#1"
   },
 
   spa: {
-    title: "Sign in to OKA backup"
+    title: "Wault Offline Copy"
   },
 
   space: {
-    titleTemplate: "%s · workspace",
+    titleTemplate: "%s ✲ workspace",
   },
 
   spaceLeft: {
     workspaces: "Workspaces",
   },
 
+  spaceForm: {
+    title: "Title",
+    label: "Label",
+    value: "Value",
+  },
+
   export: {
-    h2: "Export",
-    h3: "Offline copy",
-    p1: "Download a read-only portable version of OKA. Very convenient when no Internet connection is available.",
-    p2: "An offline copy is just a single HTML file that contains both the whole OKA web application and your encrypted data, except file attachments.",
-    p3: "It is as secure as the hosted OKA service since they both share the same code and security architecture.",
-    button: "Download offline copy",
+    h1: "Offline copy",
+    p1: "Download the offline copy of your Wault account. It’s very convenient when you don’t have access to the Internet.",
+    p2: "The offline copy is just a single HTML file that contains both the entire Wault web application and all your encrypted data.",
+    p3: "The copy is as secure as the Wault cloud service, because it uses the same code and encryption architecture.",
+    button: "Download",
   },
 
   termination: {
-    h2: "Delete Account",
-    p1: "Please make sure you have downloaded the latest backup before deleting your account.",
-    check: "All my data will be permanently deleted. I understand that this action cannot be undone or canceled.",
-    button: "Terminate"
+    h1: "Delete account",
+    p1: "Make sure that you downloaded the latest offline copy of your account before deleting the account.",
+    check: "ВAll my data will be irretrievably deleted. I understand that this action cannot be undone.",
+    button: "Delete forever"
+  },
+
+  mfa: {
+    h1: "Two Factor Authentication",
+    p1: "Turn on more reliable account protection - attackers will not be able to access it, even if they find out the password. When this feature is enabled, two components are used to sign in: a password and a one-time code.",
+    p2: "For the second authentication step, we recommend using the Authy app or Google Authenticator.",
+  },
+
+  mfaEnable: {
+    p1Html: `Scan the QR code in the multi-factor authentication app, or add the secret manually: <span data-cy="secret" class="text-break text-white">{secret}</span>`,
+    p2: "Keep the secret in a safe place, if you lose your phone, access to your account will become impossible.",
+    check: "I understand that I will lose access to my account if the second factor is lost",
+  },
+
+  workspaceList: {
+    h1: "Workspace",
+    p1: "Create your first workspace for password, account data, and notes management"
+  },
+
+  dialog: {
+    deleteCard: "Delete?",
+    archiveCard: "Archive?",
+    deleteWorkspaceHtml: "To delete workspace,<br>enter its title",
+    renameWorkspace: "Rename workspace",
+    createWorkspace: "Create workspace",
+    areYouSure: "Are you sure?",
+    disableMfa: "Disable MFA?"
+  },
+
+  panelPassphrase: {
+    h1: "Change password",
+    p1: " Change your password from time to time, it's basic security.",
+    check: "I understand that Wault can’t restore my lost password"
   },
 
   /**
@@ -96,6 +137,22 @@ export default {
    */
   card: {
     tags: "Tags",
-    archived: "Archived"
+    archived: "Archive"
+  },
+
+  workspace: {
+    title: "Title"
+  },
+
+  user: {
+    oldUsername: "Old username",
+    newUsername: "New username",
+    newPassword: "New password",
+    username: "Username",
+    password: "Password",
+    confirmPassword: "Confirm the password",
+    otpPasscode: "One-Time Password",
+    otpDigits: "6 numbers",
   }
 }
+

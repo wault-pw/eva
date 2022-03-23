@@ -95,7 +95,7 @@ export default {
   termination: {
     h1: "Delete account",
     p1: "Make sure that you downloaded the latest offline copy of your account before deleting the account.",
-    check: "ВAll my data will be irretrievably deleted. I understand that this action cannot be undone.",
+    check: "All my data will be irretrievably deleted. I understand that this action cannot be undone.",
     button: "Delete forever"
   },
 

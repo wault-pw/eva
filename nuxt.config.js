@@ -72,6 +72,7 @@ export default {
   },
 
   plugins: [
+    '@/plugins/toast',
     '@/plugins/setup',
     '@/plugins/ver',
     '@/plugins/urn',

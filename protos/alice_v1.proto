@@ -4,6 +4,15 @@ package alice_v1;
 
 option go_package = "desc/alice_v1";
 
+message ValidationError {
+  message Item {
+    string field = 1;
+    string description = 2;
+  }
+
+  repeated Item items = 1;
+}
+
 message RegistrationRequest {
   message User {
     int32 ver = 1;

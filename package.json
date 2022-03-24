@@ -40,6 +40,7 @@
     "qrcode.vue": "1.7",
     "ts-protoc-gen": "^0.15.0",
     "uuid": "^8.3.2",
+    "vue-toast-notification": "0.6.2",
     "vuedraggable": "^2.24.3",
     "vuex-module-decorators": "^2.0.0",
     "webpack": "^4.46.0",

@@ -3,6 +3,52 @@
 
 import * as jspb from "google-protobuf";
 
+export class ValidationError extends jspb.Message {
+  clearItemsList(): void;
+  getItemsList(): Array<ValidationError.Item>;
+  setItemsList(value: Array<ValidationError.Item>): void;
+  addItems(value?: ValidationError.Item, index?: number): ValidationError.Item;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ValidationError.AsObject;
+  static toObject(includeInstance: boolean, msg: ValidationError): ValidationError.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ValidationError, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ValidationError;
+  static deserializeBinaryFromReader(message: ValidationError, reader: jspb.BinaryReader): ValidationError;
+}
+
+export namespace ValidationError {
+  export type AsObject = {
+    itemsList: Array<ValidationError.Item.AsObject>,
+  }
+
+  export class Item extends jspb.Message {
+    getField(): string;
+    setField(value: string): void;
+
+    getDescription(): string;
+    setDescription(value: string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      field: string,
+      description: string,
+    }
+  }
+}
+
 export class RegistrationRequest extends jspb.Message {
   hasUser(): boolean;
   clearUser(): void;

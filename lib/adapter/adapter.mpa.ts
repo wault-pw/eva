@@ -24,15 +24,19 @@ import {
   UpdateCredentialsResponse,
   LoginOtpRequest,
   LoginOtpResponse,
-  OtpIssueResponse, OtpEnableRequest,
+  OtpIssueResponse, OtpEnableRequest, ValidationError,
 } from "~/desc/alice_v1_pb"
-import {Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios";
+import {AxiosError, Method as AxiosMethod, ResponseType as AxiosResponseType} from "axios"
+import {ToastApi} from "~/plugins/toast"
+import {BASE_422_ERR_FIELD} from "~/lib/const"
 
 export class AdapterMpa implements IAdapter {
   private readonly $axios: NuxtAxiosInstance
+  private readonly $toast: ToastApi
 
-  constructor($axios: NuxtAxiosInstance) {
+  constructor($axios: NuxtAxiosInstance, $toast: ToastApi) {
     this.$axios = $axios
+    this.$toast = $toast
   }
 
   async init(): Promise<void> {
@@ -158,8 +162,24 @@ export class AdapterMpa implements IAdapter {
       opts.data = Buffer.from(req.serializeBinary())
     }
 
-    const answer = await this.$axios(opts)
-    return new Uint8Array(answer.data)
+    try {
+      const answer = await this.$axios(opts)
+      return new Uint8Array(answer.data)
+    } catch (e: any) {
+      if (e?.response) this.handleErr(e as AxiosError)
+      throw(e)
+    }
+  }
+
+  private handleErr(e: AxiosError) {
+    switch (e.response?.status) {
+      case 422:
+        const items = ValidationError.deserializeBinary(e.response?.data).getItemsList()
+        if (!items.length) return
+        const field = items[0].getField()
+        const description = items[0].getDescription()
+        this.$toast.open(field == BASE_422_ERR_FIELD ? description : `${field}: ${description}`)
+    }
   }
 }
 

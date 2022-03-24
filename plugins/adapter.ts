@@ -27,7 +27,7 @@ declare module 'vuex/types/index' {
 
 const plugin: Plugin = (context, inject) => {
   if (context.$setup.mpa) {
-    inject('adapter', new AdapterMpa(context.$axios))
+    inject('adapter', new AdapterMpa(context.$axios, context.$toast))
   } else {
     inject('adapter', new AdapterSpa("__DUMP__"))
   }

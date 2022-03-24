@@ -28,3 +28,5 @@ Then run eva with unsecure (but fast) encryption scheme and run cypress tests
 VER666=1 yarn dev
 make test:e2e
 ```
+
+<a href="https://www.producthunt.com/posts/encrypted-anonymous-password-manager?utm_source=badge-review&utm_medium=badge&utm_souce=badge-encrypted&#0045;anonymous&#0045;password&#0045;manager#discussion-body" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=337572&theme=light" alt="Encrypted&#0032;&#0038;&#0032;Anonymous&#0032;password&#0032;manager - SRP6a&#0044;&#0032;ARS&#0044;&#0032;Encryption&#0044;&#0032;RSA | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>

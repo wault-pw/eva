@@ -300,3 +300,140 @@ export const Russian: ISeed = {
     }
   ]
 }
+
+export const Chinese: ISeed = {
+  workspace: {
+    title: "个人的",
+  },
+  cards: [
+    {
+      title: "信用卡（示例）",
+      tag: "金融",
+      items: [
+        {
+          title: "卡号",
+          body: "4147 2666 1074 7732"
+        },
+        {
+          title: "持卡人",
+          body: "WAN LI"
+        },
+        {
+          title: "银行",
+          body: "Citi"
+        },
+        {
+          title: "网站",
+          body: "https://www.citibank.com.cn",
+        },
+        {
+          title: "CVV2",
+          body: "853",
+          hidden: true,
+        },
+        {
+          title: "PIN",
+          body: "2744",
+          hidden: true,
+        },
+        {
+          title: "有效性",
+          body: "06/25",
+        },
+        {
+          title: "密码",
+          body: "]Gj2ss{+Grg$fBbg}#E})5Re8G",
+          hidden: true
+        }
+      ]
+    },
+    {
+      title: "银行存款（示例）",
+      tag: "金融",
+      items: [
+        {
+          title: "User ID",
+          body: "76238784",
+        },
+        {
+          title: "密码",
+          body: "?)E%[9=GcgzaAftgP[LSEK7JJv",
+          hidden: true,
+        },
+        {
+          title: "网站",
+          body: "https://www.citibank.com.cn",
+        },
+        {
+          title: "SWIFT",
+          body: "CITICNSXGCG",
+        },
+        {
+          title: "银行账户",
+          body: "36310481",
+        },
+      ]
+    },
+    {
+      title: "比特币（示例）",
+      tag: "金融",
+      items: [
+        {
+          title: "地址",
+          body: "1Q7u3cnwo4tAQoBixPSrS5C39E6VaMHWKb",
+        },
+        {
+          title: "私钥 [十六进制]",
+          body: "2ce5820302fd6d8cf756e436484b76fcba11d5664e7bbc643b1bc29994b6bfe5",
+          hidden: true
+        }
+      ]
+    },
+    {
+      title: "Gmail（示例）",
+      tag: "社会的",
+      items: [
+        {
+          title: "地址",
+          body: "wan.li@gmail.com",
+        },
+        {
+          title: "密码",
+          body: "]Gj2ss{+Grg$fBbg}#E})5Re8G",
+          hidden: true
+        },
+        {
+          title: "SMTP",
+          body: "smtp.gmail.com:465",
+        },
+        {
+          title: "IMAP",
+          body: "imap.gmail.com:993",
+        }
+      ]
+    },
+    {
+      title: "护照（示例）",
+      tag: "文件",
+      items: [
+        {
+          title: "由...发出",
+          body: "英国驻柏林大使馆"
+        },
+        {
+          title: "护照ID",
+          body: "83A4568HL25-66",
+          hidden: true,
+        },
+        {
+          title: "签发日期",
+          body: "2022/06/16",
+        },
+        {
+          title: "到期日",
+          body: "2045/06/16",
+        },
+      ]
+    }
+  ]
+}

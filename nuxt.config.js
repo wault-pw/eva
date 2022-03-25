@@ -104,6 +104,7 @@ export default {
     locales: [
       {code: 'en', iso: 'en-US', file: 'en.js', dir: 'ltr'},
       {code: 'ru', iso: 'ru-RU', file: 'ru.js', dir: 'ltr'},
+      {code: 'zh', iso: 'zh-CN', file: 'zh.js', dir: 'ltr'},
     ],
     strategy: 'no_prefix',
     langDir: 'locales/',

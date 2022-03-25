@@ -38,7 +38,7 @@ import {MapRegistrationUser} from "~/lib/domain_v1/user"
 import {MapRegistrationWorkspace} from '~/lib/domain_v1/workspace'
 import {MapRegistrationCard, MapRegistrationCardItem} from "~/lib/domain_v1/card"
 import {TextEncode} from '~/lib/cryptos/util'
-import {ISeed, Russian, English} from "~/lib/seeds"
+import {ISeed, Russian, English, Chinese} from "~/lib/seeds"
 import JoinForm from "~/components/Join/JoinForm.vue"
 
 export default Vue.extend({
@@ -78,6 +78,8 @@ export default Vue.extend({
           return Russian
         case "en":
           return English
+        case "zh":
+          return Chinese
         default:
           throw `unkown seed for <${locale}>`
       }

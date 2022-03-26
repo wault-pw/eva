@@ -21,6 +21,7 @@ export default {
     create: "Создать",
     turnOn: "Включить",
     turnOff: "Выключить",
+    search: "Поиск"
   },
 
   menu: {

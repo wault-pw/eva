@@ -21,6 +21,7 @@ export default {
     create: "创建",
     turnOn: "开启",
     turnOff: "关闭",
+    search: "搜索"
   },
 
   menu: {

@@ -6,8 +6,17 @@
         class="space-header-nav-a x-hidden-lg-up"
         @click.prevent="$emit('update:left', !left)"
       >
-        <i class="icon-tags" />
+        <i class="icon-tags"/>
       </a>
+
+      <input
+        v-model="value"
+        :size="size"
+        :placeholder="$tc('ui.search')"
+        autofocus
+        type="text"
+        class="space-header-input x-hidden-lg-down me-2"
+      />
     </nav>
 
     <div
@@ -28,7 +37,7 @@
         data-cy="menu"
         @click.prevent="$emit('update:menu', !menu)"
       >
-        <i class="icon-menu" />
+        <i class="icon-menu"/>
       </a>
     </nav>
   </header>
@@ -53,6 +62,27 @@ export default Vue.extend({
       type: String,
       required: false,
       default: null
+    },
+
+    query: {
+      type: String,
+      required: true,
+    }
+  },
+
+  computed: {
+    value: {
+      get(): string {
+        return this.query
+      },
+
+      set(value: string) {
+        this.$emit('update:query', value)
+      },
+    },
+
+    size(): number {
+      return this.value === "" ? this.$i18n.tc('ui.search').length : this.value.length
     }
   }
 })

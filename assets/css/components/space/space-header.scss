@@ -41,3 +41,26 @@
     color: rgba($component-active-color, .8);
   }
 }
+
+.space-header-input {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  transition: background-color .2s;
+  padding: 0 $grid-gutter-width/2;
+  color: #FFF;
+  max-width: 50vw;
+
+  &:hover {
+    background: rgba(#FFF, .1);
+  }
+
+  &:focus {
+    background: rgba(#FFF, .2);
+  }
+
+  &::placeholder {
+    color: rgba(#FFF, .5);
+  }
+}

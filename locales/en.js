@@ -21,6 +21,7 @@ export default {
     create: "Create",
     turnOn: "Enable",
     turnOff: "Disable",
+    search: "Search"
   },
 
   menu: {

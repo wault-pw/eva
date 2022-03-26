@@ -18,6 +18,7 @@
 
       <SpaceHeader
         :title="headerTitle"
+        :query.sync="query"
         :left.sync="leftShown"
         :menu.sync="menuShown"
       />
@@ -99,6 +100,7 @@ export const PANEL_MFA = "mfa"
 interface IData {
   leftShown: boolean
   menuShown: boolean
+  query: string
   edit: Array<ICardItem> | null
   archived: boolean
   panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | typeof PANEL_MFA | null
@@ -132,6 +134,7 @@ export default Vue.extend({
     return {
       leftShown: false,
       menuShown: false,
+      query: "",
       edit: null,
       archived: false,
       activeCard: null,
@@ -174,14 +177,24 @@ export default Vue.extend({
 
     cards(): Array<ICard> {
       const cards = this.$store.state.CARD.list
+      let filtered: Array<ICard> = []
 
       if (this.archived) {
-        return _filter(cards, {archived: true})
+        filtered = _filter(cards, {archived: true})
       } else if (this.activeTag == null) {
-        return _filter(cards, {archived: false})
+        filtered = _filter(cards, {archived: false})
       } else {
-        return _filter(cards, (card) => !card.archived && isTagged(card, this.activeTag))
+        filtered = _filter(cards, (card) => !card.archived && isTagged(card, this.activeTag))
       }
+
+      if (this.query !== "") {
+        const query = this.query.toLowerCase()
+        filtered = _filter(filtered, (card) => {
+          return card.title.toLowerCase().search(query) >= 0
+        })
+      }
+
+      return filtered
     }
   },
 

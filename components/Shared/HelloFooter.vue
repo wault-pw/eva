@@ -1,11 +1,11 @@
 <template>
   <footer>
     <ul class="hello-footer-links pt-2 pb-1">
-      <li v-if="$setup.aboutPage">
+      <li v-if="$setup.securityPage">
         <a
-          :href="$setup.aboutPage"
+          :href="$setup.securityPage"
           target="_blank"
-          v-text="$tc('menu.features')"
+          v-text="$tc('menu.security')"
         />
       </li>
 

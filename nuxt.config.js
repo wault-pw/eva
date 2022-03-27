@@ -9,7 +9,8 @@ const VER666 = !!process.env.VER666
 const STATUS_PAGE = process.env.STATUS_PAGE || 'http://example.com'
 const TERMS_PAGE = process.env.TERMS_PAGE || 'http://example.com'
 const PRIVACY_PAGE = process.env.PRIVACY_PAGE || 'http://example.com'
-const ABOUT_PAGE = process.env.ABOUT_PAGE || 'http://example.com'
+const FEATURE_PAGE = process.env.FEATURE_PAGE || 'http://example.com'
+const SECURITY_PAGE = process.env.SECURITY_PAGE || 'http://example.com'
 const EMAIL = process.env.EMAIL || 'support@example.com'
 
 export default {
@@ -65,7 +66,8 @@ export default {
     statusPage: STATUS_PAGE,
     termsPage: TERMS_PAGE,
     privacyPage: PRIVACY_PAGE,
-    aboutPage: ABOUT_PAGE,
+    featurePage: FEATURE_PAGE,
+    securityPage: SECURITY_PAGE,
     axios: {
       browserBaseURL: ALICE_URL
     },

@@ -38,6 +38,7 @@ export default {
     import: "进口",
     logout: "退出",
     preferences: "设置",
+    security: "安全"
   },
 
   hello: {

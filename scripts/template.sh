@@ -17,7 +17,8 @@ aliceUrl=${ALICE_URL:-null}
 statusPage=${STATUS_PAGE:-null}
 termsPage=${TERMS_PAGE:-null}
 privacyPage=${PRIVACY_PAGE:-null}
-aboutPage=${ABOUT_PAGE:-null}
+featurePage=${FEATURE_PAGE:-null}
+securityPage=${SECURITY_PAGE:-null}
 email=${EMAIL:-null}
 description=${DESCRIPTION}
 
@@ -38,7 +39,8 @@ $SED -i \
 -e 's|:STATUS_PAGE:|$statusPage|g' \
 -e 's|:TERMS_PAGE:|$termsPage|g' \
 -e 's|:PRIVACY_PAGE:|$privacyPage|g' \
--e 's|:ABOUT_PAGE:|$aboutPage|g' \
+-e 's|:FEATURE_PAGE:|$featurePage|g' \
+-e 's|:SECURITY_PAGE:|$securityPage|g' \
 -e 's|:LOCALE:|$locale|g' \
 -e 's|:EMAIL:|$email|g' \
 -e 's|:DESCRIPTION:|$description|g' \

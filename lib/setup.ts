@@ -51,8 +51,12 @@ export class Setup {
     return this.$config.privacyPage
   }
 
-  get aboutPage(): string | null {
-    return this.$config.aboutPage
+  get featurePage(): string | null {
+    return this.$config.featurePage
+  }
+
+  get securityPage(): string | null {
+    return this.$config.securityPage
   }
 
   get ver666(): boolean {

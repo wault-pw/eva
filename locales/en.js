@@ -38,6 +38,7 @@ export default {
     import: "Import",
     logout: "Log out",
     preferences: "Settings",
+    security: "Security"
   },
 
   hello: {

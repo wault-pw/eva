@@ -48,7 +48,7 @@
   box-shadow: none;
   border: none;
   transition: background-color .2s;
-  padding: 0 $grid-gutter-width/2;
+  padding: 0 calc($grid-gutter-width/2);
   color: #FFF;
   max-width: 50vw;
 

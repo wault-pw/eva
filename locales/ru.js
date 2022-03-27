@@ -38,6 +38,7 @@ export default {
     import: "Импорт",
     logout: "Выйти",
     preferences: "Настройки",
+    security: "Безопасность"
   },
 
   hello: {

@@ -61,12 +61,22 @@
     <hr class="space-nav-hr">
 
     <ul class="space-nav mb-0">
-      <li v-if="$setup.aboutPage">
+      <li v-if="$setup.featurePage">
         <i/>
         <a
-          :href="$setup.aboutPage"
+          :href="$setup.featurePage"
           target="_blank"
           v-text="$tc('menu.features')"
+        />
+        <i/>
+      </li>
+
+      <li v-if="$setup.securityPage">
+        <i/>
+        <a
+          :href="$setup.securityPage"
+          target="_blank"
+          v-text="$tc('menu.security')"
         />
         <i/>
       </li>

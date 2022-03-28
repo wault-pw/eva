@@ -18,7 +18,7 @@
     </div>
 
     <div
-      :class="[`x-scale-${scale}`, {'x-pointer': ableToCopy}]"
+      :class="[`x-scale-${scale}`, {'x-pointer': ableToCopy, 'text-primary': isLink}]"
       class="space-item-body"
       v-text="value"
       @click.prevent="copy"

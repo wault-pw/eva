@@ -161,6 +161,18 @@
       "css": "copy",
       "code": 59414,
       "src": "typicons"
+    },
+    {
+      "uid": "e35de5ea31cd56970498e33efbcb8e36",
+      "css": "link-ext-alt",
+      "code": 61772,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "6a12c2b74456ea21cc984e11dec227a1",
+      "css": "globe",
+      "code": 59415,
+      "src": "entypo"
     }
   ]
 }

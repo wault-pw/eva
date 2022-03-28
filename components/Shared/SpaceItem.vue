@@ -6,13 +6,19 @@
       <i
         v-if="eye"
         :class="{'icon-eye-off': !hidden, 'icon-eye': hidden}"
-        class="space-item-eye"
+        class="space-item-icon"
         @click.prevent="hidden = !hidden"
+      />
+
+      <i
+        v-else-if="isLink"
+        class="space-item-icon icon-link-ext-alt"
+        @click.prevent="open"
       />
     </div>
 
     <div
-      :class="[`x-scale-${scale}`, {'x-pointer': isCopy}]"
+      :class="[`x-scale-${scale}`, {'x-pointer': ableToCopy}]"
       class="space-item-body"
       v-text="value"
       @click.prevent="copy"
@@ -22,9 +28,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Mask } from '~/lib/mask'
+import {Mask} from '~/lib/mask'
 import {ICardItem} from "~/store/CARD_ITEM"
-import {TextScale} from "~/lib/scale";
+import {TextScale} from "~/lib/scale"
+import {MatchedNum, Matcher} from "~/lib/matcher"
 
 export default Vue.extend({
   props: {
@@ -52,17 +59,29 @@ export default Vue.extend({
     },
 
     // do not copy if a large scale
-    isCopy(): boolean {
+    ableToCopy(): boolean {
       return this.scale == 1
+    },
+
+    isLink(): boolean {
+      return this.matcher == MatchedNum.Link
+    },
+
+    matcher(): MatchedNum {
+      return Matcher(this.body)
     }
   },
 
   methods: {
     async copy() {
-      if (!this.isCopy) return
+      if (!this.ableToCopy) return
 
       await navigator.clipboard.writeText(this.item.body)
       this.$emit('copied')
+    },
+
+    open() {
+      window.open(this.body, '_blank')
     }
   }
 })

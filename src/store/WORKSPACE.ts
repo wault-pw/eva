@@ -5,6 +5,7 @@ import {UserWithWorkspace} from "@/desc/alice_v1_pb"
 import {MapCreateWorkspace, MapUpdateWorkspace} from "@/mapper_v1/workspace.mapper"
 import _find from "lodash/find"
 import _reject from "lodash/reject"
+import _sortBy from "lodash/sortBy"
 
 export const WORKSPACE_STORE = defineStore("WORKSPACE", {
     state(): IWorkspaceState {
@@ -21,6 +22,10 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
     },
 
     actions: {
+        SORT_LIST(list: Array<IWorkspace>): Array<IWorkspace> {
+            return _sortBy(list, 'title')
+        },
+
         async LOAD_ALL(user: IUser) {
             const res = await this.$adapter.listWorkspaces()
             const out = []
@@ -29,7 +34,7 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
                 out.push(await this.DECODE(user, item))
             }
 
-            this.list = out
+            this.list = this.SORT_LIST(out)
         },
 
         SET_ACTIVE_ID(id: string) {
@@ -44,8 +49,7 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
 
         REPLACE_IN_LIST(workspace: IWorkspace) {
             const list = _reject(this.list, {id: workspace.id})
-            // this.list = _sortBy([...list, workspace], 'title')
-            this.list = [...list, workspace]
+            this.list = this.SORT_LIST([...list, workspace])
         },
 
         async DECODE(user: IUser, item: UserWithWorkspace): Promise<IWorkspace> {
@@ -69,7 +73,7 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
             }))
 
             const workspace = await this.DECODE(user, res.getWorkspace()!)
-            this.list = [...this.list, workspace]
+            this.list = this.SORT_LIST([...this.list, workspace])
             return workspace
         },
 

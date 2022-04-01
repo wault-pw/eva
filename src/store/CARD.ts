@@ -4,6 +4,7 @@ import {Card, UpsertCardRequest} from "@/desc/alice_v1_pb"
 import {MapCloneCard} from "@/mapper_v1/card.mapper"
 import _reject from "lodash/reject"
 import _find from "lodash/find"
+import _sortBy from "lodash/sortBy"
 
 export const CARD_STORE = defineStore("CARD", {
     state(): ICardState {
@@ -24,8 +25,11 @@ export const CARD_STORE = defineStore("CARD", {
 
     actions: {
         ADD_TO_LIST(card: ICard) {
-            // state.list = _sortBy([...state.list, card], 'title')
-            this.list = [...this.list, card]
+            this.list = this.SORT_LIST([...this.list, card])
+        },
+
+        SORT_LIST(list: Array<ICard>): Array<ICard> {
+            return _sortBy(list, 'title')
         },
 
         CLEAR() {
@@ -43,8 +47,7 @@ export const CARD_STORE = defineStore("CARD", {
 
         REPLACE_IN_LIST(card: ICard) {
             const list = _reject(this.list, {id: card.id})
-            // state.list = _sortBy([...list, card], 'title')
-            this.list = [...list, card]
+            this.list = this.SORT_LIST([...list, card])
         },
 
         async LOAD_ALL(workspace: IWorkspace) {
@@ -55,7 +58,7 @@ export const CARD_STORE = defineStore("CARD", {
                 out.push(await this.DECODE(workspace, item))
             }
 
-            this.list = out
+            this.list = this.SORT_LIST(out)
         },
 
         async DECODE(workspace: IWorkspace, item: Card): Promise<ICard> {

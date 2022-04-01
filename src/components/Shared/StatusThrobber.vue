@@ -99,10 +99,6 @@ export default defineComponent({
       if (val) {
         // to prevent interface blocking with fast loading
         BACKDROP_TIMEOUT = setTimeout(() => this.backdrop = true, 400)
-      } else {
-        clearBackdropTimeout()
-        cleatHideTimeout()
-        cleatShowTimeout()
       }
     }
   },
@@ -143,6 +139,10 @@ export default defineComponent({
        * }
        */
       if (HIDE_TIMEOUT) return
+
+      clearBackdropTimeout()
+      cleatHideTimeout()
+      cleatShowTimeout()
 
       this.shown = false
       this.fired = false

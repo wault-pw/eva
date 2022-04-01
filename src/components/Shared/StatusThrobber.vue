@@ -43,8 +43,24 @@ interface IData {
   text: string | null
 }
 
-let HIDE_TIMEOUT: null | ReturnType<typeof setTimeout>
-let BACKDROP_TIMEOUT: null | ReturnType<typeof setTimeout>
+let SHOW_TIMEOUT: undefined | ReturnType<typeof setTimeout>
+let HIDE_TIMEOUT: undefined | ReturnType<typeof setTimeout>
+let BACKDROP_TIMEOUT: undefined | ReturnType<typeof setTimeout>
+
+function cleatShowTimeout() {
+  clearTimeout(SHOW_TIMEOUT)
+  SHOW_TIMEOUT = undefined
+}
+
+function cleatHideTimeout() {
+  clearTimeout(HIDE_TIMEOUT)
+  HIDE_TIMEOUT = undefined
+}
+
+function clearBackdropTimeout() {
+  clearTimeout(BACKDROP_TIMEOUT)
+  BACKDROP_TIMEOUT = undefined
+}
 
 export default defineComponent({
   components: {Throbber},
@@ -77,16 +93,20 @@ export default defineComponent({
       text: null,
     }
   },
+
   watch: {
     shown(val) {
       if (val) {
         // to prevent interface blocking with fast loading
         BACKDROP_TIMEOUT = setTimeout(() => this.backdrop = true, 400)
       } else {
-        BACKDROP_TIMEOUT && clearTimeout(BACKDROP_TIMEOUT)
+        clearBackdropTimeout()
+        cleatHideTimeout()
+        cleatShowTimeout()
       }
     }
   },
+
   methods: {
     shot(text: string) {
       this.text = text
@@ -94,14 +114,17 @@ export default defineComponent({
       HIDE_TIMEOUT = setTimeout(this.forceHide, 800)
     },
 
-    show(text: string) {
+    show(text: string, timeout?: number) {
       /**
        * sometimes show is lined up because of the animation and
        * "hide" function might be call in the middle of the queue.
        */
-      if (HIDE_TIMEOUT != null) return
-      this.text = text
-      this.shown = true
+      if (HIDE_TIMEOUT) return
+
+      SHOW_TIMEOUT = setTimeout(() => {
+        this.text = text
+        this.shown = true
+      }, timeout ?? 0)
     },
 
     hide() {
@@ -119,7 +142,8 @@ export default defineComponent({
        *   this.$throbber.hide()
        * }
        */
-      if (HIDE_TIMEOUT != null) return
+      if (HIDE_TIMEOUT) return
+
       this.shown = false
       this.fired = false
       this.backdrop = false
@@ -132,7 +156,8 @@ export default defineComponent({
     },
 
     forceHide() {
-      HIDE_TIMEOUT = null
+      cleatShowTimeout()
+      cleatHideTimeout()
       this.shown = false
       this.fired = false
       this.backdrop = false

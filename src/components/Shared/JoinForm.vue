@@ -30,7 +30,7 @@
         $>{{ $tc("joinForm.step1").toLowerCase() }}:
       </p>
 
-      <p>
+      <p class="mb-3">
         <input
             v-model="confirmation"
             :placeholder="$tc('user.password').toLowerCase()"

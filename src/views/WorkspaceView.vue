@@ -232,12 +232,13 @@ export default defineComponent({
 
     loadingBegin() {
       const throbber: any = this.$refs.throbber
-      throbber.show(this.$tc("ui.loading"))
+      // timeout to disable throbber blinking on card load
+      throbber.show(this.$tc("ui.loading"), 500)
     },
 
     loadingDone() {
       const throbber: any = this.$refs.throbber
-      throbber.hide()
+      throbber.forceHide()
     },
 
     shot(text: string) {

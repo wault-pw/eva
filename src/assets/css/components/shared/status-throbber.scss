@@ -75,7 +75,7 @@
 
 .status-throbber-box-transition-enter-active,
 .status-throbber-box-transition-leave-active {
-  transition: opacity .4s .1s ease, margin-top .3s .1s;
+  transition: opacity .4s ease, margin-top .3s;
 }
 
 /**

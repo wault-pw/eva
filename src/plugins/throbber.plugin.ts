@@ -3,7 +3,8 @@ import {IBus} from "@/plugins/bus.plugin"
 import {
     STATUS_THROBBER_SHOW,
     STATUS_THROBBER_ERROR,
-    STATUS_THROBBER_HIDE
+    STATUS_THROBBER_HIDE,
+    STATUS_THROBBER_FORCE_HIDE
 } from "@/components/Shared/StatusThrobberBus.vue"
 
 class Throbber {
@@ -13,8 +14,8 @@ class Throbber {
         this.$bus = bus
     }
 
-    show(message: string) {
-        this.$bus.emit(STATUS_THROBBER_SHOW, message)
+    show(message: string, timeout?: number) {
+        this.$bus.emit(STATUS_THROBBER_SHOW, {message, timeout})
     }
 
     error(message: string, error: any) {
@@ -23,6 +24,10 @@ class Throbber {
 
     hide() {
         this.$bus.emit(STATUS_THROBBER_HIDE)
+    }
+
+    forceHider() {
+        this.$bus.emit(STATUS_THROBBER_FORCE_HIDE)
     }
 }
 

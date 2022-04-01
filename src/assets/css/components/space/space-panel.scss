@@ -1,0 +1,62 @@
+.space-panel {
+  background: var(--gray-900);
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translateX(0);
+  opacity: 1;
+  max-width: calc(var(--space-panel-max-width) + var(--space-menu-width));
+  padding-right: calc(var(--space-menu-width) + var(--space-panel-ident-x));
+  padding-left: var(--space-panel-ident-x);
+  z-index: var(--space-z-panel);
+  transition: transform .6s;
+  overflow: auto;
+  color: var(--gray-400);
+
+  @include media-breakpoint-down(md) {
+    padding-left: var(--space-panel-ident-x);
+    padding-right: var(--space-panel-ident-x);
+    z-index: calc(var(--space-z-panel) * 2);
+  }
+}
+
+.space-panel-header {
+  height: var(--space-header-height);
+  position: sticky;
+  top: 0;
+}
+
+.space-panel-header-a {
+  width: var(--space-header-height);
+  height: var(--space-header-height);
+  padding-left: var(--grid-gap);
+  padding-right: var(--grid-gap);
+  color: var(--component-active);
+  text-shadow: var(--black) 1px 1px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--space-header-icon-size);
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.space-panel-body {
+  padding-left: var(--grid-gap);
+  padding-right: var(--grid-gap);
+}
+
+// space panel transition
+.space-panel-transition-enter-active, .space-panel-transition-leave-active {
+  transition: transform .3s, opacity .3s;
+}
+
+.space-panel-transition-enter-from,
+.space-panel-transition-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}

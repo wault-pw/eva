@@ -1,0 +1,26 @@
+html, body {
+  /**
+   * 100% used here instead of 100vh
+   */
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.54;
+  text-rendering: optimizeLegibility;
+  color: var(--color);
+}
+
+#main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  z-index: 1;
+}

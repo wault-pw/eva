@@ -1,0 +1,10 @@
+.space-form-footer {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+
+  button {
+    flex-grow: 1;
+  }
+}

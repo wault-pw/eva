@@ -1,0 +1,14 @@
+.x-fieldset{
+  border-top: 1px solid var(--border-color);
+  display: block;
+
+  legend {
+    float: initial;
+    color: var(--border-color);
+    width: auto;
+    padding: 0 1em;
+    line-height: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

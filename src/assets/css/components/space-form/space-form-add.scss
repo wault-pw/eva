@@ -1,0 +1,33 @@
+/**
+ * Add item
+ */
+.space-form-item-add {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  input, textarea {
+    pointer-events: none;
+  }
+
+  &:hover .space-form-item-add-button {
+    background-color: var(--success);
+  }
+}
+
+.space-form-item-add-button {
+  width: var(--space-form-item-add-button-size);
+  height: var(--space-form-item-add-button-size);
+  font-size: var(--space-form-item-add-button-size);
+  line-height: var(--space-form-item-add-button-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--border-color);
+  color: var(--white);
+}

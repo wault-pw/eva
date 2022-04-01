@@ -1,0 +1,68 @@
+.space-right {
+  grid-area: right;
+  position: relative;
+  display: grid;
+  grid-template-areas: "body";
+  grid-template-columns: 1fr;
+  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    border-right: 1px solid var(--border-color);
+  }
+}
+
+.space-right-add {
+  width: var(--spice-right-add-size);
+  height: var(--spice-right-add-size);
+  font-size: var(--spice-right-add-size);
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--component-active);
+  position: absolute;
+  bottom: var(--space-right-item-active-margin);
+  right: var(--space-right-item-active-margin);
+  transition: transform .3s ease-in-out;
+  box-shadow: 2px 8px 6px 0 rgb(0 0 0 / 20%);
+
+  &:hover {
+    color: var(--component-active);
+  }
+}
+
+.space-right-ul {
+  grid-area: body;
+  overflow: auto;
+}
+
+.space-right-li {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--primary);
+}
+
+.space-right-item {
+  background: var(--white);
+  padding: 15px var(--grid-gap);
+  padding-right: calc(var(--space-right-item-active-margin) + var(--gap));
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: margin .2s,
+  padding-right .2s,
+  //background-color $space-card-archived-dur,
+  //color $space-card-archived-dur;
+}
+
+.space-right-item.active {
+  margin-left: var(--space-right-item-active-margin);
+  padding-right: var(--grid-gap);
+}
+
+.space-right-item.archived {
+  background: var(--space-card-archived-bg);
+  color: var(--gray-500);
+}

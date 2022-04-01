@@ -1,0 +1,12 @@
+.hello-layout {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background-color: var(--accent);
+}
+
+.hello-layout-mpa {
+  background-image: url("~@/assets/img/hello/hero.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

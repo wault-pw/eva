@@ -1,0 +1,46 @@
+.space-main-wrapper {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative; // for the throbber inside
+  background: var(--white);
+
+  @include media-breakpoint-down(md) {
+    position: fixed;
+    overflow: auto;
+    height: 0;
+    width: 0;
+    z-index: -1000;
+
+    &.space-main-wrapper-force {
+      z-index: var(--space-z-overlay);
+      width: auto;
+      height: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+.space-main-wrapper-focused {
+  box-shadow: 0 0 80px rgb(0 0 0 / 30%);
+  z-index: calc(var(--space-z-overlay) + 1);
+}
+
+.space-main-throbber {
+  .status-throbber-backdrop, .status-throbber-box {
+    @include media-breakpoint-down(md) {
+      position: fixed;
+    }
+  }
+}
+
+.space-main {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}

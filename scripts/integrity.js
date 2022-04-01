@@ -13,7 +13,7 @@ const root = parser.parse(fs.readFileSync(file).toString());
     await rewrite(node, 'src')
   }
 
-  for (const node of root.querySelectorAll('link[rel=preload]')) {
+  for (const node of root.querySelectorAll('link[rel=stylesheet]')) {
     await rewrite(node, 'href')
   }
 
@@ -33,5 +33,5 @@ async function sha512(path) {
 }
 
 function Uint8ArrayToB64(input) {
-  return new Buffer(input).toString('base64')
+  return new Buffer.from(input).toString('base64')
 }

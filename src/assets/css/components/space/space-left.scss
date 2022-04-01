@@ -1,0 +1,20 @@
+.space-left {
+  grid-area: left;
+  background: var(--black);
+  z-index: var(--space-z-aside);
+  overflow: auto;
+
+  @include media-breakpoint-down(lg) {
+    width: var(--space-left-width);
+    position: fixed;
+    left: calc(var(--space-left-width) * -1);
+    top: 0;
+    bottom: 0;
+    transition: left var(--space-transition-time);
+    z-index: var(--space-z-overlay);
+
+    &.space-left-sown {
+      left: 0;
+    }
+  }
+}

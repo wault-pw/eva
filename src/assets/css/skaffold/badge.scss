@@ -1,0 +1,13 @@
+.badge {
+  border-radius: 50rem;
+  background: var(--primary);
+  color: var(--component-active);
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}

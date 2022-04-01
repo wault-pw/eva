@@ -1,0 +1,7 @@
+.space-card-body {
+  padding: var(--space-card-padding-x);
+}
+
+.space-card-body-archived {
+  background: linear-gradient(to bottom, var(--space-card-archived-bg), var(--white));
+}

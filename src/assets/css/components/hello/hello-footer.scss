@@ -1,0 +1,23 @@
+.hello-footer {
+  padding: 0 var(--grid-gap);
+  text-align: center;
+}
+
+
+.hello-footer-ul {
+  color: var(--white);
+
+  li {
+    display: inline;
+
+    &:not(:first-child):before {
+      display: inline-block;
+      content: "\00a0*\00a0";
+      color: var(--white);
+    }
+  }
+
+  a {
+    color: var(--white);
+  }
+}

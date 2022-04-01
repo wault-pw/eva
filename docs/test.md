@@ -1,5 +1,5 @@
 ## e2e locally
-How to run e2e test locally? First, run [backend](https://github.com/wault-pw/alice) 
+How to run e2e test locally? First, run [backend](https://github.com/wault-pw/alice)
 with `mount-cypress` option:
 
 ```bash

@@ -1,0 +1,71 @@
+$spaces: ("1": 0.3, "2": 0.9, "3": 1.4, "4": 1.8);
+
+@each $num, $factor in $spaces {
+  .pt-#{$num}, .py-#{$num} {
+    padding-top: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .pb-#{$num}, .py-#{$num} {
+    padding-bottom: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .pl-#{$num}, .px-#{$num} {
+    padding-left: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .pr-#{$num}, .px-#{$num} {
+    padding-right: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .mt-#{$num}, .my-#{$num} {
+    margin-top: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .mb-#{$num}, .my-#{$num} {
+    margin-bottom: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .ml-#{$num}, .mx-#{$num} {
+    margin-left: calc(var(--spacer) * #{$factor})!important;
+  }
+
+  .mr-#{$num}, .mx-#{$num} {
+    margin-right: calc(var(--spacer) * #{$factor})!important;
+  }
+}
+
+.mb-0 {
+  margin-bottom: 0!important;
+}
+
+.mb-auto {
+  margin-bottom: auto!important;
+}
+
+.mt-auto {
+  margin-top: auto!important;
+}
+
+.opacity-80 {
+  opacity: 0.8!important;
+}
+
+.opacity-25 {
+  opacity: .25!important;
+}
+
+.w-100 {
+  min-width: 100%!important;
+}
+
+.bordered {
+  border: 1px solid var(--border-color)!important;
+}
+
+.justify-content-end {
+  justify-content: flex-end!important;
+}
+
+.invisible {
+  visibility: hidden;
+}

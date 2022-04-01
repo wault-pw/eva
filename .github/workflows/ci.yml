@@ -6,12 +6,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
-          node-version: '17.7.2'
+          node-version: '17.8.0'
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
+
       - name: Cache node_modules
         uses: actions/cache@v2.1.4
         id: yarn-cache
@@ -20,8 +23,10 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install modules
         run: yarn install
+
       - name: Test
         run: make test:unit
 
@@ -54,12 +59,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
           node-version: '17.7.2'
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
+
       - name: Cache node_modules
         uses: actions/cache@v2.1.4
         id: yarn-cache
@@ -68,19 +76,24 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install modules
-        run: yarn install
+        run: yarn install --prefer-offline --frozen-lockfile
+
       - name: Generate
         env:
           VER666: true
           NODE_OPTIONS: --openssl-legacy-provider
         run: make generate:mpa
+
       - name: Run server
-        run: yarn start &
+        run: yarn serve &
+
       - name: Cypress
         uses: cypress-io/github-action@v2
         with:
           config-file: cypress.e2e.json
+
       - uses: actions/upload-artifact@v2
         if: failure()
         with:

@@ -1,0 +1,16 @@
+.space-menu {
+  background: #000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: var(--space-menu-width);
+  margin-right: calc(var(--space-menu-width) * -1);
+  transition: margin-right .4s;
+  z-index: var(--space-z-overlay);
+  overflow: auto;
+
+  &.space-menu-shown {
+    margin-right: 0;
+  }
+}

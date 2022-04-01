@@ -1,43 +1,46 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM",
-      "webworker"
-    ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
+    "module": "esnext",
     "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
     "baseUrl": ".",
+    "types": [
+      "webpack-env",
+      "@types/uuid",
+      "@types/lodash",
+      "@types/google-protobuf"
+    ],
     "paths": {
-      "~/*": [
-        "./*"
-      ],
       "@/*": [
-        "./*"
+        "src/*"
       ]
     },
-    "types": [
-      "@nuxt/types",
-      "@types/node",
-      "@nuxtjs/axios",
-      "@nuxtjs/i18n",
-      "@types/lodash",
-      "@types/google-protobuf",
-      "@types/uuid",
-      "vuex-module-decorators"
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost",
+      "ESNext",
+      "ESNext.AsyncIterable",
     ]
   },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
   "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
+    "node_modules"
   ]
 }

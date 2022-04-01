@@ -18,9 +18,8 @@ ENV PRIVACY_PAGE=":PRIVACY_PAGE:"
 ENV FEATURE_PAGE=":FEATURE_PAGE:"
 ENV SECURITY_PAGE=":SECURITY_PAGE:"
 ENV EMAIL=":EMAIL:"
-RUN yarn install && \
-    make generate:mpa generate:spa && \
-    rm -rf node_modules
+RUN yarn install --verbose --production=true --prefer-offline --frozen-lockfile
+RUN make generate:mpa generate:spa
 
 # nginx is used to serve pages
 FROM ${ISO} as iso

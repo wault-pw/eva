@@ -6,8 +6,8 @@ VERSION:=$(shell cat VERSION)
 proto:
 	protoc \
 		--plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" \
-		--js_out="import_style=commonjs,binary:desc" \
-		--ts_out="desc" \
+		--js_out="import_style=commonjs,binary:src/desc" \
+		--ts_out="src/desc" \
 		--proto_path=protos \
 		alice_v1.proto
 
@@ -17,14 +17,14 @@ test\:unit:
 test\:e2e:
 	yarn run test:e2e
 
-generate\:mpa:
-	rm -rf dist/*
-	yarn run generate
-	node ./scripts/integrity.js dist/index.html > dist/index0.html
-	mv dist/index0.html dist/index.html
-
 generate\:spa:
 	node ./scripts/spa.js dist/index.html > dist/backup.html
+
+generate\:mpa:
+	rm -rf dist/*
+	yarn build
+	node ./scripts/integrity.js dist/index.html > dist/index0.html
+	mv dist/index0.html dist/index.html
 
 tidy:
 	npx -y yarn-deduplicate

@@ -1,0 +1,31 @@
+.text-center {
+  text-align: center!important;
+}
+
+.text-uppercase {
+  text-transform: uppercase!important;
+}
+
+.text-lowercase {
+  text-transform: lowercase!important;
+}
+
+.text-break {
+  word-break: break-all!important;
+}
+
+.text-white {
+  color: var(--white)!important;
+}
+
+.text-end {
+  text-align: right!important;
+}
+
+.text-muted {
+  color: var(--color-muted)!important;
+}
+
+.text-primary {
+  color: var(--primary)!important;
+}

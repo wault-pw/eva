@@ -1,6 +1,0 @@
-// this will force chrome draw div focus
-// like safari (for dialog alert foe example)
-// instead of :focus-visible
-div:focus {
-  outline: $primary auto 5px;
-}

@@ -13,6 +13,7 @@ mode=$2
 spa=""
 mpa=""
 locale=${LOCALE:-en}
+cdnURL=$CDN_URL
 aliceUrl=${ALICE_URL:-null}
 statusPage=${STATUS_PAGE:-null}
 termsPage=${TERMS_PAGE:-null}
@@ -33,8 +34,8 @@ fi
 SED=$(command -v gsed || command -v sed)
 eval "
 $SED -i \
--e 's|src=\"/|src=\"$CDN_URL/|g' \
--e 's|rel=\"preload\" href=\"/|rel=\"preload\" href=\"$CDN_URL/|g' \
+-e 's|src=\"/|src=\"$cdnURL/|g' \
+-e 's|link href=\"/|link href=\"$cdnURL/|g' \
 -e 's|:ALICE_URL:|$aliceUrl|g' \
 -e 's|:STATUS_PAGE:|$statusPage|g' \
 -e 's|:TERMS_PAGE:|$termsPage|g' \

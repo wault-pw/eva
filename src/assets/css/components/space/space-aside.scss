@@ -1,0 +1,14 @@
+.space-aside {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-aside-footer {
+  color: var(--gray-600);
+  padding-left: var(--space-nav-ident-x);
+  padding-right: var(--space-nav-ident-x);
+
+  a {
+    color: var(--gray-500);
+  }
+}

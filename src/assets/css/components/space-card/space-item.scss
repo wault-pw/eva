@@ -1,0 +1,21 @@
+.space-item-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.space-item-title {
+  word-break: break-all;
+  display: block;
+}
+
+.space-item-icon {
+  cursor: pointer;
+  display: block;
+  align-self: start;
+}
+
+.space-item-body {
+  word-break: break-all;
+  white-space: pre-line;
+  font-size: var(--font-lg);
+}

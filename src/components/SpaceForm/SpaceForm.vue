@@ -111,11 +111,12 @@ export default defineComponent({
 
     async trySubmit() {
       this.$emit('loadingBegin')
-      await this.submit()
+      const card = await this.submit()
       this.$emit('loadingDone')
+      this.$emit("created", card)
     },
 
-    async submit() {
+    async submit(): Promise<ICard> {
       const items: Array<ICardItemEnc> = []
 
       for (const item of this.items) {
@@ -126,9 +127,9 @@ export default defineComponent({
       const card: ICardEnc = await CARD_STORE().ENCODE(this.workspace, <ICard>this.$data)
 
       if (this.id == "") {
-        this.$emit("created", await CARD_STORE().CREATE(this.workspace, MapUpsertCard(card, items)))
+        return await CARD_STORE().CREATE(this.workspace, MapUpsertCard(card, items))
       } else {
-        this.$emit("created", await CARD_STORE().UPDATE(this.workspace, card.id, MapUpsertCard(card, items)))
+        return await CARD_STORE().UPDATE(this.workspace, card.id, MapUpsertCard(card, items))
       }
     },
 

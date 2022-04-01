@@ -222,6 +222,9 @@ export default defineComponent({
     },
 
     newCard() {
+      // to hide throbber if user clicked on card,
+      // did not wait until loading done, and clicked on add button
+      this.loadingDone()
       this.activeCard = null
       this.edit = [
         NewCardItem(this.$tc("user.username")),

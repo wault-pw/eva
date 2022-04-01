@@ -86,6 +86,7 @@
           <li
               v-for="tag in card.tags"
               :key="tag"
+              class="d-inline-block mr-1"
           >
             <span class="badge" v-text="tag"/>
           </li>

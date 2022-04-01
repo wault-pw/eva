@@ -4,8 +4,8 @@
       <div class="card">
         <div class="card-body">
           <p
-              v-text="$tc('join.h2')"
-              class="text-center text-lowercase"
+              v-text="$tc('join.title')"
+              class="text-center mb-1"
           />
 
           <JoinForm

@@ -39,6 +39,8 @@
   font-weight: 500;
   line-height: 1.5;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: var(--black);
+  background: transparent;
 
   &:hover, &:focus {
     outline: 0;

@@ -1,4 +1,4 @@
-*[disabled=disabled], *[disabled=true], button[disabled] {
+*[disabled=disabled], *[disabled=true], button[disabled], a[disabled] {
   pointer-events: none!important;
   filter: grayscale(100%)!important;
 }

@@ -11,6 +11,7 @@ import busPlugin from "@/plugins/bus.plugin"
 import adapterPlugin from "@/plugins/adapter.plugin"
 import throbberPlugin from "@/plugins/throbber.plugin"
 import dialogPlugin from "@/plugins/dialog.plugin"
+import VueToast from 'vue-toast-notification'
 import en from "@/locales/en"
 import ru from "@/locales/ru"
 import zh from "@/locales/zh"
@@ -37,6 +38,7 @@ root = createApp(App)
     .use(verPlugin)
     .use(router)
     .use(adapterPlugin)
+    .use(VueToast)
     .use(i18n)
     .use(pinia)
     .mount('#app')

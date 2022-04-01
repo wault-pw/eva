@@ -5409,6 +5409,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
+vue-toast-notification@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue-toast-notification/-/vue-toast-notification-3.0.0.tgz#616d314051eafbdae93195718e13c56eb46d474c"
+  integrity sha512-qaC38T//mksVXzLRiK36LTypxouLMEnaQ1w8sLpiyJRFI6aVcVi3amGrz3hiODiYThy3v0F73ayQwwTtxSVF0A==
+
 vue@^3.2.13:
   version "3.2.31"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.31.tgz"

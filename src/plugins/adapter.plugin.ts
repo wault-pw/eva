@@ -21,7 +21,13 @@ const plugin: Plugin = {
         const setup: Setup = app.config.globalProperties.$setup
 
         if (setup.mpa) {
-            app.config.globalProperties.$adapter = new AdapterMpa(setup.aliceUrl)
+            const adapter = new AdapterMpa(setup.aliceUrl)
+            adapter.toast = function(text: string) {
+                // timeout is used to show tooltip after notification throbber
+                // had been disappeared
+                setTimeout(() => app._context.provides.$toast.default(text), 1800)
+            }
+            app.config.globalProperties.$adapter = adapter
         }
 
         if (setup.spa) {

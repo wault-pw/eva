@@ -81,31 +81,16 @@
 /**
  * text transition
  */
-//.status-throbber-text-transition-enter-to {
-//  animation: statusThrobberEnter 120ms both cubic-bezier(0.165, 0.84, 0.44, 1);
-//  z-index: 1;
-//}
-//
-//.status-throbber-text-transition-leave-to {
-//  animation: statusThrobberLeave 120ms both cubic-bezier(0.165, 0.84, 0.44, 1);
-//  z-index: 0;
-//}
-//
-//@keyframes statusThrobberEnter {
-//  from {
-//    transform: translateY(0);
-//  }
-//  to {
-//    opacity: 0;
-//    transform: translateY(5px);
-//  }
-//}
-//
-//@keyframes statusThrobberLeave {
-//  from {
-//    transform: translateY(5px);
-//  }
-//  to {
-//    transform: translateY(0);
-//  }
-//}
+.status-throbber-text-transition-enter-from {
+  transform: translateY(5px);
+  opacity: 0;
+}
+
+.status-throbber-text-transition-leave-to {
+  transform: translateY(-5px);
+  opacity: 0;
+}
+
+.status-throbber-text-transition-enter-active, .status-throbber-text-transition-leave-active {
+  transition: all .1s;
+}

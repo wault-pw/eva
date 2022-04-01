@@ -28,9 +28,13 @@ import {
 
 export default class AdapterMpa implements IAdapter {
     private readonly url: string
+    toast: (text: string) => void
 
     constructor(url: string) {
         this.url = url
+        this.toast = function(text: string) {
+            /**stub**/
+        }
     }
 
     async init(): Promise<void> {
@@ -155,10 +159,26 @@ export default class AdapterMpa implements IAdapter {
         })
 
         if (!response.ok) {
+            this.handleErr(response)
             throw Error(response.statusText)
         }
 
         return new Uint8Array(await response.arrayBuffer())
+    }
+
+    private async handleErr(response: Response) {
+        switch (response.status) {
+            case 422:
+                const bin = new Uint8Array(await response.arrayBuffer())
+                const items = ValidationError.deserializeBinary(bin).getItemsList()
+                if (!items.length) return
+                const field = items[0].getField()
+                const description = items[0].getDescription()
+                this.toast(field == "" ? description : `${field}: ${description}`)
+                break
+            default:
+                this.toast(response.statusText)
+        }
     }
 }
 

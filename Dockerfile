@@ -6,8 +6,6 @@ WORKDIR /app
 COPY . .
 
 ARG VERSION
-# fix for https://stackoverflow.com/questions/69394632/webpack-build-failing-with-err-ossl-evp-unsupported
-ENV NODE_OPTIONS=--openssl-legacy-provider
 ENV BUILD_DEPS make
 RUN apk add --update --no-cache $BUILD_DEPS
 ENV ALICE_URL=":ALICE_URL:"

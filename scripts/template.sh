@@ -45,7 +45,7 @@ $SED -i \
 -e 's|:LOCALE:|$locale|g' \
 -e 's|:EMAIL:|$email|g' \
 -e 's|:DESCRIPTION:|$description|g' \
--e 's|spa:!1|spa:$spa|g' \
--e 's|mpa:!0|mpa:$mpa|g' \
+-e 's|\"mpa\":true|\"mpa\":$mpa|g' \
+-e 's|\"spa\":false|\"spa\":$spa|g' \
 $file \
 "

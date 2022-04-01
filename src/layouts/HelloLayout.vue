@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'hello-layout-mpa': $setup.mpa}" id="main" class="hello-layout">
+  <div :class="{'hello-layout-mpa': $setup.mpa, 'hello-layout-spa': $setup.spa}" id="main" class="hello-layout">
     <div class="hello-body">
       <slot />
     </div>
@@ -14,6 +14,5 @@ import HelloFooter from "@/components/Shared/HelloFooter.vue"
 
 export default defineComponent({
   components: {HelloFooter},
-  setup() {}
 })
 </script>

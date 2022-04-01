@@ -26,5 +26,4 @@ root.querySelectorAll('script[src]').forEach((script) => {
   script.remove()
 })
 
-const html = root.toString()
-console.log(html.substring(0, html.indexOf("</body>")))
+console.log(root.toString())

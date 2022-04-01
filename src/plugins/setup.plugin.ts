@@ -2,7 +2,9 @@ import {Plugin} from "vue"
 import {Setup} from "@/lib/setup"
 
 declare global {
-    interface Window { __setup__: any; }
+    interface Window {
+        __setup__: any
+    }
 }
 
 declare module '@vue/runtime-core' {

@@ -15,7 +15,7 @@
   overflow: auto;
   color: var(--gray-400);
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     padding-left: var(--space-panel-ident-x);
     padding-right: var(--space-panel-ident-x);
     z-index: calc(var(--space-z-panel) * 2);

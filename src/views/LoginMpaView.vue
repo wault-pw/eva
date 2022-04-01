@@ -82,6 +82,10 @@ import {USER_STORE} from "@/store/USER"
 export default defineComponent({
   components: {HelloLayout},
 
+  beforeMount() {
+    if (!this.$setup.mpa) this.$router.push(this.$urn.spa())
+  },
+
   data() {
     return {
       username: "",

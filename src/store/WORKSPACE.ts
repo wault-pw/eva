@@ -23,8 +23,7 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
 
     actions: {
         CLEAR() {
-            this.list = []
-            this.active = NullWorkspace()
+            this.$reset()
         },
 
         SORT_LIST(list: Array<IWorkspace>): Array<IWorkspace> {

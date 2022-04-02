@@ -127,6 +127,7 @@ import {
   PANEL_TERMINATION,
   PANEL_MFA
 } from "@/views/WorkspaceView.vue"
+import { USER_STORE } from "@/store/USER"
 
 export default defineComponent({
   props: {
@@ -146,7 +147,7 @@ export default defineComponent({
     async logout() {
       try {
         this.$throbber.show(this.$tc("ui.loading"))
-        await this.$adapter.logout()
+        await USER_STORE().LOGOUT
         await this.$router.push(this.$urn.login())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)

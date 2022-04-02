@@ -96,6 +96,11 @@ export const USER_STORE = defineStore("USER", {
                 privKeyEnc: await this.$ver.aedEncrypt(aedKey, privKey8, pubKey8),
             }))
         },
+
+        async LOGOUT() {
+            await this.$adapter.logout()
+            this.$reset()
+        }
     },
 })
 

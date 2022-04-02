@@ -33,7 +33,7 @@ export const CARD_STORE = defineStore("CARD", {
         },
 
         CLEAR() {
-            this.list = []
+            this.$reset()
         },
 
         REMOVE_FROM_LIST(id: string) {

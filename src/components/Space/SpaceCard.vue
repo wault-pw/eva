@@ -81,7 +81,7 @@
 
         <ul
             v-if="card.tags.length"
-            class="mb-3"
+            class="mb-2"
         >
           <li
               v-for="tag in card.tags"
@@ -91,6 +91,8 @@
             <span class="badge" v-text="tag"/>
           </li>
         </ul>
+
+        <div class="mt-2"/>
 
         <SpaceItem
             v-for="item in items"

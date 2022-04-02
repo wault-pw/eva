@@ -22,6 +22,11 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
     },
 
     actions: {
+        CLEAR() {
+            this.list = []
+            this.active = NullWorkspace()
+        },
+
         SORT_LIST(list: Array<IWorkspace>): Array<IWorkspace> {
             return _sortBy(list, 'title')
         },

@@ -6,13 +6,13 @@
       <i
           v-if="eye"
           :class="{'icon-eye-off': !hidden, 'icon-eye': hidden}"
-          class="space-item-eye"
+          class="cursor-pointer"
           @click.prevent="hidden = !hidden"
       />
 
       <i
           v-else-if="isLink"
-          class="space-item-icon icon-link-ext-alt"
+          class="cursor-pointer icon-link-ext-alt"
           @click.prevent="open"
       />
     </div>

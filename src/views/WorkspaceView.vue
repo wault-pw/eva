@@ -136,6 +136,11 @@ export default defineComponent({
     next()
   },
 
+  async beforeUnmount() {
+    await CARD_STORE().CLEAR()
+    await WORKSPACE_STORE().CLEAR()
+  },
+
   async beforeRouteUpdate(to, from) {
     await BeforeRoute(from, to)
     this.activeCard = null

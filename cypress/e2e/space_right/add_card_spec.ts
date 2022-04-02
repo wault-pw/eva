@@ -15,7 +15,7 @@ describe("Add new card", () => {
     }
 
     it("it works", () => {
-        cy.get('a[data-cy=add]').click()
+        cy.get('button[data-cy=add]').click()
 
         cy.get('form[name=card]').as('form')
         cy.get('@form').find('input[data-cy=title]').type(card.title)

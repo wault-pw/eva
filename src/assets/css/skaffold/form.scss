@@ -44,7 +44,7 @@
 
   &:hover, &:focus {
     outline: 0;
-    //box-shadow: 0 0 0 .25rem rgba(49,52,142,.25)
+    filter: brightness(110%);
   }
 }
 

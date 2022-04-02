@@ -1,12 +1,12 @@
 <template>
   <aside class="space-right" data-cy="right">
-    <a
-        href="javascript:"
+    <button
         data-cy="add"
-        class="space-right-add"
-        v-text="'+'"
+        class="btn btn-primary space-right-add"
         @click.prevent="$emit('add')"
-    />
+    >
+      <i class="icon-plus" />
+    </button>
 
     <ul class="space-right-ul">
       <li

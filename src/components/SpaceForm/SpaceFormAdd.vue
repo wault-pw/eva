@@ -3,11 +3,12 @@
       class="space-form-item space-form-item-add"
       @click.prevent="$emit('add')"
   >
-    <div
-        class="space-form-item-add-button"
-        v-text="'+'"
+    <button
+        class="btn space-form-item-add-button"
         @click.prevent=""
-    />
+    >
+      <i class="icon-plus" />
+    </button>
 
     <div class="space-form-item-row">
       <i />

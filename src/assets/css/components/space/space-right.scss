@@ -14,14 +14,11 @@
 .space-right-add {
   width: var(--spice-right-add-size);
   height: var(--spice-right-add-size);
-  font-size: var(--spice-right-add-size);
-  line-height: 0;
+  font-size: var(--spice-right-add-font-size);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--primary);
-  color: var(--component-active);
   position: absolute;
   bottom: var(--space-right-item-active-margin);
   right: var(--space-right-item-active-margin);

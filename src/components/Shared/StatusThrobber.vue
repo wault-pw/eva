@@ -139,14 +139,7 @@ export default defineComponent({
        * }
        */
       if (HIDE_TIMEOUT) return
-
-      clearBackdropTimeout()
-      cleatHideTimeout()
-      cleatShowTimeout()
-
-      this.shown = false
-      this.fired = false
-      this.backdrop = false
+      this.forceHide()
     },
 
     error(text: string, error: any) {
@@ -156,6 +149,7 @@ export default defineComponent({
     },
 
     forceHide() {
+      clearBackdropTimeout()
       cleatShowTimeout()
       cleatHideTimeout()
       this.shown = false

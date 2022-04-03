@@ -147,7 +147,7 @@ export default defineComponent({
     async logout() {
       try {
         this.$throbber.show(this.$tc("ui.loading"))
-        await USER_STORE().LOGOUT
+        await USER_STORE().LOGOUT()
         await this.$router.push(this.$urn.login())
       } catch (e) {
         this.$throbber.error(this.$tc("ui.failed"), e)

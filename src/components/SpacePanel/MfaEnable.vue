@@ -1,7 +1,7 @@
 <template>
   <form v-if="url" @submit.prevent="submit">
     <p>
-      <QrcodeVue :value="url" :size="150"/>
+      <QrcodeVue :value="url" :size="150" render-as="svg" />
     </p>
 
     <p v-html="$t('mfaEnable.p1Html', { secret: secret })" />

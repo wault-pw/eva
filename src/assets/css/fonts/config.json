@@ -173,6 +173,12 @@
       "css": "globe",
       "code": 59415,
       "src": "entypo"
+    },
+    {
+      "uid": "fd45bb961d08f9f2092f0df3fba29fe9",
+      "css": "qrcode",
+      "code": 59416,
+      "src": "fontawesome"
     }
   ]
 }

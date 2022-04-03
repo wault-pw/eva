@@ -1,6 +1,7 @@
-.space-item-header {
+.space-item-header,
+.space-item-body {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 1.8rem;
 }
 
 .space-item-title {
@@ -17,5 +18,34 @@
 .space-item-body {
   word-break: break-all;
   white-space: pre-line;
+}
+
+.space-item-body-value {
   font-size: var(--font-lg);
+}
+
+/**
+ * Space item ico
+ */
+.space-item-ico {
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  color: var(--gray-600);
+}
+
+.space-item-ico-hidden {
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.space-item-ico-bottom {
+  display: block;
+  margin-top: 0.2em!important;
+}
+
+.space-item:hover {
+  .space-item-ico-hidden {
+    opacity: 1;
+  }
 }

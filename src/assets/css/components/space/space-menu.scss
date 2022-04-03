@@ -7,7 +7,7 @@
   width: var(--space-menu-width);
   margin-right: calc(var(--space-menu-width) * -1);
   transition: margin-right .4s;
-  z-index: var(--space-z-overlay);
+  z-index: var(--space-z-aside);
   overflow: auto;
 
   &.space-menu-shown {

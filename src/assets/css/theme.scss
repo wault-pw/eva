@@ -12,10 +12,12 @@
   --space-header-height: 50px;
   --space-header-icon-size: 1.3em;
   --space-nav-ident-x: 2rem;
-  --space-z-aside: 1;
-  --space-z-overlay: 5;
-  --space-z-backdrop: 3;
-  --space-z-panel: 4;
+  --space-z-card-header: 10;
+  --space-z-backdrop: 20;
+  --space-z-throbber: 30;
+  --space-z-overlay: 40;
+  --space-z-panel: 50;
+  --space-z-aside: 60;
   --space-transition-margin: 150px;
   --space-right-item-active-margin: 18px; // gap*2
   --space-card-padding-x: 35px;
@@ -30,6 +32,16 @@
   --space-form-item-row-ident-y: 10px;
   --space-panel-max-width: 450px;
   --space-panel-ident-x: 20px;
+
+  // popper
+  --popper-theme-background-color: #FFF;
+  --popper-theme-background-color-hover: #FFF;
+  //--popper-theme-text-color: #ffffff;
+  //--popper-theme-border-width: 0px;
+  //--popper-theme-border-style: solid;
+  //--popper-theme-border-radius: 0px;
+  --popper-theme-padding: 10px;
+  --popper-theme-box-shadow: rgba(0, 0, 0, .3) 0 0 3px;
 
   // colors
   --accent: #f90;

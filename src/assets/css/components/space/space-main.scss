@@ -33,6 +33,11 @@
 
 .space-main-throbber {
   .status-throbber-backdrop, .status-throbber-box {
+    @include media-breakpoint-up(md) {
+      // throbber should not overflow menu panel
+      z-index: var(--space-z-throbber)!important;
+    }
+
     @include media-breakpoint-down(md) {
       position: fixed;
     }

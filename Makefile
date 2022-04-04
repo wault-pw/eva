@@ -45,3 +45,6 @@ push\:bundle: export TAG=$(VERSION)
 push\:bundle:
 	docker push ${REGISTRY_NAME_BUNDLE}:${TAG}
 	docker push ${REGISTRY_NAME_BUNDLE}:latest
+
+run\:bundle:
+	docker run --rm -e PG_DSN="postgres://${USER}@host.docker.internal:5432/alice?sslmode=disable&timezone=utc" -p 3000:3000 ${REGISTRY_NAME_BUNDLE}

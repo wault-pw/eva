@@ -118,6 +118,7 @@ export default defineComponent({
       const challenge = await srp.setServerPublicKey(res0.getMutual_asU8())
       const res1 = await this.auth1(challenge.publicKey, challenge.proof)
       const valid = await srp.isProofValid(res1.getProof_asU8())
+      await srp.destroy()
       if (!valid) throw(`invalid credentials`)
     },
 

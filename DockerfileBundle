@@ -6,6 +6,9 @@ FROM ${ALICE} AS alice
 FROM ${EVA} AS eva
 
 FROM ${ISO} as iso
+LABEL "vendor"="Wault OÜ"
+LABEL "summary"="free, anonymous password manager with e2e encryption"
+LABEL "url"="https://github.com/wault-pw/eva"
 ENV ALICE_URL="/"
 ENV LOCALE="en"
 ENV STATUS_PAGE=""

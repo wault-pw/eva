@@ -14,7 +14,7 @@ Based on this idea, we developed and implemented a web application architecture 
 
 ## Docker setup
 
-The simplest [docker](https://hub.docker.com/repository/docker/shlima/wault) installation 
+The simplest [docker](https://hub.docker.com/r/shlima/wault) installation 
 (implies you are using local Postgres), looking the following. First, you should create an 
 empty database `psql -c 'CREATE DATABASE alice'`.
 

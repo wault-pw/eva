@@ -1,6 +1,6 @@
 PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
-REGISTRY_DOMAIN=ghcr.io
 REGISTRY_NAME=ghcr.io/wault-pw/eva
+REGISTRY_NAME_BUNDLE=shlima/wault
 VERSION:=$(shell cat VERSION)
 
 proto:
@@ -26,9 +26,6 @@ generate\:mpa:
 	node ./scripts/integrity.js dist/index.html > dist/index0.html
 	mv dist/index0.html dist/index.html
 
-tidy:
-	npx -y yarn-deduplicate
-
 build: export TAG=$(VERSION)
 build:
 	docker build --no-cache -f ./Dockerfile -t ${REGISTRY_NAME}:${TAG} --build-arg VERSION=${VERSION} .
@@ -38,3 +35,13 @@ push: export TAG=$(VERSION)
 push:
 	docker push ${REGISTRY_NAME}:${TAG}
 	docker push ${REGISTRY_NAME}:latest
+
+build\:bundle: export TAG=$(VERSION)
+build\:bundle:
+	docker build --no-cache -f ./DockerfileBundle -t ${REGISTRY_NAME_BUNDLE}:${TAG} --build-arg VERSION=${VERSION} .
+	docker tag ${REGISTRY_NAME_BUNDLE}:${TAG} ${REGISTRY_NAME_BUNDLE}:latest
+
+push\:bundle: export TAG=$(VERSION)
+push\:bundle:
+	docker push ${REGISTRY_NAME_BUNDLE}:${TAG}
+	docker push ${REGISTRY_NAME_BUNDLE}:latest

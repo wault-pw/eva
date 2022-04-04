@@ -35,8 +35,13 @@ export class Setup {
         return this.$config.demoPassword ?? raise("demoPassword not set")
     }
 
+    /**
+     * slash url "/" is used inside DockerfileBundle, to say eva that alice
+     * is located on the same host and port
+     */
     get aliceUrl(): string {
-        return this.$config.aliceUrl ?? raise("aliceUrl not set")
+        const url = this.$config.aliceUrl ?? raise("aliceUrl not set")
+        return url === "/" ? window.location.origin : url
     }
 
     get email(): string | null {

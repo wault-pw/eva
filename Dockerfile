@@ -22,7 +22,7 @@ RUN make generate:mpa generate:spa
 # nginx is used to serve pages
 FROM ${ISO} as iso
 WORKDIR /app
-COPY --from=build /app/dist .
+COPY --from=build /app/dist /app/eva
 COPY scripts scripts
 COPY docker/docker-entrypoint.sh .
 COPY docker/nginx.conf /etc/nginx/nginx.conf

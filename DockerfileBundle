@@ -1,0 +1,27 @@
+ARG ISO=nginx:alpine
+ARG ALICE=ghcr.io/wault-pw/alice
+ARG EVA=ghcr.io/wault-pw/eva
+
+FROM ${ALICE} AS alice
+FROM ${EVA} AS eva
+
+FROM ${ISO} as iso
+ENV ALICE_URL="/"
+ENV LOCALE="en"
+ENV STATUS_PAGE=""
+ENV TERMS_PAGE="https://www.wault.pw/legal/terms/"
+ENV PRIVACY_PAGE="https://www.wault.pw/legal/privacy/"
+ENV FEATURE_PAGE="https://www.wault.pw/features/overview/"
+ENV SECURITY_PAGE="https://www.wault.pw/security/overview/"
+ENV EMAIL="support@wault.pw"
+WORKDIR /app
+COPY --from=eva /app/eva /app/eva
+COPY --from=alice /app/alice /app/alice
+COPY scripts /app/scripts
+COPY docker/docker-entrypoint-bundle.sh /app/docker-entrypoint-bundle.sh
+COPY docker/nginx-bundle.conf /etc/nginx/nginx.conf
+
+ENTRYPOINT ["/app/docker-entrypoint-bundle.sh"]
+STOPSIGNAL SIGQUIT
+#CMD ["sh", "-c", "/app/alice server"]
+CMD ["/bin/sh", "-c", "/app/alice server"]

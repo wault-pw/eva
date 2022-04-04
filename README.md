@@ -26,6 +26,9 @@ Production ready setup should be like this one. Please provide your own random k
 - `SSE_KEY` for server side encryption
 - `JWT_KEY` for signing JWT cookies
 - `COOKIE_SECURE` set to `true` if you run wault instance behind the HTTPS
+- `COOKIE_DOMAIN` set a domain name if you run wault instance within your domain
+- `ALLOW_ORIGIN` set the origin if you run wault instance on a port other than `3000`,
+  or within your own domain name, example: `http://localhost:8080` or `https://wault.local`  
 
 ```bash
 docker run --rm \

@@ -2,6 +2,8 @@
 <html lang=":LOCALE:">
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="dns-prefetch" href="">
+    <link rel="preconnect" href="" crossorigin>
     <meta name="description" content=":DESCRIPTION:">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +22,6 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-
     <script>
       window.__setup__ = <%= JSON.stringify(htmlWebpackPlugin.options.__setup__) %>;
     </script>

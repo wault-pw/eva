@@ -36,6 +36,8 @@ eval "
 $SED -i \
 -e 's|src=\"/|src=\"$cdnURL/|g' \
 -e 's|link href=\"/|link href=\"$cdnURL/|g' \
+-e 's|rel=\"dns-prefetch\" href=\"|rel=\"dns-prefetch\" href=\"$cdnURL/|g' \
+-e 's|rel=\"preconnect\" href=\"|rel=\"preconnect\" href=\"$cdnURL/|g' \
 -e 's|:ALICE_URL:|$aliceUrl|g' \
 -e 's|:STATUS_PAGE:|$statusPage|g' \
 -e 's|:TERMS_PAGE:|$termsPage|g' \

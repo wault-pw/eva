@@ -56,6 +56,17 @@
         />
         <i/>
       </li>
+
+      <li :class="{active: panel === 'share'}">
+        <i/>
+        <a
+            href="javascript:"
+            v-text="$tc('menu.share')"
+            data-cy="share"
+            @click.prevent="onShare"
+        />
+        <i/>
+      </li>
     </ul>
 
     <hr class="space-nav-hr">
@@ -109,6 +120,8 @@
     </ul>
 
     <div class="space-aside-footer mt-auto pt-3">
+      <p v-text="$tc('spaceMenu.userID', { id: user.id })" />
+
       <a
           v-text="$tc('ui.delete')"
           href="javascript:;"
@@ -125,9 +138,9 @@ import {
   PANEL_EXPORT,
   PANEL_PASSPHRASE,
   PANEL_TERMINATION,
-  PANEL_MFA
+  PANEL_MFA, PANEL_SHARE
 } from "@/views/WorkspaceView.vue"
-import { USER_STORE } from "@/store/USER"
+import {IUser, USER_STORE} from "@/store/USER"
 
 export default defineComponent({
   props: {
@@ -140,6 +153,12 @@ export default defineComponent({
       type: String,
       required: false,
       default: null
+    }
+  },
+
+  computed: {
+    user(): IUser {
+      return USER_STORE().$state
     }
   },
 
@@ -170,6 +189,10 @@ export default defineComponent({
 
     onTerminate() {
       this.$emit('update:panel', PANEL_TERMINATION)
+    },
+
+    onShare() {
+      this.$emit('update:panel', PANEL_SHARE)
     },
   }
 })

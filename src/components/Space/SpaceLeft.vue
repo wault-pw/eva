@@ -26,7 +26,7 @@
           :key="item.id"
       >
         <a
-            v-if="!readonly"
+            v-if="!(readonly || item.sharedWithYou)"
             href="javascript:"
             class="icon-i-cursor space-nav-icon-hidden text-center"
             @click.prevent="rename(item)"
@@ -212,8 +212,7 @@ export default defineComponent({
         return
       }
 
-      await this.$adapter.deleteWorkspace(workspace.id)
-      WORKSPACE_STORE().REMOVE_FROM_LIST(workspace.id)
+      await WORKSPACE_STORE().DELETE(workspace)
 
       if (this.workspace.id == workspace.id) {
         await this.$router.push(this.$urn.workspaces())

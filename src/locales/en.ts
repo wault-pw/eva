@@ -38,8 +38,14 @@ const en: {[key: string]: any} = {
     import: "Import",
     logout: "Log out",
     preferences: "Settings",
-    security: "Security"
+    security: "Security",
+    share: "Share"
   },
+
+  spaceMenu: {
+    userID: "Your UserID is: {id}"
+  },
+
 
   hello: {
     h2: "Free, open source and anonymous password manager with e2e encryption_"
@@ -118,6 +124,12 @@ const en: {[key: string]: any} = {
     p1: "Create your first workspace for password, account data, and notes management"
   },
 
+  share: {
+    h1: "Share Workspace",
+    p1: "Share this workspace with your coworkers or teammates. The user will be able to read, modify and export workspace but can not delete, rename or re-share the workspace.",
+    p2: "This workspace is currently shared with (click to remove)"
+  },
+
   dialog: {
     deleteCard: "Delete?",
     archiveCard: "Archive?",
@@ -147,6 +159,7 @@ const en: {[key: string]: any} = {
   },
 
   user: {
+    id: "UserID",
     oldUsername: "Old username",
     newUsername: "New username",
     newPassword: "New password",

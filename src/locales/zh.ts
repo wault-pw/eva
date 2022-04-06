@@ -38,7 +38,12 @@ const zh: {[key: string]: any} = {
     import: "进口",
     logout: "退出",
     preferences: "设置",
-    security: "安全"
+    security: "安全",
+    share: "分享"
+  },
+
+  spaceMenu: {
+    userID: "您的UserID是 {id}"
   },
 
   hello: {
@@ -116,6 +121,12 @@ const zh: {[key: string]: any} = {
   workspaceList: {
     h1: "工作空间",
     p1: "创建您的第一个工作空间来管理密码、凭据和笔记"
+  },
+
+  share: {
+    h1: "共享工作区",
+    p1: "与您的同事或队友共享此工作区。 用户将能够读取、修改和导出工作空间，但不能删除、重命名或重新共享工作空间。",
+    p2: "此工作区当前与（单击以删除）共享"
   },
 
   dialog: {

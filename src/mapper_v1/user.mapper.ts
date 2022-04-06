@@ -1,4 +1,4 @@
-import {RegistrationRequest, TerminateRequest, UpdateCredentialsRequest} from "@/desc/alice_v1_pb"
+import {FindUserRequest, RegistrationRequest, TerminateRequest, UpdateCredentialsRequest} from "@/desc/alice_v1_pb"
 
 export function MapRegistrationUser(param: RegistrationUserOpts): RegistrationRequest.User {
     const out = new RegistrationRequest.User()
@@ -29,6 +29,12 @@ export function MapTerminateUser(param: TerminateUserOpts): TerminateRequest {
     return out
 }
 
+export function MapFindUser(param: FindUserOpts): FindUserRequest {
+    const out = new FindUserRequest()
+    out.setId(param.id)
+    return out
+}
+
 interface TerminateUserOpts {
     identity: string
 }
@@ -43,7 +49,6 @@ interface UpdateCredentialsOpts {
     privKeyEnc: Uint8Array
 }
 
-
 interface RegistrationUserOpts {
     identity: string
     verifier: Uint8Array
@@ -51,4 +56,8 @@ interface RegistrationUserOpts {
     passwdSalt: Uint8Array
     privKeyEnc: Uint8Array
     pubKey: Uint8Array
+}
+
+interface FindUserOpts {
+    id: string
 }

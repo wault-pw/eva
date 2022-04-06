@@ -589,6 +589,36 @@ export namespace PrivUser {
   }
 }
 
+export class PubUser extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getReadonly(): boolean;
+  setReadonly(value: boolean): void;
+
+  getPubKey(): Uint8Array | string;
+  getPubKey_asU8(): Uint8Array;
+  getPubKey_asB64(): string;
+  setPubKey(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PubUser.AsObject;
+  static toObject(includeInstance: boolean, msg: PubUser): PubUser.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PubUser, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PubUser;
+  static deserializeBinaryFromReader(message: PubUser, reader: jspb.BinaryReader): PubUser;
+}
+
+export namespace PubUser {
+  export type AsObject = {
+    id: string,
+    readonly: boolean,
+    pubKey: Uint8Array | string,
+  }
+}
+
 export class WhoAmIResponse extends jspb.Message {
   hasUser(): boolean;
   clearUser(): void;
@@ -734,6 +764,9 @@ export class UserWithWorkspace extends jspb.Message {
   getTitleEnc_asB64(): string;
   setTitleEnc(value: Uint8Array | string): void;
 
+  getSharedWithYou(): boolean;
+  setSharedWithYou(value: boolean): void;
+
   getCreatedAt(): string;
   setCreatedAt(value: string): void;
 
@@ -757,7 +790,40 @@ export namespace UserWithWorkspace {
     aedKeyEnc: Uint8Array | string,
     aedKeyTag: Uint8Array | string,
     titleEnc: Uint8Array | string,
+    sharedWithYou: boolean,
     createdAt: string,
+  }
+}
+
+export class UserWorkspace extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  getWorkspaceId(): string;
+  setWorkspaceId(value: string): void;
+
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getOwnerId(): string;
+  setOwnerId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserWorkspace.AsObject;
+  static toObject(includeInstance: boolean, msg: UserWorkspace): UserWorkspace.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UserWorkspace, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserWorkspace;
+  static deserializeBinaryFromReader(message: UserWorkspace, reader: jspb.BinaryReader): UserWorkspace;
+}
+
+export namespace UserWorkspace {
+  export type AsObject = {
+    id: string,
+    workspaceId: string,
+    userId: string,
+    ownerId: string,
   }
 }
 
@@ -1004,6 +1070,118 @@ export namespace OtpEnableRequest {
   export type AsObject = {
     identity: string,
     passcode: string,
+  }
+}
+
+export class CreateShareRequest extends jspb.Message {
+  getUserId(): string;
+  setUserId(value: string): void;
+
+  getAedKeyEnc(): Uint8Array | string;
+  getAedKeyEnc_asU8(): Uint8Array;
+  getAedKeyEnc_asB64(): string;
+  setAedKeyEnc(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateShareRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateShareRequest): CreateShareRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateShareRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateShareRequest;
+  static deserializeBinaryFromReader(message: CreateShareRequest, reader: jspb.BinaryReader): CreateShareRequest;
+}
+
+export namespace CreateShareRequest {
+  export type AsObject = {
+    userId: string,
+    aedKeyEnc: Uint8Array | string,
+  }
+}
+
+export class CreateShareResponse extends jspb.Message {
+  hasUserWorkspace(): boolean;
+  clearUserWorkspace(): void;
+  getUserWorkspace(): UserWorkspace | undefined;
+  setUserWorkspace(value?: UserWorkspace): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateShareResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateShareResponse): CreateShareResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateShareResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateShareResponse;
+  static deserializeBinaryFromReader(message: CreateShareResponse, reader: jspb.BinaryReader): CreateShareResponse;
+}
+
+export namespace CreateShareResponse {
+  export type AsObject = {
+    userWorkspace?: UserWorkspace.AsObject,
+  }
+}
+
+export class FindUserRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FindUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: FindUserRequest): FindUserRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FindUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FindUserRequest;
+  static deserializeBinaryFromReader(message: FindUserRequest, reader: jspb.BinaryReader): FindUserRequest;
+}
+
+export namespace FindUserRequest {
+  export type AsObject = {
+    id: string,
+  }
+}
+
+export class FindUserResponse extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): PubUser | undefined;
+  setUser(value?: PubUser): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FindUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: FindUserResponse): FindUserResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FindUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FindUserResponse;
+  static deserializeBinaryFromReader(message: FindUserResponse, reader: jspb.BinaryReader): FindUserResponse;
+}
+
+export namespace FindUserResponse {
+  export type AsObject = {
+    user?: PubUser.AsObject,
+  }
+}
+
+export class ListShareResponse extends jspb.Message {
+  clearSharesList(): void;
+  getSharesList(): Array<UserWorkspace>;
+  setSharesList(value: Array<UserWorkspace>): void;
+  addShares(value?: UserWorkspace, index?: number): UserWorkspace;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListShareResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListShareResponse): ListShareResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ListShareResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListShareResponse;
+  static deserializeBinaryFromReader(message: ListShareResponse, reader: jspb.BinaryReader): ListShareResponse;
+}
+
+export namespace ListShareResponse {
+  export type AsObject = {
+    sharesList: Array<UserWorkspace.AsObject>,
   }
 }
 

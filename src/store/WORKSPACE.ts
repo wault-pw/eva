@@ -63,6 +63,8 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
             return {
                 aedKey,
                 id: item.getWorkspaceId(),
+                shareId: item.getId(),
+                sharedWithYou: item.getSharedWithYou(),
                 title: await this.$ver.aedDecryptText(aedKey, item.getTitleEnc_asU8(), null),
             }
         },
@@ -88,6 +90,16 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
             )
 
             this.REPLACE_IN_LIST(await this.DECODE(user, res.getWorkspace()!))
+        },
+
+        async DELETE(workspace: IWorkspace): Promise<void> {
+            if (workspace.sharedWithYou) {
+                await this.$adapter.deleteShare(workspace.shareId)
+            } else {
+                await this.$adapter.deleteWorkspace(workspace.id)
+            }
+
+            this.REMOVE_FROM_LIST(workspace.id)
         }
     }
 })
@@ -95,7 +107,9 @@ export const WORKSPACE_STORE = defineStore("WORKSPACE", {
 function NullWorkspace(): IWorkspace {
     return {
         id: "",
+        shareId: "",
         title: "",
+        sharedWithYou: false,
         aedKey: FakeCryptoKey(),
     }
 }
@@ -107,6 +121,8 @@ interface IWorkspaceState {
 
 export interface IWorkspace {
     id: string
+    shareId: string
     aedKey: CryptoKey
     title: string
+    sharedWithYou: boolean
 }

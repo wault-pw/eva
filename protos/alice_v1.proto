@@ -112,6 +112,12 @@ message PrivUser {
   bool otp_enabled = 6;
 }
 
+message PubUser {
+  string id = 1;
+  bool readonly = 2;
+  bytes pub_key = 5;
+}
+
 message WhoAmIResponse {
   PrivUser user = 1;
 }
@@ -145,7 +151,15 @@ message UserWithWorkspace {
   bytes aed_key_enc = 6;
   bytes aed_key_tag = 7;
   bytes title_enc = 8;
-  string created_at = 9;
+  bool shared_with_you = 9;
+  string created_at = 10;
+}
+
+message UserWorkspace {
+  string id = 1;
+  string workspace_id = 2;
+  string user_id = 3;
+  string owner_id = 4;
 }
 
 message ListCardsResponse {
@@ -193,4 +207,25 @@ message OtpIssueResponse {
 message OtpEnableRequest {
   string identity = 1;
   string passcode = 2;
+}
+
+message CreateShareRequest {
+  string user_id = 1;
+  bytes aed_key_enc = 2;
+}
+
+message CreateShareResponse {
+  UserWorkspace user_workspace = 1;
+}
+
+message FindUserRequest {
+  string id = 1;
+}
+
+message FindUserResponse {
+  PubUser user = 1;
+}
+
+message ListShareResponse {
+  repeated UserWorkspace shares = 1;
 }

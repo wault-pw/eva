@@ -24,7 +24,13 @@ import {
     UpdateCredentialsResponse,
     LoginOtpRequest,
     LoginOtpResponse,
-    OtpIssueResponse, OtpEnableRequest,
+    OtpIssueResponse,
+    OtpEnableRequest,
+    FindUserResponse,
+    FindUserRequest,
+    CreateShareRequest,
+    CreateShareResponse,
+    ListShareResponse,
 } from "@/desc/alice_v1_pb"
 
 export class AdapterSpa implements IAdapter {
@@ -158,6 +164,28 @@ export class AdapterSpa implements IAdapter {
     @unavailable
     async updateCard(workspaceId: string, cardId: string, req: UpsertCardRequest): Promise<UpsertCardResponse> {
         return <any>null
+    }
+
+    @unavailable
+    async findUser(req: FindUserRequest): Promise<FindUserResponse> {
+        return <any>null
+    }
+
+    @unavailable
+    async createShare(workspaceId: string, req: CreateShareRequest): Promise<CreateShareResponse> {
+        return <any>null
+    }
+
+    @unavailable
+    async deleteShare(id: string): Promise<void>{
+        return <any>null
+    }
+
+    /**
+     * returns an empty response with zero shares
+     */
+    async listShares(workspaceId: string): Promise<ListShareResponse> {
+        return new ListShareResponse()
     }
 }
 

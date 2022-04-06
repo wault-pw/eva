@@ -23,7 +23,9 @@ import {
     UpdateCredentialsResponse,
     LoginOtpRequest,
     LoginOtpResponse,
-    OtpEnableRequest
+    OtpEnableRequest,
+    FindUserRequest,
+    FindUserResponse, CreateShareRequest, CreateShareResponse, ListShareResponse,
 } from "@/desc/alice_v1_pb"
 
 export interface IAdapter {
@@ -74,4 +76,12 @@ export interface IAdapter {
     createCard(workspaceId: string, req: UpsertCardRequest): Promise<UpsertCardResponse>
 
     updateCard(workspaceId: string, cardId: string, req: UpsertCardRequest): Promise<UpsertCardResponse>
+
+    findUser(req: FindUserRequest): Promise<FindUserResponse>
+
+    createShare(workspaceId: string, req: CreateShareRequest): Promise<CreateShareResponse>
+
+    listShares(workspaceId: string): Promise<ListShareResponse>
+
+    deleteShare(id: string): Promise<void>
 }

@@ -69,6 +69,7 @@
 
     <transition name="space-panel-transition">
       <SpacePanelExport v-if="panel === 'export'" @close="menuShown = false"/>
+      <SpacePanelShare v-else-if="panel === 'share'" :readonly="readonly" :workspace="workspace" @close="menuShown = false"/>
       <SpacePanelMfa v-else-if="panel === 'mfa'" :readonly="readonly" @close="menuShown = false"/>
       <SpacePanelPassphrase v-else-if="panel === 'passphrase'" :readonly="readonly" @close="menuShown = false"/>
       <SpacePanelTermination v-else-if="panel === 'termination'" :readonly="readonly" @close="menuShown = false"/>
@@ -97,10 +98,12 @@ import SpacePanelTermination from "@/components/SpacePanel/SpacePanelTermination
 import SpacePanelMfa from "@/components/SpacePanel/SpacePanelMfa.vue"
 import SpacePanelExport from "@/components/SpacePanel/SpacePanelExport.vue"
 import SpacePanelPassphrase from "@/components/SpacePanel/SpacePanelPassphrase.vue"
+import SpacePanelShare from "@/components/SpacePanel/SpacePanelShare.vue";
 
 export const PANEL_EXPORT = "export"
 export const PANEL_PASSPHRASE = "passphrase"
 export const PANEL_TERMINATION = "termination"
+export const PANEL_SHARE = "share"
 export const PANEL_MFA = "mfa"
 
 interface IData {
@@ -109,7 +112,7 @@ interface IData {
   query: string
   edit: Array<ICardItem> | null
   archived: boolean
-  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | typeof PANEL_MFA | null
+  panel: typeof PANEL_EXPORT | typeof PANEL_PASSPHRASE | typeof PANEL_TERMINATION | typeof PANEL_MFA | typeof PANEL_SHARE | null
   activeCard: ICard | null
   activeTag: string | null
 }
@@ -125,6 +128,7 @@ function isTagged(card: ICard, tag: string | null): boolean {
 
 export default defineComponent({
   components: {
+    SpacePanelShare,
     SpaceForm, SpaceCard, StatusThrobber, SpaceRight, SpaceLeft, SpaceHeader, SpaceMenu,
     SpacePanelTermination, SpacePanelMfa, SpacePanelExport, SpacePanelPassphrase
   },

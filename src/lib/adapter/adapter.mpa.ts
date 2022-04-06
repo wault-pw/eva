@@ -23,7 +23,13 @@ import {
     UpdateCredentialsResponse,
     LoginOtpRequest,
     LoginOtpResponse,
-    OtpIssueResponse, OtpEnableRequest, ValidationError,
+    OtpIssueResponse,
+    OtpEnableRequest,
+    ValidationError,
+    FindUserResponse,
+    FindUserRequest,
+    CreateShareRequest,
+    CreateShareResponse, ListShareResponse,
 } from "@/desc/alice_v1_pb"
 
 export default class AdapterMpa implements IAdapter {
@@ -149,6 +155,25 @@ export default class AdapterMpa implements IAdapter {
         return UpsertCardResponse.deserializeBinary(bin)
     }
 
+    async findUser(req: FindUserRequest): Promise<FindUserResponse> {
+        const bin = await this.post(`/v1/users/find`, req)
+        return FindUserResponse.deserializeBinary(bin)
+    }
+
+    async createShare(workspaceId: string, req: CreateShareRequest): Promise<CreateShareResponse> {
+        const bin = await this.post(`/v1/workspaces/${workspaceId}/shares/create`, req)
+        return CreateShareResponse.deserializeBinary(bin)
+    }
+
+    async listShares(workspaceId: string): Promise<ListShareResponse> {
+        const bin = await this.post(`/v1/workspaces/${workspaceId}/shares/list`, null)
+        return ListShareResponse.deserializeBinary(bin)
+    }
+
+    async deleteShare(id: string): Promise<void>{
+        await this.post(`/v1/shares/${id}/delete`, null)
+    }
+
     private async post(permalink: string, req: IProto | null): Promise<Uint8Array> {
         const response = await fetch(this.url + permalink, {
             method: 'POST',
@@ -159,7 +184,7 @@ export default class AdapterMpa implements IAdapter {
         })
 
         if (!response.ok) {
-            this.handleErr(response)
+            await this.handleErr(response)
             throw Error(response.statusText)
         }
 

@@ -38,7 +38,7 @@ class AesAedCipher implements IAedCipher {
     }
 
     async importKey(key: Uint8Array): Promise<CryptoKey> {
-        return await crypto.subtle.importKey("raw", key, {name: this.name}, false, ["encrypt", "decrypt"])
+        return await crypto.subtle.importKey("raw", key, {name: this.name}, true, ["encrypt", "decrypt"])
     }
 
     async exportKey(key: CryptoKey): Promise<Uint8Array> {

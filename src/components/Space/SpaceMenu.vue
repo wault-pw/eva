@@ -87,7 +87,7 @@
             :href="$setup.github"
             target="_blank"
         >
-          Github
+          GitHub
         </a>
         <i/>
       </li>

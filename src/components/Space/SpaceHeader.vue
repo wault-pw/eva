@@ -29,7 +29,9 @@
     <div
         v-if="!title"
         class="space-header-logo"
-    />
+    >
+      <Logo />
+    </div>
 
     <nav class="space-header-nav justify-content-end">
       <a
@@ -46,8 +48,11 @@
 
 <script lang="ts">
 import {defineComponent} from "vue"
+import Logo from "@/components/Shared/Logo.vue"
 
 export default defineComponent({
+  components: {Logo},
+
   props: {
     left: {
       type: Boolean,

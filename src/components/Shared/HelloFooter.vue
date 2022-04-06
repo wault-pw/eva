@@ -51,7 +51,7 @@
         <a
             :href="$setup.github"
             target="_blank"
-            v-text="'Github'"
+            v-text="'GitHub'"
         />
       </li>
 

@@ -19,7 +19,7 @@ The simplest [docker](https://hub.docker.com/r/shlima/wault) installation
 empty database `psql -c 'CREATE DATABASE alice'`.
 
 ```bash
-docker run --rm -e PG_DSN="postgres://user@host.docker.internal:5432/alice?sslmode=disable&timezone=utc" -p 3000:3000 shlima/wault 
+docker run --rm -e PG_DSN="postgres://${USER}@host.docker.internal:5432/alice?sslmode=disable&timezone=utc" -p 3000:3000 shlima/wault 
 ```
 
 Production ready setup should be like this one. Please provide your own random keys.
@@ -27,12 +27,10 @@ Production ready setup should be like this one. Please provide your own random k
 - `JWT_KEY` for signing JWT cookies
 - `COOKIE_SECURE` set to `true` if you run wault instance behind the HTTPS
 - `COOKIE_DOMAIN` set a domain name if you run wault instance within your domain
-- `ALLOW_ORIGIN` set the origin if you run wault instance on a port other than `3000`,
-  or within your own domain name, example: `http://localhost:8080` or `https://wault.local`  
 
 ```bash
 docker run --rm \
--e PG_DSN="postgres://user@host.docker.internal:5432/alice?sslmode=disable&timezone=utc" \
+-e PG_DSN="postgres://${USER}@host.docker.internal:5432/alice?sslmode=disable&timezone=utc" \
 -e SSE_KEY=bf02ee811878d6cd9eebb823e54d2bdc318b4fc676df9c3f709f8c9c6ca8fff0 \
 -e JWT_KEY=7cfa6c528a3060810ae8337382b99a9eaaf305a8055d4739df8312155a0d93d8 \
 -e COOKIE_SECURE=false \

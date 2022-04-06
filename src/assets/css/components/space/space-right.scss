@@ -43,15 +43,12 @@
 .space-right-item {
   background: var(--white);
   padding: 15px var(--grid-gap);
-  padding-right: calc(var(--space-right-item-active-margin) + var(--gap));
+  padding-right: calc(var(--space-right-item-active-margin) + var(--grid-gap));
   overflow: hidden;
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: margin .2s,
-  padding-right .2s,
-  //background-color $space-card-archived-dur,
-  //color $space-card-archived-dur;
+  transition: margin .2s, padding-right .2s;
 }
 
 .space-right-item.active {

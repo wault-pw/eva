@@ -12,10 +12,11 @@
       <li
           v-for="card in cards"
           :key="card.id"
+          :class="{active: isActive(card)}"
           class="space-right-li"
       >
         <div
-            :class="{active: active && card.id === active.id, archived: card.archived}"
+            :class="{active: isActive(card), archived: card.archived}"
             class="space-right-item"
             @click="$emit('update:active', card)"
         >
@@ -43,5 +44,11 @@ export default defineComponent({
       required: true
     }
   },
+
+  methods: {
+    isActive(card: ICard): boolean {
+      return this.active ? card.id === this.active.id : false
+    }
+  }
 })
 </script>
